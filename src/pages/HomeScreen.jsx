@@ -4,9 +4,8 @@ import Services from '../components/Services/Services'
 import Banner from '../components/Banner/Banner'
 import Banner2 from '../components/Banner/Banner2'
 import Subscribe from '../components/Subscribe/Subscribe'
-import ContactUs from "./ContactUs";
-import Footer from "../components/Footer/Footer";
-import Navbar from "../components/Navbar/Navbar";
+import Features from "./WhatWeOffer";
+import FAQ from "./Faq";
 
 const HomeScreen = () => {
   return (
@@ -16,6 +15,8 @@ const HomeScreen = () => {
         <Banner />
         <Subscribe />
         <Banner2 />
+        <Features/>
+        <FAQ/>
     </div>
   );
 };

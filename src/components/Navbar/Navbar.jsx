@@ -1,13 +1,14 @@
 import React, { useState } from "react";
 import { IoMdMenu } from "react-icons/io";
 import { motion, AnimatePresence } from "framer-motion";
+import { Link } from "react-router-dom"; // Import Link
 
 const NavbarMenu = [
   { id: 1, title: "Home", path: "/" },
-  { id: 2, title: "Our Courses", path: "#" },
-  { id: 3, title: "About Us", link: "#" },
-  { id: 4, title: "Our Training Team", link: "#" },
-  { id: 1, title: "Contact Us", path: "contactus" },
+  { id: 2, title: "Our Courses", path: "/courses" },
+  { id: 3, title: "About Us", path: "/about" },
+  { id: 4, title: "Our Training Team", path: "#" },
+  { id: 5, title: "Contact Us", path: "/contactus" },
 ];
 
 const Navbar = () => {
@@ -18,28 +19,28 @@ const Navbar = () => {
   };
 
   return (
-    <nav className="relative z-20 ">
+    <nav className="relative z-20">
       <motion.div
         initial={{ opacity: 0, y: -50 }}
         animate={{ opacity: 1, y: 0 }}
-        className="container b py-10 flex justify-between items-center absolute"
+        className="container py-10 flex justify-between items-center absolute"
       >
         {/* Logo section */}
         <div>
-          <h1 className="font-bold text-2xl">The Coding <span className="text-primary">World</span> </h1>
+          <h1 className="font-bold text-2xl">The Coding <span className="text-primary">World</span></h1>
         </div>
 
         <div className="hidden lg:block">
           <ul className="flex items-center gap-3">
             {NavbarMenu.map((menu) => (
               <li key={menu.id}>
-                <a
-                  href={menu.path}
+                <Link
+                  to={menu.path} // Use Link instead of a tag
                   className="inline-block py-2 px-3 hover:text-secondary relative group"
                 >
                   <div className="w-2 h-2 bg-secondary absolute mt-4 rounded-full left-1/2 -translate-x-1/2 top-1/2 bottom-0 group-hover:block hidden"></div>
                   {menu.title}
-                </a>
+                </Link>
               </li>
             ))}
             <button className="primary-btn">Sign In</button>
@@ -63,13 +64,13 @@ const Navbar = () => {
             <ul className="flex flex-col gap-2">
               {NavbarMenu.map((menu) => (
                 <li key={menu.id}>
-                  <a
-                    href={menu.path}
+                  <Link
+                    to={menu.path} // Use Link instead of a tag
                     className="block py-2 hover:text-secondary"
                     onClick={() => setMobileMenuOpen(false)} // Close menu on item click
                   >
                     {menu.title}
-                  </a>
+                  </Link>
                 </li>
               ))}
               <button className="primary-btn">Sign In</button>
