@@ -20,7 +20,6 @@ const internshipTypes = [
     title: 'Data Science',
     icon: <FaDatabase className="w-16 h-16 mb-2" />,
   },
-  // Add more internship types as needed...
 ];
 
 const InternshipForm = () => {
@@ -46,9 +45,9 @@ const InternshipForm = () => {
   };
 
   return (
-    <section className="container mx-auto p-40">
+    <section className="container mx-auto pt-28 md:p-40">
       <motion.h2
-        className="text-4xl font-bold text-center mb-6"
+        className="text-2xl md:text-4xl font-bold md:pb-16 text-center mb-6"
         initial={{ opacity: 0, y: -20 }}
         whileInView={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5 }}
@@ -57,7 +56,7 @@ const InternshipForm = () => {
       </motion.h2>
       <motion.form
         onSubmit={handleSubmit}
-        className="bg-white border rounded-lg p-8"
+        className="bg-white border rounded-lg p-6 md:p-8 shadow-lg"
         initial={{ opacity: 0, scale: 0.8 }}
         whileInView={{ opacity: 1, scale: 1 }}
         transition={{ duration: 0.5 }}
@@ -135,7 +134,7 @@ const InternshipForm = () => {
       </motion.form>
 
       <motion.div
-        className="mt-6 grid grid-cols-2 sm:grid-cols-4 gap-4"
+        className="mt-6 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4 pt-20"
         initial={{ opacity: 0 }}
         whileInView={{ opacity: 1 }}
         transition={{ duration: 0.5 }}
