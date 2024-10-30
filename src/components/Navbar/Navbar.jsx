@@ -1,35 +1,22 @@
-import React from "react";
+import React, { useState } from "react";
 import { IoMdMenu } from "react-icons/io";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 
 const NavbarMenu = [
-  {
-    id: 1,
-    title: "Home",
-    path: "/",
-  },
-  {
-    id: 2,
-    title: "Services",
-    link: "#",
-  },
-  {
-    id: 3,
-    title: "About Us",
-    link: "#",
-  },
-  {
-    id: 4,
-    title: "Our Team",
-    link: "#",
-  },
-  {
-    id: 5,
-    title: "Contact Us",
-    link: "#",
-  },
+  { id: 1, title: "Home", path: "/" },
+  { id: 2, title: "Services", link: "#" },
+  { id: 3, title: "About Us", link: "#" },
+  { id: 4, title: "Our Team", link: "#" },
+  { id: 5, title: "Contact Us", link: "#" },
 ];
+
 const Navbar = () => {
+  const [isMobileMenuOpen, setMobileMenuOpen] = useState(false);
+
+  const toggleMobileMenu = () => {
+    setMobileMenuOpen((prev) => !prev);
+  };
+
   return (
     <nav className="relative z-20">
       <motion.div
@@ -39,9 +26,9 @@ const Navbar = () => {
       >
         {/* Logo section */}
         <div>
-          <h1 className="font-bold text-2xl">The Coding Journey</h1>
+          <h1 className="font-bold text-2xl">The Coding World</h1>
         </div>
-        {/* Menu section */}
+
         <div className="hidden lg:block">
           <ul className="flex items-center gap-3">
             {NavbarMenu.map((menu) => (
@@ -58,11 +45,38 @@ const Navbar = () => {
             <button className="primary-btn">Sign In</button>
           </ul>
         </div>
-        {/* Mobile Hamburger menu section */}
+
         <div className="lg:hidden">
-          <IoMdMenu className="text-4xl" />
+          <IoMdMenu className="text-4xl cursor-pointer" onClick={toggleMobileMenu} />
         </div>
       </motion.div>
+
+      <AnimatePresence>
+        {isMobileMenuOpen && (
+          <motion.div
+            className="lg:hidden bg-white shadow-lg absolute z-40 top-full left-0 right-0 mt-2 p-4"
+            initial={{ opacity: 0, height: 0 }}
+            animate={{ opacity: 1, height: "auto" }}
+            exit={{ opacity: 0, height: 0 }}
+            transition={{ duration: 0.3 }}
+          >
+            <ul className="flex flex-col gap-2">
+              {NavbarMenu.map((menu) => (
+                <li key={menu.id}>
+                  <a
+                    href={menu.path}
+                    className="block py-2 hover:text-secondary"
+                    onClick={() => setMobileMenuOpen(false)} // Close menu on item click
+                  >
+                    {menu.title}
+                  </a>
+                </li>
+              ))}
+              <button className="primary-btn">Sign In</button>
+            </ul>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </nav>
   );
 };

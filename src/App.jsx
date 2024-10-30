@@ -1,21 +1,20 @@
-import React from "react";
-import Hero from "./components/Hero/Hero";
-import Services from "./components/Services/Services";
-import Banner from "./components/Banner/Banner";
-import Subscribe from "./components/Subscribe/Subscribe";
-import Banner2 from "./components/Banner/Banner2";
-import Footer from "./components/Footer/Footer";
+import React from 'react';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import HomeScreen from './pages/HomeScreen';
+import Layout from './pages/Lyout/layout';
+// Import other pages as needed
 
 const App = () => {
   return (
-    <main className="overflow-x-hidden bg-white text-dark">
-      <Hero />
-      <Services />
-      <Banner />
-      <Subscribe />
-      <Banner2 />
-      <Footer />
-    </main>
+    <Router>
+      <Layout>
+        <Routes>
+          <Route path="/" element={<HomeScreen />} />
+          {/* <Route path="/contact" element={<ContactUs />} /> */}
+          {/* Add more routes as needed */}
+        </Routes>
+      </Layout>
+    </Router>
   );
 };
 
