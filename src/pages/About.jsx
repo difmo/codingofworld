@@ -15,10 +15,10 @@ export const About = () => {
             <span className='text-sm mt-2 block'>You don't have to struggle alone; you've got our assistance and help.</span>
           </div>
           <div className='grid grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-4'>
-            <AboutCard color='bg-[#2D69F0]' icon={<FaBookDead size={50} />} title='4,000 Online Courses' desc="You don't have to struggle alone, you've " />
-            <AboutCard color='bg-[#DD246E]' icon={<FaBookDead size={50} />} title='Expert Instructors' desc="Learn from industry leaders." />
-            <AboutCard color='bg-[#8007E6]' icon={<FaBookDead size={50} />} title='Flexible Learning' desc="Study at your own pace." />
-            <AboutCard color='bg-[#0CAE74]' icon={<FaBookDead size={50} />} title='Certification' desc="Earn recognized certificates." />
+            <AboutCard color='bg-[#000]' icon={<FaBookDead size={50} />} title='4,000 Online Courses' desc="You don't have to struggle alone, you've " />
+            <AboutCard color='bg-[#000]' icon={<FaBookDead size={50} />} title='Expert Instructors' desc="Learn from industry leaders." />
+            <AboutCard color='bg-[#000]' icon={<FaBookDead size={50} />} title='Flexible Learning' desc="Study at your own pace." />
+            <AboutCard color='bg-[#000]' icon={<FaBookDead size={50} />} title='Certification' desc="Earn recognized certificates." />
           </div>
         </div>
       </section>
@@ -30,7 +30,7 @@ export const About = () => {
 export const AboutCard = (props) => {
   return (
     <div className={`box shadow-md p-5 py-8 rounded-md text-white ${props.color} cursor-pointer transition ease-in-out delay-150 hover:-translate-y-4 duration-300`}>
-      <div className='icon'>{props.icon}</div>
+      <div className='icon text-white '>{props.icon}</div>
       <div className='text mt-5'>
         <h4 className='text-lg font-semibold my-3'>{props.title}</h4>
         <p className='text-sm'>{props.desc}</p>

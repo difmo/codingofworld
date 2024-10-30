@@ -5,6 +5,7 @@ import Layout from './pages/Layout/layout';
 import ContactUs from './pages/ContactUs';
 import { Courses } from './pages/Courses';
 import { About } from './pages/About';
+import TrainingTeam from './pages/OurTrainingTeam';
 // Import other pages as needed
 
 const App = () => {
@@ -16,6 +17,7 @@ const App = () => {
           <Route path="/contactus" element={<ContactUs />} />
           <Route path="/courses" element={<Courses />} />
           <Route path="/about" element={<About />} />
+          <Route path="/trainingteam" element={<TrainingTeam />} />
           {/* Add more routes as needed */}
         </Routes>
       </Layout>

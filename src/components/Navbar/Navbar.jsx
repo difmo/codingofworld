@@ -7,7 +7,7 @@ const NavbarMenu = [
   { id: 1, title: "Home", path: "/" },
   { id: 2, title: "Our Courses", path: "/courses" },
   { id: 3, title: "About Us", path: "/about" },
-  { id: 4, title: "Our Training Team", path: "#" },
+  { id: 4, title: "Our Training Team", path: "/trainingteam" },
   { id: 5, title: "Contact Us", path: "/contactus" },
 ];
 
@@ -27,7 +27,7 @@ const Navbar = () => {
       >
         {/* Logo section */}
         <div>
-          <h1 className="font-bold text-2xl">The Coding <span className="text-primary">World</span></h1>
+          <h1 className="font-bold text-2xl">The Coding of <span className="text-primary">World</span></h1>
         </div>
 
         <div className="hidden lg:block">
