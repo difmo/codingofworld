@@ -1,7 +1,8 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import HomeScreen from './pages/HomeScreen';
-import Layout from './pages/Lyout/layout';
+import Layout from './pages/Layout/layout';
+import ContactUs from './pages/ContactUs';
 // Import other pages as needed
 
 const App = () => {
@@ -10,7 +11,7 @@ const App = () => {
       <Layout>
         <Routes>
           <Route path="/" element={<HomeScreen />} />
-          {/* <Route path="/contact" element={<ContactUs />} /> */}
+          <Route path="/contactus" element={<ContactUs />} />
           {/* Add more routes as needed */}
         </Routes>
       </Layout>

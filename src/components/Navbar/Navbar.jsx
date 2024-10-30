@@ -4,10 +4,10 @@ import { motion, AnimatePresence } from "framer-motion";
 
 const NavbarMenu = [
   { id: 1, title: "Home", path: "/" },
-  { id: 2, title: "Services", link: "#" },
+  { id: 2, title: "Our Courses", path: "#" },
   { id: 3, title: "About Us", link: "#" },
-  { id: 4, title: "Our Team", link: "#" },
-  { id: 5, title: "Contact Us", link: "#" },
+  { id: 4, title: "Our Training Team", link: "#" },
+  { id: 1, title: "Contact Us", path: "contactus" },
 ];
 
 const Navbar = () => {
@@ -18,15 +18,15 @@ const Navbar = () => {
   };
 
   return (
-    <nav className="relative z-20">
+    <nav className="relative z-20 ">
       <motion.div
         initial={{ opacity: 0, y: -50 }}
         animate={{ opacity: 1, y: 0 }}
-        className="container py-10 flex justify-between items-center"
+        className="container b py-10 flex justify-between items-center absolute"
       >
         {/* Logo section */}
         <div>
-          <h1 className="font-bold text-2xl">The Coding World</h1>
+          <h1 className="font-bold text-2xl">The Coding <span className="text-primary">World</span> </h1>
         </div>
 
         <div className="hidden lg:block">

@@ -6,6 +6,7 @@ import { IoMdHappy } from "react-icons/io";
 import { BiSupport } from "react-icons/bi";
 import { IoPulseOutline } from "react-icons/io5";
 import { motion } from "framer-motion";
+import { MdDesignServices } from "react-icons/md";
 
 const ServicesData = [
   {
@@ -31,7 +32,7 @@ const ServicesData = [
   },
   {
     id: 4,
-    title: "Satisfied clients",
+    title: "IOT and Robotics",
     link: "#",
     icon: <IoMdHappy />,
     delay: 0.5,
@@ -45,9 +46,9 @@ const ServicesData = [
   },
   {
     id: 6,
-    title: "24/7 support",
+    title: "Design",
     link: "#",
-    icon: <BiSupport />,
+    icon: <MdDesignServices />,
     delay: 0.7,
   },
 ];

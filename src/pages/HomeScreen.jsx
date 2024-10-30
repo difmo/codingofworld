@@ -16,8 +16,6 @@ const HomeScreen = () => {
         <Banner />
         <Subscribe />
         <Banner2 />
-        <ContactUs />
-        <Footer />
     </div>
   );
 };
