@@ -50,7 +50,7 @@ const FAQ = () => {
               onClick={() => toggleFAQ(index)}
             >
               <h3 className="font-semibold text-lg">{faq.question}</h3>
-              <span className="text-2xl text-primary border p-2 rounded-xl border-primary">{openIndex === index ? '-' : '+'}</span>
+              <span className="text-2xl text-primary border p-2 rounded-xl border-primary   ">{openIndex === index ? '-' : '+'}</span>
             </div>
             {openIndex === index && (
               <div className="p-4 text-gray-700">

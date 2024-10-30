@@ -6,6 +6,8 @@ import ContactUs from './pages/ContactUs';
 import { Courses } from './pages/Courses';
 import { About } from './pages/About';
 import TrainingTeam from './pages/OurTrainingTeam';
+import InternshipsSection from './pages/Internship';
+import InternshipForm from './pages/IntershipForm';
 // Import other pages as needed
 
 const App = () => {
@@ -18,6 +20,8 @@ const App = () => {
           <Route path="/courses" element={<Courses />} />
           <Route path="/about" element={<About />} />
           <Route path="/trainingteam" element={<TrainingTeam />} />
+          <Route path="/internship" element={<InternshipsSection />} />
+          <Route path="/internshipform" element={<InternshipForm />} />
           {/* Add more routes as needed */}
         </Routes>
       </Layout>
