@@ -5,6 +5,8 @@ import { MdOutlineAccessTime } from "react-icons/md";
 import { FaBookReader } from "react-icons/fa";
 import { FadeUp } from "../Hero/Hero";
 import { motion } from "framer-motion";
+import service from "../../assets/headerimg/1.svg"
+
 
 const Banner = () => {
   return (
@@ -17,9 +19,9 @@ const Banner = () => {
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5, ease: "easeInOut" }}
-            src={BannerPng}
+            src={service}
             alt=""
-            className="w-[350px] md:max-w-[450px] object-cover drop-shadow"
+            className="w-[550px] md:max-w-[550px] object-cover "
           />
         </div>
         {/* Banner Text */}

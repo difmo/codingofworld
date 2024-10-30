@@ -7,7 +7,6 @@ import { BiSupport } from "react-icons/bi";
 import { IoPulseOutline } from "react-icons/io5";
 import { motion } from "framer-motion";
 import { MdDesignServices } from "react-icons/md";
-
 const ServicesData = [
   {
     id: 1,
