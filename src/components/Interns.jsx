@@ -48,7 +48,7 @@ const Internships = () => {
       <ul className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6  container    ">
         {internships.map((internship, index) => (
           <div key={index} className="relative flex flex-col justify-evenly border rounded-lg overflow-hidden shadow-lg transition-transform transform hover:scale-105 group p-9 h-96">
-                <h3 className="text-3xl font-semibold text-center">{internship.title}</h3>
+                <h3 className="text-3   xl font-semibold text-center">{internship.title}</h3>
             <a href={internship.link} target="_blank" rel="noopener noreferrer" className="block p-4">
               <div className="transition-opacity duration-300 group-hover:opacity-0">
                 <img className="w-full h-24 object-cover my-2" src={internship.image} alt={internship.title} loading="lazy" />
