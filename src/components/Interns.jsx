@@ -2,42 +2,43 @@ import React from 'react';
 
 const internships = [
   {
-    title: 'Business Internships',
-    description: 'Business internships include multiple teams and roles within the business world at Google. Available outside of the United States, the internship is for undergraduate and graduate students with qualifications and application dates varying by location.',
-    link: 'https://careers.google.com/jobs/results/?src=Online/Google Website/ByF&utm_source=online&utm_medium=careers_site&utm_campaign=ByF business intern&company=Fitbit&company=Google&company=YouTube&distance=50&employment_type=INTERN&jex=ENTRY_LEVEL&q=business',
-    image: 'https://lh3.googleusercontent.com/gDHLisDSrG75KfSu5-EtEkaVSWrhq2Lz1JOvHmYaSFJz9kmCVv6l7P5NiXnxp2nlQXe0KbsVnpf9kQevTF2Sf-tUvsjP_pKILV6MFcwYt1LzCtERsDQ',
+    title: 'Marketing Intern',
+    description: 'Join our dynamic marketing team to help promote our latest products. This internship offers hands-on experience in digital marketing strategies and social media management.',
+    link: '',
+      image: 'https://img.freepik.com/premium-photo/blue-technology-background-abstract-digital-tech-circlecopy-space-isolated-with-white_660230-166389.jpg',
   },
   {
-    title: 'Business Internships',
-    description: 'Business internships include multiple teams and roles within the business world at Google. Available outside of the United States, the internship is for undergraduate and graduate students with qualifications and application dates varying by location.',
-    link: 'https://careers.google.com/jobs/results/?src=Online/Google Website/ByF&utm_source=online&utm_medium=careers_site&utm_campaign=ByF business intern&company=Fitbit&company=Google&company=YouTube&distance=50&employment_type=INTERN&jex=ENTRY_LEVEL&q=business',
-    image: 'https://lh3.googleusercontent.com/gDHLisDSrG75KfSu5-EtEkaVSWrhq2Lz1JOvHmYaSFJz9kmCVv6l7P5NiXnxp2nlQXe0KbsVnpf9kQevTF2Sf-tUvsjP_pKILV6MFcwYt1LzCtERsDQ',
+    title: 'Data Analysis Intern',
+    description: 'Work with our data analytics team to gather insights and support decision-making processes. This role involves analyzing data trends and preparing reports for stakeholders.',
+    link: '',
+    image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQaPcs0BFfc4yvzXRgMPeBHO9AHvgS49Qtoqw&s',
   },
   {
-    title: 'Business Internships',
-    description: 'Business internships include multiple teams and roles within the business world at Google. Available outside of the United States, the internship is for undergraduate and graduate students with qualifications and application dates varying by location.',
-    link: 'https://careers.google.com/jobs/results/?src=Online/Google Website/ByF&utm_source=online&utm_medium=careers_site&utm_campaign=ByF business intern&company=Fitbit&company=Google&company=YouTube&distance=50&employment_type=INTERN&jex=ENTRY_LEVEL&q=business',
-    image: 'https://lh3.googleusercontent.com/gDHLisDSrG75KfSu5-EtEkaVSWrhq2Lz1JOvHmYaSFJz9kmCVv6l7P5NiXnxp2nlQXe0KbsVnpf9kQevTF2Sf-tUvsjP_pKILV6MFcwYt1LzCtERsDQ',
+    title: 'Product Management Intern',
+    description: 'Collaborate with our product management team to assist in developing and launching new products. You’ll gain experience in project management and cross-functional teamwork.',
+    link: '',
+    image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS7z93pM3W1Qz6vnY1X5DqFsHWAywd2rNPoLQ&s  0',
   },
   {
-    title: 'Business Internships',
-    description: 'Business internships include multiple teams and roles within the business world at Google. Available outside of the United States, the internship is for undergraduate and graduate students with qualifications and application dates varying by location.',
-    link: 'https://careers.google.com/jobs/results/?src=Online/Google Website/ByF&utm_source=online&utm_medium=careers_site&utm_campaign=ByF business intern&company=Fitbit&company=Google&company=YouTube&distance=50&employment_type=INTERN&jex=ENTRY_LEVEL&q=business',
-    image: 'https://lh3.googleusercontent.com/gDHLisDSrG75KfSu5-EtEkaVSWrhq2Lz1JOvHmYaSFJz9kmCVv6l7P5NiXnxp2nlQXe0KbsVnpf9kQevTF2Sf-tUvsjP_pKILV6MFcwYt1LzCtERsDQ',
+    title: 'Human Resources Intern',
+    description: 'Assist our HR team in various tasks including recruitment, onboarding, and employee engagement initiatives. This is a great opportunity to learn about HR practices in a corporate setting.',
+    link: '',
+    image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRxV508rIJPKb66gQHUc_QDs-N4y-XjhuuzmQ&s',
   },
   {
-    title: 'Business Internships',
-    description: 'Business internships include multiple teams and roles within the business world at Google. Available outside of the United States, the internship is for undergraduate and graduate students with qualifications and application dates varying by location.',
-    link: 'https://careers.google.com/jobs/results/?src=Online/Google Website/ByF&utm_source=online&utm_medium=careers_site&utm_campaign=ByF business intern&company=Fitbit&company=Google&company=YouTube&distance=50&employment_type=INTERN&jex=ENTRY_LEVEL&q=business',
-    image: 'https://lh3.googleusercontent.com/gDHLisDSrG75KfSu5-EtEkaVSWrhq2Lz1JOvHmYaSFJz9kmCVv6l7P5NiXnxp2nlQXe0KbsVnpf9kQevTF2Sf-tUvsjP_pKILV6MFcwYt1LzCtERsDQ',
+    title: 'Finance Intern',
+    description: 'Gain experience in financial analysis and reporting by joining our finance team. You will assist in budget preparation and financial forecasting for upcoming projects.',
+    link: '',
+    image: 'https://images.unsplash.com/photo-1556740749-887f6717d7e4?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwxMTc3M3wwfDF8c2VhcmNofDE0Mnx8ZmluYW5jZSUyMGxhbmd1YWdlfGVufDB8fHx8MTYzNzk5NTI5NA&ixlib=rb-1.2.1&q=80&w=400',
   },
   {
-    title: 'Business Internships',
-    description: 'Business internships include multiple teams and roles within the business world at Google. Available outside of the United States, the internship is for undergraduate and graduate students with qualifications and application dates varying by location.',
-    link: 'https://careers.google.com/jobs/results/?src=Online/Google Website/ByF&utm_source=online&utm_medium=careers_site&utm_campaign=ByF business intern&company=Fitbit&company=Google&company=YouTube&distance=50&employment_type=INTERN&jex=ENTRY_LEVEL&q=business',
-    image: 'https://lh3.googleusercontent.com/gDHLisDSrG75KfSu5-EtEkaVSWrhq2Lz1JOvHmYaSFJz9kmCVv6l7P5NiXnxp2nlQXe0KbsVnpf9kQevTF2Sf-tUvsjP_pKILV6MFcwYt1LzCtERsDQ',
+    title: 'MERN Intern',
+    description: 'Gain experience in financial analysis and reporting by joining our finance team. You will assist in budget preparation and financial forecasting for upcoming projects.',
+    link: '',
+    image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTXo9CFWAhcBujk6qgTff4Wb87Ubh0mO91arQ&s',
   },
 ];
+
 
 const Internships = () => {
   return (
@@ -57,8 +58,8 @@ const Internships = () => {
                 {internship.description}
               </p>
             </a>
-            <div className="bg-gray-200 text-center p-2">
-              <span className="text-blue-600">Learn more</span>
+            <div className="bg-primary text-center rounded-md p-2">
+              <span className="text-white">Learn more</span>
             </div>
           </div>
         ))}

@@ -14,14 +14,12 @@ const Footer = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-14 md:gap-4">
           {/* first section */}
           <div className="space-y-4 max-w-[300px]">
-            <h1 className="text-2xl font-bold">The Coding World</h1>
-            <p className="text-dark2">
-              TCJ is a platform dedicated to empowering aspiring developers.
-              From beginner tutorials to advanced programming concepts, we
-              provide a comprehensive learning experience designed to help you
-              master coding skills, build projects, and launch your tech career.
-            </p>
-          </div>
+  <h1 className="text-2xl font-bold">The Coding World Institute</h1>
+  <p className="text-dark2">
+    The Coding World Institute is dedicated to nurturing the next generation of developers. We offer comprehensive coding courses that cater to all skill levels, along with hands-on internships to help you gain real-world experience. Join us to build your coding skills, work on exciting projects, and kickstart your tech career!
+  </p>
+</div>
+
           {/* second section */}
           <div className="grid grid-cols-2 gap-10">
             <div className="space-y-4">
