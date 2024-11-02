@@ -8,6 +8,9 @@ import { About } from './pages/About';
 import TrainingTeam from './pages/OurTrainingTeam';
 import InternshipsSection from './pages/Internship';
 import InternshipForm from './pages/IntershipForm';
+import TcsNqtCourse from './pages/AllCourses/TcsNqtCourse/TcsNqtCoursedescri';
+import StartTcsNqt from './pages/AllCourses/TcsNqtCourse/StartTcsNqt';
+import FindSmallestElement from './pages/AllCourses/TcsNqtCourse/Questions/OnArray/FindSmallestElement';
 // Import other pages as needed
 
 const App = () => {
@@ -22,6 +25,9 @@ const App = () => {
           <Route path="/trainingteam" element={<TrainingTeam />} />
           <Route path="/internship" element={<InternshipsSection />} />
           <Route path="/internshipform" element={<InternshipForm />} />
+          <Route path="/tcsnqtcourse" element={<TcsNqtCourse />} />
+          <Route path="/starttcsnqt" element={<StartTcsNqt />} />
+          <Route path="/findsmallestelement" element={<FindSmallestElement />} />
           {/* Add more routes as needed */}
         </Routes>
       </Layout>
