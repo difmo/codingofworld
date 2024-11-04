@@ -12,7 +12,7 @@ export default function SingUpScreen() {
   return (
     <section className="h-screen">
       <div className="flex items-center justify-center h-full">
-        <div className="hidden p-12 md:flex md:w-6/12 lg:w-6/12">
+        <div className="hidden md:p-40 md:flex md:w-6/12 lg:w-6/12 ">
           <img src={signup} className="w-full" alt="Sample" />
         </div>
 
