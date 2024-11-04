@@ -12,20 +12,20 @@ const ContactUs = () => {
     <main className="flex flex-col">
       {/* Breadcrumb Area */}
       <motion.section 
-        className="relative bg-cover bg-no-repeat pt-40" 
+        className="relative pt-4 bg-no-repeat bg-cover" 
         style={{ backgroundImage: "url('/src/assets/bg/breadcrumb_bg.jpg')" }} 
         variants={fadeInUp} 
         initial="hidden" 
         animate="visible"
         transition={{ duration: 0.6 }}
       >
-        <div className="mx-auto py-12">
+        <div className="py-12 mx-auto">
           <div className="text-center">
             <h3 className="text-3xl font-bold text-primary">Contact With Us</h3>
-            <nav className="breadcrumb mt-4"></nav>
+            <nav className="mt-4 breadcrumb"></nav>
           </div>
         </div>
-        <div className="absolute inset-0 flex justify-center items-center">
+        <div className="absolute inset-0 flex items-center justify-center">
           <img src="/src/assets/img/breadcrumb_shape01.svg" alt="img" className="animate-bounce" />
         </div>
       </motion.section>
@@ -39,7 +39,7 @@ const ContactUs = () => {
         animate="visible"
         transition={{ duration: 0.6, delay: 0.2 }}
       >
-        <div className="max-w container mx-auto">
+        <div className="container mx-auto max-w">
           <div className="flex flex-col lg:flex-row">
             {/* Left Contact Info */}
             <motion.div 
@@ -49,17 +49,17 @@ const ContactUs = () => {
               animate="visible"
               transition={{ duration: 0.6, delay: 0.4 }}
             >
-              <div className="bg-white p-6 rounded-lg">
+              <div className="p-6 bg-white rounded-lg">
                 <ul className="space-y-4">
-                  <li className="flex items-start border p-6 bg-gray-100 rounded-md">
-                    <FaMapMarkedAlt size={24} className="text-primary mr-3" />
+                  <li className="flex items-start p-6 bg-gray-100 border rounded-md">
+                    <FaMapMarkedAlt size={24} className="mr-3 text-primary" />
                     <div>
                       <h4 className="font-semibold">Address</h4>
                       <p>4/37 Vibhav Khand Gomti Nagar, Lucknow, Uttar Pradesh, 226010</p>
                     </div>
                   </li>
-                  <li className="flex items-start border p-6 bg-gray-100 rounded-md">
-                    <FaPhone size={24} className="text-primary mr-3" />
+                  <li className="flex items-start p-6 bg-gray-100 border rounded-md">
+                    <FaPhone size={24} className="mr-3 text-primary" />
                     <div>
                       <h4 className="font-semibold">Phone</h4>
                       <a href="tel:9455791624" className="text-blue-600">+91 945-579-1624</a>
@@ -67,8 +67,8 @@ const ContactUs = () => {
                       <a href="tel:6387800143" className="text-blue-600">+91 638-780-0143</a>
                     </div>
                   </li>
-                  <li className="flex items-start border p-6 bg-gray-100 rounded-md">
-                    <FaEnvelope size={24} className="text-primary mr-3" />
+                  <li className="flex items-start p-6 bg-gray-100 border rounded-md">
+                    <FaEnvelope size={24} className="mr-3 text-primary" />
                     <div>
                       <h4 className="font-semibold">E-mail Address</h4>
                       <a href="mailto:info@codeservir.com" className="text-blue-600">info@codeservir.com</a>
@@ -80,7 +80,7 @@ const ContactUs = () => {
 
             {/* Right Contact Form */}
             <motion.div 
-              className="lg:w-2/3 border p-6 bg-gray-50 rounded-md"
+              className="p-6 border rounded-md lg:w-2/3 bg-gray-50"
               variants={fadeInUp}
               initial="hidden"
               animate="visible"
@@ -94,16 +94,16 @@ const ContactUs = () => {
                     <textarea name="message" placeholder="Comment" required className="w-full p-3 border border-gray-300 rounded" />
                   </div>
                   <div className="flex flex-wrap -mx-2">
-                    <div className="w-full md:w-1/2 px-2 mb-4">
+                    <div className="w-full px-2 mb-4 md:w-1/2">
                       <input name="name" type="text" placeholder="Name *" required className="w-full p-3 border border-gray-300 rounded" />
                     </div>
-                    <div className="w-full md:w-1/2 px-2 mb-4">
+                    <div className="w-full px-2 mb-4 md:w-1/2">
                       <input name="email" type="email" placeholder="E-mail *" required className="w-full p-3 border border-gray-300 rounded" />
                     </div>
-                    <div className="w-full md:w-1/2 px-2 mb-4">
+                    <div className="w-full px-2 mb-4 md:w-1/2">
                       <input id="contact" name="contact" type="number" placeholder="Contact Number*" required className="w-full p-3 border border-gray-300 rounded" />
                     </div>
-                    <div className="w-full md:w-1/2 px-2 mb-4">
+                    <div className="w-full px-2 mb-4 md:w-1/2">
                       <select name="course" className="w-full p-3 border border-gray-300 rounded">
                         <option value="" disabled>--Select a Course--</option>
                         <option value="Summer Training">Summer Training</option>
@@ -133,7 +133,7 @@ const ContactUs = () => {
                       </select>
                     </div>
                   </div>
-                  <button type="submit" className="p-2 bg-primary text-white rounded hover:bg-red-300 transition">
+                  <button type="submit" className="p-2 text-white transition rounded bg-primary hover:bg-red-300">
                     Submit Now
                   </button>
                 </form>
@@ -151,7 +151,7 @@ const ContactUs = () => {
           >
             <iframe 
               src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3559.3547764955974!2d81.01755507421916!3d26.86046716233602!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x399be389340450d3%3A0xefe5d679c62b5a20!2sCodeServir%20Technologies!5e0!3m2!1sen!2sin!4v1724742973684!5m2!1sen!2sin" 
-              className="w-full h-96 border-0" 
+              className="w-full border-0 h-96" 
               allowFullScreen 
               loading="lazy" 
               referrerPolicy="no-referrer-when-downgrade" 

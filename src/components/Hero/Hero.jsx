@@ -42,9 +42,9 @@ const Hero = () => {
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrentImage((prevImage) => (prevImage + 1) % images.length);
-    }, 3000); // Change image every 2 seconds
+    }, 3000); 
 
-    return () => clearInterval(interval); // Cleanup on unmount
+    return () => clearInterval(interval);
   }, [images.length]);
 
 
@@ -56,10 +56,10 @@ const Hero = () => {
     return () => clearInterval(textInterval); // Cleanup on unmount
   }, [textOptions.length]);
   return (
-    <section className="bg-light overflow-hidden relative pt-20">
+    <section className="relative overflow-hidden bg-light">
       <div className=" container md:px-32 grid grid-cols-1 md:grid-cols-2 min-h-[650px]">
         {/* Brand Info */}
-        <div className="flex flex-col justify-center py-14 md:py-0 relative ">
+        <div className="relative flex flex-col justify-center py-14 md:py-0 ">
           <div className="text-center md:text-left space-y-10 lg:max-w-[400px]">
             <motion.h1
               variants={FadeUp(0.6)}
@@ -76,9 +76,9 @@ const Hero = () => {
               animate="animate"
               className="flex justify-center md:justify-start"
             >
-              <button onClick={()=>navigate("/contactus")} className="primary-btn flex items-center gap-2 group">
+              <button onClick={()=>navigate("/contactus")} className="flex items-center gap-2 primary-btn group">
                 Get Started
-                <IoIosArrowRoundForward className="text-xl group-hover:translate-x-2 group-hover:-rotate-45 duration-300" />
+                <IoIosArrowRoundForward className="text-xl duration-300 group-hover:translate-x-2 group-hover:-rotate-45" />
               </button>
             </motion.div>
           </div>
@@ -86,7 +86,7 @@ const Hero = () => {
         {/* Hero Image */}
 
 
-        <div className="flex justify-center items-center">
+        <div className="flex items-center justify-center">
           <motion.img
             key={images[currentImage]}
             initial={{ opacity: 0 }}

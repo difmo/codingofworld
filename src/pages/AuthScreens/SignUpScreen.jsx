@@ -30,7 +30,7 @@ export default function SingUpScreen() {
               <div className="flex-1 border-t border-neutral-300" />
               <p className="mx-4 mb-0 font-semibold text-center">Or</p>
               <div className="flex-1 border-t border-neutral-300" />
-            </div>
+            </div>  
 
             <CustomInput placeholder={"Enter your email"} />
             <CustomInput placeholder={"Enter your password"} />

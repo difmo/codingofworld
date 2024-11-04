@@ -45,9 +45,9 @@ const InternshipForm = () => {
   };
 
   return (
-    <section className="container mx-auto pt-28 md:p-40">
+    <section className="container pt-4 mx-auto md:p-4">
       <motion.h2
-        className="text-2xl md:text-4xl font-bold md:pb-16 text-center mb-6"
+        className="text-2xl font-bold text-center  md:text-4xl md:pb-8"
         initial={{ opacity: 0, y: -20 }}
         whileInView={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5 }}
@@ -56,7 +56,7 @@ const InternshipForm = () => {
       </motion.h2>
       <motion.form
         onSubmit={handleSubmit}
-        className="bg-white border rounded-lg p-6 md:p-8 shadow-lg"
+        className="p-6 bg-white border rounded-lg shadow-lg md:p-8"
         initial={{ opacity: 0, scale: 0.8 }}
         whileInView={{ opacity: 1, scale: 1 }}
         transition={{ duration: 0.5 }}
@@ -100,7 +100,7 @@ const InternshipForm = () => {
               value={formData.internshipType}
               onChange={handleChange}
               required
-              className="w-full p-2 border border-gray-300 rounded appearance-none pr-10"
+              className="w-full p-2 pr-10 border border-gray-300 rounded appearance-none"
             >
               <option value="">--Select an Internship--</option>
               {internshipTypes.map((internship, index) => (
@@ -109,7 +109,7 @@ const InternshipForm = () => {
                 </option>
               ))}
             </select>
-            <FaBriefcase className="absolute right-3 top-3 pointer-events-none" />
+            <FaBriefcase className="absolute pointer-events-none right-3 top-3" />
           </div>
         </div>
 
@@ -128,19 +128,19 @@ const InternshipForm = () => {
           </div>
         </div>
 
-        <button type="submit" className="w-full bg-primary text-white p-2 rounded hover:bg-primary/70 transition">
+        <button type="submit" className="w-full p-2 text-white transition rounded bg-primary hover:bg-primary/70">
           Submit Application
         </button>
       </motion.form>
 
       <motion.div
-        className="mt-6 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4 pt-20"
+        className="grid grid-cols-2 gap-4 pt-20 mt-6 sm:grid-cols-3 md:grid-cols-4"
         initial={{ opacity: 0 }}
         whileInView={{ opacity: 1 }}
         transition={{ duration: 0.5 }}
       >
         {internshipTypes.map((internship, index) => (
-          <div key={index} className="flex flex-col text-primary items-center">
+          <div key={index} className="flex flex-col items-center text-primary">
             {internship.icon}
             <span className="text-center text-black">{internship.title}</span>
           </div>

@@ -8,31 +8,31 @@ const InternshipsSection = () => {
     const navigate  = useNavigate();
     return (
         <>
-            <section className="hero-sub pt-40 ">
-                <div className="container mx-auto flex flex-col md:flex-row items-center justify-between max-w-screen-xl">
+            <section className="pt-4 hero-sub ">
+                <div className="container flex flex-col items-center justify-between max-w-screen-xl mx-auto md:flex-row">
                     {/* Text Content */}
                     <div className="hero-text-wrapper md:w-1/2">
-                        <h2 className="hero-title text-3xl font-bold mb-4">Internships</h2>
+                        <h2 className="mb-4 text-3xl font-bold hero-title">Internships</h2>
                         <div className="text-wrapper">
-                            <p className="hero-text text-lg mb-2">
+                            <p className="mb-2 text-lg hero-text">
                                 Internships in business, engineering, technology, and more
                             </p>
-                            <p className="hero-subtext text-md mb-4">
+                            <p className="mb-4 hero-subtext text-md">
                                 You can explore all open internships on the Google Careers site.
                             </p>
-                          <button onClick={()=> navigate("/internshipform")} className="bg-primary py-2 px-4 hover:bg-primary/60 transition-all duration-300 rounded-xl text-white"> FILL THE FORM </button>
+                          <button onClick={()=> navigate("/internshipform")} className="px-4 py-2 text-white transition-all duration-300 bg-primary hover:bg-primary/60 rounded-xl"> FILL THE FORM </button>
                         </div>
                     </div>
 
                     {/* Image Section */}
-                    <div className="images-wrapper md:w-1/2 flex justify-center md:justify-end mt-8 md:mt-0">
+                    <div className="flex justify-center mt-8 images-wrapper md:w-1/2 md:justify-end md:mt-0">
                         <div className="relative">
-                            <div className="absolute inset-0 flex justify-center items-center">
-                                <div className="bg-white rounded-full w-64 h-64 flex justify-center items-center overflow-hidden transform -translate-y-16">
+                            <div className="absolute inset-0 flex items-center justify-center">
+                                <div className="flex items-center justify-center w-64 h-64 overflow-hidden transform -translate-y-16 bg-white rounded-full">
                                     <img
                                         src={img}
                                         alt="Google interns"
-                                        className="w-full h-full object-cover"
+                                        className="object-cover w-full h-full"
                                     />
                                 </div>
                             </div>

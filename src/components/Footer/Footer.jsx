@@ -26,16 +26,16 @@ const Footer = () => {
               <h1 className="text-2xl font-bold">Courses</h1>
               <div className="text-dark2">
                 <ul className="space-y-2 text-lg">
-                  <li className="cursor-pointer hover:text-secondary duration-200">
+                  <li className="duration-200 cursor-pointer hover:text-secondary">
                     Web Development
                   </li>
-                  <li className="cursor-pointer hover:text-secondary duration-200">
+                  <li className="duration-200 cursor-pointer hover:text-secondary">
                     Software Development
                   </li>
-                  <li className="cursor-pointer hover:text-secondary duration-200">
+                  <li className="duration-200 cursor-pointer hover:text-secondary">
                     Apps Development
                   </li>
-                  <li className="cursor-pointer hover:text-secondary duration-200">
+                  <li className="duration-200 cursor-pointer hover:text-secondary">
                     E-learning
                   </li>
                 </ul>
@@ -45,16 +45,16 @@ const Footer = () => {
               <h1 className="text-2xl font-bold">Links</h1>
               <div className="text-dark2">
                 <ul className="space-y-2 text-lg">
-                  <li className="cursor-pointer hover:text-secondary duration-200">
+                  <li className="duration-200 cursor-pointer hover:text-secondary">
                     Home
                   </li>
-                  <li className="cursor-pointer hover:text-secondary duration-200">
+                  <li className="duration-200 cursor-pointer hover:text-secondary">
                     Services
                   </li>
-                  <li className="cursor-pointer hover:text-secondary duration-200">
+                  <li className="duration-200 cursor-pointer hover:text-secondary">
                     About
                   </li>
-                  <li className="cursor-pointer hover:text-secondary duration-200">
+                  <li className="duration-200 cursor-pointer hover:text-secondary">
                     Contact
                   </li>
                 </ul>
@@ -68,25 +68,25 @@ const Footer = () => {
               <input
                 type="text"
                 placeholder="Enter your email"
-                className="p-3 rounded-s-xl bg-white w-full py-4 focus:ring-0 focus:outline-none placeholder:text-dark2"
+                className="w-full p-3 py-4 bg-white rounded-s-xl focus:ring-0 focus:outline-none placeholder:text-dark2"
               />
-              <button className="bg-primary text-white font-semibold py-4 px-6 rounded-e-xl">
+              <button className="px-6 py-4 font-semibold text-white bg-primary rounded-e-xl">
                 Go
               </button>
             </div>
             {/* social icons */}
-            <div className="flex space-x-6 py-3">
+            <div className="flex py-3 space-x-6">
               <a href="https://chat.whatsapp.com/FQSKgJ5f1eIAhlyF5sVym0">
-                <FaWhatsapp className="cursor-pointer hover:text-primary hover:scale-105 duration-200" />
+                <FaWhatsapp className="duration-200 cursor-pointer hover:text-primary hover:scale-105" />
               </a>
               <a href="https://www.instagram.com/the.coding.journey/">
-                <FaInstagram className="cursor-pointer hover:text-primary hover:scale-105 duration-200" />
+                <FaInstagram className="duration-200 cursor-pointer hover:text-primary hover:scale-105" />
               </a>
               <a href="https://thecodingjourney.com/">
-                <TbWorldWww className="cursor-pointer hover:text-primary hover:scale-105 duration-200" />
+                <TbWorldWww className="duration-200 cursor-pointer hover:text-primary hover:scale-105" />
               </a>
               <a href="https://www.youtube.com/@TheCodingJourney">
-                <FaYoutube className="cursor-pointer hover:text-primary hover:scale-105 duration-200" />
+                <FaYoutube className="duration-200 cursor-pointer hover:text-primary hover:scale-105" />
               </a>
             </div>
           </div>

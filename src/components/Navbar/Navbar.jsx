@@ -22,11 +22,11 @@ const Navbar = () => {
   };
 
   return (
-    <nav className="sticky top-0 z-20 bg-white shadow-md">
+    <nav className="sticky top-0 z-20 w-full bg-white shadow-sm"> {/* Full width */}
       <motion.div
         initial={{ opacity: 0, y: -50 }}
         animate={{ opacity: 1, y: 0 }}
-        className="container absolute flex items-center justify-between py-5 bg-white"
+        className="container flex items-center justify-between py-5 mx-auto" // Centered container
       >
         {/* Logo section */}
         <div>
@@ -38,7 +38,7 @@ const Navbar = () => {
             {NavbarMenu.map((menu) => (
               <li key={menu.id}>
                 <Link
-                  to={menu.path} // Use Link instead of a tag
+                  to={menu.path}
                   className="relative inline-block px-3 py-2 hover:text-secondary group"
                 >
                   <div className="absolute bottom-0 hidden w-2 h-2 mt-4 -translate-x-1/2 rounded-full bg-secondary left-1/2 top-1/2 group-hover:block"></div>
@@ -46,7 +46,7 @@ const Navbar = () => {
                 </Link>
               </li>
             ))}
-            <button onClick={()=>navigate("/signupscreen")} className="primary-btn">Sign In</button>
+            <button onClick={() => navigate("/signupscreen")} className="primary-btn">Sign In</button>
           </ul>
         </div>
 
@@ -58,7 +58,7 @@ const Navbar = () => {
       <AnimatePresence>
         {isMobileMenuOpen && (
           <motion.div
-            className="absolute left-0 right-0 z-40 p-4 mt-2 bg-white shadow-lg lg:hidden top-full"
+            className="absolute left-0 right-0 z-40 w-full p-4 mt-2 bg-white shadow-lg lg:hidden top-full" // Full width for mobile menu
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: "auto" }}
             exit={{ opacity: 0, height: 0 }}
@@ -68,7 +68,7 @@ const Navbar = () => {
               {NavbarMenu.map((menu) => (
                 <li key={menu.id}>
                   <Link
-                    to={menu.path} // Use Link instead of a tag
+                    to={menu.path}
                     className="block py-2 hover:text-secondary"
                     onClick={() => setMobileMenuOpen(false)} // Close menu on item click
                   >
