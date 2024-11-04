@@ -11,7 +11,7 @@ export default function LoginScreen() {
   return (
     <section className="md:h-screen ">
       <div className="container flex flex-wrap items-center justify-center h-full lg:justify-between">
-        <div className="mb-12 pt-28 md:w-9/12 lg:w-6/12">
+        <div className="mb-12 md:w-9/12 lg:w-6/12">
           <img
             src={login}
             className="w-full"
@@ -35,7 +35,7 @@ export default function LoginScreen() {
               </p>
             </div>
 
-            <CustomInput />
+            <CustomInput/>
             <CustomInput/>
 
 
@@ -55,7 +55,7 @@ export default function LoginScreen() {
 
             {/* Login button */}
             <div className="text-center lg:text-left">
-            <CustomButton text={"Login"}/>
+            <CustomButton/>
 
               {/* Register link */}
               <p className="mt-2 text-sm font-semibold">
