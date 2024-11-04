@@ -6,7 +6,7 @@ const Layout = ({ children }) => {
   return (
     <div>
       <Navbar />
-      <main className=""> {/* Add padding to avoid overlap */}
+      <main className=""> 
         {children}
       </main>
       <Footer/> 

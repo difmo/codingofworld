@@ -8,11 +8,11 @@ const TcsNqtCourse = () => {
         <div className="max-w-4xl mx-auto p-6 bg-white rounded-lg py-36">
             {/* Header Image */}
             <img
-                src={img}// Replace with your image URL
+                src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQUk85S-6mDR6PnaKjeh_SrU57K3KecqzRznw&s"// Replace with your image URL
                 alt="TCS NQT Course"
-                className="w-full h-48 object-cover rounded-lg mb-4"
+                className="w-full  object-cover rounded-lg mb-4"
             />
-            <h1 className="text-4xl font-bold text-center mb-4">Welcome to TCS NQT Course</h1>
+            <h1 className="text-4xl font-bold text-center mb-4 text-primary">Welcome to TCS NQT Course</h1>
             <p className="text-lg text-gray-700 mb-6">
                 Unlock your potential with our TCS NQT course! This course offers a comprehensive introduction to the topics needed to excel in TCS National Qualifier Test.
             </p>

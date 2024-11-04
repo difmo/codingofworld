@@ -14,7 +14,7 @@ export const Courses = () => {
         <div className='heading mb-16'>
           <h1 className='text-3xl font-semibold text-black'>
             Find The Right <br />
-            Online Course For You
+            Online Course For You With Certificates by <span className="text-primary">Diffmo Technologies</span> 
           </h1>
           <span className='text-sm mt-2 block'>you don't have to struggle alone, you've got our assistance and help.</span>
         </div>
@@ -23,9 +23,9 @@ export const Courses = () => {
             <div onClick={()=>navigate(item.path)} key={item.id} className='box rounded-lg cursor-pointer shadow-shadow1 border'>
               <div className='images rounded-t-lg relative overflow-hidden h-40 w-full'>
                 <img src={item.cover} alt='' className='rounded-t-lg object-cover w-full h-full transition ease-in-out delay-150 cursor-pointer hover:scale-125 duration-300' />
-                <div className='categ flex gap-4 absolute top-0 m-3'>
-                  <span className='text-[14px] bg-blue-700 p-1 px-3 text-white rounded-[5px] shadow-md'>Finance</span>
-                  <span className='text-[14px] bg-pink-700 p-1 px-3 text-white rounded-[5px] shadow-md'>Lifestyle</span>
+                <div className='categ flex gap-4 absolute left-2 top-0 m-3' >
+                  <span className='text-[14px] bg-primary p-1 px-3 text-white rounded-[5px] shadow-md'>From Experts </span>
+                  <span className='text-[14px] bg-black p-1 px-3 text-white rounded-[5px] shadow-md'>Diffmo Tech </span>
                 </div>
               </div>
               <div className='text p-3'>
@@ -40,10 +40,7 @@ export const Courses = () => {
                   </div>
                 </div>
                 <h3 className='text-black my-4 font-medium h-10'>{item.title}</h3>
-                <div className='user flex items-center'>
-                  <img className='rounded-full' src='https://secure.gravatar.com/avatar/75ec18a5bf959aab895830be3a78cb34?s=50&d=mm&r=g' alt='' />
-                  <span className='text-[14px] ml-2'> sunil</span>
-                </div>
+             
               </div>
               <div className='flex items-center justify-between border-t border-gray-200 p-3'>
                 <span className='text-sm text-primary'>Free</span>

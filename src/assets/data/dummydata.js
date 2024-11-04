@@ -28,43 +28,38 @@ export const LinkData = [
 export const courses = [
   {
     id: 1,
-    cover: "../src/assets/education.png",
-    title: "The Power of Podcast for Storytelling",
-    path:"/tcsnqtcourse"
+    cover: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRZc0wJolRztECYxSd145RxKvty_brrckv6ig&s",
+    title: " Tcs Nqt : Take Your Dream Job",
+    path: "/tcsnqtcourse"
   },
   {
     id: 2,
-    cover: "../src/assets/education.png",
-    title: "Fashion and Luxury Fashion in a Changing",
-    path:"#"
-
+    cover: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ8mLu4sjDn7ZGszN8SOZmiZVRVk9OJLbpciw&s  ",
+    title: "Flutter Development: Build Beautiful Apps",
+    path: "/flutter-course"
   },
   {
     id: 3,
-    cover: "../src/assets/education.png",
-    title: "Creative writing through Storytelling",
-    path:"#"
-
+    cover: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQvRowB6hv9-RH1vvayIxz8yoEkzY5lyvSMDw&s",
+    title: "Java Fundamentals: Building Robust Applications",
+    path: "/java-course"
   },
   {
     id: 4,
-    cover: "../src/assets/education.png",
-    title: "Improving The Accessibility Of Your Markdown",
-    path:"#"
-
+    cover: "https://reactjs.org/logo-og.png",
+    title: "React for Beginners: Create Interactive UIs",
+    path: "/react-course"
   },
   {
     id: 5,
-    cover: "../src/assets/education.png",
-    title: "Product Manager Learn the Skills & job.",
-    path:"#"
-
+    cover: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSdBlUEgF3LB1M_OE_PtQPmskayl7DiYURXmQ&s",
+    title: "Node.js Essentials: Power Your Backend",
+    path: "/nodejs-course"
   },
   {
     id: 6,
-    cover: "../src/assets/education.png",
-    title: "The business Intelligence analyst Course 2022",
-    path:"#"
-
+    cover: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcShhg-3ZBqyo9vi6xjDksNfCI_ayNSXWgkY3g&s",
+    title: "Web Development with JavaScript: Full Stack Journey",
+    path: "/javascript-course"
   },
-]
+];

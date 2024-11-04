@@ -59,7 +59,7 @@ const Hero = () => {
     <section className="bg-light overflow-hidden relative pt-20">
       <div className=" container md:px-32 grid grid-cols-1 md:grid-cols-2 min-h-[650px]">
         {/* Brand Info */}
-        <div className="flex flex-col justify-center py-14 md:py-0 relative z-20">
+        <div className="flex flex-col justify-center py-14 md:py-0 relative ">
           <div className="text-center md:text-left space-y-10 lg:max-w-[400px]">
             <motion.h1
               variants={FadeUp(0.6)}

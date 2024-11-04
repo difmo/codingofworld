@@ -9,9 +9,14 @@ import TrainingTeam from './pages/OurTrainingTeam';
 import InternshipsSection from './pages/Internship';
 import InternshipForm from './pages/IntershipForm';
 import TcsNqtCourse from './pages/AllCourses/TcsNqtCourse/TcsNqtCoursedescri';
-import StartTcsNqt from './pages/AllCourses/TcsNqtCourse/StartTcsNqt';
-import FindSmallestElement from './pages/AllCourses/TcsNqtCourse/Questions/OnArray/FindSmallestElement';
-// Import other pages as needed
+import NotFound from './pages/NotFound';
+import Dummy from './pages/dummy';
+import Sidebar from './pages/Layout/Sidebar';
+import { useNavigate } from 'react-router-dom';
+import First from './pages/Sidebarpages/First';
+import Second from './pages/Sidebarpages/Second';
+import Third from './pages/Sidebarpages/Third';
+import TCSNQT from './pages/AllCourses/TcsNqtCourse/StartTcsNqt';
 
 const App = () => {
   return (
@@ -26,13 +31,42 @@ const App = () => {
           <Route path="/internship" element={<InternshipsSection />} />
           <Route path="/internshipform" element={<InternshipForm />} />
           <Route path="/tcsnqtcourse" element={<TcsNqtCourse />} />
-          <Route path="/starttcsnqt" element={<StartTcsNqt />} />
-          <Route path="/findsmallestelement" element={<FindSmallestElement />} />
-          {/* Add more routes as needed */}
+          <Route path="*" element={<NotFound />} />
+          <Route path="/dummy" element={<Dummy />} />
+
+          {/* Nested Routes with Sidebar */}
+          <Route element={<SidebarLayout />}>
+            <Route path="/home1" element={<First />} />
+            <Route path="/about1" element={<Second />} />
+            <Route path="/services1" element={<Third />} />
+            <Route path="/starttcsnqt" element={<TCSNQT />} />
+          </Route>
         </Routes>
       </Layout>
     </Router>
   );
 };
 
+const SidebarLayout = () => {
+  return (
+    <div className="flex">
+      <Sidebar />
+      <div className="flex-1 p-10">
+        <Routes>
+          <Route path="/home1" element={<First />} />
+          <Route path="/about1" element={<Second />} />
+          <Route path="/services1" element={<Third />} />
+          <Route path="/starttcsnqt" element={<TCSNQT />} />
+
+        </Routes>
+      </div>
+    </div>
+  );
+};
+
 export default App;
+
+
+
+
+

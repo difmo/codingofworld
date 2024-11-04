@@ -20,11 +20,11 @@ const Navbar = () => {
   };
 
   return (
-    <nav className="relative z-20">
+    <nav className="sticky top-0 z-20 bg-white shadow-md">
       <motion.div
         initial={{ opacity: 0, y: -50 }}
         animate={{ opacity: 1, y: 0 }}
-        className="container py-10 flex justify-between items-center absolute"
+        className="container py-5 bg-white flex justify-between items-center absolute"
       >
         {/* Logo section */}
         <div>
