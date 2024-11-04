@@ -12,6 +12,7 @@ export default {
         light: "#f7f7f7",
         dark: "#333333",
         dark2: "#999999",
+        grey:"e6e7e8"
       },
       container: {
         center: true,

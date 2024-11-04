@@ -1,0 +1,15 @@
+import { initializeApp } from "firebase/app";
+import { getAnalytics } from "firebase/analytics";
+
+const firebaseConfig = {
+  apiKey: "AIzaSyDox9LvhALSqiFDI0uuouRenUoWS7s_6_g",
+  authDomain: "global-24bf4.firebaseapp.com",
+  projectId: "global-24bf4",
+  storageBucket: "global-24bf4.appspot.com",
+  messagingSenderId: "539795244110",
+  appId: "1:539795244110:web:57e730468168376bedef1f",
+  measurementId: "G-4E37GH3Z6D"
+};
+
+const app = initializeApp(firebaseConfig);
+const analytics = getAnalytics(app);

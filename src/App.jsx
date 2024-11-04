@@ -17,6 +17,8 @@ import First from './pages/Sidebarpages/First';
 import Second from './pages/Sidebarpages/Second';
 import Third from './pages/Sidebarpages/Third';
 import TCSNQT from './pages/AllCourses/TcsNqtCourse/StartTcsNqt';
+import SingUpScreen from './pages/AuthScreens/SignUpScreen';
+import LoginScreen from './pages/AuthScreens/LoginScreen';
 
 const App = () => {
   return (
@@ -31,6 +33,9 @@ const App = () => {
           <Route path="/internship" element={<InternshipsSection />} />
           <Route path="/internshipform" element={<InternshipForm />} />
           <Route path="/tcsnqtcourse" element={<TcsNqtCourse />} />
+          <Route path="/signupscreen" element={<SingUpScreen />} />
+          <Route path="/loginscreen" element={<LoginScreen />} />
+          
           <Route path="*" element={<NotFound />} />
           <Route path="/dummy" element={<Dummy />} />
            {/* hellozdcdzx */}

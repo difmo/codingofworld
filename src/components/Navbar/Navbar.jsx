@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { IoMdMenu } from "react-icons/io";
 import { motion, AnimatePresence } from "framer-motion";
 import { Link } from "react-router-dom"; // Import Link
+import { useNavigate } from "react-router-dom";
 
 const NavbarMenu = [
   { id: 1, title: "Home", path: "/" },
@@ -14,6 +15,7 @@ const NavbarMenu = [
 
 const Navbar = () => {
   const [isMobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const navigate = useNavigate();
 
   const toggleMobileMenu = () => {
     setMobileMenuOpen((prev) => !prev);
@@ -24,11 +26,11 @@ const Navbar = () => {
       <motion.div
         initial={{ opacity: 0, y: -50 }}
         animate={{ opacity: 1, y: 0 }}
-        className="container py-5 bg-white flex justify-between items-center absolute"
+        className="container absolute flex items-center justify-between py-5 bg-white"
       >
         {/* Logo section */}
         <div>
-          <h1 className="font-bold text-2xl">The Coding of <span className="text-primary">World</span></h1>
+          <h1 className="text-2xl font-bold">The Coding of <span className="text-primary">World</span></h1>
         </div>
 
         <div className="hidden lg:block">
@@ -37,14 +39,14 @@ const Navbar = () => {
               <li key={menu.id}>
                 <Link
                   to={menu.path} // Use Link instead of a tag
-                  className="inline-block py-2 px-3 hover:text-secondary relative group"
+                  className="relative inline-block px-3 py-2 hover:text-secondary group"
                 >
-                  <div className="w-2 h-2 bg-secondary absolute mt-4 rounded-full left-1/2 -translate-x-1/2 top-1/2 bottom-0 group-hover:block hidden"></div>
+                  <div className="absolute bottom-0 hidden w-2 h-2 mt-4 -translate-x-1/2 rounded-full bg-secondary left-1/2 top-1/2 group-hover:block"></div>
                   {menu.title}
                 </Link>
               </li>
             ))}
-            <button className="primary-btn">Sign In</button>
+            <button onClick={()=>navigate("/signupscreen")} className="primary-btn">Sign In</button>
           </ul>
         </div>
 
@@ -56,7 +58,7 @@ const Navbar = () => {
       <AnimatePresence>
         {isMobileMenuOpen && (
           <motion.div
-            className="lg:hidden bg-white shadow-lg absolute z-40 top-full left-0 right-0 mt-2 p-4"
+            className="absolute left-0 right-0 z-40 p-4 mt-2 bg-white shadow-lg lg:hidden top-full"
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: "auto" }}
             exit={{ opacity: 0, height: 0 }}
