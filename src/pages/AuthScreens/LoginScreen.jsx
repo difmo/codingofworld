@@ -11,7 +11,7 @@ export default function LoginScreen() {
   return (
     <section className="md:h-screen ">
       <div className="container flex flex-wrap items-center justify-center h-full lg:justify-between">
-        <div className="mb-12 pt-28 md:w-9/12 lg:w-6/12">
+        <div className="mb-12 md:w-9/12 lg:w-6/12">
           <img
             src={login}
             className="w-full"
@@ -27,7 +27,7 @@ export default function LoginScreen() {
               <IconsComponent IconName={FaTwitter}/>
               <IconsComponent IconName={FaLinkedinIn}/>
             </div>
-m
+
             {/* Separator */}
             <div className="my-4 flex items-center before:mt-0.5 before:flex-1 before:border-t before:border-neutral-300 after:mt-0.5 after:flex-1 after:border-t after:border-neutral-300">
               <p className="mx-4 mb-0 font-semibold text-center dark:text-white">
