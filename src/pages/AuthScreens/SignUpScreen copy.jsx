@@ -93,9 +93,9 @@ export default function SignUpScreen() {
   
 
   return (
-    <section className="h-full bg-gray-100 md:h-screen">
-      <div className="flex flex-col items-center justify-center sm:flex-row ">
-      <div className=" md:flex md:w-6/12 lg:w-6/12">
+    <section className="md:h-screen">
+      <div className="flex-col items-center justify-center sm:flex">
+        <div className=" md:flex md:w-6/12 lg:w-6/12">
           <img src={signup} className="w-full" alt="Sample" />
         </div>
 
