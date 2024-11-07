@@ -1,30 +1,48 @@
 import React from "react";
-import { FaGlobe, FaLaptopCode, FaAward, FaGraduationCap } from "react-icons/fa";
+import icon1 from "../../assets/images/about.png";
+
+const mydata = [
+  {
+    images: icon1,
+    title: "Master Data Structures and Algorithms using C++ ",
+  },
+];
+import {
+  FaGlobe,
+  FaLaptopCode,
+  FaAward,
+  FaGraduationCap,
+} from "react-icons/fa";
 import { BsFillPersonFill } from "react-icons/bs";
 
 const CourseCard = () => {
   return (
-    <div className="w-full p-4 md:w-1/4">
-      <div className="overflow-hidden bg-white rounded-lg shadow-lg">
-        {/* Live Pan (Icons Section) */}
+    <div className="py-4 ">
+      <div className="overflow-hidden bg-white rounded-lg shadow-lg h-">
         <div className="flex p-2 space-x-2 bg-gray-100">
-          <FaLaptopCode className="w-5 h-5 text-gray-500" />
-          <FaAward className="w-5 h-5 text-gray-500" />
-          <FaGlobe className="w-5 h-5 text-gray-500" />
+          <FaLaptopCode className="w-auto h-5 text-gray-500" />
+          <FaAward className="w-auto h-5 text-gray-500" />
+          <FaGlobe className="w-auto h-5 text-gray-500" />
         </div>
 
-        {/* Course Title */}
-        <div className="flex items-center p-4 space-x-3 text-white bg-blue-600">
-          <img
-            src="https://cb3img.s3.ap-south-1.amazonaws.com/img/iconDSA.webp"
-            alt="C++"
-            className="w-8 h-8"
-          />
-          <span className="text-lg font-semibold">
+        {/* Course Title className="flex items-center p-4 space-x-3 text-white bg-custom-gradient rounded-t-2xl  h-44"*/}
+        {mydata.map((mydata, index) => (
+          <div>
+            <div className="h-60 ">
+              <img
+                src={icon1}
+                className=" bg-contain h-72 w-full rounded-t-2xl "
+              />
+            </div>
+            <h1 className=" relative font-bold  text-red-600 px-4 mb-5">
+              {mydata.title}
+            </h1>
+          </div>
+        ))}
+
+        {/* <span className="text-lg font-semibold">
             Master Data Structures and Algorithms using C++
-          </span>
-        </div>
-
+          </span> */}
         {/* Course Details */}
         <div className="p-4">
           <h5 className="mb-2 text-lg font-semibold">This course includes</h5>
@@ -35,7 +53,7 @@ const CourseCard = () => {
             </li>
             <li className="flex items-center text-sm">
               <FaGlobe className="mr-2 text-green-500" />
-              Foundation, Basics and Advanced modules
+              Foundation, Basics, and Advanced modules
             </li>
             <li className="flex items-center text-sm">
               <BsFillPersonFill className="mr-2 text-blue-500" />
@@ -61,13 +79,18 @@ const CourseCard = () => {
         </div>
 
         {/* Course Button */}
-        <div className="p-4">
+        <div className="flex justify-between p-4">
           <a
             href="data-structures-and-algorithms-using-c-plus-plus.html"
-            className="block w-full py-2 text-center text-white bg-blue-600 rounded-lg hover:bg-blue-700"
+            className="px-2 py-2 text-center text-white bg-primary rounded-lg flex-shrink-0"
           >
             Show Course details
           </a>
+          <div className="ml-4">
+            <button className="px-4 py-2 bg-gray-200 rounded text-xl">
+              ₹. 4000
+            </button>
+          </div>
         </div>
       </div>
     </div>

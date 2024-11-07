@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 
 const CarouselContent = () => {
     const [currentIndex, setCurrentIndex] = useState(0);
+    //sdsamdw polfz saflpq;wmf x kl
     const slides = [
         {
             src: "https://lh3.googleusercontent.com/kvQj_YkSm3qW_5mNA-IbuIqeXllMSJfMfqjKfbt3N7DHLC_sFz7_7Zzh7UZfrEtwnCRqUNW8FH1YBko9oUB5PKBX2tnaqUDoesoGREAC6TNLCYtWYZg",

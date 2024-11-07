@@ -12,7 +12,12 @@ export default {
         light: "#f7f7f7",
         dark: "#333333",
         dark2: "#999999",
-        grey:"e6e7e8"
+        customBlue: "#4f46e5",
+        customPink: "#ec4899",
+        grey: "e6e7e8",
+      },
+      backgroundImage: {
+        "custom-gradient": "linear-gradient(to right, #4f46e5, #ec4899)",
       },
       container: {
         center: true,
