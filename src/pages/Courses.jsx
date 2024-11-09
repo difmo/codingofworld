@@ -6,6 +6,9 @@ import { NavLink } from "react-router-dom";
 import { HiOutlineArrowNarrowRight } from "react-icons/hi";
 import { useNavigate } from "react-router-dom";
 import CourseCard from "../components/Cards/CourseCard";
+import img1 from "../assets/Coures/1.jpg";
+import img2 from "../assets/Coures/7.jpg";
+import img3 from "../assets/Coures/4.jpg";
 
 export const Courses = () => {
   const navigate = useNavigate();
@@ -23,10 +26,10 @@ export const Courses = () => {
             help.
           </span>
         </div>
-        <div className=" grid grid-cols-1 gap-8 md:grid-cols-3">
-          <CourseCard />
-          <CourseCard />
-          <CourseCard />
+        <div className="grid grid-cols-1 gap-8 md:grid-cols-3">
+          {coursesData.map((course, index) => (
+            <CourseCard key={index} course={course} />
+          ))}
         </div>
         <div className="grid grid-cols-1 gap-8 md:grid-cols-3">
           {courses.map((item) => (
@@ -78,3 +81,55 @@ export const Courses = () => {
     </section>
   );
 };
+
+const coursesData = [
+  {
+    // title: "Master Data Structures and Algorithms using C++",
+    image: img1,
+    features: {
+      feature1: "350+ problems & 6 projects",
+      feature2: "Foundation, Basics, and Advanced modules",
+      feature3: "Progress tracking and feedback",
+      feature4: "Certificate of Excellence/Completion",
+      feature5: "Placement assistance",
+      feature6: "Doubt support",
+      feature7:
+        "Curriculum designed for beginners, No coding experience required",
+    },
+    price: "₹4000",
+    link: "/internshipform",
+  },
+  {
+    // title: "Web Development with HTML, CSS, and React, Nodejs , Express js ",
+    image: img2,
+    features: {
+      feature1: "50+ projects & 5 assignments",
+      feature2: "From basics to advanced frontend development",
+      feature3: "Complete front-end web development curriculum",
+      feature4: "Placement assistance included",
+      feature5: "Placement assistance",
+      feature6: "Doubt support",
+      feature7:
+        "Curriculum designed for beginners, No coding experience required",
+    },
+    price: "₹5000",
+    link: "/internshipform",
+  },
+  {
+    // title:
+    // "Introduction to Python for Data Science Introduction to Python for Data Science",
+    image: img3,
+    features: {
+      feature1: "Hands-on projects in Python",
+      feature2: "Introduction to data analysis and visualization",
+      feature3: "Python programming and libraries",
+      feature4: "Online workshops with experts",
+      feature5: "Placement assistance",
+      feature6: "Doubt support",
+      feature7:
+        "Curriculum designed for beginners, No coding experience required",
+    },
+    price: "₹4500",
+    link: "/internshipform",
+  },
+];
