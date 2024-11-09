@@ -8,13 +8,7 @@ const fadeInUp = {
 };
 
 const ContactUs = () => {
-  // const [userData ,setUserdata] = userState({
-  // comment:"",
-  // name:"",
-  // email:"",
-  // contactNumber:"",
-  // summarTrainind:"",
-  // });
+
   return (
     <main className="flex flex-col">
       {/* Breadcrumb Area */}
@@ -96,7 +90,7 @@ const ContactUs = () => {
                 </ul>
               </div>
             </motion.div>
-
+            {/* right */}
             <motion.div
               className="p-6 border rounded-md lg:w-2/3 bg-gray-50"
               variants={fadeInUp}
@@ -150,6 +144,8 @@ const ContactUs = () => {
                     <div className="w-full px-2 mb-4 md:w-1/2">
                       <select
                         name="course"
+                        value={formData.course} // Bind to state
+                        onChange={postUserData} // Update state on change
                         className="w-full p-3 border border-gray-300 rounded"
                       >
                         <option value="" disabled>
