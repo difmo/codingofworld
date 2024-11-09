@@ -28,17 +28,13 @@ export default function SignUpScreen() {
 
   const waitForEmailVerification = async (user) => {
     try {
-      // Poll the user's verification status every 5 seconds
       const interval = setInterval(async () => {
-        // Reload the user object to fetch the latest state
         await user.reload(); 
   
-        // Check if the email is verified
         if (user.emailVerified) {
           clearInterval(interval);  // Stop polling once verified
           setSuccessMessage("Email successfully verified!");
   
-          // Navigate to the login screen after successful verification
           navigate("/loginscreen");
   
         } else {
@@ -64,14 +60,12 @@ export default function SignUpScreen() {
       setLoading(true);
   
       try {
-        // Create user with email and password
         const userCredential = await createUserWithEmailAndPassword(auth, values.email, values.password);
         const user = userCredential.user;
   
         console.log("User:", user);
   
         if (user) {
-          // Send the verification email
           await sendEmailVerification(user);
           setSuccessMessage("Verification email sent! Please check your inbox.");
   

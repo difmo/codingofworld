@@ -1,22 +1,51 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React from "react";
+import { Link } from "react-router-dom"; 
 
 const Sidebar = () => {
   return (
-    <div className="w-64 bg-gray-800 h-screen p-5  sticky top-0">
-      <h1 className="text-white text-2xl mb-6">My Sidebar</h1>
-      <ul>
-        <li className="text-gray-300 hover:bg-gray-700 p-2 rounded">
-          <Link to="/home1">Home</Link>
+    <div className="sticky top-0 w-64 h-screen p-4 space-y-6 text-white bg-gray-800">
+      <div className="mb-8 text-xl font-bold text-center">My App</div>
+
+      <ul className="space-y-4">
+        <li>
+          <Link
+            to="/home1"
+            className="block px-4 py-2 text-white rounded-md hover:bg-gray-700"
+          >
+            Home
+          </Link>
         </li>
-        <li className="text-gray-300 hover:bg-gray-700 p-2 rounded">
-          <Link to="/about1">About</Link>
+        <li>
+          <Link
+            to="/about1"
+            className="block px-4 py-2 text-white rounded-md hover:bg-gray-700"
+          >
+            About
+          </Link>
         </li>
-        <li className="text-gray-300 hover:bg-gray-700 p-2 rounded">
-          <Link to="/services1">Services</Link>
+        <li>
+          <Link
+            to="/services1"
+            className="block px-4 py-2 text-white rounded-md hover:bg-gray-700"
+          >
+            Services
+          </Link>
         </li>
-        <li className="text-gray-300 hover:bg-gray-700 p-2 rounded">
-          <Link to="/starttcsnqt">Start TCS NQT</Link>
+        <li>
+          <Link
+            to="/starttcsnqt"
+            className="block px-4 py-2 text-white rounded-md hover:bg-gray-700"
+          >
+            TCS NQT
+          </Link>
+        </li>
+        <li>
+          <Link
+            to="/contact"
+            className="block px-4 py-2 text-white rounded-md hover:bg-gray-700"
+          >
+            Contact
+          </Link>
         </li>
       </ul>
     </div>

@@ -15,10 +15,7 @@ import Dummy from "./pages/dummy";
 import SingUpScreen from "./pages/AuthScreens/SignUpScreen";
 import LoginScreen from "./pages/AuthScreens/LoginScreen";
 import SidebarLayout from "./pages/Layout/SidebarLayout";
-import Home1 from "./pages/Layout/Home1";
-import About1 from "./pages/Layout/About1";
-import Services1 from "./pages/Layout/Services1";
-import StartTcsNqt from "./pages/Layout/StartTcsNqt";
+
 const App = () => {
   return (
     <Router>
@@ -39,10 +36,7 @@ const App = () => {
         </Route>
 
         <Route element={<SidebarLayout />}>
-          <Route path="/home1" element={<Home1 />} />
-          <Route path="/about1" element={<About1 />} />
-          <Route path="/services1" element={<Services1 />} />
-          <Route path="/starttcsnqt" element={<StartTcsNqt />} />
+          <Route path="/dummy" element={<Dummy />} />
         </Route>
 
         <Route path="*" element={<NotFound />} />
