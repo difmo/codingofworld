@@ -38,6 +38,7 @@ const App = () => {
 
         <Route path="*" element={<NotFound />} />
         <Route path="/dummy" element={<Dummy />} />
+
         <Route element={<SidebarLayout />}>
           <Route path="/home1" element={<First />} />
           <Route path="/about1" element={<Second />} />
