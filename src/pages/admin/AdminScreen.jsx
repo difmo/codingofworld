@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { db } from './firebase'; // Adjust the import based on your structure
+import { db } from './firebase'; 
 import { collection, addDoc, getDocs, deleteDoc, doc, updateDoc } from 'firebase/firestore';
 
 const AdminPanel = () => {
