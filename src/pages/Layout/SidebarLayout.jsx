@@ -2,13 +2,11 @@ import React from 'react';
 
 import { Outlet } from 'react-router-dom'; // Outlet to render nested routes
 import Sidebar from './Sidebar';
-import Footer from '../../components/Footer/Footer';
 import Navbar from '../../components/Navbar/Navbar';
 
 const SidebarLayout = ({ children }) => {
   return (
     <div className="flex flex-col h-screen">
-      {/* Navbar: Full width */}
       <div className="w-full">
         <Navbar />
       </div>
