@@ -1,17 +1,16 @@
 import React from "react";
-import Navbar from "../../components/Navbar/Navbar";
-import Footer from "../../components/Footer/Footer";
+import Header from "./Header";
+import Footer from "./Footer";
 import { Outlet } from "react-router-dom";
 
 const Layout = ({ children }) => {
   return (
     <div>
-      <Navbar />
-      <main className="">
-        {children}
+      <Header />
+      <main className="">{children}</main>
+      <div className="">
         <Outlet />
-      </main>
-      {/* <Outlet/> */}
+      </div>
       <Footer />
     </div>
   );
