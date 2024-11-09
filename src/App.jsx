@@ -1,30 +1,31 @@
-import React from 'react';
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-import HomeScreen from './pages/HomeScreen';
-import Layout from './pages/Layout/layout';
-import ContactUs from './pages/ContactUs';
-import { Courses } from './pages/Courses';
-import { About } from './pages/About';
-import TrainingTeam from './pages/OurTrainingTeam';
-import InternshipsSection from './pages/Internship';
-import InternshipForm from './pages/IntershipForm';
-import TcsNqtCourse from './pages/AllCourses/TcsNqtCourse/TcsNqtCoursedescri';
-import NotFound from './pages/NotFound';
-import Dummy from './pages/dummy';
-import Sidebar from './pages/Layout/Sidebar';
-import { useNavigate } from 'react-router-dom';
-import First from './pages/Sidebarpages/First';
-import Second from './pages/Sidebarpages/Second';
-import Third from './pages/Sidebarpages/Third';
-import TCSNQT from './pages/AllCourses/TcsNqtCourse/StartTcsNqt';
-import SingUpScreen from './pages/AuthScreens/SignUpScreen';
-import LoginScreen from './pages/AuthScreens/LoginScreen';
+import React from "react";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import HomeScreen from "./pages/HomeScreen";
+import Layout from "./pages/Layout/layout";
+import ContactUs from "./pages/ContactUs";
+import { Courses } from "./pages/Courses";
+import { About } from "./pages/About";
+import TrainingTeam from "./pages/OurTrainingTeam";
+import InternshipsSection from "./pages/Internship";
+import InternshipForm from "./pages/IntershipForm";
+import TcsNqtCourse from "./pages/AllCourses/TcsNqtCourse/TcsNqtCoursedescri";
+import NotFound from "./pages/NotFound";
+import Dummy from "./pages/dummy";
+import Sidebar from "./pages/Layout/Sidebar";
+import { useNavigate } from "react-router-dom";
+import First from "./pages/Sidebarpages/First";
+import Second from "./pages/Sidebarpages/Second";
+import Third from "./pages/Sidebarpages/Third";
+import TCSNQT from "./pages/AllCourses/TcsNqtCourse/StartTcsNqt";
+import SingUpScreen from "./pages/AuthScreens/SignUpScreen";
+import LoginScreen from "./pages/AuthScreens/LoginScreen";
 
 const App = () => {
   return (
     <Router>
-      <Layout>
-        <Routes>
+      <Routes>
+        <Route  element={<Layout />}>
+        
           <Route path="/" element={<HomeScreen />} />
           <Route path="/contactus" element={<ContactUs />} />
           <Route path="/courses" element={<Courses />} />
@@ -35,18 +36,18 @@ const App = () => {
           <Route path="/tcsnqtcourse" element={<TcsNqtCourse />} />
           <Route path="/signupscreen" element={<SingUpScreen />} />
           <Route path="/loginscreen" element={<LoginScreen />} />
-          
-          <Route path="*" element={<NotFound />} />
-          <Route path="/dummy" element={<Dummy />} />
-          {/* Nested Routes with Sidebar */}
-          <Route element={<SidebarLayout />}>
-            <Route path="/home1" element={<First />} />
-            <Route path="/about1" element={<Second />} />
-            <Route path="/services1" element={<Third />} />
-            <Route path="/starttcsnqt" element={<TCSNQT />} />
-          </Route>
-        </Routes>
-      </Layout>
+        </Route>
+
+        <Route path="*" element={<NotFound />} />
+        <Route path="/dummy" element={<Dummy />} />
+        {/* Nested Routes with Sidebar */}
+        <Route element={<SidebarLayout />}>
+          <Route path="/home1" element={<First />} />
+          <Route path="/about1" element={<Second />} />
+          <Route path="/services1" element={<Third />} />
+          <Route path="/starttcsnqt" element={<TCSNQT />} />
+        </Route>
+      </Routes>
     </Router>
   );
 };
@@ -61,7 +62,6 @@ const SidebarLayout = () => {
           <Route path="/about1" element={<Second />} />
           <Route path="/services1" element={<Third />} />
           <Route path="/starttcsnqt" element={<TCSNQT />} />
-
         </Routes>
       </div>
     </div>
@@ -69,8 +69,3 @@ const SidebarLayout = () => {
 };
 
 export default App;
-
-
-
-
-
