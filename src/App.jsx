@@ -1,30 +1,30 @@
-import React from "react";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import HomeScreen from "./pages/HomeScreen";
-import Layout from "./pages/Layout/layout";
-import ContactUs from "./pages/ContactUs";
-import { Courses } from "./pages/Courses";
-import { About } from "./pages/About";
-import TrainingTeam from "./pages/OurTrainingTeam";
-import InternshipsSection from "./pages/Internship";
-import InternshipForm from "./pages/IntershipForm";
-import TcsNqtCourse from "./pages/AllCourses/TcsNqtCourse/TcsNqtCoursedescri";
-import NotFound from "./pages/NotFound";
-import Dummy from "./pages/dummy";
+import React from 'react';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import HomeScreen from './pages/HomeScreen';
+import Layout from './pages/Layout/layout';
+import ContactUs from './pages/ContactUs';
+import { Courses } from './pages/Courses';
+import { About } from './pages/About';
+import TrainingTeam from './pages/OurTrainingTeam';
+import InternshipsSection from './pages/Internship';
+import InternshipForm from './pages/IntershipForm';
+import TcsNqtCourse from './pages/AllCourses/TcsNqtCourse/TcsNqtCoursedescri';
+import NotFound from './pages/NotFound';
+import Dummy from './pages/dummy';
+import Sidebar from './pages/Layout/Sidebar';
+import { useNavigate } from 'react-router-dom';
+import First from './pages/Sidebarpages/First';
+import Second from './pages/Sidebarpages/Second';
+import Third from './pages/Sidebarpages/Third';
+import TCSNQT from './pages/AllCourses/TcsNqtCourse/StartTcsNqt';
+import SingUpScreen from './pages/AuthScreens/SignUpScreen';
+import LoginScreen from './pages/AuthScreens/LoginScreen';
 
-import SingUpScreen from "./pages/AuthScreens/SignUpScreen";
-import LoginScreen from "./pages/AuthScreens/LoginScreen";
-import SidebarLayout from "./pages/Layout/SidebarLayout";
-import Home1 from "./pages/Layout/Home1";
-import About1 from "./pages/Layout/About1";
-import Services1 from "./pages/Layout/Services1";
-import StartTcsNqt from "./pages/Layout/StartTcsNqt";
 const App = () => {
   return (
     <Router>
-      <Routes>
-        {/* Main Routes wrapped in Layout */}
-        <Route element={<Layout />}>
+      <Layout>
+        <Routes>
           <Route path="/" element={<HomeScreen />} />
           <Route path="/contactus" element={<ContactUs />} />
           <Route path="/courses" element={<Courses />} />
@@ -35,18 +35,18 @@ const App = () => {
           <Route path="/tcsnqtcourse" element={<TcsNqtCourse />} />
           <Route path="/signupscreen" element={<SingUpScreen />} />
           <Route path="/loginscreen" element={<LoginScreen />} />
+          
+          <Route path="*" element={<NotFound />} />
           <Route path="/dummy" element={<Dummy />} />
-        </Route>
-
-        <Route element={<SidebarLayout />}>
-          <Route path="/home1" element={<Home1 />} />
-          <Route path="/about1" element={<About1 />} />
-          <Route path="/services1" element={<Services1 />} />
-          <Route path="/starttcsnqt" element={<StartTcsNqt />} />
-        </Route>
-
-        <Route path="*" element={<NotFound />} />
-      </Routes>
+          {/* Nested Routes with Sidebar */}
+          <Route element={<SidebarLayout />}>
+            <Route path="/home1" element={<First />} />
+            <Route path="/about1" element={<Second />} />
+            <Route path="/services1" element={<Third />} />
+            <Route path="/starttcsnqt" element={<TCSNQT />} />
+          </Route>
+        </Routes>
+      </Layout>
     </Router>
   );
 };
