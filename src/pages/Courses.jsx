@@ -7,6 +7,9 @@ import { HiOutlineArrowNarrowRight } from "react-icons/hi";
 import { useNavigate } from "react-router-dom";
 import CourseCard from "../components/Cards/CourseCard";
 
+
+
+
 export const Courses = () => {
   const navigate = useNavigate();
   return (
@@ -20,13 +23,13 @@ export const Courses = () => {
           </h1>
           <span className="block mt-2 text-sm">
             you don't have to struggle alone, you've got our assistance and
-            help.
+            help. 
           </span>
         </div>
-        <div className=" grid grid-cols-1 gap-8 md:grid-cols-3">
-          <CourseCard />
-          <CourseCard />
-          <CourseCard />
+        <div className="grid grid-cols-1 gap-8 md:grid-cols-3">
+        {coursesData.map((course, index) => (
+            <CourseCard key={index} course={course} />
+          ))} 
         </div>
         <div className="grid grid-cols-1 gap-8 md:grid-cols-3">
           {courses.map((item) => (
@@ -78,3 +81,45 @@ export const Courses = () => {
     </section>
   );
 };
+
+
+
+
+const coursesData = [
+  {
+    title: "Master Data Structures and Algorithms using C++",
+    image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTmVeLTyGkk6Cs7HbuWQEMJ8LNsc268Vg-LFw&s", // Replace with actual image URL
+    features: {
+      feature1: "350+ problems & 6 projects",
+      feature2: "Foundation, Basics, and Advanced modules",
+      feature3: "Progress tracking and feedback",
+      feature4: "Certificate of Excellence/Completion",
+    },
+    price: "₹4000",
+    link: "/internshipform",
+  },
+  {
+    title: "Web Development with HTML, CSS, and React, Nodejs , Express js ",
+    image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTqYohXPmtLSchDoDq_QN1HxZmEpBYXlngBqw&s", // Replace with actual image URL
+    features: {
+      feature1: "50+ projects & 5 assignments",
+      feature2: "From basics to advanced frontend development",
+      feature3: "Complete front-end web development curriculum",
+      feature4: "Placement assistance included",
+    },
+    price: "₹5000",
+    link: "/internshipform",
+  },
+  {
+    title: "Introduction to Python for Data Science",
+    image: "https://5.imimg.com/data5/SELLER/Default/2023/1/BB/MM/EE/16435775/python-training-service.png", // Replace with actual image URL
+    features: {
+      feature1: "Hands-on projects in Python",
+      feature2: "Introduction to data analysis and visualization",
+      feature3: "Python programming and libraries",
+      feature4: "Online workshops with experts",
+    },
+    price: "₹4500",
+    link: "/internshipform",
+  },
+];
