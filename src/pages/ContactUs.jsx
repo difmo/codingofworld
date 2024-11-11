@@ -1,8 +1,13 @@
 import React, { useState } from "react";
-import { FaMapMarkedAlt, FaPhone, FaEnvelope } from "react-icons/fa";
+import {
+  FaMapMarkedAlt,
+  FaPhone,
+  FaEnvelope,
+  FaPhoneAlt,
+} from "react-icons/fa";
 import { motion } from "framer-motion";
 import { db } from "../firebase"; // Path to your firebase.js
-import { addDoc, collection } from "firebase/firestore"; 
+import { addDoc, collection } from "firebase/firestore";
 
 const fadeInUp = {
   hidden: { opacity: 0, y: 20 },
@@ -27,7 +32,7 @@ const ContactUs = () => {
     message: "",
   });
 
-  const [successMessage, setSuccessMessage] = useState("");  // Track success message
+  const [successMessage, setSuccessMessage] = useState(""); // Track success message
 
   // Handle input change
   const handleChange = (e) => {
@@ -89,7 +94,7 @@ const ContactUs = () => {
 
     try {
       await addDoc(collection(db, "contacts"), formData);
-      setSuccessMessage("Your message has been sent successfully!");  // Set success message
+      setSuccessMessage("Your message has been sent successfully!"); // Set success message
       setFormData({
         name: "",
         email: "",
@@ -98,8 +103,11 @@ const ContactUs = () => {
         course: "",
       });
     } catch (error) {
-      setSuccessMessage("");  // Clear success message on error
-      setErrors({ ...errors, general: "An error occurred. Please try again later." }); // Optional: Add general error message
+      setSuccessMessage(""); // Clear success message on error
+      setErrors({
+        ...errors,
+        general: "An error occurred. Please try again later.",
+      }); // Optional: Add general error message
     } finally {
       setLoading(false);
     }
@@ -110,7 +118,6 @@ const ContactUs = () => {
       {/* Breadcrumb Area */}
       <motion.section
         className="relative pt-4 bg-no-repeat bg-cover"
-        style={{ backgroundImage: "url('/src/assets/bg/breadcrumb_bg.jpg')" }}
         variants={fadeInUp}
         initial="hidden"
         animate="visible"
@@ -155,7 +162,7 @@ const ContactUs = () => {
                     </div>
                   </li>
                   <li className="flex items-start p-6 bg-gray-100 border rounded-md">
-                    <FaPhone size={24} className="mr-3 text-primary" />
+                    <FaPhoneAlt size={24} className="mr-3 text-primary" />
                     <div>
                       <h4 className="font-semibold">Phone</h4>
                       <a href="tel:9455791624" className="text-blue-600">
@@ -171,10 +178,7 @@ const ContactUs = () => {
                     <FaEnvelope size={24} className="mr-3 text-primary" />
                     <div>
                       <h4 className="font-semibold">E-mail Address</h4>
-                      <a
-                        href="mailto:info@difmo.com"
-                        className="text-blue-600"
-                      >
+                      <a href="mailto:info@difmo.com" className="text-blue-600">
                         info@codeservir.com
                       </a>
                     </div>
@@ -202,13 +206,14 @@ const ContactUs = () => {
                     <textarea
                       name="message"
                       placeholder="Comment"
-                      
                       className="w-full p-3 border border-gray-300 rounded"
                       value={formData.message}
                       onChange={handleChange}
                     />
                     {errors.message && (
-                      <span className="text-sm text-red-500">{errors.message}</span>
+                      <span className="text-sm text-red-500">
+                        {errors.message}
+                      </span>
                     )}
                   </div>
                   <div className="flex flex-wrap -mx-2">
@@ -217,13 +222,14 @@ const ContactUs = () => {
                         name="name"
                         type="text"
                         placeholder="Name *"
-                        
                         className="w-full p-3 border border-gray-300 rounded"
                         value={formData.name}
                         onChange={handleChange}
                       />
                       {errors.name && (
-                        <span className="text-sm text-red-500">{errors.name}</span>
+                        <span className="text-sm text-red-500">
+                          {errors.name}
+                        </span>
                       )}
                     </div>
                     <div className="w-full px-2 mb-4 md:w-1/2">
@@ -231,13 +237,14 @@ const ContactUs = () => {
                         name="email"
                         type="email"
                         placeholder="E-mail *"
-                        
                         className="w-full p-3 border border-gray-300 rounded"
                         value={formData.email}
                         onChange={handleChange}
                       />
                       {errors.email && (
-                        <span className="text-sm text-red-500">{errors.email}</span>
+                        <span className="text-sm text-red-500">
+                          {errors.email}
+                        </span>
                       )}
                     </div>
                     <div className="w-full px-2 mb-4 md:w-1/2">
@@ -245,13 +252,14 @@ const ContactUs = () => {
                         name="contact"
                         type="number"
                         placeholder="Contact Number*"
-                        
                         className="w-full p-3 border border-gray-300 rounded"
                         value={formData.contact}
                         onChange={handleChange}
                       />
                       {errors.contact && (
-                        <span className="text-sm text-red-500">{errors.contact}</span>
+                        <span className="text-sm text-red-500">
+                          {errors.contact}
+                        </span>
                       )}
                     </div>
                     <div className="w-full px-2 mb-4 md:w-1/2">
@@ -277,7 +285,9 @@ const ContactUs = () => {
                         </option>
                       </select>
                       {errors.course && (
-                        <span className="text-sm text-red-500">{errors.course}</span>
+                        <span className="text-sm text-red-500">
+                          {errors.course}
+                        </span>
                       )}
                     </div>
                   </div>

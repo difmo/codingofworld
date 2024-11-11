@@ -4,6 +4,9 @@ import {
   FaLaptopCode,
   FaAward,
   FaGraduationCap,
+  FaBrain,
+  FaClipboard,
+  FaLaptop,
 } from "react-icons/fa";
 import { BsFillPersonFill } from "react-icons/bs";
 
@@ -41,15 +44,15 @@ const CourseCard = ({ course }) => {
               {course.features.feature4}
             </li>
             <li className="flex items-center text-sm">
-              <FaGraduationCap className="mr-2 text-purple-500" />
+              <FaLaptop className="mr-2 text-blue-400" />
               {course.features.feature5}
             </li>
             <li className="flex items-center text-sm">
-              <FaGraduationCap className="mr-2 text-purple-500" />
+              <FaClipboard className="mr-2 text-gray-700" />
               {course.features.feature6}
             </li>
             <li className="flex items-center text-sm">
-              <FaGraduationCap className="mr-2 text-purple-500" />
+              <FaBrain className="mr-2 text-pink-400" />
               {course.features.feature7}
             </li>
           </ul>

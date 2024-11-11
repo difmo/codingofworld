@@ -1,10 +1,19 @@
-import React, { useRef } from "react";
-import { AiOutlineVideoCamera } from "react-icons/ai";
+// import React, { useRef } from "react";
+
 import { motion, useInView } from "framer-motion";
-import React, { useRef } from 'react';
-import { AiOutlineVideoCamera } from 'react-icons/ai';
-import { FaMobileAlt, FaLaptopCode, FaDatabase, FaGamepad, FaCloud, FaShieldAlt, FaPaintBrush, FaTools, FaLink, FaBullhorn } from 'react-icons/fa';
-import { motion, useInView } from 'framer-motion';
+import React, { useRef } from "react";
+import {
+  FaMobileAlt,
+  FaLaptopCode,
+  FaDatabase,
+  FaGamepad,
+  FaCloud,
+  FaShieldAlt,
+  FaPaintBrush,
+  FaTools,
+  FaLink,
+  FaBullhorn,
+} from "react-icons/fa";
 
 const featuresData = [
   {
@@ -103,7 +112,9 @@ const Features = () => {
     <div className="relative z-10 px-4 mx-auto bg-cover max-w-8xl font-dmSans sm:px-6">
       <div className="pt-10 pb-10 md:pb-16" ref={ref}>
         <div className="flex relative z-10 flex-col w-full items-center justify-center">
-          <h5 className="text-xl text-red-600 capitalize font-semibold">FEATURES</h5>
+          <h5 className="text-xl text-red-600 capitalize font-semibold">
+            FEATURES
+          </h5>
           <h1 className="md:text-[50px] text-[26px] xs:text-[24px] text-center font-bold tracking-wide mt-2">
             What we offer?
           </h1>
@@ -119,8 +130,7 @@ const Features = () => {
                 className="flex p-4 border border-red-200 bg-[#ffffff] dark:bg-[#191919] rounded-md"
               >
                 <div className="flex items-start gap-x-6 ">
-                  <span className='text-primary'>                  {feature.icon}
-                  </span>
+                  <span className="text-primary"> {feature.icon}</span>
                   <div>
                     <p className="font-semibold">{feature.title}</p>
                     <p className="text-sm">{feature.description}</p>
@@ -136,4 +146,3 @@ const Features = () => {
 };
 
 export default Features;
-
