@@ -1,5 +1,10 @@
 import React from "react";
-import { FaGlobe, FaLaptopCode, FaAward, FaGraduationCap } from "react-icons/fa";
+import {
+  FaGlobe,
+  FaLaptopCode,
+  FaAward,
+  FaGraduationCap,
+} from "react-icons/fa";
 import { BsFillPersonFill } from "react-icons/bs";
 
 const CourseCard = ({ course }) => {
@@ -13,11 +18,11 @@ const CourseCard = ({ course }) => {
         </div>
 
         {/* Course Title */}
-        <div className="h-60">
+        <div className="h-64">
           <img
             src={course.image}
             alt={course.title}
-            className="w-full bg-contain h-72 rounded-t-2xl"
+            className="w-full bg-contain h-80 rounded-t-2xl"
           />
         </div>
         <h1 className="relative px-4 mb-5 font-bold text-white">
@@ -26,7 +31,9 @@ const CourseCard = ({ course }) => {
 
         {/* Course Details */}
         <div className="p-4">
-          <h5 className="mb-2 text-lg font-semibold">This course includes:</h5>
+          <h5 className="mb-2  mt-10 text-lg font-semibold">
+            This course includes:
+          </h5>
           <ul className="space-y-2">
             <li className="flex items-center text-sm">
               <FaAward className="mr-2 text-yellow-500" />
@@ -44,6 +51,18 @@ const CourseCard = ({ course }) => {
               <FaGraduationCap className="mr-2 text-purple-500" />
               {course.features.feature4}
             </li>
+            <li className="flex items-center text-sm">
+              <FaGraduationCap className="mr-2 text-purple-500" />
+              {course.features.feature5}
+            </li>
+            <li className="flex items-center text-sm">
+              <FaGraduationCap className="mr-2 text-purple-500" />
+              {course.features.feature6}
+            </li>
+            <li className="flex items-center text-sm">
+              <FaGraduationCap className="mr-2 text-purple-500" />
+              {course.features.feature7}
+            </li>
           </ul>
         </div>
 
@@ -53,7 +72,7 @@ const CourseCard = ({ course }) => {
             href={course.link}
             className="flex-shrink-0 px-2 py-2 text-center text-white rounded-lg bg-primary"
           >
-             Start Now
+            Start Now
           </a>
           <div className="ml-4">
             <button className="px-4 py-2 text-xl bg-gray-200 rounded">

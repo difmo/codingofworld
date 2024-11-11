@@ -51,7 +51,7 @@ const internships = [
   },
 ];
 
-const Internships = () => {
+const  Internships = () => {
   return (
     <section className=" mx-auto p-6 ">
       <h2 className="text-2xl font-bold text-center">Browse our internships</h2>
@@ -67,7 +67,7 @@ const Internships = () => {
             key={index}
             className="relative flex flex-col justify-evenly border rounded-lg overflow-hidden shadow-lg transition-transform transform hover:scale-105 group p-9 h-96"
           >
-            <h3 className="text-3   xl font-semibold text-center">
+            <h3 className="text-3xl font-semibold text-center">
               {internship.title}
             </h3>
             <a
