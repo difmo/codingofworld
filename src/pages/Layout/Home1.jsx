@@ -6,7 +6,7 @@ const Home1 = () => {
       <h1 className="text-4xl font-bold">Welcome to Home 1 Page</h1>
       <h1 className="text-4xl font-bold">Welcome to Home 1 Page</h1>
       <h1 className="text-4xl font-bold">Welcome to Home 1 Page</h1>
-      <h1 className="text-4xl font-bold">Welcome to Home 1 Page</h1>
+      <h1 className="text-4xl f ont-bold">Welcome to Home 1 Page</h1>
       <h1 className="text-4xl font-bold">Welcome to Home 1 Page</h1>
       <h1 className="text-4xl font-bold">Welcome to Home 1 Page</h1>
       <h1 className="text-4xl font-bold">Welcome to Home 1 Page</h1>

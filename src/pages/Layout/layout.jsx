@@ -7,11 +7,10 @@ const Layout = ({ children }) => {
   return (
     <div>
       <Navbar />
-      <main className="">
+      <main>
         {children}
         <Outlet />
       </main>
-      {/* <Outlet/> */}
       <Footer />
     </div>
   );
