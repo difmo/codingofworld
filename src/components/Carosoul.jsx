@@ -7,15 +7,16 @@ const CarouselContent = () => {
     {
       src: "https://t4.ftcdn.net/jpg/03/14/81/65/240_F_314816591_yBAWvMvnpTW05AP0q4DCs5B6y2gnL9xA.jpg",
       alt: "Google intern wearing a hat on a hike",
-      content: "AI that helps people do what they care about most",
+      content:
+        "Taking a break from coding to conquer the great outdoors! Exploring nature with a Google intern—because sometimes the best ideas come when you're on a hike!",
     },
     {
-      src: "https://t4.ftcdn.net/jpg/03/23/82/99/240_F_323829966_H32wLhoouiPinJ66KyggCvqQ2dFPuuQ1.jpg",
+      src: "https://t4.ftcdn.net/jpg/04/78/95/73/360_F_478957385_zCuEGTXNJKPygVCxmxkY01oV7JFVUFDv.jpg",
       alt: "Google intern and her dog",
       content: "A lovely day out with my furry friend!",
     },
     {
-      src: "https://t4.ftcdn.net/jpg/03/08/69/75/240_F_308697506_9dsBYHXm9FwuW0qcEqimAEXUvzTwfzwe.jpghttps://t4.ftcdn.net/jpg/03/08/69/75/240_F_308697506_9dsBYHXm9FwuW0qcEqimAEXUvzTwfzwe.jpg",
+      src: "https://thumbs.dreamstime.com/b/internet-information-technology-businessman-hand-showing-concept-75784736.jpg",
       alt: "Google interns making a G",
       content: "Team spirit is everything!",
     },
@@ -34,7 +35,7 @@ const CarouselContent = () => {
   };
 
   return (
-    <div className="flex flex-col items-center justify-center  my-10 ">
+    <div className="flex flex-col items-center justify-center p-10">
       <div></div>
       <div className="flex w-full max-w-4xl mx-auto">
         <div className="flex-shrink-0 w-1/2 h-64">
@@ -44,7 +45,7 @@ const CarouselContent = () => {
             className="object-cover w-full h-full"
           />
         </div>
-        <div className="w-1/2 h-64 flex items-center justify-center bg-white p-4 shadow-2xl">
+        <div className="w-1/2 h-64 flex items-center justify-center bg-white p-4 shadow-md">
           <p className="text-lg text-gray-800">
             {slides[currentIndex].content}
           </p>
