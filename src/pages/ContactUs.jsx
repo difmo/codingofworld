@@ -1,6 +1,8 @@
-import React, { useEffect } from "react";
+import React, { useState } from "react";
 import { FaMapMarkedAlt, FaPhone, FaEnvelope } from "react-icons/fa";
 import { motion } from "framer-motion";
+import { db } from "../firebase"; // Path to your firebase.js
+import { addDoc, collection } from "firebase/firestore"; 
 
 const fadeInUp = {
   hidden: { opacity: 0, y: 20 },
@@ -8,13 +10,101 @@ const fadeInUp = {
 };
 
 const ContactUs = () => {
-  // const [userData ,setUserdata] = userState({
-  // comment:"",
-  // name:"",
-  // email:"",
-  // contactNumber:"",
-  // summarTrainind:"",
-  // });
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    contact: "",
+    message: "",
+    course: "",
+  });
+  const [loading, setLoading] = useState(false);
+
+  const [errors, setErrors] = useState({
+    name: "",
+    email: "",
+    contact: "",
+    course: "",
+    message: "",
+  });
+
+  const [successMessage, setSuccessMessage] = useState("");  // Track success message
+
+  // Handle input change
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData({
+      ...formData,
+      [name]: value,
+    });
+  };
+
+  // Validate the form fields
+  const validateForm = () => {
+    const newErrors = {};
+    let isValid = true;
+
+    // Name validation
+    if (!formData.name) {
+      newErrors.name = "Name is required";
+      isValid = false;
+    }
+
+    // Email validation
+    if (!formData.email || !/\S+@\S+\.\S+/.test(formData.email)) {
+      newErrors.email = "Please enter a valid email address";
+      isValid = false;
+    }
+
+    // Contact number validation
+    if (!formData.contact || formData.contact.length < 10) {
+      newErrors.contact = "Please enter a valid contact number";
+      isValid = false;
+    }
+
+    // Course validation
+    if (!formData.course) {
+      newErrors.course = "Please select a course";
+      isValid = false;
+    }
+
+    // Message validation
+    if (!formData.message) {
+      newErrors.message = "Message is required";
+      isValid = false;
+    }
+
+    setErrors(newErrors);
+    return isValid;
+  };
+
+  // Handle form submission
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    if (!validateForm()) {
+      return; // Stop if validation fails
+    }
+
+    setLoading(true);
+
+    try {
+      await addDoc(collection(db, "contacts"), formData);
+      setSuccessMessage("Your message has been sent successfully!");  // Set success message
+      setFormData({
+        name: "",
+        email: "",
+        contact: "",
+        message: "",
+        course: "",
+      });
+    } catch (error) {
+      setSuccessMessage("");  // Clear success message on error
+      setErrors({ ...errors, general: "An error occurred. Please try again later." }); // Optional: Add general error message
+    } finally {
+      setLoading(false);
+    }
+  };
+
   return (
     <main className="flex flex-col">
       {/* Breadcrumb Area */}
@@ -32,11 +122,7 @@ const ContactUs = () => {
             <nav className="mt-4 breadcrumb"></nav>
           </div>
         </div>
-        <div className="absolute inset-0 flex items-center justify-center">
-          {/* <img src="/src/assets/img/breadcrumb_shape01.svg" alt="img" className="animate-bounce" /> */}
-        </div>
       </motion.section>
-      {/* Breadcrumb Area End */}
 
       {/* Contact Area */}
       <motion.section
@@ -77,7 +163,7 @@ const ContactUs = () => {
                       </a>
                       <br />
                       <a href="tel:6387800143" className="text-blue-600">
-                        +91 638-780-0143
+                        +91 780-0730-968
                       </a>
                     </div>
                   </li>
@@ -86,7 +172,7 @@ const ContactUs = () => {
                     <div>
                       <h4 className="font-semibold">E-mail Address</h4>
                       <a
-                        href="mailto:info@codeservir.com"
+                        href="mailto:info@difmo.com"
                         className="text-blue-600"
                       >
                         info@codeservir.com
@@ -97,6 +183,7 @@ const ContactUs = () => {
               </div>
             </motion.div>
 
+            {/* Right Contact Form */}
             <motion.div
               className="p-6 border rounded-md lg:w-2/3 bg-gray-50"
               variants={fadeInUp}
@@ -110,14 +197,19 @@ const ContactUs = () => {
                   Your email address will not be published. Required fields are
                   marked *
                 </p>
-                <form id="contact-form" method="POST">
+                <form onSubmit={handleSubmit} id="contact-form" method="POST">
                   <div className="mb-4">
                     <textarea
                       name="message"
                       placeholder="Comment"
-                      required
+                      
                       className="w-full p-3 border border-gray-300 rounded"
+                      value={formData.message}
+                      onChange={handleChange}
                     />
+                    {errors.message && (
+                      <span className="text-sm text-red-500">{errors.message}</span>
+                    )}
                   </div>
                   <div className="flex flex-wrap -mx-2">
                     <div className="w-full px-2 mb-4 md:w-1/2">
@@ -125,32 +217,49 @@ const ContactUs = () => {
                         name="name"
                         type="text"
                         placeholder="Name *"
-                        required
+                        
                         className="w-full p-3 border border-gray-300 rounded"
+                        value={formData.name}
+                        onChange={handleChange}
                       />
+                      {errors.name && (
+                        <span className="text-sm text-red-500">{errors.name}</span>
+                      )}
                     </div>
                     <div className="w-full px-2 mb-4 md:w-1/2">
                       <input
                         name="email"
                         type="email"
                         placeholder="E-mail *"
-                        required
+                        
                         className="w-full p-3 border border-gray-300 rounded"
+                        value={formData.email}
+                        onChange={handleChange}
                       />
+                      {errors.email && (
+                        <span className="text-sm text-red-500">{errors.email}</span>
+                      )}
                     </div>
                     <div className="w-full px-2 mb-4 md:w-1/2">
                       <input
                         name="contact"
                         type="number"
                         placeholder="Contact Number*"
-                        required
+                        
                         className="w-full p-3 border border-gray-300 rounded"
+                        value={formData.contact}
+                        onChange={handleChange}
                       />
+                      {errors.contact && (
+                        <span className="text-sm text-red-500">{errors.contact}</span>
+                      )}
                     </div>
                     <div className="w-full px-2 mb-4 md:w-1/2">
                       <select
                         name="course"
                         className="w-full p-3 border border-gray-300 rounded"
+                        value={formData.course}
+                        onChange={handleChange}
                       >
                         <option value="" disabled>
                           --Select a Course--
@@ -166,17 +275,27 @@ const ContactUs = () => {
                         <option value="Programming Language">
                           Programming Language
                         </option>
-                        {/* Add more options as needed */}
                       </select>
+                      {errors.course && (
+                        <span className="text-sm text-red-500">{errors.course}</span>
+                      )}
                     </div>
                   </div>
                   <button
                     type="submit"
                     className="p-2 text-white transition rounded bg-primary hover:bg-red-300"
+                    disabled={loading}
                   >
-                    Submit Now
+                    {loading ? "Submitting..." : "Submit Now"}
                   </button>
                 </form>
+
+                {/* Success Message */}
+                {successMessage && (
+                  <div className="mt-6 font-semibold text-center text-green-500">
+                    {successMessage}
+                  </div>
+                )}
               </div>
             </motion.div>
           </div>
@@ -197,7 +316,6 @@ const ContactUs = () => {
               referrerPolicy="no-referrer-when-downgrade"
             />
           </motion.div>
-          {/* Contact Map End */}
         </div>
       </motion.section>
     </main>
