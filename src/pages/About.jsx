@@ -5,6 +5,7 @@ import imgs from "../assets/images/join1.png";
 import { FaBookDead } from "react-icons/fa";
 import { AiOutlineCheck } from "react-icons/ai";
 import { useNavigate } from "react-router-dom";
+import InternshipForm from "./IntershipForm";
 
 export const About = () => {
   const navigate = useNavigate();
@@ -25,7 +26,7 @@ export const About = () => {
             <AboutCard
               color="bg-[#000]"
               icon={<FaBookDead size={50} />}
-              title="4,000 Online Courses"
+              title="400 Online Courses"
               desc="You don't have to struggle alone, you've "
             />
             <AboutCard
@@ -74,18 +75,6 @@ export const AboutContent = () => {
       <div className="container flex flex-col md:flex-row md:gap-8">
         <div className="relative w-full left md:w-1/3">
           <img src={aboutImg} alt="About" className="rounded-xl" />
-          {/* <img
-            src={aboutImgBanner}
-            alt="About Banner"
-            className="absolute h-56 rounded-xl -bottom-14 -left-24 md:left-20 md:-bottom-20"
-          /> */}
-          {/* <div className="flex items-center mt-3 ml-0 img-group">
-            <img src={imgs} alt="Join Us" className="w-16 h-16" />
-            <span className="text-[14px] ml-2">
-              Join over <span className="text-sm text-black">4,000+</span>{" "}
-              students
-            </span>
-          </div> */}
         </div>
         <div className="w-full right md:w-2/3 md:mt-16">
           <div className="heading">
@@ -93,10 +82,10 @@ export const AboutContent = () => {
               Accelerate Your IT Career with Expert Training
             </h1>
             <span className="block mt-2 text-sm leading-6">
-              At Difmo Technologies, we offer industry-focused training
-              programs designed to equip IT and Computer Science students with
-              the skills they need to succeed in today’s fast-paced tech world.
-              From software development to data science and cybersecurity, our
+              At Difmo Technologies, we offer industry-focused training programs
+              designed to equip IT and Computer Science students with the skills
+              they need to succeed in today’s fast-paced tech world. From
+              software development to data science and cybersecurity, our
               hands-on courses provide practical knowledge that will set you
               apart in the competitive job market.
             </span>
@@ -114,7 +103,10 @@ export const AboutContent = () => {
                 Learn the latest skills.
               </li>
             </ul>
-            <button onClick={()=>navigate("/internshipform")} className="px-5 py-2 text-sm border border-gray-300 rounded-md">
+            <button
+              onClick={() => navigate("/internshipform")}
+              className="px-5 py-2 text-sm border border-gray-300 rounded-md"
+            >
               Apply Now
             </button>
           </div>
