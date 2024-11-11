@@ -15,8 +15,8 @@ const SidebarLayout = ({ children }) => {
 
   return (
     <div className="flex h-screen">
-      <div className={`${!isSidebarOpen ? "hidden" : "flex "}  w-64  md:flex`}>
-        <Sidebar   />
+      <div className={`${!isSidebarOpen ? "hidden " : "flex    "} fixed md:relative transition-all duration-300 ease-in-out  md:flex`}>
+        <Sidebar toggleSidebar={toggleSidebar}  />
       </div>
 
       <div className="flex flex-col flex-1">
