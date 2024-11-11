@@ -1,29 +1,24 @@
-import React from 'react'
-import { useNavigate } from 'react-router-dom'
+import React from "react";
+import { useNavigate } from "react-router-dom";
 const First = () => {
-
-    const navigate = useNavigate();
+  const navigate = useNavigate();
   return (
-    <div >Fir
-        stFirstFirstFirstFirstFirstFirstFirstFirstFirstFir
-        stFirstFirstFirstFirstFirstFirstFirstFirstFirstFirstFirst
-        stFirstFirstFirstFirstFirstFirstFirstFirstFirstFirstFirst
-        stFirstFirstFirstFirstFirstFirstFirstFirstFirstFirstFirst
-        stFirstFirstFirstFirstFirstFirstFirstFirstFirstFirstFirst
-        stFirstFirstFirstFirstFirstFirstFirstFirstFirstFirstFirst
-        stFirstFirstFirstFirstFirstFirstFirstFirstFirstFirstFirst
-        stFirstFirstFirstFirstFirstFirstFirstFirstFirstFirstFirst
-        stFirstFirstFirstFirstFirstFirstFirstFirstFirstFirstFirst
-        stFirstFirstFirstFirstFirstFirstFirstFirstFirstFirstFirst
-        stFirstFirstFirstFirstFirstFirstFirstFirstFirstFirstFirst
-        stFirstFirstFirstFirstFirstFirstFirstFirstFirstFirstFirst
-        stFirstFirstFirstFirstFirstFirstFirstFirstFirstFirstFirst
-        stFirstFirstFirstFirstFirstFirstFirstFirstFirstFirstFirst
-        stFirstFirstFirstFirstFirstFirstFirstFirstFirstFirstFirst
-        
-        <button onClick={()=>navigate("/about")} className='bg-red-600'>Click to navigate</button>
-        </div>
-  )
-}
+    <div className="text-white">
+      Fir hello hello hello hello hello hello hello hello hello hello hello
+      hello hello hello hello hello hello hello hello hello hello hello hello
+      hello hello hello hello hello hello hello hello hello hello hello hello
+      hello hello hello hello hello hello hello hello hello hello hello hello
+      hello hello hello hello hello hello hello hello hello hello hello hello
+      hello hello hello hello hello hello hello hello hello hello hello hello
+      hello hello hello hello hello hello hello hello hello hello hello hello
+      hello hello hello hello hello hello hello hello hello hello hello hello
+      hello hello hello hello hello hello hello hello hello hello hello hello
+      hello hello hello hello hello hello hello hello hello hello hello
+      <button onClick={() => navigate("/about")} className="bg-red-600">
+        Click to navigate
+      </button>
+    </div>
+  );
+};
 
-export default First
+export default First;

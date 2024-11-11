@@ -1,10 +1,14 @@
 import React from "react";
+import logo from "../../assets/images/logo.svg";
 import { Link } from "react-router-dom"; 
 
 const Sidebar = () => {
   return (
-    <div className="sticky top-0 w-64 h-screen p-4 space-y-6 text-white bg-gray-800">
-      <div className="mb-8 text-xl font-bold text-center">My App</div>
+    <div className="sticky  top-0 w-64 h-screen p-4 space-y-6 text-white bg-[#212529] ">
+      <div className="flex flex-col w-full p-2 border border-gray-500 rounded-lg">
+        <img src={logo} className="h-20 " />
+        <p className="mt-2 text-xl font-bold text-center ">Coding Of World</p>
+      </div>
 
       <ul className="space-y-4">
         <li>

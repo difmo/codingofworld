@@ -118,37 +118,33 @@ const TCSNQT = () => {
   const percentage = (answeredCount / questions.length) * 100;
 
   return (
-    <div className="flex flex-col ">
+    <div className="container flex flex-col">
+  <h1 className='text-5xl font-bold text-white '> TCS NQT Coding Sheet - TCS Coding Questions
 
+
+</h1>
     <div className="flex">
      
-      <main className="flex-1 p-4">
-        <h2 className="text-2xl font-bold">About TCS NQT</h2>
-        <p>
+      <div className="flex-1 p-4 ">
+        <h2 className="text-2xl font-bold text-white">About TCS NQT</h2>
+        <p className='text-white'>
           TCS NQT is an exam conducted by TCS (Tata Consultancy Services) for hiring. Find detailed TCS NQT Syllabus and Exam pattern in this article.
         </p>
-        <h2 className="mt-4 text-2xl font-bold">Problems</h2>
+        <h2 className="mt-4 text-2xl font-bold text-white">Problems</h2>
         {['Arrays', 'Numbers', 'Sorting', 'String'].map((category) => (
           <div key={category}>
-            <h3 className="mt-4 text-xl font-bold">{category}</h3>
-            <ol  className="list-decimal list-inside ">
+            <h3 className="mt-4 text-xl font-bold text-white">{category}</h3>
+            <ol  className="list-decimal list-inside text-primary">
               {questions.filter(q => q.category === category).map((question) => (
-                <li onClick={()=>navigate("/findsmallest")} key={question.id} className="flex items-center p-2 cursor-pointer">
-                  <span>{question.text}</span>
-                  {!question.answered && (
-                    <button 
-                      onClick={() => handleAnswerClick(question.id)} 
-                      className="px-2 py-1 ml-2 text-white bg-green-500 rounded hover:bg-green-600"
-                    >
-                     Answered
-                    </button>
-                  )}
+                <li onClick={()=>navigate("/findsmallest")} key={question.id} className="flex items-center p-2 text-xl cursor-pointer">
+                  <span >{question.text}</span>
+               
                 </li>
               ))}
             </ol>
           </div>
         ))}
-      </main>
+      </div>
     </div>
     </div>
   );

@@ -18,6 +18,7 @@ import LoginScreen from "./pages/AuthScreens/LoginScreen";
 import First from "./pages/Sidebarpages/First";
 import Second from "./pages/Sidebarpages/Second";
 import SidebarLayout from "./pages/Layout/SidebarLayout";
+import FindSmallestElement from "./pages/AllCourses/TcsNqtCourse/Questions/OnArray/FindSmallestElement";
 
 const App = () => {
   return (
@@ -43,6 +44,7 @@ const App = () => {
           <Route path="/home1" element={<First />} />
           <Route path="/about1" element={<Second />} />
           <Route path="/starttcsnqt" element={<TCSNQT />} />
+          <Route path="/findsmallest" element={<FindSmallestElement />} />
         </Route>
         
       </Routes>
