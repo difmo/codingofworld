@@ -1,7 +1,7 @@
 import React from "react";
 import BannerPng from "../../assets/banner.png";
 import { motion } from "framer-motion";
-import img from "../../assets/headerimg/2.svg"
+import img from "../../assets/headerimg/2.svg";
 
 const Banner2 = () => {
   return (
@@ -18,9 +18,28 @@ const Banner2 = () => {
               Join Our Community to Start your Journey
             </h1>
             <p className="text-dark2">
-              Lorem ipsum dolor sit amet consectetur adipisicing elit.
-              Recusandae iusto minima ad ut id eos accusantium aut, aperiam quis
-              incidunt!
+              <p>
+                Python: Great for beginners. Used in web development, data
+                science, automation, AI, and more.
+              </p>
+              <p>
+                JavaScript: Essential for web development. Learn it if you're
+                interested in building websites or web applications.
+              </p>
+              <p>
+                Java: A solid choice for software development, especially for
+                large-scale applications.
+              </p>
+              <p>
+                C++: If you're interested in systems programming or game
+                development.
+              </p>
+              <p>
+                Get access to exclusive tutorials, guides, and resources curated
+                by experienced developers. Stay up-to-date with React best
+                practices and cutting-edge features like React hooks, Context
+                API, React Router, and React Query.
+              </p>
             </p>
             <a
               href="https://chat.whatsapp.com/FQSKgJ5f1eIAhlyF5sVym0"

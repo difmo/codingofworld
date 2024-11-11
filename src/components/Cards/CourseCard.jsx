@@ -10,30 +10,19 @@ import { BsFillPersonFill } from "react-icons/bs";
 const CourseCard = ({ course }) => {
   return (
     <div className="py-4">
-      <div className="overflow-hidden bg-white rounded-lg shadow-lg">
-        <div className="flex p-2 space-x-2 bg-gray-100">
-          <FaLaptopCode className="w-auto h-5 text-gray-500" />
-          <FaAward className="w-auto h-5 text-gray-500" />
-          <FaGlobe className="w-auto h-5 text-gray-500" />
-        </div>
-
+      <div className="overflow-hidden rounded-lg shadow-lg">
         {/* Course Title */}
-        <div className="h-64">
+        <div className="">
           <img
             src={course.image}
             alt={course.title}
-            className="w-full bg-contain h-80 rounded-t-2xl"
+            className="w-full bg-contain "
           />
         </div>
-        <h1 className="relative px-4 mb-5 font-bold text-white">
-          {course.title}
-        </h1>
 
         {/* Course Details */}
         <div className="p-4">
-          <h5 className="mb-2  mt-10 text-lg font-semibold">
-            This course includes:
-          </h5>
+          <h5 className="my-2  text-lg font-semibold">This course includes:</h5>
           <ul className="space-y-2">
             <li className="flex items-center text-sm">
               <FaAward className="mr-2 text-yellow-500" />
@@ -70,13 +59,14 @@ const CourseCard = ({ course }) => {
         <div className="flex justify-between p-4">
           <a
             href={course.link}
-            className="flex-shrink-0 px-2 py-2 text-center text-white rounded-lg bg-primary"
+            className="flex-shrink-0 px-4 py-2 text-center text-white rounded-lg bg-primary"
           >
             Start Now
           </a>
           <div className="ml-4">
-            <button className="px-4 py-2 text-xl bg-gray-200 rounded">
-              {course.price}
+            <button className="px-4 py-2 rounded">
+              <span className=" text-xl">{course.price}</span>
+              <s className="text-sm">{course.discount}</s>
             </button>
           </div>
         </div>

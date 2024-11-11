@@ -12,10 +12,11 @@ import img3 from "../assets/Coures/4.jpg";
 
 export const Courses = () => {
   const navigate = useNavigate();
+
   return (
     <section className="courses bg-[#F3F4F8] pt-4">
       <div className="w-4/5 m-auto">
-        <div className="mb-16 heading">
+        <div className="py-16 heading">
           <h1 className="text-3xl font-semibold text-black">
             Find The Right <br />
             Online Course For You With Certificates by{" "}
@@ -38,32 +39,14 @@ export const Courses = () => {
               key={item.id}
               className="border rounded-lg cursor-pointer box shadow-shadow1"
             >
-              <div className="relative w-full h-40 overflow-hidden rounded-t-lg images">
+              <div className="relative w-full  overflow-hidden rounded-t-lg images">
                 <img
                   src={item.cover}
                   alt=""
-                  className="object-cover w-full h-full transition duration-300 ease-in-out delay-150 rounded-t-lg cursor-pointer hover:scale-125"
+                  className="object-cover w-full h-full transition duration-300 ease-in-out delay-150 rounded-t-lg cursor-pointer hover:scale-12"
                 />
-                <div className="absolute top-0 flex gap-4 m-3 categ left-2">
-                  <span className="text-[14px] bg-primary p-1 px-3 text-white rounded-[5px] shadow-md">
-                    From Experts{" "}
-                  </span>
-                  <span className="text-[14px] bg-black p-1 px-3 text-white rounded-[5px] shadow-md">
-                    Diffmo Tech{" "}
-                  </span>
-                </div>
               </div>
               <div className="p-3 text">
-                <div className="flex items-center justify-between">
-                  <div className="flex items-center">
-                    <FaBook />
-                    <span className="text-[14px] ml-2"> 10 lessons</span>
-                  </div>
-                  <div className="flex items-center">
-                    <AiFillStar className="text-orange-500" />
-                    <span className="text-[14px] ml-2"> 4.50(2)</span>
-                  </div>
-                </div>
                 <h3 className="h-10 my-4 font-medium text-black">
                   {item.title}
                 </h3>
@@ -96,7 +79,8 @@ const coursesData = [
       feature7:
         "Curriculum designed for beginners, No coding experience required",
     },
-    price: "₹4000",
+    price: " ₹3999 ",
+    discount: "₹4999",
     link: "/internshipform",
   },
   {
@@ -112,7 +96,8 @@ const coursesData = [
       feature7:
         "Curriculum designed for beginners, No coding experience required",
     },
-    price: "₹5000",
+    price: " ₹4599 ",
+    discount: "₹5999",
     link: "/internshipform",
   },
   {
@@ -129,7 +114,8 @@ const coursesData = [
       feature7:
         "Curriculum designed for beginners, No coding experience required",
     },
-    price: "₹4500",
+    price: "₹4599 ",
+    discount: " ₹5599",
     link: "/internshipform",
   },
 ];

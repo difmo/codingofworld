@@ -24,13 +24,17 @@ const Subscribe = () => {
           transition={{ duration: 0.6, ease: "easeInOut" }}
           className="flex flex-col justify-center"
         >
-          <div className="text-center space-y-4 lg:max-w-[430px] mx-auto">
+          <div className="text-center space-y-4 lg:max-w-[530px] mx-auto">
             <h1 className="text-4xl font-bold !leading-snug">
-              450K+ Students are learning from us
+              4K+ Students are learning from us
             </h1>
+            <p>Real-world examples – Show practical applications.</p>
             <p>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit.
-              Recusandae iusto minima
+              Interactive learning – Include coding challenges or case studies.
+            </p>
+            <p>
+              Step-by-step tutorials – Break down complex topics into manageable
+              chunks.
             </p>
             <a
               href=""

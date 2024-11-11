@@ -5,8 +5,7 @@ import { MdOutlineAccessTime } from "react-icons/md";
 import { FaBookReader } from "react-icons/fa";
 import { FadeUp } from "../Hero/Hero";
 import { motion } from "framer-motion";
-import service from "../../assets/headerimg/1.svg"
-
+import service from "../../assets/headerimg/1.svg";
 
 const Banner = () => {
   return (
@@ -45,7 +44,7 @@ const Banner = () => {
                 className="flex items-center gap-4 p-6 bg-[#f4f4f4] rounded-2xl hover:bg-white duration-300 hover:shadow-2xl"
               >
                 <FaBookReader className="text-2xl" />
-                <p className="text-lg">10,000+ Courses</p>
+                <p className="text-lg">10+ Courses</p>
               </motion.div>
               <motion.div
                 variants={FadeUp(0.4)}

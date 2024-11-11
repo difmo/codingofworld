@@ -1,3 +1,14 @@
+import img2 from "../../assets/Coures/2.jpg";
+import img3 from "../../assets/Coures/3.jpg";
+import img5 from "../../assets/Coures/5.jpg";
+import img6 from "../../assets/Coures/6.jpg";
+import img8 from "../../assets/Coures/8.jpg";
+import img10 from "../../assets/Coures/10.jpg";
+import img11 from "../../assets/Coures/11.jpg";
+import img12 from "../../assets/Coures/12.jpg";
+import img13 from "../../assets/Coures/13.jpg";
+import img14 from "../../assets/Coures/14.jpg";
+import img15 from "../../assets/Coures/15.jpg";
 export const LinkData = [
   {
     id: 1,
@@ -24,42 +35,78 @@ export const LinkData = [
     title: "blog",
     url: "/blog",
   },
-]
+];
 export const courses = [
   {
     id: 1,
-    cover: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRZc0wJolRztECYxSd145RxKvty_brrckv6ig&s",
+    cover: img2,
     title: " Tcs Nqt : Take Your Dream Job",
-    path: "/tcsnqtcourse"
+    path: "/tcsnqtcourse",
   },
   {
     id: 2,
-    cover: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ8mLu4sjDn7ZGszN8SOZmiZVRVk9OJLbpciw&s  ",
+    cover: img5,
     title: "Flutter Development: Build Beautiful Apps",
-    path: "/flutter-course"
+    path: "/flutter-course",
   },
   {
     id: 3,
-    cover: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQvRowB6hv9-RH1vvayIxz8yoEkzY5lyvSMDw&s",
+    cover: img6,
     title: "Java Fundamentals: Building Robust Applications",
-    path: "/java-course"
+    path: "/java-course",
   },
   {
     id: 4,
-    cover: "https://reactjs.org/logo-og.png",
+    cover: img11,
     title: "React for Beginners: Create Interactive UIs",
-    path: "/react-course"
+    path: "/react-course",
   },
   {
     id: 5,
-    cover: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSdBlUEgF3LB1M_OE_PtQPmskayl7DiYURXmQ&s",
+    cover: img3,
     title: "Node.js Essentials: Power Your Backend",
-    path: "/nodejs-course"
+    path: "/nodejs-course",
   },
   {
     id: 6,
-    cover: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcShhg-3ZBqyo9vi6xjDksNfCI_ayNSXWgkY3g&s",
+    cover: img13,
     title: "Web Development with JavaScript: Full Stack Journey",
-    path: "/javascript-course"
+    path: "/javascript-course",
+  },
+  {
+    id: 1,
+    cover: img8,
+    title: " Tcs Nqt : Take Your Dream Job",
+    path: "/tcsnqtcourse",
+  },
+  {
+    id: 2,
+    cover: img10,
+    title: "Flutter Development: Build Beautiful Apps",
+    path: "/flutter-course",
+  },
+  {
+    id: 3,
+    cover: img11,
+    title: "Java Fundamentals: Building Robust Applications",
+    path: "/java-course",
+  },
+  {
+    id: 4,
+    cover: img12,
+    title: "React for Beginners: Create Interactive UIs",
+    path: "/react-course",
+  },
+  {
+    id: 5,
+    cover: img14,
+    title: "Node.js Essentials: Power Your Backend",
+    path: "/nodejs-course",
+  },
+  {
+    id: 6,
+    cover: img15,
+    title: "Web Development with JavaScript: Full Stack Journey",
+    path: "/javascript-course",
   },
 ];
