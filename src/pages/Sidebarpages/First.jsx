@@ -4,7 +4,7 @@ const First = () => {
 
     const navigate = useNavigate();
   return (
-    <div className='pt-40'>Fir
+    <div >Fir
         stFirstFirstFirstFirstFirstFirstFirstFirstFirstFir
         stFirstFirstFirstFirstFirstFirstFirstFirstFirstFirstFirst
         stFirstFirstFirstFirstFirstFirstFirstFirstFirstFirstFirst

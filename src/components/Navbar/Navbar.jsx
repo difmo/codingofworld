@@ -3,6 +3,7 @@ import { IoMdMenu } from "react-icons/io";
 import { motion, AnimatePresence } from "framer-motion";
 import { Link } from "react-router-dom"; // Import Link
 import { useNavigate } from "react-router-dom";
+import logo from "../../assets/images/logo.svg";
 
 const NavbarMenu = [
   { id: 1, title: "Home", path: "/" },
@@ -29,8 +30,12 @@ const Navbar = () => {
         className="container flex items-center justify-between py-5 mx-auto" // Centered container
       >
         {/* Logo section */}
+        <div className="flex items-center justify-center">
+          
+        <img src={logo} className="h-10 "/>
         <div>
-          <h1 className="text-2xl font-bold">The Coding of <span className="text-primary">World</span></h1>
+          <h1 className="pl-2 text-xl font-bold">Coding of <span className="text-primary">World</span></h1>
+        </div>
         </div>
 
         <div className="hidden lg:block">

@@ -106,7 +106,6 @@ const TCSNQT = () => {
 
   ]);
 
-  // Function to mark question as answered
   const handleAnswerClick = (id) => {
     setQuestions((prev) => 
       prev.map((question) => 
@@ -119,44 +118,27 @@ const TCSNQT = () => {
   const percentage = (answeredCount / questions.length) * 100;
 
   return (
-    <div className="flex flex-col pt-20">
-    {/* Full-width Image at the Top */}
+    <div className="flex flex-col ">
 
     <div className="flex">
-      {/* Static Sidebar for Progress */}
-      {/* <aside className="w-1/4 bg-primary/80 p-4 h-screen sticky top-20"> */}
-        {/* <h2 className="text-xl font-bold">Progress</h2>
-        <div className="mt-4">
-          <div className="bg-gray-300 h-4 rounded">
-            <div
-              className="bg-primary h-full"
-              style={{ width: `${percentage}%` }}
-            ></div>
-          </div>
-          <div className="mt-2">
-            <strong>{answeredCount} / {questions.length} answered</strong>
-          </div>
-        </div>
-      </aside> */}
-
-      {/* Main Content */}
+     
       <main className="flex-1 p-4">
         <h2 className="text-2xl font-bold">About TCS NQT</h2>
         <p>
           TCS NQT is an exam conducted by TCS (Tata Consultancy Services) for hiring. Find detailed TCS NQT Syllabus and Exam pattern in this article.
         </p>
-        <h2 className="text-2xl font-bold mt-4">Problems</h2>
+        <h2 className="mt-4 text-2xl font-bold">Problems</h2>
         {['Arrays', 'Numbers', 'Sorting', 'String'].map((category) => (
           <div key={category}>
-            <h3 className="text-xl font-bold mt-4">{category}</h3>
+            <h3 className="mt-4 text-xl font-bold">{category}</h3>
             <ol  className="list-decimal list-inside ">
               {questions.filter(q => q.category === category).map((question) => (
-                <li onClick={()=>navigate("/findsmallest")} key={question.id} className="cursor-pointer flex items-center p-2">
+                <li onClick={()=>navigate("/findsmallest")} key={question.id} className="flex items-center p-2 cursor-pointer">
                   <span>{question.text}</span>
                   {!question.answered && (
                     <button 
                       onClick={() => handleAnswerClick(question.id)} 
-                      className="ml-2 px-2 py-1 bg-green-500 text-white rounded hover:bg-green-600"
+                      className="px-2 py-1 ml-2 text-white bg-green-500 rounded hover:bg-green-600"
                     >
                      Answered
                     </button>

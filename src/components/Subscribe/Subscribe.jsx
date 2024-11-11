@@ -37,11 +37,11 @@ const Subscribe = () => {
               chunks.
             </p>
             <a
-              href=""
+              href="/internship"
               className="primary-btn !mt-8 inline-flex items-center gap-4 group"
             >
               Subscribe Now
-              <FaBell className="group-hover:animate-bounce group-hover:text-lg duration-200" />
+              <FaBell className="duration-200 group-hover:animate-bounce group-hover:text-lg" />
             </a>
           </div>
         </motion.div>
