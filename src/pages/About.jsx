@@ -11,6 +11,7 @@ export const About = () => {
   const navigate = useNavigate();
   return (
     <>
+    {/* sckoaxncxkoc */}
       <section className="py-4 about">
         <div className="container">
           <div className="py-12 text-center heading">
