@@ -17,7 +17,7 @@ const Banner2 = () => {
             <h1 className="text-4xl font-bold !leading-snug">
               Join Our Community to Start your Journey
             </h1>
-            <p className="text-dark2">
+            <p className="text-dark">
               <p>
                 Python: Great for beginners. Used in web development, data
                 science, automation, AI, and more.
