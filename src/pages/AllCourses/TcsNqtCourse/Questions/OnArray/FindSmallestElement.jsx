@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { FaCopy, FaClipboardCheck } from "react-icons/fa";
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
-import { dracula } from "react-syntax-highlighter/dist/esm/styles/prism";  // Choose a new theme
+import { dracula } from "react-syntax-highlighter/dist/esm/styles/prism"; 
 
 const FindSmallestElement = () => {
   const [copySuccess, setCopySuccess] = useState(false);

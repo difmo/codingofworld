@@ -19,6 +19,8 @@ import First from "./pages/Sidebarpages/First";
 import Second from "./pages/Sidebarpages/Second";
 import SidebarLayout from "./pages/Layout/SidebarLayout";
 import FindSmallestElement from "./pages/AllCourses/TcsNqtCourse/Questions/OnArray/FindSmallestElement";
+import BlogLayout from "./pages/Layout/BlogLayout";
+import Addblogs from "./pages/AddBlogs/Addblogs";
 
 const App = () => {
   return (
@@ -45,6 +47,12 @@ const App = () => {
           <Route path="/about1" element={<Second />} />
           <Route path="/starttcsnqt" element={<TCSNQT />} />
           <Route path="/findsmallest" element={<FindSmallestElement />} />
+        </Route>
+
+
+        <Route element={<BlogLayout />}>
+          <Route path="/adblogs" element={<Addblogs />} />
+        
         </Route>
         
       </Routes>
