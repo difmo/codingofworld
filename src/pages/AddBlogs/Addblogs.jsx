@@ -1,9 +1,16 @@
-import React from 'react'
+import React from "react";
 
 const Addblogs = () => {
   return (
-    <div>Addblogs</div>
-  )
-}
+    <div className="text-white">
+      dkfj sdkfjs klsdfj sflksd dkfj sdkfjs klsdfj sflksd dkfj sdkfjs klsdfj
+      sflksd dkfj sdkfjs klsdfj sflksd dkfj sdkfjs klsdfj sflksd dkfj sdkfjs
+      klsdfj sflksd dkfj sdkfjs klsdfj sflksd dkfj sdkfjs klsdfj sflksd dkfj
+      sdkfjs klsdfj sflksd dkfj sdkfjs klsdfj sflksd dkfj sdkfjs klsdfj sflksd
 
-export default Addblogs
+ 
+    </div>
+  );
+};
+
+export default Addblogs;

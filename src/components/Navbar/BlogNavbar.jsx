@@ -6,7 +6,7 @@ const BlogNavbar = ({toggleSidebar}) => {
   return (
     <div className="top-0 z-30 bg-black border-b border-gray-500">
       <div className="items-center justify-between hidden p-4 md:flex">
-        <div className="text-lg font-semibold text-white">Studenhje</div>
+        <div className="text-lg font-semibold text-white">Welcome Blog Page</div>
       </div>
 
       <div className="flex items-center justify-between p-4 md:hidden">

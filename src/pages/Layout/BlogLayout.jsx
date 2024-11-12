@@ -1,13 +1,7 @@
-import React from 'react'
-
-
-
-
-
-
+import React, { useState } from 'react'
 import { Outlet } from "react-router-dom"; 
-import Sidebar from "../../components/Navbar/StudentSidebar";
-import StudentNavbar from "../../components/Navbar/StudentNavbar";
+import BlogSidebar from '../../components/Navbar/BlogSidebar';
+import BlogNavbar from '../../components/Navbar/BlogNavbar';
 
 const BlogLayout = ({ children }) => {
 
@@ -21,12 +15,12 @@ const BlogLayout = ({ children }) => {
   return (
     <div className="flex h-screen">
       <div className={`${!isSidebarOpen ? "hidden " : "flex    "} fixed md:relative transition-all duration-300 ease-in-out  md:flex`}>
-        <Sidebar toggleSidebar={toggleSidebar}  />
+        <BlogSidebar toggleSidebar={toggleSidebar}  />
       </div>
 
       <div className="flex flex-col flex-1">
         <div className="w-full">
-          <StudentNavbar toggleSidebar={toggleSidebar}   /> 
+          <BlogNavbar toggleSidebar={toggleSidebar}   /> 
         </div>
         <div className="flex-1 p-8 overflow-y-auto bg-black">
           {children}
