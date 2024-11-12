@@ -157,7 +157,7 @@ const EditBlog = () => {
                     value={field.value}
                     onChange={(e) => handleFieldChange(index, "value", e.target.value)}
                     placeholder="Enter Description"
-                    className="w-full p-2 mt-2"
+                    className="w-full p-2 mt-2 bg-black "
                   />
                 </div>
               )}
@@ -170,7 +170,7 @@ const EditBlog = () => {
                     value={field.value}
                     onChange={(e) => handleFieldChange(index, "value", e.target.value)}
                     placeholder="Enter Link"
-                    className="w-full p-2 mt-2"
+                    className="w-full p-2 mt-2 bg-black"
                   />
                 </div>
               )}
@@ -181,7 +181,7 @@ const EditBlog = () => {
                   <input
                     type="file"
                     onChange={(e) => handleImageUpload(e.target.files[0], index)}
-                    className="w-full p-2 mt-2"
+                    className="w-full p-2 mt-2 bg-black"
                   />
                   {field.value && (
                     <div className="mt-2">
