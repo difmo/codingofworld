@@ -1,10 +1,15 @@
-import React, { useState } from "react";
+import React from 'react'
+
+
+
+
+
 
 import { Outlet } from "react-router-dom"; 
 import Sidebar from "../../components/Navbar/StudentSidebar";
 import StudentNavbar from "../../components/Navbar/StudentNavbar";
 
-const SidebarLayout = ({ children }) => {
+const BlogLayout = ({ children }) => {
 
   const [isSidebarOpen, setIsSidebarOpen] = useState(false); 
 
@@ -33,4 +38,11 @@ const SidebarLayout = ({ children }) => {
   );
 };
 
-export default SidebarLayout;
+export default BlogLayout;
+
+
+
+
+
+
+

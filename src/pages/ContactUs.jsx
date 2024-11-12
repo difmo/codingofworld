@@ -6,7 +6,7 @@ import {
   FaPhoneAlt,
 } from "react-icons/fa";
 import { motion } from "framer-motion";
-import { db } from "../firebase"; // Path to your firebase.js
+import { db } from "../firebase"; 
 import { addDoc, collection } from "firebase/firestore";
 
 const fadeInUp = {
@@ -32,7 +32,7 @@ const ContactUs = () => {
     message: "",
   });
 
-  const [successMessage, setSuccessMessage] = useState(""); // Track success message
+  const [successMessage, setSuccessMessage] = useState(""); 
 
   // Handle input change
   const handleChange = (e) => {

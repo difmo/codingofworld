@@ -2,7 +2,7 @@ import React from "react";
 import logo from "../../assets/images/logo.svg";
 import { Link } from "react-router-dom"; 
 
-const Sidebar = ({ toggleSidebar }) => {
+const StudentSidebar = ({ toggleSidebar }) => {
   return (
     <div className=" w-64 h-screen p-4 space-y-6 text-white bg-[#212529] ">
       <div className="flex flex-col w-full p-2 border border-gray-500 rounded-lg">
@@ -71,4 +71,4 @@ const Sidebar = ({ toggleSidebar }) => {
   );
 };
 
-export default Sidebar;
+export default StudentSidebar;

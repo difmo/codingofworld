@@ -14,7 +14,7 @@ const NavbarMenu = [
   { id: 6, title: "Internship", path: "/internship" },
 ];
 
-const Navbar = () => {
+const MainNavbar = () => {
   const [isMobileMenuOpen, setMobileMenuOpen] = useState(false);
   const navigate = useNavigate();
 
@@ -90,4 +90,4 @@ const Navbar = () => {
   );
 };
 
-export default Navbar;
+export default MainNavbar;

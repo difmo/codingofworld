@@ -6,7 +6,6 @@ const TcsNqtCourse = () => {
     const navigate = useNavigate();
     return (
         <div className="max-w-4xl p-6 mx-auto bg-white rounded-lg py-36">
-            {/* Header Image */}
             <img
                 src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQUk85S-6mDR6PnaKjeh_SrU57K3KecqzRznw&s"// Replace with your image URL
                 alt="TCS NQT Course"
