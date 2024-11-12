@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
 import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
-import MonacoEditor from "@monaco-editor/react";
+import MonacoEditor from '@monaco-editor/react'; // Default import
 
 const AddBlogs = () => {
   const navigate = useNavigate();
@@ -13,10 +13,18 @@ const AddBlogs = () => {
   const [link, setLink] = useState("");
   const [image, setImage] = useState(null);
 
-  const [fields, setFields] = useState([]);
+  const [fields, setFields] = useState([
+    { type: "heading", value: "" },
+    { type: "description", value: "" },
+    { type: "link", value: "" },
+    { type: "image", value: "" },
+  ]);
 
   const addField = (type) => {
-    setFields([...fields, { type, value: "", language: "javascript" }]);
+    setFields([
+      ...fields,
+      { type, value: "", language: "javascript" }, // default language as javascript
+    ]);
   };
 
   const handleFieldChange = (index, value) => {
@@ -47,13 +55,19 @@ const AddBlogs = () => {
     setFields(reorderedFields);
   };
 
+  const handleImageChange = (index, e) => {
+    const updatedFields = [...fields];
+    updatedFields[index].value = e.target.files[0];
+    setFields(updatedFields);
+  };
+
   const handlePublish = () => {
     console.log("Blog Published!", { title, content, link, image, fields });
     navigate("/home");
   };
 
   return (
-    <div className="p-6 py-12 mx-auto text-white bg-black border border-gray-500 rounded-lg">
+    <div className="p-6 py-12 mx-auto text-white bg-black border border-gray-500 rounded-lg ">
       <button
         onClick={handlePublish}
         className="px-6 py-2 mb-4 text-white transition bg-blue-500 rounded-lg hover:bg-blue-600"
@@ -61,15 +75,10 @@ const AddBlogs = () => {
         Publish
       </button>
 
-      <h1 className="mb-6 text-3xl font-semibold text-center">
-        Create a New Blog Post
-      </h1>
+      <h1 className="mb-6 text-3xl font-semibold text-center">Create a New Blog Post</h1>
 
       <div className="mb-4">
-        <label
-          htmlFor="title"
-          className="block text-lg font-semibold text-gray-700"
-        >
+        <label htmlFor="title" className="block text-lg font-semibold text-gray-700 ">
           Blog Title
         </label>
         <input
@@ -83,10 +92,7 @@ const AddBlogs = () => {
       </div>
 
       <div className="mb-4">
-        <label
-          htmlFor="content"
-          className="block text-lg font-semibold text-gray-700"
-        >
+        <label htmlFor="content" className="block text-lg font-semibold text-gray-700">
           Content
         </label>
         <ReactQuill
@@ -111,11 +117,7 @@ const AddBlogs = () => {
               </h2>
 
               {fields.map((field, index) => (
-                <Draggable
-                  key={index}
-                  draggableId={String(index)}
-                  index={index}
-                >
+                <Draggable key={index} draggableId={String(index)} index={index}>
                   {(provided) => (
                     <div
                       className="p-4 mb-4 border border-gray-300 rounded-lg"
@@ -130,9 +132,7 @@ const AddBlogs = () => {
                           </label>
                           <ReactQuill
                             value={field.value}
-                            onChange={(value) =>
-                              handleFieldChange(index, value)
-                            }
+                            onChange={(value) => handleFieldChange(index, value)}
                             className="w-full"
                             placeholder="Enter heading"
                           />
@@ -146,9 +146,7 @@ const AddBlogs = () => {
                           </label>
                           <ReactQuill
                             value={field.value}
-                            onChange={(value) =>
-                              handleFieldChange(index, value)
-                            }
+                            onChange={(value) => handleFieldChange(index, value)}
                             className="w-full"
                             placeholder="Enter description"
                           />
@@ -163,9 +161,7 @@ const AddBlogs = () => {
                           <input
                             type="url"
                             value={field.value}
-                            onChange={(e) =>
-                              handleFieldChange(index, e.target.value)
-                            }
+                            onChange={(e) => handleFieldChange(index, e.target.value)}
                             className="w-full px-4 py-2 mt-2 bg-black border border-gray-300 rounded-lg"
                             placeholder="Enter link"
                           />
@@ -179,9 +175,7 @@ const AddBlogs = () => {
                           </label>
                           <input
                             type="file"
-                            onChange={(e) =>
-                              handleFieldChange(index, e.target.files[0])
-                            }
+                            onChange={(e) => handleImageChange(index, e)}
                             className="w-full px-4 py-2 mt-2 border border-gray-300 rounded-lg"
                           />
                           {field.value && (
@@ -205,9 +199,7 @@ const AddBlogs = () => {
                           {/* Language Selector */}
                           <select
                             value={field.language}
-                            onChange={(e) =>
-                              handleLanguageChange(index, e.target.value)
-                            }
+                            onChange={(e) => handleLanguageChange(index, e.target.value)}
                             className="w-full px-4 py-2 mt-2 bg-black border border-gray-300 rounded-lg"
                           >
                             <option value="javascript">JavaScript</option>
@@ -216,15 +208,14 @@ const AddBlogs = () => {
                             <option value="cpp">C++</option>
                             <option value="html">HTML</option>
                             <option value="css">CSS</option>
+                            {/* Add more languages here as needed */}
                           </select>
 
                           <MonacoEditor
                             height="200px"
-                            language={field.language}
+                            language={field.language} // Dynamically change language based on the selection
                             value={field.value}
-                            onChange={(value) =>
-                              handleFieldChange(index, value)
-                            }
+                            onChange={(value) => handleFieldChange(index, value)}
                             theme="vs-dark"
                             options={{
                               selectOnLineNumbers: true,
@@ -251,34 +242,34 @@ const AddBlogs = () => {
         </Droppable>
       </DragDropContext>
 
-      <div className="flex flex-col gap-4 lg:flex-row lg:flex-wrap lg:gap-6">
+      <div className="flex gap-4">
         <button
           onClick={() => addField("heading")}
-          className="w-full px-6 py-2 mb-4 text-white bg-green-500 rounded-lg hover:bg-green-600 lg:w-auto"
+          className="px-6 py-2 mb-4 text-white bg-green-500 rounded-lg hover:bg-green-600"
         >
           Add Heading
         </button>
         <button
           onClick={() => addField("description")}
-          className="w-full px-6 py-2 mb-4 text-white bg-blue-500 rounded-lg hover:bg-blue-600 lg:w-auto"
+          className="px-6 py-2 mb-4 text-white bg-blue-500 rounded-lg hover:bg-blue-600"
         >
           Add Description
         </button>
         <button
           onClick={() => addField("link")}
-          className="w-full px-6 py-2 mb-4 text-white bg-yellow-500 rounded-lg hover:bg-yellow-600 lg:w-auto"
+          className="px-6 py-2 mb-4 text-white bg-yellow-500 rounded-lg hover:bg-yellow-600"
         >
           Add Link
         </button>
         <button
           onClick={() => addField("image")}
-          className="w-full px-6 py-2 mb-4 text-white bg-purple-500 rounded-lg hover:bg-purple-600 lg:w-auto"
+          className="px-6 py-2 mb-4 text-white bg-purple-500 rounded-lg hover:bg-purple-600"
         >
           Add Image
         </button>
         <button
           onClick={() => addField("code")}
-          className="w-full px-6 py-2 mb-4 text-white bg-teal-500 rounded-lg hover:bg-teal-600 lg:w-auto"
+          className="px-6 py-2 mb-4 text-white bg-teal-500 rounded-lg hover:bg-teal-600"
         >
           Add Code Block
         </button>
