@@ -57,7 +57,7 @@ const App = () => {
         </Route>
 
         <Route element={<BlogLayout />}>
-          <Route path="/addlogs" element={<Addblogs />} />
+          <Route path="/adblogs" element={<Addblogs />} />
           <Route path="/all-blogs" element={<AllBlogs />} />
           <Route path="/edit-blog/:blogId" element={<EditBlog />} />
 
