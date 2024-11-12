@@ -2,7 +2,13 @@ import React from "react";
 import aboutImg from "../assets/images/about.jpg";
 import aboutImgBanner from "../assets/images/about-banner.jpg";
 import imgs from "../assets/images/join1.png";
-import { FaBookDead } from "react-icons/fa";
+import {
+  FaBookDead,
+  FaBookmark,
+  FaClipboard,
+  FaLightbulb,
+  FaPen,
+} from "react-icons/fa";
 import { AiOutlineCheck } from "react-icons/ai";
 import { useNavigate } from "react-router-dom";
 import InternshipForm from "./IntershipForm";
@@ -25,25 +31,25 @@ export const About = () => {
           <div className="grid grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-4">
             <AboutCard
               color="bg-[#000]"
-              icon={<FaBookDead size={50} />}
+              icon={<FaPen size={50} />}
               title="400 Online Courses"
               desc="You don't have to struggle alone, you've "
             />
             <AboutCard
               color="bg-[#000]"
-              icon={<FaBookDead size={50} />}
+              icon={<FaBookmark size={50} />}
               title="Expert Instructors"
               desc="Learn from industry leaders."
             />
             <AboutCard
               color="bg-[#000]"
-              icon={<FaBookDead size={50} />}
+              icon={<FaClipboard size={50} />}
               title="Flexible Learning"
               desc="Study at your own pace."
             />
             <AboutCard
               color="bg-[#000]"
-              icon={<FaBookDead size={50} />}
+              icon={<FaLightbulb size={50} />}
               title="Certification"
               desc="Earn recognized certificates."
             />
