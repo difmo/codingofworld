@@ -1,9 +1,11 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { IoMdMenu } from "react-icons/io";
 import { motion, AnimatePresence } from "framer-motion";
 import { Link } from "react-router-dom"; // Import Link
 import { useNavigate } from "react-router-dom";
 import logo from "../../assets/images/logo.svg";
+import "firebase/auth";
+import { db, auth } from "../../firebase";
 
 const NavbarMenu = [
   { id: 1, title: "Home", path: "/" },
@@ -13,17 +15,41 @@ const NavbarMenu = [
   { id: 5, title: "Contact Us", path: "/contactus" },
   { id: 6, title: "Internship", path: "/internship" },
 ];
-
 const MainNavbar = () => {
   const [isMobileMenuOpen, setMobileMenuOpen] = useState(false);
   const navigate = useNavigate();
+  const [isUserLogin, setisUserLogin] = useState(null);
 
   const toggleMobileMenu = () => {
     setMobileMenuOpen((prev) => !prev);
   };
 
+  useEffect(() => {
+    const unsubscribe = auth.onAuthStateChanged((user) => {
+      if (user) {
+        setisUserLogin(user);
+        console.log("User is logged in:", user);
+      } else {
+        setisUserLogin(null);
+        console.log("User is not logged in");
+      }
+    });
+
+    return () => unsubscribe();
+  }, []); //
+
+  const handleLogout = async () => {
+    try {
+      await auth.signOut();
+      console.log("User has logged out");
+    } catch (error) {
+      console.error("Error logging out:", error);
+    }
+  };
   return (
-    <nav className="sticky top-0 z-20 w-full bg-white shadow-sm"> {/* Full width */}
+    <nav className="sticky top-0 z-20 w-full bg-white shadow-sm">
+      {" "}
+      {/* Full width */}
       <motion.div
         initial={{ opacity: 0, y: -50 }}
         animate={{ opacity: 1, y: 0 }}
@@ -31,11 +57,12 @@ const MainNavbar = () => {
       >
         {/* Logo section */}
         <div className="flex items-center justify-center">
-          
-        <img src={logo} className="h-10 "/>
-        <div>
-          <h1 className="pl-2 text-xl font-bold">Coding of <span className="text-primary">World</span></h1>
-        </div>
+          <img src={logo} className="h-10 " />
+          <div>
+            <h1 className="pl-2 text-xl font-bold">
+              Coding of <span className="text-primary">World</span>
+            </h1>
+          </div>
         </div>
 
         <div className="hidden lg:block">
@@ -51,15 +78,31 @@ const MainNavbar = () => {
                 </Link>
               </li>
             ))}
-            <button onClick={() => navigate("/signupscreen")} className="primary-btn">Sign In</button>
+            {isUserLogin === null ? (
+              <button
+                onClick={() => navigate("/signupscreen")}
+                className="primary-btn"
+              >
+                Sign In
+              </button>
+            ) : (
+              <img
+                src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRDUayJgE_3bVA9uuIqClGEY78uGzfCwWWCQ5yL9tm_OdR-mn1Hv2o5qkSiQOUfmqGhMZg&usqp=CAU"
+                alt=""
+                className="w-10 h-10 rounded-full object-cover"
+                onClick={() => navigate("/UserDetails")}
+              />
+            )}
           </ul>
         </div>
 
         <div className="lg:hidden">
-          <IoMdMenu className="text-4xl cursor-pointer" onClick={toggleMobileMenu} />
+          <IoMdMenu
+            className="text-4xl cursor-pointer"
+            onClick={toggleMobileMenu}
+          />
         </div>
       </motion.div>
-
       <AnimatePresence>
         {isMobileMenuOpen && (
           <motion.div
@@ -82,6 +125,9 @@ const MainNavbar = () => {
                 </li>
               ))}
               <button className="primary-btn">Sign In</button>
+              <button onClick={handleLogout()} className="primary-btn">
+               Logout
+              </button>
             </ul>
           </motion.div>
         )}
