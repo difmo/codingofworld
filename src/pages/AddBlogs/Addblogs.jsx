@@ -131,7 +131,7 @@ const AddBlogs = () => {
         console.log("Blog created successfully!");
       }
 
-      navigate("/home"); // Redirect to the home page or a list of blogs after publishing
+      // navigate("/home"); // Redirect to the home page or a list of blogs after publishing
     } catch (error) {
       console.error("Error publishing blog: ", error);
     }
