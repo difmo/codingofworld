@@ -6,7 +6,7 @@ import {
   FaPhoneAlt,
 } from "react-icons/fa";
 import { motion } from "framer-motion";
-import { db } from "../firebase"; 
+import { db } from "../firebase";
 import { addDoc, collection } from "firebase/firestore";
 
 const fadeInUp = {
@@ -32,7 +32,7 @@ const ContactUs = () => {
     message: "",
   });
 
-  const [successMessage, setSuccessMessage] = useState(""); 
+  const [successMessage, setSuccessMessage] = useState("");
 
   // Handle input change
   const handleChange = (e) => {
@@ -123,7 +123,7 @@ const ContactUs = () => {
         animate="visible"
         transition={{ duration: 0.6 }}
       >
-        <div className="py-12 mx-auto">
+        <div className="py-6 mx-auto">
           <div className="text-center">
             <h3 className="text-3xl font-bold text-primary">Contact With Us</h3>
             <nav className="mt-4 breadcrumb"></nav>
@@ -133,7 +133,7 @@ const ContactUs = () => {
 
       {/* Contact Area */}
       <motion.section
-        className="py-24"
+        className="py-12"
         variants={fadeInUp}
         initial="hidden"
         animate="visible"
@@ -166,11 +166,11 @@ const ContactUs = () => {
                     <div>
                       <h4 className="font-semibold">Phone</h4>
                       <a href="tel:9455791624" className="text-blue-600">
-                        +91 945-579-1624
+                        +91 9455791624
                       </a>
                       <br />
                       <a href="tel:6387800143" className="text-blue-600">
-                        +91 780-0730-968
+                        +91 7800730968
                       </a>
                     </div>
                   </li>
@@ -179,7 +179,7 @@ const ContactUs = () => {
                     <div>
                       <h4 className="font-semibold">E-mail Address</h4>
                       <a href="mailto:info@difmo.com" className="text-blue-600">
-                        info@codeservir.com
+                        codingofworld@gmail.com
                       </a>
                     </div>
                   </li>
@@ -319,8 +319,10 @@ const ContactUs = () => {
             transition={{ duration: 0.6, delay: 0.6 }}
           >
             <iframe
-              src="https://www.google.com/maps/embed?pb=..."
-              className="w-full border-0 h-96"
+              src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d3559.356030973117!2d81.0200936760605!3d26.86042729034375!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x921922aa4e79ddd%3A0x54e478f227f46594!2sDifmo%20Technologies!5e0!3m2!1sen!2sin!4v1731411549734!5m2!1sen!2sin"
+              width="100%"
+              height="500"
+              style={{ border: 0 }}
               allowFullScreen
               loading="lazy"
               referrerPolicy="no-referrer-when-downgrade"
