@@ -75,7 +75,6 @@ export default function SignUpScreen() {
   
           console.log("User added to Firestore!");
   
-          // Send email verification
           await sendEmailVerification(user);
           setSuccessMessage("Verification email sent! Please check your inbox.");
   
