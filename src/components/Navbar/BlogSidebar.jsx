@@ -22,7 +22,18 @@ const BlogSidebar = ({ toggleSidebar }) => {
             }}
             className="block px-4 py-2 text-white rounded-md hover:bg-gray-700"
           >
-            Home
+            Add Blogs
+          </Link>
+        </li>
+        <li>
+          <Link
+            to="/all-blogs"
+            onClick={() => {
+              toggleSidebar(); 
+            }}
+            className="block px-4 py-2 text-white rounded-md hover:bg-gray-700"
+          >
+            All Blogs
           </Link>
         </li>
     

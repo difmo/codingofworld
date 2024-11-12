@@ -21,6 +21,7 @@ import SidebarLayout from "./pages/Layout/SidebarLayout";
 import FindSmallestElement from "./pages/AllCourses/TcsNqtCourse/Questions/OnArray/FindSmallestElement";
 import BlogLayout from "./pages/Layout/BlogLayout";
 import Addblogs from "./pages/AddBlogs/Addblogs";
+import AllBlogs from "./pages/AddBlogs/AllBlogs";
 
 const App = () => {
   return (
@@ -52,9 +53,9 @@ const App = () => {
 
         <Route element={<BlogLayout />}>
           <Route path="/adblogs" element={<Addblogs />} />
+          <Route path="/all-blogs" element={<AllBlogs />} />
         
         </Route>
-        
       </Routes>
     </Router>
   );

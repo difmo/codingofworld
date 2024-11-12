@@ -36,7 +36,7 @@ const StudentSidebar = ({ toggleSidebar }) => {
         <li>
           <Link
           onClick={() => {
-            toggleSidebar(); // Close sidebar when this item is clicked
+            toggleSidebar();
           }}
             to="/services1"
             className="block px-4 py-2 text-white rounded-md hover:bg-gray-700"
@@ -47,7 +47,7 @@ const StudentSidebar = ({ toggleSidebar }) => {
         <li>
           <Link
           onClick={() => {
-            toggleSidebar(); // Close sidebar when this item is clicked
+            toggleSidebar(); 
           }}
             to="/starttcsnqt"
             className="block px-4 py-2 text-white rounded-md hover:bg-gray-700"
