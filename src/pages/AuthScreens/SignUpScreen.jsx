@@ -7,9 +7,10 @@ import CustomCheckbox from "../../components/InputAndButton/CustomCheckbox";
 import CustomButton from "../../components/InputAndButton/CustomButton";
 import IconsComponent from "../../components/Icons/Icons";
 import { createUserWithEmailAndPassword, getAuth, sendEmailVerification } from "firebase/auth";
-import { auth } from "../../firebase"; 
+import { auth,db } from "../../firebase"; 
 import * as Yup from "yup";
 import { useFormik } from "formik";
+import { getFirestore, collection, addDoc } from 'firebase/firestore'; 
 
 const validationSchema = Yup.object().shape({
   email: Yup.string()
@@ -32,7 +33,7 @@ export default function SignUpScreen() {
         await user.reload(); 
   
         if (user.emailVerified) {
-          clearInterval(interval);  // Stop polling once verified
+          clearInterval(interval); 
           setSuccessMessage("Email successfully verified!");
   
           navigate("/loginscreen");
@@ -40,7 +41,7 @@ export default function SignUpScreen() {
         } else {
           console.log("Waiting for email verification...");
         }
-      }, 5000); // Poll every 5 seconds (adjust as needed)
+      }, 5000); 
   
     } catch (error) {
       console.error("Error checking email verification:", error);
@@ -66,13 +67,21 @@ export default function SignUpScreen() {
         console.log("User:", user);
   
         if (user) {
+          await addDoc(collection(db, "users"), {
+            uid: user.uid, 
+            email: user.email,
+            createdAt: new Date(),
+          });
+  
+          console.log("User added to Firestore!");
+  
+          // Send email verification
           await sendEmailVerification(user);
           setSuccessMessage("Verification email sent! Please check your inbox.");
   
           console.log("Please check your inbox for the verification email.");
   
           waitForEmailVerification(user);
-  
         } else {
           setErrorMessage("Failed to get a valid user object.");
         }
@@ -84,6 +93,7 @@ export default function SignUpScreen() {
       }
     },
   });
+  
   
 
   return (

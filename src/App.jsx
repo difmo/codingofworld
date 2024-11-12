@@ -22,8 +22,8 @@ import FindSmallestElement from "./pages/AllCourses/TcsNqtCourse/Questions/OnArr
 import BlogLayout from "./pages/Layout/BlogLayout";
 import Addblogs from "./pages/AddBlogs/Addblogs";
 import UserDetails from "./components/UserProfile/UserDetails";
-import ProfilePicSection from "./components/UserProfile/ProfilePicSection";
 import AllBlogs from "./pages/AddBlogs/AllBlogs";
+import EditBlog from "./pages/AddBlogs/EditBlog";
 
 const App = () => {
   return (
@@ -40,21 +40,10 @@ const App = () => {
           <Route path="/tcsnqtcourse" element={<TcsNqtCourse />} />
           <Route path="/signupscreen" element={<SingUpScreen />} />
           <Route path="/loginscreen" element={<LoginScreen />} />
-          <Route path="userdetails" element={<UserDetails />}/>
+          <Route path="userdetails" element={<UserDetails />} />
 
           <Route path="*" element={<NotFound />} />
           <Route path="/dummy" element={<Dummy />} />
-
-          <Route element={<SidebarLayout />}>
-            <Route path="/home1" element={<First />} />
-            <Route path="/about1" element={<Second />} />
-            <Route path="/starttcsnqt" element={<TCSNQT />} />
-            <Route path="/findsmallest" element={<FindSmallestElement />} />
-          </Route>
-
-          <Route element={<BlogLayout />}>
-            <Route path="/adblogs" element={<Addblogs />} />
-          </Route>
         </Route>
 
         <Route path="*" element={<NotFound />} />
@@ -67,11 +56,11 @@ const App = () => {
           <Route path="/findsmallest" element={<FindSmallestElement />} />
         </Route>
 
-
         <Route element={<BlogLayout />}>
           <Route path="/adblogs" element={<Addblogs />} />
           <Route path="/all-blogs" element={<AllBlogs />} />
-        
+          <Route path="/edit-blog/:blogId" element={<EditBlog />} />
+
         </Route>
       </Routes>
     </Router>

@@ -1,19 +1,44 @@
-import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import React, { useState, useEffect } from "react";
+import { useNavigate, useParams } from "react-router-dom";
 import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
 import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
 import MonacoEditor from "@monaco-editor/react";
+import { doc, setDoc, getDoc, updateDoc } from "firebase/firestore";
+import { v4 as uuidv4 } from "uuid";
+import { db, auth } from '../../firebase';
+import { getStorage, ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
 
 const AddBlogs = () => {
   const navigate = useNavigate();
+  const { blogId } = useParams();
 
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
   const [link, setLink] = useState("");
-  const [image, setImage] = useState(null);
-
+  const [image, setImage] = useState(null); // For storing image data
   const [fields, setFields] = useState([]);
+  const [loading, setLoading] = useState(false);
+
+  useEffect(() => {
+    if (blogId) {
+      setLoading(true);
+      const fetchBlogData = async () => {
+        const blogDoc = await getDoc(doc(db, "blogs", blogId));
+        if (blogDoc.exists()) {
+          const blogData = blogDoc.data();
+          setTitle(blogData.title);
+          setContent(blogData.content);
+          setLink(blogData.link);
+          setImage(blogData.image); // Preset image if exists
+          setFields(blogData.fields || []);
+        }
+        setLoading(false);
+      };
+
+      fetchBlogData();
+    }
+  }, [blogId]);
 
   const addField = (type) => {
     setFields([...fields, { type, value: "", language: "javascript" }]);
@@ -47,9 +72,70 @@ const AddBlogs = () => {
     setFields(reorderedFields);
   };
 
-  const handlePublish = () => {
-    console.log("Blog Published!", { title, content, link, image, fields });
-    navigate("/home");
+  const handleImageUpload = async (file) => {
+    if (!file) return;
+
+    const storage = getStorage();
+    const imageRef = ref(storage, `images/${file.name + uuidv4()}`);
+    const uploadTask = uploadBytesResumable(imageRef, file);
+
+    return new Promise((resolve, reject) => {
+      uploadTask.on(
+        "state_changed",
+        (snapshot) => {
+          // Optionally show upload progress here
+        },
+        (error) => reject(error),
+        () => {
+          // Get download URL after upload completes
+          getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
+            resolve(downloadURL);
+          });
+        }
+      );
+    });
+  };
+
+  const handlePublish = async () => {
+    const userId = auth.currentUser.uid;
+
+    setLoading(true);
+
+    try {
+      // Upload image if there's a new image
+      let imageUrl = image;
+      if (image instanceof File) {
+        imageUrl = await handleImageUpload(image);
+      }
+
+      const blogData = {
+        title,
+        content,
+        link,
+        image: imageUrl,
+        fields,
+        userId,
+        createdAt: new Date(),
+      };
+
+      if (blogId) {
+        // Update existing blog
+        const blogRef = doc(db, "blogs", blogId);
+        await updateDoc(blogRef, blogData);
+        console.log("Blog updated successfully!");
+      } else {
+        // Create new blog
+        const newBlogId = uuidv4();
+        const blogRef = doc(db, "blogs", newBlogId);
+        await setDoc(blogRef, blogData);
+        console.log("Blog created successfully!");
+      }
+
+      navigate("/home"); // Redirect to the home page or a list of blogs after publishing
+    } catch (error) {
+      console.error("Error publishing blog: ", error);
+    }
+    setLoading(false);
   };
 
   return (
@@ -57,14 +143,16 @@ const AddBlogs = () => {
       <button
         onClick={handlePublish}
         className="px-6 py-2 mb-4 text-white transition bg-blue-500 rounded-lg hover:bg-blue-600"
+        disabled={loading}
       >
-        Publish
+        {loading ? "Publishing..." : "Publish"}
       </button>
 
       <h1 className="mb-6 text-3xl font-semibold text-center">
-        Create a New Blog Post
+        {blogId ? "Edit Blog Post" : "Create a New Blog Post"}
       </h1>
 
+      {/* Blog Title */}
       <div className="mb-4">
         <label
           htmlFor="title"
@@ -82,6 +170,7 @@ const AddBlogs = () => {
         />
       </div>
 
+      {/* Blog Content */}
       <div className="mb-4">
         <label
           htmlFor="content"
@@ -98,6 +187,7 @@ const AddBlogs = () => {
         />
       </div>
 
+      {/* Drag and Drop Dynamic Fields */}
       <DragDropContext onDragEnd={handleDragEnd}>
         <Droppable droppableId="fields" direction="vertical">
           {(provided) => (
@@ -123,6 +213,7 @@ const AddBlogs = () => {
                       {...provided.draggableProps}
                       {...provided.dragHandleProps}
                     >
+                      {/* Heading Field */}
                       {field.type === "heading" && (
                         <div>
                           <label className="block text-lg font-semibold text-gray-700">
@@ -130,15 +221,14 @@ const AddBlogs = () => {
                           </label>
                           <ReactQuill
                             value={field.value}
-                            onChange={(value) =>
-                              handleFieldChange(index, value)
-                            }
+                            onChange={(value) => handleFieldChange(index, value)}
                             className="w-full"
                             placeholder="Enter heading"
                           />
                         </div>
                       )}
 
+                      {/* Description Field */}
                       {field.type === "description" && (
                         <div>
                           <label className="block text-lg font-semibold text-gray-700">
@@ -146,15 +236,14 @@ const AddBlogs = () => {
                           </label>
                           <ReactQuill
                             value={field.value}
-                            onChange={(value) =>
-                              handleFieldChange(index, value)
-                            }
+                            onChange={(value) => handleFieldChange(index, value)}
                             className="w-full"
                             placeholder="Enter description"
                           />
                         </div>
                       )}
 
+                      {/* Link Field */}
                       {field.type === "link" && (
                         <div>
                           <label className="block text-lg font-semibold text-gray-700">
@@ -163,15 +252,14 @@ const AddBlogs = () => {
                           <input
                             type="url"
                             value={field.value}
-                            onChange={(e) =>
-                              handleFieldChange(index, e.target.value)
-                            }
+                            onChange={(e) => handleFieldChange(index, e.target.value)}
                             className="w-full px-4 py-2 mt-2 bg-black border border-gray-300 rounded-lg"
                             placeholder="Enter link"
                           />
                         </div>
                       )}
 
+                      {/* Image Field */}
                       {field.type === "image" && (
                         <div>
                           <label className="block text-lg font-semibold text-gray-700">
@@ -179,15 +267,17 @@ const AddBlogs = () => {
                           </label>
                           <input
                             type="file"
-                            onChange={(e) =>
-                              handleFieldChange(index, e.target.files[0])
-                            }
+                            onChange={async (e) => {
+                              const uploadedImage = e.target.files[0];
+                              const imageUrl = await handleImageUpload(uploadedImage);
+                              handleFieldChange(index, imageUrl);
+                            }}
                             className="w-full px-4 py-2 mt-2 border border-gray-300 rounded-lg"
                           />
                           {field.value && (
                             <div className="mt-2">
                               <img
-                                src={URL.createObjectURL(field.value)}
+                                src={field.value}
                                 alt="Uploaded"
                                 className="object-cover w-32 h-32"
                               />
@@ -196,6 +286,7 @@ const AddBlogs = () => {
                         </div>
                       )}
 
+                      {/* Code Field */}
                       {field.type === "code" && (
                         <div>
                           <label className="block text-lg font-semibold text-gray-700">
@@ -205,9 +296,7 @@ const AddBlogs = () => {
                           {/* Language Selector */}
                           <select
                             value={field.language}
-                            onChange={(e) =>
-                              handleLanguageChange(index, e.target.value)
-                            }
+                            onChange={(e) => handleLanguageChange(index, e.target.value)}
                             className="w-full px-4 py-2 mt-2 bg-black border border-gray-300 rounded-lg"
                           >
                             <option value="javascript">JavaScript</option>
@@ -222,9 +311,7 @@ const AddBlogs = () => {
                             height="200px"
                             language={field.language}
                             value={field.value}
-                            onChange={(value) =>
-                              handleFieldChange(index, value)
-                            }
+                            onChange={(value) => handleFieldChange(index, value)}
                             theme="vs-dark"
                             options={{
                               selectOnLineNumbers: true,
@@ -251,6 +338,7 @@ const AddBlogs = () => {
         </Droppable>
       </DragDropContext>
 
+      {/* Buttons to Add Different Fields */}
       <div className="flex flex-col gap-4 lg:flex-row lg:flex-wrap lg:gap-6">
         <button
           onClick={() => addField("heading")}
