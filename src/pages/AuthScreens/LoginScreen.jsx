@@ -6,9 +6,9 @@ import IconsComponent from "../../components/Icons/Icons";
 import CustomInput from "../../components/InputAndButton/CustomInput";
 import CustomButton from "../../components/InputAndButton/CustomButton";
 import { signInWithEmailAndPassword } from "firebase/auth";
-import { auth } from "../../firebase"; 
-import { useFormik } from "formik"; 
-import * as Yup from "yup"; 
+import { auth } from "../../firebase";
+import { useFormik } from "formik";
+import * as Yup from "yup";
 
 const validationSchema = Yup.object({
   email: Yup.string()
@@ -31,8 +31,8 @@ export default function LoginScreen() {
     },
     validationSchema: validationSchema,
     onSubmit: async (values) => {
-      setErrorMessage(""); 
-      setLoading(true); 
+      setErrorMessage("");
+      setLoading(true);
 
       try {
         const userCredential = await signInWithEmailAndPassword(
@@ -43,15 +43,15 @@ export default function LoginScreen() {
         const user = userCredential.user;
 
         if (user.emailVerified) {
-          navigate("/home");
+          navigate("/");
         } else {
           setErrorMessage("Please verify your email first.");
         }
       } catch (error) {
         console.error("Login error:", error.message);
-        setErrorMessage(error.message); 
+        setErrorMessage(error.message);
       } finally {
-        setLoading(false); 
+        setLoading(false);
       }
     },
   });
@@ -124,7 +124,11 @@ export default function LoginScreen() {
 
             {/* Login Button */}
             <div className="text-center lg:text-left">
-              <CustomButton type="submit" text={loading ? "Logging in..." : "Login"} disabled={loading} />
+              <CustomButton
+                type="submit"
+                text={loading ? "Logging in..." : "Login"}
+                disabled={loading}
+              />
 
               {/* Register Link */}
               <p className="mt-2 text-sm font-semibold">

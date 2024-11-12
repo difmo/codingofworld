@@ -127,7 +127,7 @@ const Features = () => {
                 variants={FadeUp(0.2 * index)}
                 initial="initial"
                 animate={isInView ? "animate" : "initial"}
-                className="flex p-4 border border-red-200 bg-[#ffffff] dark:bg-[#191919] rounded-md"
+                className="flex p-4 border border-red-200 bg-[#ffffff] rounded-md"
               >
                 <div className="flex items-start gap-x-6 ">
                   <span className="text-primary"> {feature.icon}</span>
