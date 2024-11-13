@@ -41,14 +41,12 @@ const BlogPage = () => {
 
         const userId = currentUser.uid;
         
-        // Create a reference to the specific blog document
         const blogRef = doc(db, "blogs", blogId);
         const blogDoc = await getDoc(blogRef);
 
         if (blogDoc.exists()) {
           const blogData = blogDoc.data();
 
-          // Check if the userId of the blog matches the logged-in user's userId
           if (blogData.userId === userId) {
             setBlog(blogData);
           } else {
