@@ -6,25 +6,20 @@ import Footer from "../../components/Footer/Footer";
 
 const ShowBlogLayout = ({ children }) => {
   return (
-    <div className="flex flex-col h-screen">
-      <div className="bg-gray-800">
-        <MainNavbar />
-      </div>
+   
 
       <div className="flex flex-1">
-        <div className="sticky top-0 w-64 h-screen bg-gray-800">
+        <div className="sticky top-0 w-64 h-screen ">
           <ShowblogSidebar />
         </div>
 
-        <div className="flex-1 p-8 overflow-y-auto text-white bg-black">
+        <div className="flex-1 p-8 overflow-y-auto ">
           {children}
           
           <Outlet />
         </div>
       </div>
 
-      <Footer />
-    </div>
   );
 };
 

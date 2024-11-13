@@ -8,32 +8,29 @@ const Sidebar = () => {
   const [blogs, setBlogs] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-  const [currentUser, setCurrentUser] = useState(null); // Store the current user
+  const [currentUser, setCurrentUser] = useState(null);
 
   useEffect(() => {
     const auth = getAuth();
     
     const unsubscribe = onAuthStateChanged(auth, (user) => {
       if (user) {
-        setCurrentUser(user); // Set the current user when the user is logged in
+        setCurrentUser(user); 
       } else {
-        setCurrentUser(null); // Clear user state when not logged in
+        setCurrentUser(null);
       }
-      setLoading(false); // Stop loading after auth state is checked
+      setLoading(false); 
     });
 
-    // Cleanup the listener when the component unmounts
     return () => unsubscribe();
-  }, []); // Empty dependency array so this runs only once
+  }, []); 
 
   useEffect(() => {
     const fetchBlogs = async () => {
-      if (!currentUser) {
-        return; 
-      }
+  
 
       try {
-        setLoading(true); // Set loading true before fetching
+        setLoading(true); 
 
         const blogsQuery = query(
           collection(db, "blogs"),
@@ -56,7 +53,7 @@ const Sidebar = () => {
     };
 
     fetchBlogs();
-  }, [currentUser]); // Fetch blogs when currentUser changes
+  }, [currentUser]); 
 
   if (loading) {
     return <div>Loading blogs...</div>;
@@ -66,17 +63,9 @@ const Sidebar = () => {
     return <div>{error}</div>;
   }
 
-  if (!currentUser) {
-    return <div>User is not logged in</div>;
-  }
-
-  if (blogs.length === 0) {
-    return <div>No blogs available</div>;
-  }
-
   return (
-    <div className="h-screen p-4 text-white bg-gray-800">
-      <h2 className="mb-4 text-2xl font-semibold">Blog Titles</h2>
+    <div className="h-screen p-4 text-black border-r">
+      <h2 className="mb-4 text-2xl font-semibold ">Blog Titles</h2>
       <ul>
         {blogs.map((blog) => (
           <li key={blog.id} className="mb-2">

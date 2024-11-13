@@ -1,5 +1,11 @@
 import React, { useEffect, useState } from "react";
-import { BrowserRouter as Router, Route, Routes, Link, useParams } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Route,
+  Routes,
+  Link,
+  useParams,
+} from "react-router-dom";
 import { db } from "../../firebase";
 import { collection, getDocs } from "firebase/firestore";
 import "react-quill/dist/quill.snow.css";
@@ -13,14 +19,14 @@ const ShowBlogs = () => {
     const fetchBlogs = async () => {
       try {
         const querySnapshot = await getDocs(collection(db, "blogs"));
-        
+
         console.log(querySnapshot);
-        
+
         const blogsData = querySnapshot.docs.map((doc) => ({
           id: doc.id,
           ...doc.data(),
         }));
-        
+
         console.log("Fetched blogs:", blogsData);
 
         setBlogs(blogsData);
@@ -49,16 +55,21 @@ const ShowBlogs = () => {
 
   return (
     <div className="flex">
-
-      <div className="w-3/4 p-6 text-white bg-black">
-        <h1 className="mb-6 text-3xl font-semibold text-center">All Blogs</h1>
+      <div className="p-6 text-black ">
+        <h1 className="mb-6 text-3xl font-semibold text-center ">All Blogs</h1>
         <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {blogs.map((blog) => (
             <div
               key={blog.id}
-              className="p-4 bg-gray-800 border border-gray-300 rounded-lg"
+              className="p-4 border rounded-lg"
             >
-              <h2 className="text-xl font-semibold text-gray-100">{blog.title}</h2>
+              <h2 className="text-xl font-semibold ">
+                {blog.title}
+              </h2>
+              <p
+                className="mt-2 text-gray-400"
+                dangerouslySetInnerHTML={{ __html: blog.content.slice(0, 100) }}
+              />
               <div className="mt-4">
                 <Link
                   to={`/blog/${blog.id}`}

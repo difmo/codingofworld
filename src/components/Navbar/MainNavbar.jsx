@@ -49,8 +49,7 @@ const MainNavbar = () => {
   };
   return (
     <nav className="sticky top-0 z-20 w-full bg-white shadow-sm">
-      {" "}
-      {/* Full width */}
+   
       <motion.div
         initial={{ opacity: 0, y: -50 }}
         animate={{ opacity: 1, y: 0 }}

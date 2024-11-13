@@ -47,12 +47,14 @@ const App = () => {
           <Route path="/signupscreen" element={<SingUpScreen />} />
           <Route path="/loginscreen" element={<LoginScreen />} />
           <Route path="/userdetails" element={<UserDetails />} />
-        </Route>
 
         <Route element={<ShowBlogLayout />}>
           <Route path="/show-blogs" element={<ShowBlogs />} />
           <Route path="/blog/:blogId" element={<BlogPage />} />
         </Route>
+
+        </Route>
+
 
         <Route path="*" element={<NotFound />} />
         <Route path="/ads.txt" />

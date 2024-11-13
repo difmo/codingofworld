@@ -7,7 +7,7 @@ import { Link } from "react-router-dom";
 
 const BlogSidebar = ({ toggleSidebar }) => {
   return (
-    <div className=" w-64 h-screen p-4 space-y-6 text-white bg-[#212529] ">
+    <div className="w-64 h-screen p-4 space-y-6 text-white ">
       <div className="flex flex-col w-full p-2 border border-gray-500 rounded-lg">
         <img src={logo} className="h-20 " />
         <p className="mt-2 text-xl font-bold text-center ">Coding Of World</p>

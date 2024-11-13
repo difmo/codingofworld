@@ -45,12 +45,10 @@ const BlogPage = () => {
     }
   
     return (
-      <div className="p-6 mx-auto text-white bg-black">
+      <div className="max-w-5xl mx-auto text-black ">
         <h1 className="mb-6 text-3xl font-semibold">{blog.title}</h1>
-        <div className="mb-6">
-          <ReactQuill value={blog.content} readOnly={true} theme="snow" />
-        </div>
-  
+        <div className="mb-6 " dangerouslySetInnerHTML={{ __html: blog.content }} />
+
         {Array.isArray(blog.fields) && blog.fields.length > 0 ? (
           blog.fields.map((field, index) => (
             <div key={index} className="mb-4">
@@ -59,7 +57,7 @@ const BlogPage = () => {
               )}
   
               {field.type === "description" && (
-                <p className="text-lg">{field.value}</p>
+                <p className="text-lg" dangerouslySetInnerHTML={{ __html: field.value }} />
               )}
   
               {field.type === "link" && (
@@ -72,8 +70,8 @@ const BlogPage = () => {
                 <img
                   src={field.value}
                   alt="Blog Image"
-                  className="object-cover w-32 h-32 rounded"
-                />
+                  className="h-auto max-w-full mx-auto my-6 rounded-lg" // Centering and resizing styles
+                  />
               )}
               {field.type === "code" && field.value && (
                 <SyntaxHighlighter

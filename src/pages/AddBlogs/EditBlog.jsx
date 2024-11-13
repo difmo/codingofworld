@@ -48,7 +48,7 @@ const EditBlog = () => {
     const newField = {
       type: type,
       value: "",
-      language: "javascript", // Default language for code blocks
+      language: "javascript", 
     };
     setBlog({ ...blog, fields: [...blog.fields, newField] });
   };
@@ -83,19 +83,16 @@ const EditBlog = () => {
     try {
       setLoading(true);
 
-      // If any field contains an image, handle the upload
       const updatedBlog = { ...blog };
       for (let i = 0; i < updatedBlog.fields.length; i++) {
         const field = updatedBlog.fields[i];
         if (field.type === "image" && field.value instanceof File) {
-          // Upload the image if it's a file object
           await handleImageUpload(field.value, i);
         }
       }
 
-      // Update the blog in Firestore
       await updateDoc(doc(db, "blogs", blogId), updatedBlog);
-      navigate("/all-blogs"); // Navigate back after updating
+      navigate("/all-blogs");
     } catch (error) {
       console.error("Error updating blog: ", error);
     } finally {
