@@ -13,7 +13,6 @@ const Sidebar = () => {
   useEffect(() => {
     const auth = getAuth();
     
-    // Listen for changes in the authentication state
     const unsubscribe = onAuthStateChanged(auth, (user) => {
       if (user) {
         setCurrentUser(user); // Set the current user when the user is logged in
@@ -30,12 +29,11 @@ const Sidebar = () => {
   useEffect(() => {
     const fetchBlogs = async () => {
       if (!currentUser) {
-        return; // Don't fetch blogs if no user is logged in
+        return; 
       }
 
       try {
         setLoading(true); // Set loading true before fetching
-        const userId = currentUser.uid;
 
         // Fetch blogs that belong to the current user
         const blogsQuery = query(

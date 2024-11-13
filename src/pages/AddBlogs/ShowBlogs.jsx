@@ -34,12 +34,10 @@ const ShowBlogs = () => {
     fetchBlogs();
   }, []);
 
-  // If loading, show loading message
   if (loading) {
     return <div>Loading blogs...</div>;
   }
 
-  // If error occurred, show the error message
   if (error) {
     return <div>{error}</div>;
   }
@@ -61,7 +59,6 @@ const ShowBlogs = () => {
               className="p-4 bg-gray-800 border border-gray-300 rounded-lg"
             >
               <h2 className="text-xl font-semibold text-gray-100">{blog.title}</h2>
-              <p className="mt-2 text-gray-400">{blog.content.slice(0, 100)}...</p>
               <div className="mt-4">
                 <Link
                   to={`/blog/${blog.id}`}
