@@ -9,11 +9,13 @@ import {
 import { db } from "../../firebase";
 import { collection, getDocs } from "firebase/firestore";
 import "react-quill/dist/quill.snow.css";
+import { useNavigate } from "react-router-dom";
 
 const ShowBlogs = () => {
   const [blogs, setBlogs] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchBlogs = async () => {
@@ -60,8 +62,9 @@ const ShowBlogs = () => {
         <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {blogs.map((blog) => (
             <div
+              onClick={()=>navigate(`/blog/${blog.id}`)}
               key={blog.id}
-              className="p-4 border rounded-lg"
+              className="p-4 border rounded-lg shadow-md cursor-pointer"
             >
               <h2 className="text-xl font-semibold ">
                 {blog.title}

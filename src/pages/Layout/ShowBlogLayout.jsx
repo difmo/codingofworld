@@ -9,7 +9,7 @@ const ShowBlogLayout = ({ children }) => {
    
 
       <div className="flex flex-1">
-        <div className="sticky top-0 w-64 h-screen ">
+        <div className="sticky w-64 h-screen top-20 ">
           <ShowblogSidebar />
         </div>
 
