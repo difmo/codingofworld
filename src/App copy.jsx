@@ -1,7 +1,5 @@
 import React from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
-
-// Importing pages
 import HomeScreen from "./pages/HomeScreen";
 import Layout from "./pages/Layout/layout";
 import ContactUs from "./pages/ContactUs";
@@ -27,9 +25,7 @@ import UserDetails from "./components/UserProfile/UserDetails";
 import AllBlogs from "./pages/AddBlogs/AllBlogs";
 import EditBlog from "./pages/AddBlogs/EditBlog";
 import ShowBlogs from "./pages/AddBlogs/ShowBlogs";
-import BlogPage from "./pages/AddBlogs/BlogPage";
-import Sidebar from "./components/Navbar/ShowblogSidebar";
-import ShowBlogLayout from "./pages/Layout/ShowBlogLayout";
+import BlogPage from "./pages/AddBlogs/ShowBlogs";
 
 const App = () => {
   return (
@@ -46,15 +42,20 @@ const App = () => {
           <Route path="/tcsnqtcourse" element={<TcsNqtCourse />} />
           <Route path="/signupscreen" element={<SingUpScreen />} />
           <Route path="/loginscreen" element={<LoginScreen />} />
-          <Route path="/userdetails" element={<UserDetails />} />
-        </Route>
+          <Route path="userdetails" element={<UserDetails />} />
+          <Route path="show-blogs" element={<ShowBlogs />} />
 
-        <Route element={<ShowBlogLayout />}>
-          <Route path="/show-blogs" element={<ShowBlogs />} />
-          <Route path="/blog/:blogId" element={<BlogPage />} />
+          <Route path="*" element={<NotFound />} />
+          <Route path="/dummy" element={<Dummy />} />
+
+          <Route>
+            <Route path="/showshow" element={<ShowBlogs />} />
+            <Route path="/blog/:blogId" element={<BlogPage />} />
+          </Route>
         </Route>
 
         <Route path="*" element={<NotFound />} />
+        <Route path="/dummy" element={<Dummy />} />
 
         <Route element={<SidebarLayout />}>
           <Route path="/home1" element={<First />} />
@@ -68,8 +69,6 @@ const App = () => {
           <Route path="/all-blogs" element={<AllBlogs />} />
           <Route path="/edit-blog/:blogId" element={<EditBlog />} />
         </Route>
-
-        <Route path="/dummy" element={<Dummy />} />
       </Routes>
     </Router>
   );

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { db, auth } from "../../firebase";  // Import Firestore config
+import { db, auth } from "../../firebase"; 
 import { collection, getDocs, deleteDoc, doc } from "firebase/firestore";
 import { useNavigate } from "react-router-dom";
 
@@ -31,7 +31,7 @@ const AllBlogs = () => {
   const handleDelete = async (id) => {
     try {
       await deleteDoc(doc(db, "blogs", id));
-      setBlogs(blogs.filter(blog => blog.id !== id)); // Remove deleted blog from the UI
+      setBlogs(blogs.filter(blog => blog.id !== id)); 
     } catch (error) {
       console.error("Error deleting blog: ", error);
     }
