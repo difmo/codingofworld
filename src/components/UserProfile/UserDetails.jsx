@@ -3,10 +3,13 @@ import React from "react";
 import ProfilePicSection from "./ProfilePicSection";
 import ScoreCard from "./ScoreCard";
 import LogoutButton from "./LogoutButton";
+import { useNavigate } from "react-router-dom";
 
 const UserDetails = () => {
+  
+  const navigate = useNavigate();
   return (
-    <div className="p-6 bg-white rounded-lg shadow-lg max-w-4xl mx-auto">
+    <div className="max-w-4xl p-6 mx-auto bg-white rounded-lg shadow-lg">
       {/* Profile Section */}
       <ProfilePicSection />
 
@@ -45,6 +48,7 @@ const UserDetails = () => {
       </div>
 
       {/* Campus Ambassador Link */}
+      <button className="p-4 text-white rounded bg-primary" onClick={()=>navigate("/all-blogs")}>Make blogs</button>
       <LogoutButton />
     </div>
   );

@@ -13,6 +13,7 @@ const NavbarMenu = [
   { id: 3, title: "About Us", path: "/about" },
   { id: 4, title: "Our Training Team", path: "/trainingteam" },
   { id: 5, title: "Contact Us", path: "/contactus" },
+  { id: 5, title: "Blogs", path: "/show-blogs" },
   { id: 6, title: "Internship", path: "/internship" },
 ];
 const MainNavbar = () => {
@@ -89,7 +90,7 @@ const MainNavbar = () => {
               <img
                 src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRDUayJgE_3bVA9uuIqClGEY78uGzfCwWWCQ5yL9tm_OdR-mn1Hv2o5qkSiQOUfmqGhMZg&usqp=CAU"
                 alt=""
-                className="w-10 h-10 rounded-full object-cover"
+                className="object-cover w-10 h-10 rounded-full"
                 onClick={() => navigate("/UserDetails")}
               />
             )}
