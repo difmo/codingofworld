@@ -36,7 +36,7 @@ const MainNavbar = () => {
     });
 
     return () => unsubscribe();
-  }, []); //
+  }, []);
 
   const handleLogout = async () => {
     try {
@@ -126,7 +126,7 @@ const MainNavbar = () => {
               ))}
               <button className="primary-btn">Sign In</button>
               <button onClick={handleLogout()} className="primary-btn">
-               Logout
+                Logout
               </button>
             </ul>
           </motion.div>
