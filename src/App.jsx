@@ -55,6 +55,7 @@ const App = () => {
         </Route>
 
         <Route path="*" element={<NotFound />} />
+        <Route path="/ads.txt" />
 
         <Route element={<SidebarLayout />}>
           <Route path="/home1" element={<First />} />
