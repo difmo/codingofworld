@@ -16,7 +16,7 @@ const AddBlogs = () => {
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
   const [link, setLink] = useState("");
-  const [image, setImage] = useState(null); // For storing image data
+  const [image, setImage] = useState(null); 
   const [fields, setFields] = useState([]);
   const [loading, setLoading] = useState(false);
 
@@ -30,7 +30,7 @@ const AddBlogs = () => {
           setTitle(blogData.title);
           setContent(blogData.content);
           setLink(blogData.link);
-          setImage(blogData.image); // Preset image if exists
+          setImage(blogData.image); 
           setFields(blogData.fields || []);
         }
         setLoading(false);
@@ -102,7 +102,6 @@ const AddBlogs = () => {
     setLoading(true);
 
     try {
-      // Upload image if there's a new image
       let imageUrl = image;
       if (image instanceof File) {
         imageUrl = await handleImageUpload(image);
@@ -110,7 +109,7 @@ const AddBlogs = () => {
 
       const blogData = {
         title,
-        content,
+        content: content,
         link,
         image: imageUrl,
         fields,
@@ -119,19 +118,17 @@ const AddBlogs = () => {
       };
 
       if (blogId) {
-        // Update existing blog
         const blogRef = doc(db, "blogs", blogId);
         await updateDoc(blogRef, blogData);
         console.log("Blog updated successfully!");
       } else {
-        // Create new blog
         const newBlogId = uuidv4();
         const blogRef = doc(db, "blogs", newBlogId);
         await setDoc(blogRef, blogData);
-        console.log("Blog created successfully!");
+        alert("Blog created successfully!");
       }
 
-      // navigate("/home"); // Redirect to the home page or a list of blogs after publishing
+      navigate("/all-blogs");
     } catch (error) {
       console.error("Error publishing blog: ", error);
     }
@@ -183,11 +180,24 @@ const AddBlogs = () => {
           value={content}
           onChange={setContent}
           className="w-full"
-          placeholder="Write the content of your blog"
+          placeholder="Write the content of your blog"    
+          modules={{
+            toolbar: [
+              [{ 'header': '1' }, { 'header': '2' }, { 'header': '3' }, { 'header': '4' }, { 'header': '5' }, { 'header': '6' }],
+              [{ 'font': [] }], 
+              [{ 'size': ['small', 'normal', 'large', 'huge'] }],  //
+                
+              ['bold', 'italic', 'underline'],
+              ['link'],
+              [{ 'list': 'ordered' }, { 'list': 'bullet' }],
+              ['blockquote', 'code-block'],
+              ['image'],
+              ['clean']
+            ]
+          }}
         />
       </div>
 
-      {/* Drag and Drop Dynamic Fields */}
       <DragDropContext onDragEnd={handleDragEnd}>
         <Droppable droppableId="fields" direction="vertical">
           {(provided) => (

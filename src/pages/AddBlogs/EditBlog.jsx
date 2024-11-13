@@ -126,6 +126,15 @@ const EditBlog = () => {
               value={blog.content}
               onChange={(value) => setBlog({ ...blog, content: value })}
               className="w-full"
+              modules={{
+                toolbar: [
+                  [{ 'header': '1' }, { 'header': '2' }, 'bold', 'italic', 'link'], // Adding 'header' for h1, h2 etc.
+                  [{ 'list': 'ordered'}, { 'list': 'bullet' }],
+                  ['blockquote', 'code-block'],
+                  ['link', 'image'],
+                  ['clean']
+                ],
+              }}
             />
           </div>
 

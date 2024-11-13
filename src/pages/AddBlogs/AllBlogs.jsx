@@ -70,7 +70,7 @@ const AllBlogs = () => {
                 className="p-4 bg-gray-800 rounded-lg shadow-md cursor-pointer"
               >
                 <h2 className="text-xl font-semibold">{blog.title}</h2>
-                <p className="mt-2">{blog.content.substring(0, 100)}...</p>
+                <p className="mt-2"   dangerouslySetInnerHTML={{ __html: blog.content.substring(0, 100)} } />
                 <div className="flex justify-between mt-4">
                   <button
                     onClick={() => handleEdit(blog.id)}

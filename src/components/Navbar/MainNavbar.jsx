@@ -12,9 +12,9 @@ const NavbarMenu = [
   { id: 2, title: "Our Courses", path: "/courses" },
   { id: 3, title: "About Us", path: "/about" },
   { id: 4, title: "Our Training Team", path: "/trainingteam" },
-  { id: 5, title: "Contact Us", path: "/contactus" },
-  { id: 5, title: "Blogs", path: "/show-blogs" },
-  { id: 6, title: "Internship", path: "/internship" },
+  { id: 6, title: "Contact Us", path: "/contactus" },
+  { id: 7, title: "Blogs", path: "/show-blogs" },
+  { id: 8, title: "Internship", path: "/internship" },
 ];
 const MainNavbar = () => {
   const [isMobileMenuOpen, setMobileMenuOpen] = useState(false);

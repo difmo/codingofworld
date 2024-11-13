@@ -47,7 +47,7 @@ const BlogPage = () => {
     return (
       <div className="max-w-5xl mx-auto text-black ">
         <h1 className="mb-6 text-3xl font-semibold text-primary">{blog.title}</h1>
-        <div className="mb-6 " dangerouslySetInnerHTML={{ __html: blog.content }} />
+        <div className="p-4 mb-6" dangerouslySetInnerHTML={{ __html: blog.content }} />
 
         {Array.isArray(blog.fields) && blog.fields.length > 0 ? (
           blog.fields.map((field, index) => (
