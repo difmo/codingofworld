@@ -35,7 +35,6 @@ const Sidebar = () => {
       try {
         setLoading(true); // Set loading true before fetching
 
-        // Fetch blogs that belong to the current user
         const blogsQuery = query(
           collection(db, "blogs"),
          
@@ -52,7 +51,7 @@ const Sidebar = () => {
       } catch (err) {
         setError("Error fetching blogs: " + err.message);
       } finally {
-        setLoading(false); // Set loading to false after fetching
+        setLoading(false); 
       }
     };
 
