@@ -6,12 +6,14 @@ import Banner2 from "../components/Banner/Banner2";
 import Subscribe from "../components/Subscribe/Subscribe";
 import Features from "./WhatWeOffer";
 import FAQ from "./Faq";
+import AdComponent from "./GoogleAdd";
 
 
 const HomeScreen = () => {
   return (
     <div>
       <Hero />
+      <AdComponent/>
       <Services />
       <Banner />
       <Subscribe />

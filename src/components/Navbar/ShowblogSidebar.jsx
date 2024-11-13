@@ -40,7 +40,7 @@ const Sidebar = () => {
         // Fetch blogs that belong to the current user
         const blogsQuery = query(
           collection(db, "blogs"),
-          where("userId", "==", userId)
+         
         );
 
         const querySnapshot = await getDocs(blogsQuery);
