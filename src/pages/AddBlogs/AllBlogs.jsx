@@ -14,7 +14,7 @@ const AllBlogs = () => {
         const currentUser = auth.currentUser;
 
         if (!currentUser) {
-          console.error("User is not logged in ufygjhh");
+          console.error("User is not logged in");
           return;
         }
 
@@ -55,7 +55,7 @@ const AllBlogs = () => {
   };
 
   return (
-    <div className="p-6 mx-auto text-white ">
+    <div className="p-6 mx-auto text-white bg-black">
       <h1 className="mb-6 text-3xl font-semibold text-center">My Blogs</h1>
       {loading ? (
         <p>Loading blogs...</p>

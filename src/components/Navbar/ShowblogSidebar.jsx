@@ -65,13 +65,13 @@ const Sidebar = () => {
 
   return (
     <div className="h-screen p-4 text-black border-r">
-      <h2 className="mb-4 text-2xl font-semibold ">Blog Titles</h2>
+      <h2 className="mb-4 text-2xl font-semibold ">Topics</h2>
       <ul>
         {blogs.map((blog) => (
-          <li key={blog.id} className="mb-2">
+          <li key={blog.id} className="mb-2 ">
             <Link
               to={`/blog/${blog.id}`}
-              className="text-blue-400 hover:text-blue-600"
+              className=" text-primary hover:text-blue-600"
             >
               {blog.title}
             </Link>

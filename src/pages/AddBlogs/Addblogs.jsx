@@ -87,6 +87,7 @@ const AddBlogs = () => {
         },
         (error) => reject(error),
         () => {
+          // Get download URL after upload completes
           getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
             resolve(downloadURL);
           });
@@ -101,6 +102,7 @@ const AddBlogs = () => {
     setLoading(true);
 
     try {
+      // Upload image if there's a new image
       let imageUrl = image;
       if (image instanceof File) {
         imageUrl = await handleImageUpload(image);
@@ -117,16 +119,19 @@ const AddBlogs = () => {
       };
 
       if (blogId) {
+        // Update existing blog
         const blogRef = doc(db, "blogs", blogId);
         await updateDoc(blogRef, blogData);
         console.log("Blog updated successfully!");
       } else {
+        // Create new blog
         const newBlogId = uuidv4();
         const blogRef = doc(db, "blogs", newBlogId);
         await setDoc(blogRef, blogData);
         console.log("Blog created successfully!");
       }
 
+      // navigate("/home"); // Redirect to the home page or a list of blogs after publishing
     } catch (error) {
       console.error("Error publishing blog: ", error);
     }
@@ -165,6 +170,7 @@ const AddBlogs = () => {
         />
       </div>
 
+      {/* Blog Content */}
       <div className="mb-4">
         <label
           htmlFor="content"

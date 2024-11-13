@@ -22,7 +22,7 @@ const BlogLayout = ({ children }) => {
         <div className="w-full">
           <BlogNavbar toggleSidebar={toggleSidebar}   /> 
         </div>
-        <div className="flex-1 p-8 overflow-y-auto ">
+        <div className="flex-1 p-8 overflow-y-auto bg-black">
           {children}
           <Outlet />
         </div>

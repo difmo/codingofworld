@@ -46,14 +46,14 @@ const BlogPage = () => {
   
     return (
       <div className="max-w-5xl mx-auto text-black ">
-        <h1 className="mb-6 text-3xl font-semibold">{blog.title}</h1>
+        <h1 className="mb-6 text-3xl font-semibold text-primary">{blog.title}</h1>
         <div className="mb-6 " dangerouslySetInnerHTML={{ __html: blog.content }} />
 
         {Array.isArray(blog.fields) && blog.fields.length > 0 ? (
           blog.fields.map((field, index) => (
             <div key={index} className="mb-4">
               {field.type === "heading" && (
-                <h2 className="text-2xl font-semibold">{field.value}</h2>
+                <h2 className="text-2xl font-semibold text-primary">{field.value}</h2>
               )}
   
               {field.type === "description" && (
