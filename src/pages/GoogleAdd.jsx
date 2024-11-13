@@ -9,14 +9,14 @@ const GoogleAdd = () => {
   
     return (
       <div style={{ textAlign: 'center', margin: '20px 0' }}>
-        <div
+        <ins
           className="adsbygoogle"
           style={{ display: 'block' }}
           data-ad-client="ca-pub-4765539220931071"
           data-ad-slot="3774960648"
           data-ad-format="auto"
           data-full-width-responsive="true"
-        ></div>
+        ></ins>
       </div>
     );
   };
