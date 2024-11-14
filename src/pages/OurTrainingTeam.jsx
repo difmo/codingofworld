@@ -1,6 +1,6 @@
 import React from "react";
 import { motion } from "framer-motion";
-import img from "../assets/images/ourt.svg";
+import img from "../assets/images/ourt.png";
 import card1 from "../assets/OurTrainingTeam/1.png";
 import card2 from "../assets/OurTrainingTeam/2.png";
 import card3 from "../assets/OurTrainingTeam/3.png";
@@ -9,52 +9,52 @@ import card5 from "../assets/OurTrainingTeam/5.png";
 const teamMembers = [
   {
     name: "Er.Dinesh Kumar",
-    role: "Mobile App Developer | Specializing in Native & Cross-Platform Solutions (Android, iOS, Flutter, React-Native)",
+    role: "Mobile App Developer (Android, iOS, Flutter, React Native).",
     image: card1,
-    bio: "Alice has over 4 + years of experience in mobile app development and is passionate about teaching.",
+    // bio: "Alice has over 4 + years of experience in mobile app development and is passionate about teaching.",
   },
   {
     name: "Er.Aakash Gupta",
-    role: "Mobile App Developer , Kotlin , Java & flutter ",
+    role: "Mobile App Developer(Java, Flutter, iOS & Android , UI/UX design ).",
     image: card3,
-    bio: "Bob specializes in full-stack web development and loves sharing his knowledge with students.",
+    // bio: "Bob specializes in full-stack web development and loves sharing his knowledge with students.",
   },
   {
     name: "Er.Vimal Raj",
-    role: "Frontend Developer , Next js , React Native , React js , JavaScript , Tailwind CSS , bootstrap , HTML5 & API Integration",
+    role: "Frontend Developer proficient in Next.js, React.js, React Native.",
     image: card2,
-    bio: "Charlie is a data scientist with a knack for explaining complex topics in simple terms.",
+    // bio: "Charlie is a data scientist with a knack for explaining complex topics in simple terms.",
   },
   {
     name: "Pritam Kumar Shram",
-    role: "Software Developer ,React Native, Flutter & Node.js ,Databases (NoSQL, MongoDB, Firebase) , Problem-solving Enthusiast with Strong Foundations in Data Structures & Algorithms",
+    role: "Software Developer specializing in React Native, Flutter, Node.js.",
     image: card4,
-    bio: "Diana is an experienced designer who focuses on creating user-friendly interfaces.",
+    // bio: "Diana is an experienced designer who focuses on creating user-friendly interfaces.",
   },
   {
     name: "Er.Aman kumar",
-    role: " Front-End Developer , Transforming Ideas into Stunning, User-Centric Interfaces , Expert in HTML, CSS, JavaScript & React",
+    role: "Front-End Developer(HTML, CSS, JavaScript, React, UI/UX, Responsive Design).",
     image: card5,
-    bio: "Diana is an experienced designer who focuses on creating user-friendly interfaces.",
+    // bio: "Diana is an experienced designer who focuses on creating user-friendly interfaces.",
   },
-  {
-    name: "Diana Prince",
-    role: "UI/UX Design Trainer",
-    image: card1,
-    bio: "Diana is an experienced designer who focuses on creating user-friendly interfaces.",
-  },
-  {
-    name: "Diana Prince",
-    role: "UI/UX Design Trainer",
-    image: card2,
-    bio: "Diana is an experienced designer who focuses on creating user-friendly interfaces.",
-  },
-  {
-    name: "Diana Prince",
-    role: "UI/UX Design Trainer",
-    image: card3,
-    bio: "Diana is an experienced designer who focuses on creating user-friendly interfaces.",
-  },
+  // {
+  //   name: "Diana Prince",
+  //   role: "UI/UX Design Trainer",
+  //   // image: card1,
+  //   bio: "Diana is an experienced designer who focuses on creating user-friendly interfaces.",
+  // },
+  // {
+  //   name: "Diana Prince",
+  //   role: "UI/UX Design Trainer",
+  //   // image: card2,
+  //   bio: "Diana is an experienced designer who focuses on creating user-friendly interfaces.",
+  // },
+  // {
+  //   name: "Diana Prince",
+  //   role: "UI/UX Design Trainer",
+  //   // image: card3,
+  //   bio: "Diana is an experienced designer who focuses on creating user-friendly interfaces.",
+  // },
 ];
 
 const fadeIn = {
@@ -81,34 +81,35 @@ const TrainingTeam = () => {
               <span className="text-primary">real-world experts</span> who love
               to teach
             </h1>
-            <p className="mb-6 text-lg text-center text-gray-700">
-              Udemy Business instructors bring their experience to the online
-              classroom.
+            <p className="mb-6 px-4 md:px-64 text-lg text-center text-gray-700">
+              Difmo Technologies instructors offer real-world tech expertise,
+              teaching in-demand skills like programming, cybersecurity, and
+              data science to help learners stay ahead in the industry.
             </p>
-            <div className="flex justify-center">
+            {/* <div className="flex justify-center">
               <a href="#" target="_self" rel="noopener noreferrer">
                 <button className="px-4 py-2 font-semibold text-white transition duration-300 rounded shadow bg-primary hover:bg-primary/40">
                   View all course topics
                 </button>
               </a>
-            </div>
+            </div> */}
           </div>
 
           {/* Image Section */}
-          <div className="flex items-center justify-center">
+          {/* <div className="flex items-center justify-center">
             <img
-              className="h-auto max-w-full"
+              className="h-auto w-full"
               src={img}
               alt="Instructors"
               loading="lazy"
             />
-          </div>
+          </div> */}
         </div>
       </div>
       <h2 className="mb-10 text-3xl font-bold text-center">
         Meet Our Training Team
       </h2>
-      <div className="container grid grid-cols-1 gap-6 py-10 md:grid-cols-2 lg:grid-cols-4 ">
+      <div className="container grid grid-cols-1 gap-6  md:grid-cols-2 lg:grid-cols-3  ">
         {teamMembers.map((member, index) => (
           <motion.div
             key={member.name}
@@ -116,7 +117,7 @@ const TrainingTeam = () => {
             initial="hidden"
             whileInView="visible"
             custom={index}
-            className=" text-[#ff5757] hover:text-[#0a2c5d] transition-transform transform bg-white rounded-lg shadow hover:scale-105"
+            className=" text-[#ff5757] hover:text-[#0a2c5d] transition-transform transform bg-white rounded-lg shadow hover:scale-105 border p-4"
           >
             <div className="rounded-xl">
               <img

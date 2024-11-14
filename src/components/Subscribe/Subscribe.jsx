@@ -26,7 +26,7 @@ const Subscribe = () => {
         >
           <div className="text-center space-y-4 lg:max-w-[530px] mx-auto">
             <h1 className="text-4xl font-bold !leading-snug">
-              4K+ Students are learning from us
+            Join Thousands of Students Learning with Us
             </h1>
             <p>Real-world examples – Show practical applications.</p>
             <p>

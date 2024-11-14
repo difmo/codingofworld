@@ -1,7 +1,7 @@
 import React from "react";
 import BannerPng from "../../assets/banner.png";
 import { motion } from "framer-motion";
-import img from "../../assets/headerimg/2.svg";
+import img from "../../assets/images/ourt.png";
 
 const Banner2 = () => {
   return (
@@ -13,32 +13,28 @@ const Banner2 = () => {
           whileInView={{ opacity: 1, x: 0 }}
           className="flex flex-col justify-center"
         >
-          <div className="text-center md:text-left space-y-4 lg:max-w-[450px]">
+          <div className="text-center md:text-left space-y-4 lg:max-w-[500px]">
             <h1 className="text-4xl font-bold !leading-snug">
               Join Our Community to Start your Journey
             </h1>
             <p className="text-dark">
               <p>
-                Python: Great for beginners. Used in web development, data
-                science, automation, AI, and more.
+                React.js is a powerful library for building fast, scalable web
+                apps with features like React Hooks, Context API, and React
+                Router, ideal for dynamic UIs and cross-platform development
+                with React Native.
               </p>
               <p>
-                JavaScript: Essential for web development. Learn it if you're
-                interested in building websites or web applications.
-              </p>
-              <p>
-                Java: A solid choice for software development, especially for
-                large-scale applications.
-              </p>
-              <p>
-                C++: If you're interested in systems programming or game
+                Data Structures and Algorithms (DSA) in C++ are essential for
+                solving complex problems efficiently, optimizing performance,
+                and excelling in competitive programming and software
                 development.
               </p>
+
               <p>
-                Get access to exclusive tutorials, guides, and resources curated
-                by experienced developers. Stay up-to-date with React best
-                practices and cutting-edge features like React hooks, Context
-                API, React Router, and React Query.
+                Python is a versatile, beginner-friendly language widely used in
+                web development, data science, AI, and automation, known for its
+                simplicity and robust libraries.
               </p>
             </p>
             <a
@@ -56,7 +52,7 @@ const Banner2 = () => {
             whileInView={{ opacity: 1, x: 0 }}
             src={img}
             alt=""
-            className="w-[550px] md:max-w-[650px] object-cover  "
+            className="w-[550px] md:w-[700px] object-cover  "
           />
         </div>
       </div>

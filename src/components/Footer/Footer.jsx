@@ -16,11 +16,9 @@ const Footer = () => {
           <div className="space-y-4 max-w-[300px]">
             <h1 className="text-2xl font-bold">The Coding World Institute</h1>
             <p className="text-dark2">
-              The Coding World Institute is dedicated to nurturing the next
-              generation of developers. We offer comprehensive coding courses
-              that cater to all skill levels, along with hands-on internships to
-              help you gain real-world experience. Join us to build your coding
-              skills, work on exciting projects, and kickstart your tech career!
+              Offers students hands-on training and career guidance in web
+              development, mobile apps, AI/ML, and robotics to launch successful
+              tech careers.
             </p>
           </div>
 
