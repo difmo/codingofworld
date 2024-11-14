@@ -1,5 +1,13 @@
 import React from "react";
-import { FaInstagram, FaWhatsapp, FaYoutube } from "react-icons/fa";
+import {
+  FaFacebook,
+  FaGit,
+  FaInstagram,
+  FaLinkedin,
+  FaTwitter,
+  FaWhatsapp,
+  FaYoutube,
+} from "react-icons/fa";
 import { TbWorldWww } from "react-icons/tb";
 import { motion } from "framer-motion";
 
@@ -78,17 +86,32 @@ const Footer = () => {
             </div>
             {/* social icons */}
             <div className="flex py-3 space-x-6">
-              <a href="https://chat.whatsapp.com/FQSKgJ5f1eIAhlyF5sVym0">
+              <a
+                href="https://chat.whatsapp.com/FwZdLFOAPIZDf5xCmvt7RO "
+                target="_blank"
+              >
                 <FaWhatsapp className="duration-200 cursor-pointer hover:text-primary hover:scale-105" />
               </a>
-              <a href="https://www.instagram.com/the.coding.journey/">
+              <a href="https://www.instagram.com/thedifmo" target="_blank">
                 <FaInstagram className="duration-200 cursor-pointer hover:text-primary hover:scale-105" />
               </a>
-              <a href="https://thecodingjourney.com/">
+              <a href="https://difmo-sigma.vercel.app/" target="_blank">
                 <TbWorldWww className="duration-200 cursor-pointer hover:text-primary hover:scale-105" />
               </a>
-              <a href="https://www.youtube.com/@TheCodingJourney">
+              <a href="https://www.linkedin.com/company/difmo/" target="_blank">
+                <FaLinkedin className="duration-200 cursor-pointer hover:text-primary hover:scale-105" />
+              </a>
+              <a href="https://x.com/difmotech" target="_blank">
+                <FaTwitter className="duration-200 cursor-pointer hover:text-primary hover:scale-105" />
+              </a>
+              <a href="https://www.youtube.com/@thedifmo" target="_blank">
                 <FaYoutube className="duration-200 cursor-pointer hover:text-primary hover:scale-105" />
+              </a>
+              <a href="https://www.facebook.com/difmotech" target="_blank">
+                <FaFacebook className="duration-200 cursor-pointer hover:text-primary hover:scale-105" />
+              </a>
+              <a href="https://github.com/difmo" target="_blank">
+                <FaGit className="duration-200 cursor-pointer hover:text-primary hover:scale-105" />
               </a>
             </div>
           </div>
