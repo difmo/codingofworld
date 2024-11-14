@@ -200,7 +200,7 @@ const MainNavbar = () => {
       <AnimatePresence>
         {isMobileMenuOpen && (
           <motion.div
-            className="absolute left-0 right-0 z-40 w-full p-4 mt-2 bg-white shadow-lg lg:hidden top-full"
+            className="absolute left-0 right-0 z-40 w-full p-4 bg-white shadow-lg lg:hidden top-full"
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: "auto" }}
             exit={{ opacity: 0, height: 0 }}
@@ -218,11 +218,66 @@ const MainNavbar = () => {
                   </Link>
                 </li>
               ))}
-              <button className="primary-btn">Sign In</button>
-              <button onClick={handleLogout()} className="primary-btn">
-                Logout
+               {isUserLogin === null ? (
+              <button
+                onClick={() => navigate("/signupscreen")}
+                className="primary-btn"
+              >
+                Sign In
               </button>
+            ) : (
+              <button
+                onClick={toggleSidebar}
+                className="w-10 p-3 text-center text-white rounded-full bg-primary hover:bg-primary/70"
+              >
+                <FaUser /> 
+              </button>
+            )}
+              
             </ul>
+            {isOpen && (
+                <div className="absolute w-64 bg-white border-2 rounded-lg shadow-md top-16 right-5">
+                  <button
+                    onClick={toggleSidebar}
+                    className="absolute p-2 text-gray-600 top-2 right-2 hover:text-gray-800"
+                  >
+                    <FaTimes />
+                  </button>
+                  <ul className="p-4 space-y-4">
+                    {/* Only show Admin link if user is an Admin */}
+                    {isAdmin && (
+                      <li>
+                        <div
+                          className="flex items-center text-gray-700 cursor-pointer hover:text-blue-600"
+                        >
+                          <FaPersonBooth className="mr-3" />
+                          <span onClick={() => navigate("/admin-dashboard")}>Admin</span>
+                        </div>
+                      </li>
+                    )}
+
+                    <li>
+                      <div
+                        onClick={openPopup} 
+                        className="flex items-center text-gray-700 cursor-pointer hover:text-blue-600"
+                      >
+                        <FaBlog className="mr-3" />
+                        <span>Create Blogs</span>
+                      </div>
+                    </li>
+
+                    <li>
+                      <a
+                        href="#"
+                        className="flex items-center text-gray-700 hover:text-blue-600"
+                      >
+                        <FaSignOutAlt className="mr-3" />
+                        <span onClick={handleLogout}>Logout</span>
+                      </a>
+                    </li>
+                  </ul>
+                </div>
+              )}
           </motion.div>
         )}
       </AnimatePresence>

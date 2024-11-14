@@ -36,20 +36,25 @@ import StudentSidebarLayout from "./pages/Layout/StudentSidebarLayout";
 import AdminBlogPage from "./pages/AdminProminent/AdminblogPage";
 
 import { db, auth } from "./firebase";
-import { collection, doc, getDoc, getDocs, query, where } from "firebase/firestore";
-
+import {
+  collection,
+  doc,
+  getDoc,
+  getDocs,
+  query,
+  where,
+} from "firebase/firestore";
 
 const App = () => {
-  const [isAdmin, setIsAdmin] = useState(false);  // State to hold the admin status
+  const [isAdmin, setIsAdmin] = useState(false); // State to hold the admin status
   const [isUserLogin, setIsUserLogin] = useState(null);
-
 
   useEffect(() => {
     const unsubscribe = auth.onAuthStateChanged((user) => {
       if (user) {
         if (user.emailVerified) {
           setIsUserLogin(user);
-          fetchUserRole(user.uid);  // Fetch user role after login
+          fetchUserRole(user.uid); // Fetch user role after login
         } else {
           console.log("Email is not verified yet");
         }
@@ -63,10 +68,9 @@ const App = () => {
     return () => unsubscribe();
   }, []);
 
-  
   const fetchUserRole = async (uid) => {
     try {
-      const userQuery = query(collection(db, 'users'), where('uid', '==', uid));
+      const userQuery = query(collection(db, "users"), where("uid", "==", uid));
       const querySnapshot = await getDocs(userQuery);
 
       if (!querySnapshot.empty) {
@@ -86,9 +90,6 @@ const App = () => {
       console.error("Error fetching user role:", error);
     }
   };
-
-
-
 
   return (
     <Router>
@@ -128,15 +129,21 @@ const App = () => {
           <Route path="/edit-blog/:blogId" element={<EditBlog />} />
         </Route>
 
-  
-        <Route element={<AdminLayout />}>
-          <Route path="/admin-dashboard" element={<AdminDashboard />} />
-          <Route path="/admin/internship" element={<StudentData />} />
-          <Route path="/admin/client-contact" element={<ClientContactPage />} />
-          <Route path="/admin/blog" element={<AdminBlogPage />} />
-          <Route path="/admin/login-users" element={<LoginUsersAdmin />} />
-          <Route path="/admin/edit-student/:id" element={<StudentData />} />
-        </Route>
+        {isUserLogin && isAdmin ? (
+          <Route element={<AdminLayout />}>
+            <Route path="/admin-dashboard" element={<AdminDashboard />} />
+            <Route path="/admin/internship" element={<StudentData />} />
+            <Route
+              path="/admin/client-contact"
+              element={<ClientContactPage />}
+            />
+            <Route path="/admin/blog" element={<AdminBlogPage />} />
+            <Route path="/admin/login-users" element={<LoginUsersAdmin />} />
+            <Route path="/admin/edit-student/:id" element={<StudentData />} />
+          </Route>
+        ) : (
+          alert("first sign up") // Or display a fallback UI if needed
+        )}
 
         <Route path="/dummy" element={<Dummy />} />
         <Route path="*" element={<NotFound />} />
