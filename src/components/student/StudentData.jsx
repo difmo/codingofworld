@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { collection, getDocs } from 'firebase/firestore';
-import { db } from "../../firebase"; // Adjust this path if needed
+import { db } from "../../firebase"; 
 
 const StudentData = () => {
   const [studentData, setStudentData] = useState([]);
@@ -8,21 +8,17 @@ const StudentData = () => {
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    // Fetch internship data from Firestore
     const fetchData = async () => {
       try {
-        // Get documents from 'internships' collection
         const querySnapshot = await getDocs(collection(db, 'internships'));
         const data = querySnapshot.docs.map((doc) => {
           const docData = doc.data();
           
-          // Convert Firestore timestamp (createdAt) to a readable date string
           if (docData.createdAt) {
-            // Convert Firestore timestamp to Date object, then to a human-readable string
             docData.createdAt = docData.createdAt.toDate().toLocaleDateString();
           }
           
-          return docData; // Return transformed document data
+          return docData; 
         });
         
         // Store the fetched data in state
@@ -53,7 +49,7 @@ const StudentData = () => {
     <h2>Student Internship Data</h2>
     </div>
     <div className='flex justify-center min-h-screen py-5'>
-      <div className='w-full max-w-4xl overflow-x-auto'>
+      <div className='w-full overflow-x-auto'>
         <table className='min-w-full border border-collapse border-gray-300'>
           <thead className='text-white bg-green-600'>
             <tr>
