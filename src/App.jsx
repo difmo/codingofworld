@@ -18,10 +18,8 @@ import SingUpScreen from "./pages/AuthScreens/SignUpScreen";
 import LoginScreen from "./pages/AuthScreens/LoginScreen";
 import First from "./pages/Sidebarpages/First";
 import Second from "./pages/Sidebarpages/Second";
-import StudentSidebarLayout from "./pages/Layout/StudentSidebarLayout";
 import FindSmallestElement from "./pages/AllCourses/TcsNqtCourse/Questions/OnArray/FindSmallestElement";
 import Addblogs from "./pages/AddBlogs/Addblogs";
-import UserDetails from "./components/UserProfile/UserDetails";
 import AllBlogs from "./pages/AddBlogs/AllBlogs";
 import EditBlog from "./pages/AddBlogs/EditBlog";
 import ShowBlogs from "./pages/AddBlogs/ShowBlogs";
@@ -33,8 +31,9 @@ import AdminDashboard from "./pages/AdminProminent/MenuPages/AdminDashboard";
 import ClientContactPage from "./pages/AdminProminent/ClientContactPage";
 import LoginUsersAdmin from "./pages/AdminProminent/LoginUsersAdmin";
 import CreateBlogLayout from "./pages/Layout/CreateBlogLayout";
-import StudentData from "./components/student/StudentData";
 import Popupbloge from "./pages/Popupbloge";
+import StudentSidebarLayout from "./pages/Layout/StudentSidebarLayout";
+import AdminBlogPage from "./pages/AdminProminent/AdminblogPage";
 
 const App = () => {
   return (
@@ -53,7 +52,6 @@ const App = () => {
           <Route path="/loginscreen" element={<LoginScreen />} />
           {/* <Route path="/userdetails" element={<UserDetails />} /> */}
           <Route path="/popupbloge" element={<Popupbloge />} />
-          <Route path="/admin/internship" element={<StudentData />} />
 
           <Route element={<ShowBlogLayout />}>
             <Route path="/show-blogs" element={<ShowBlogs />} />
@@ -64,7 +62,7 @@ const App = () => {
         <Route path="*" element={<NotFound />} />
         <Route path="/ads.txt" />
 
-        <Route element={<SidebarLayout />}>
+        <Route element={<StudentSidebarLayout />}>
           <Route path="/home1" element={<First />} />
           <Route path="/about1" element={<Second />} />
           <Route path="/starttcsnqt" element={<TCSNQT />} />
@@ -77,14 +75,14 @@ const App = () => {
           <Route path="/edit-blog/:blogId" element={<EditBlog />} />
         </Route>
 
-        {/* <Route element={<AdminLayout />}>
+        <Route element={<AdminLayout />}>
           <Route path="/admin-dashboard" element={<AdminDashboard />} />
           <Route path="/admin/internship" element={<StudentData />} />
           <Route path="/admin/client-contact" element={<ClientContactPage />} />
-          <Route path="/admin/blog" element={<AdminblogPage />} />
+          <Route path="/admin/blog" element={<AdminBlogPage />} />
           <Route path="/admin/login-users" element={<LoginUsersAdmin />} />
           <Route path="/admin/edit-student/:id" element={<StudentData />} />
-        </Route> */}
+        </Route>
 
         <Route path="/dummy" element={<Dummy />} />
         <Route path="*" element={<NotFound />} />
