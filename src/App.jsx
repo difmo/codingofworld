@@ -31,6 +31,7 @@ import BlogPage from "./pages/AddBlogs/BlogPage";
 import Sidebar from "./components/Navbar/ShowblogSidebar";
 import ShowBlogLayout from "./pages/Layout/ShowBlogLayout";
 import StudentData from "./components/student/StudentData";
+import Popupbloge from "./pages/Popupbloge";
 
 const App = () => {
   return (
@@ -47,16 +48,15 @@ const App = () => {
           <Route path="/tcsnqtcourse" element={<TcsNqtCourse />} />
           <Route path="/signupscreen" element={<SingUpScreen />} />
           <Route path="/loginscreen" element={<LoginScreen />} />
-          <Route path="/userdetails" element={<UserDetails />} />
+          {/* <Route path="/userdetails" element={<UserDetails />} /> */}
+          <Route path="/popupbloge" element={<Popupbloge />} />
           <Route path="/admin/internship" element={<StudentData />} />
 
-        <Route element={<ShowBlogLayout />}>
-          <Route path="/show-blogs" element={<ShowBlogs />} />
-          <Route path="/blog/:blogId" element={<BlogPage />} />
+          <Route element={<ShowBlogLayout />}>
+            <Route path="/show-blogs" element={<ShowBlogs />} />
+            <Route path="/blog/:blogId" element={<BlogPage />} />
+          </Route>
         </Route>
-
-        </Route>
-
 
         <Route path="*" element={<NotFound />} />
         <Route path="/ads.txt" />

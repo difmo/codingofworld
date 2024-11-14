@@ -1,55 +1,72 @@
-// src/components/UserDetails.js
-import React from "react";
-import ProfilePicSection from "./ProfilePicSection";
-import ScoreCard from "./ScoreCard";
-import LogoutButton from "./LogoutButton";
-import { useNavigate } from "react-router-dom";
+import React, { useState } from "react";
+import { FaTimes, FaUser, FaEdit, FaBlog, FaSignOutAlt } from "react-icons/fa";
 
 const UserDetails = () => {
-  
-  const navigate = useNavigate();
+  // State to control the visibility of the user details sidebar
+  const [isOpen, setIsOpen] = useState(false);
+  const toggleSidebar = () => {
+    setIsOpen(!isOpen);
+  };
+
   return (
-    <div className="max-w-4xl p-6 mx-auto bg-white rounded-lg shadow-lg">
-      {/* Profile Section */}
-      <ProfilePicSection />
+    <div>
+      {/* Profile Icon to toggle the sidebar */}
+      <button
+        onClick={toggleSidebar}
+        className="p-2 rounded-full bg-blue-500 text-white hover:bg-blue-700"
+      >
+        <FaUser />
+      </button>
 
-      {/* Education Section */}
-      <div className="flex justify-between mb-4">
-        <div>
-          <div className="text-sm font-medium">Institution</div>
-          <div className="text-lg">college Group of Institute</div>
+      {/* Sidebar with User Details */}
+      {isOpen && (
+        <div className="bg-white shadow-md w-64 absolute top-16 right-5 border-2 rounded-lg">
+          <button
+            onClick={toggleSidebar}
+            className="absolute top-2 right-2 p-2 text-gray-600 hover:text-gray-800"
+          >
+            <FaTimes />
+          </button>
+          <ul className="space-y-4 p-4">
+            <li>
+              <a
+                href="#"
+                className="flex items-center text-gray-700 hover:text-blue-600"
+              >
+                <FaUser className="mr-3" />
+                <span>My Profile</span>
+              </a>
+            </li>
+            <li>
+              <a
+                href="/myCourses/"
+                className="flex items-center text-gray-700 hover:text-blue-600"
+              >
+                <FaBlog className="mr-3" />
+                <span>Create Blogs</span>
+              </a>
+            </li>
+            <li>
+              <a
+                href="#"
+                className="flex items-center text-gray-700 hover:text-blue-600"
+              >
+                <FaEdit className="mr-3" />
+                <span>Edit Profile</span>
+              </a>
+            </li>
+            <li>
+              <a
+                href="#"
+                className="flex items-center text-gray-700 hover:text-blue-600"
+              >
+                <FaSignOutAlt className="mr-3" />
+                <span>Logout</span>
+              </a>
+            </li>
+          </ul>
         </div>
-        <div>
-          <div className="text-sm font-medium">Language Used</div>
-          <div className="text-lg">C++</div>
-        </div>
-      </div>
-
-      {/* Scorecards Section */}
-      <div className="space-y-4">
-        <ScoreCard
-          title="Coding Score"
-          score="28"
-          iconSrc="https://media.geeksforgeeks.org/auth-dashboard-uploads/Group-96.svg"
-          iconAlt="Coding Score"
-        />
-        <ScoreCard
-          title="Problems Solved"
-          score="15"
-          iconSrc="https://media.geeksforgeeks.org/auth-dashboard-uploads/Group-12723.svg"
-          iconAlt="Problems Solved"
-        />
-        <ScoreCard
-          title="Contest Rating"
-          score="N/A"
-          iconSrc="https://media.geeksforgeeks.org/auth-dashboard-uploads/ratingsCardImg.png"
-          iconAlt="Contest Rating"
-        />
-      </div>
-
-      {/* Campus Ambassador Link */}
-      <button className="p-4 text-white rounded bg-primary" onClick={()=>navigate("/all-blogs")}>Make blogs</button>
-      <LogoutButton />
+      )}
     </div>
   );
 };
