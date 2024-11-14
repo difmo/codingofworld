@@ -70,6 +70,7 @@ export default function SignUpScreen() {
           await addDoc(collection(db, "users"), {
             uid: user.uid, 
             email: user.email,
+            whoIs: "isUser",
             createdAt: new Date(),
           });
   

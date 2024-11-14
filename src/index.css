@@ -16,37 +16,3 @@
 }
 
 
-h1, h2, h3, h4, h5, h6 {
-  font-weight: bold;
-  line-height: 1.5;
-}
-
-h1 {
-  font-size: 2.5rem; 
-}
-
-h2 {
-  font-size: 2rem; /* Example size for h2 */
-}
-
-h3 {
-  font-size: 1.75rem; /* Example size for h3 */
-}
-
-ol {
-  list-style-type: decimal;
-  margin-left: 20px;
-}
-
-li {
-  margin-bottom: 5px;
-}
-
-/* Style for bold and italic text */
-strong {
-  font-weight: bold;
-}
-
-em {
-  font-style: italic;
-}

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { FaTimes, FaUser, FaEdit, FaBlog, FaSignOutAlt } from "react-icons/fa";
+import { FaTimes, FaUser, FaEdit, FaBlog, FaSignOutAlt, FaPersonBooth } from "react-icons/fa";
 import { IoMdMenu } from "react-icons/io";
 import { motion, AnimatePresence } from "framer-motion";
 import { Link } from "react-router-dom";
@@ -8,10 +8,11 @@ import logo from "../../assets/images/logo.svg";
 import "firebase/auth";
 import { db, auth } from "../../firebase";
 import Popupbloge from "../../pages/Popupbloge";
+import { collection, doc, getDoc, getDocs, query, where } from "firebase/firestore";
 
 const NavbarMenu = [
   { id: 1, title: "Home", path: "/" },
-  { id: 2, title: "Our Courses", path: "/courses" },
+  { id: 2, title: "Our Courses", path: "/courses" },  
   { id: 3, title: "About Us", path: "/about" },
   { id: 4, title: "Our Training Team", path: "/trainingteam" },
   { id: 6, title: "Contact Us", path: "/contactus" },
@@ -22,20 +23,28 @@ const NavbarMenu = [
 const MainNavbar = () => {
   const [isMobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [isUserLogin, setIsUserLogin] = useState(null);
-  const [showPopup, setShowPopup] = useState(false); // Popup state to toggle visibility
+  const [isAdmin, setIsAdmin] = useState(false);  // State to hold the admin status
+  const [showPopup, setShowPopup] = useState(false);
   const navigate = useNavigate();
 
+  // Toggle mobile menu
   const toggleMobileMenu = () => {
     setMobileMenuOpen((prev) => !prev);
   };
 
+  // Handle user login and role fetching
   useEffect(() => {
     const unsubscribe = auth.onAuthStateChanged((user) => {
       if (user) {
-        setIsUserLogin(user);
-        console.log("User is logged in:", user);
+        if (user.emailVerified) {
+          setIsUserLogin(user);
+          fetchUserRole(user.uid);  // Fetch user role after login
+        } else {
+          console.log("Email is not verified yet");
+        }
       } else {
         setIsUserLogin(null);
+        setIsAdmin(false);
         console.log("User is not logged in");
       }
     });
@@ -43,6 +52,30 @@ const MainNavbar = () => {
     return () => unsubscribe();
   }, []);
 
+  const fetchUserRole = async (uid) => {
+    try {
+      const userQuery = query(collection(db, 'users'), where('uid', '==', uid));
+      const querySnapshot = await getDocs(userQuery);
+
+      if (!querySnapshot.empty) {
+        querySnapshot.forEach((doc) => {
+          const userData = doc.data();
+          if (userData.whoIs === "isAdmin") {
+            setIsAdmin(true);
+          } else {
+            setIsAdmin(false);
+          }
+        });
+      } else {
+        console.log("No user found with this UID");
+        setIsAdmin(false);
+      }
+    } catch (error) {
+      console.error("Error fetching user role:", error);
+    }
+  };
+
+  // Handle logout
   const handleLogout = async () => {
     try {
       await auth.signOut();
@@ -52,19 +85,14 @@ const MainNavbar = () => {
     }
   };
 
+  // Open and close popup
+  const openPopup = () => setShowPopup(true);
+  const closePopup = () => setShowPopup(false);
+
+  // Toggle Sidebar menu visibility
   const [isOpen, setIsOpen] = useState(false);
   const toggleSidebar = () => {
     setIsOpen(!isOpen);
-  };
-
-  // Function to open the popup
-  const openPopup = () => {
-    setShowPopup(true);
-  };
-
-  // Function to close the popup
-  const closePopup = () => {
-    setShowPopup(false);
   };
 
   return (
@@ -107,13 +135,12 @@ const MainNavbar = () => {
             ) : (
               <button
                 onClick={toggleSidebar}
-                className="p-2 text-white bg-blue-500 rounded-full hover:bg-blue-700"
+                className="p-2 text-white rounded-full bg-primary hover:bg-primary/70"
               >
                 <FaUser />
               </button>
             )}
             <div>
-              {/* Sidebar with User Details */}
               {isOpen && (
                 <div className="absolute w-64 bg-white border-2 rounded-lg shadow-md top-16 right-5">
                   <button
@@ -123,10 +150,22 @@ const MainNavbar = () => {
                     <FaTimes />
                   </button>
                   <ul className="p-4 space-y-4">
+                    {/* Only show Admin link if user is an Admin */}
+                    {isAdmin && (
+                      <li>
+                        <div
+                          className="flex items-center text-gray-700 cursor-pointer hover:text-blue-600"
+                        >
+                          <FaPersonBooth className="mr-3" />
+                          <span onClick={() => navigate("/admin-dashboard")}>Admin</span>
+                        </div>
+                      </li>
+                    )}
+
                     <li>
                       <div
-                        onClick={openPopup} // Open the Create Blog popup
-                        className="flex items-center text-gray-700 hover:text-blue-600"
+                        onClick={openPopup} 
+                        className="flex items-center text-gray-700 cursor-pointer hover:text-blue-600"
                       >
                         <FaBlog className="mr-3" />
                         <span>Create Blogs</span>
@@ -139,7 +178,7 @@ const MainNavbar = () => {
                         className="flex items-center text-gray-700 hover:text-blue-600"
                       >
                         <FaSignOutAlt className="mr-3" />
-                        <span>Logout</span>
+                        <span onClick={handleLogout}>Logout</span>
                       </a>
                     </li>
                   </ul>
@@ -173,7 +212,7 @@ const MainNavbar = () => {
                   <Link
                     to={menu.path}
                     className="block py-2 hover:text-secondary"
-                    onClick={() => setMobileMenuOpen(false)} // Close menu on item click
+                    onClick={() => setMobileMenuOpen(false)} 
                   >
                     {menu.title}
                   </Link>
@@ -188,20 +227,20 @@ const MainNavbar = () => {
         )}
       </AnimatePresence>
 
-      {/* Popup Component */}
+      {/* Popup */}
       {showPopup && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-gray-800 bg-opacity-50">
           <div
             className="w-full max-w-md p-6 bg-white rounded-lg shadow-lg"
-            onClick={(e) => e.stopPropagation()} // Prevent closing on inner form click
+            onClick={(e) => e.stopPropagation()} 
           >
             <button
-              onClick={closePopup} // Close the popup
+              onClick={closePopup}
               className="absolute p-2 text-gray-600 top-2 right-2 hover:text-gray-800"
             >
               <FaTimes />
             </button>
-            <Popupbloge setPopUpOpen={closePopup} /> 
+            <Popupbloge onClose={closePopup} />
           </div>
         </div>
       )}
