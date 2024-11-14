@@ -88,12 +88,22 @@ export const AboutContent = () => {
               Accelerate Your IT Career with Expert Training
             </h1>
             <span className="block mt-2 text-sm leading-6">
-              At Difmo Technologies, we offer industry-focused training programs
-              designed to equip IT and Computer Science students with the skills
-              they need to succeed in today’s fast-paced tech world. From
-              software development to data science and cybersecurity, our
-              hands-on courses provide practical knowledge that will set you
-              apart in the competitive job market.
+              At Coding of World, we’re dedicated to shaping the future of tech
+              talent by providing immersive internship, training, and
+              apprenticeship programs. Our mission is to prepare students to
+              thrive in high-demand fields like web development, mobile app
+              development, artificial intelligence (AI), machine learning (ML),
+              and robotics. Our programs go beyond theory to focus on
+              industry-relevant, practical skills. Through hands-on training,
+              real-world projects, and mentorship from experienced
+              professionals, students gain a deep understanding of cutting-edge
+              technologies and best practices. We offer tailored career guidance
+              to empower students with the tools, confidence, and direction
+              needed to make an impact in today’s competitive job market. Join
+              Coding of World to unlock your potential, upskill your future, and
+              take the first step toward an exciting tech career. Explore over
+              100,000 online courses, stay ahead with the latest skills, and
+              embark on a journey to stand out in the tech industry!
             </span>
             <ul className="my-5">
               <li className="flex items-center gap-5 text-sm">
@@ -102,7 +112,7 @@ export const AboutContent = () => {
               </li>
               <li className="flex items-center gap-5 my-2 text-sm">
                 <AiOutlineCheck className="text-green-500" />
-                Access more than 100K online courses.
+                Access more than 10 online courses.
               </li>
               <li className="flex items-center gap-5 text-sm">
                 <AiOutlineCheck className="text-green-500" />
@@ -120,4 +130,4 @@ export const AboutContent = () => {
       </div>
     </section>
   );
-};  
+};

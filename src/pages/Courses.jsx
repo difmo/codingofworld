@@ -46,11 +46,11 @@ export const Courses = () => {
                   className="object-cover w-full h-full transition duration-300 ease-in-out delay-150 rounded-t-lg cursor-pointer hover:scale-12"
                 />
               </div>
-              <div className="p-3 text">
+              {/* <div className="p-3 text">
                 <h3 className="h-10 my-4 font-medium text-black">
                   {item.title}
                 </h3>
-              </div>
+              </div> */}
               <div className="flex items-center justify-between p-3 border-t border-gray-200">
                 <span className="text-sm text-primary">Free</span>
                 <NavLink to="/" className="text-[14px] ml-2 flex items-center">
