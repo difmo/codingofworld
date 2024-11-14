@@ -1,286 +1,275 @@
 import { useState } from 'react';
-import { motion } from 'framer-motion'; // Import framer-motion
-import { FaUser, FaEnvelope, FaFileUpload, FaBriefcase, FaMobileAlt } from 'react-icons/fa';
+import { motion } from 'framer-motion';
+import { FaUser, FaEnvelope, FaMobileAlt, FaMapMarkerAlt, FaFileUpload } from 'react-icons/fa';
+
 import { getFirestore, collection, addDoc } from 'firebase/firestore'; // Firestore SDK
 import { getStorage, ref, uploadBytes, getDownloadURL } from 'firebase/storage'; // Firebase Storage SDK
 
-// Initialize Firebase Auth and Firestore (Make sure Firebase is initialized outside this component)
-import { db } from '../firebase'; // Assuming firebase config is in this file
+import { db } from '../firebase';
 
-const internshipTypes = [
-  "Summer Training",
-  "Winter Training",
-  "Apprenticeship Training",
-  "Web Development Course",
-  "Programming Language",
-  "Digital Marketing",
-  "Database",
-  "ASP.Net Development",
-  "PHP Development",
-  "Python Development",
-  "Java Development",
-  "Frontend Development",
-  "WordPress Development",
-  "Pay Per Click",
-  "SMM/SMO",
-  "Search Engine Optimization",
-  "C# Programming",
-  "C++ Programming",
-  "Java Programming",
-  "PHP Programming",
-  "Python Programming",
-  "Graphics Design",
-  "Personality Development"
+const internshipPrograms = [
+  "Mobile App Development", "Web App Development", "Apprenticeship Training", "Summer Training",
+  "Winter Training", "Digital Marketing", "ASP.Net Development", "PHP Development", "Python Development",
+  "Java Development", "Frontend Development", "WordPress Development", "Search Engine Optimization",
+  "C# Programming", "C++ Programming", "Java Programming", "PHP Programming", "Python Programming", "Graphics Design",
 ];
 
 const InternshipForm = () => {
   const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    mobile: '',
-    internshipType: '',
-    resume: null, // Optional field
-    resumeURL: '', // to store the URL of the uploaded resume
+    name: '', email: '', mobile: '', college: '', qualification: '', internshipType: '', resume: null,
+    resumeURL: '',
   });
-  const [error, setError] = useState('');
-  const [showPopup, setShowPopup] = useState(false); // State to control the popup visibility
-  const [isLoading, setIsLoading] = useState(false); // State to track form submission progress
+  const [errors, setErrors] = useState({});
+  const [isLoading, setIsLoading] = useState(false);
+  const [showPopup, setShowPopup] = useState(false);
 
-  // Handle input change
   const handleChange = (e) => {
-    const { name, value, type, files } = e.target;
+    const { name, value, files } = e.target;
     setFormData((prev) => ({
-      ...prev,
-      [name]: type === 'file' ? files[0] : value,
+      ...prev, [name]: files ? files[0] : value
     }));
   };
 
-  // Form validation function
   const validateForm = () => {
-    const { name, email, mobile, internshipType } = formData;
-    if (!name || !email || !mobile || !internshipType) {
-      setError('Please fill in all required fields.');
-      return false;
-    }
-
-    const emailPattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/;
-    if (!emailPattern.test(email)) {
-      setError('Please enter a valid email address.');
-      return false;
-    }
-
-    const mobilePattern = /^[0-9]{10}$/; // Assuming mobile should be a 10-digit number
-    if (!mobilePattern.test(mobile)) {
-      setError('Please enter a valid mobile number.');
-      return false;
-    }
-
-    setError('');
-    return true;
+    const { name, email, mobile, college, qualification, internshipType } = formData;
+    const newErrors = {};
+    if (!name) newErrors.name = 'Please enter your name';
+    if (!email) newErrors.email = 'Please enter your email';
+    if (!mobile) newErrors.mobile = 'Please enter your phone number';
+    if (!college) newErrors.college = 'Please enter your college or university name ';
+    if (!qualification) newErrors.qualification = 'Please select your qualification';
+    if (!internshipType) newErrors.internshipType = 'Please select your internship program';
+    setErrors(newErrors);
+    return Object.keys(newErrors).length === 0;
   };
 
-  // Handle form submission
   const handleSubmit = async (e) => {
     e.preventDefault();
-
-    if (!validateForm()) {
-      return;
-    }
-
-    setIsLoading(true); // Start loading state
+    if (!validateForm()) return;
+    setIsLoading(true);
 
     try {
       let resumeURL = '';
-
-      // Only upload resume if it's provided
       if (formData.resume) {
         const storage = getStorage();
         const storageRef = ref(storage, `resumes/${formData.resume.name}`);
-        const uploadTask = await uploadBytes(storageRef, formData.resume);
-
-        // Get the download URL of the uploaded image
+        await uploadBytes(storageRef, formData.resume);
         resumeURL = await getDownloadURL(storageRef);
       }
 
+      // Destructure only necessary fields from formData, excluding resume
+      const { name, email, mobile, college, qualification, internshipType } = formData;
+
       // Create a new document in Firestore "internships" collection
       const docRef = await addDoc(collection(db, 'internships'), {
-        name: formData.name,
-        email: formData.email,
-        mobile: formData.mobile,
-        internshipType: formData.internshipType,
-        resumeURL, // Store the URL of the uploaded resume (if provided)
+        name,
+        email,
+        mobile,
+        college,
+        qualification,
+        internshipType,
+        resumeURL,
         createdAt: new Date(),
       });
 
       console.log('Document written with ID: ', docRef.id);
 
-      // Show success message (popup)
       setShowPopup(true);
-
-      // Clear form after submission
       setFormData({
-        name: '',
-        email: '',
-        mobile: '',
-        internshipType: '',
-        resume: null,
-        resumeURL: '',
+        name: '', email: '', mobile: '', college: '', qualification: '', internshipType: '', resume: null
       });
-    } catch (e) {
-      setError('Error adding document: ' + e.message);
+      setErrors({});
+    } catch (error) {
+      console.error('Error adding document:', error);
     } finally {
-      setIsLoading(false); // End loading state
+      setIsLoading(false);
     }
   };
 
-  // Close the popup modal
-  const closePopup = () => {
-    setShowPopup(false);
-  };
 
   return (
-    <section className="pt-4 mx-auto md:w-1/2 md:p-4">
+    <section className="pt-8 mx-auto md:w-2/3 lg:w-1/2">
       <motion.h2
-        className="mb-4 text-2xl font-bold text-center md:text-4xl md:pb-8"
+        className="text-3xl font-semibold text-center text-red-700 mb-8"
         initial={{ opacity: 0, y: -20 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.5 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.6 }}
       >
-        Apply for an Internship
+        Apply for <span className="text-red-600">Internship & Training</span>
       </motion.h2>
 
-      {error && (
-        <div className="mb-4 text-center text-red-500">
-          <strong>{error}</strong>
-        </div>
-      )}
-
-      {/* Show Loading/Progress Screen while submitting */}
       {isLoading ? (
-        <div className="flex items-center justify-center h-screen">
-          <div className="text-center">
-            <h3 className="text-xl">Uploading...</h3>
-            <div className="mt-4 spinner-border text-primary" role="status">
-              <span className="sr-only">Loading...</span>
-            </div>
-          </div>
+        <div className="flex flex-col items-center justify-center text-center space-y-4 p-8 bg-gray-100 rounded-md shadow-lg">
+          <motion.div
+            className="flex items-center justify-center w-16 h-16 rounded-full border-t-4 border-red-500 border-opacity-75 animate-spin"
+            initial={{ scale: 0 }}
+            animate={{ scale: 1 }}
+            transition={{ duration: 0.5 }}
+          >
+            <svg
+              className="w-10 h-10 text-red-500"
+              fill="none"
+              viewBox="0 0 24 24"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z"
+                stroke="currentColor"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
+            </svg>
+          </motion.div>
+          <motion.h3
+            className="text-2xl font-semibold text-gray-700"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 0.3 }}
+          >
+            Submitting Your Application...
+          </motion.h3>
+          <p className="text-gray-500">Please wait while we process your data.</p>
         </div>
       ) : (
         <>
-          {/* Popup Modal */}
           {showPopup && (
-            <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50">
-              <div className="w-11/12 p-6 text-center bg-white rounded-lg shadow-lg md:w-1/3">
-                <h3 className="mb-4 text-2xl font-bold">Application Submitted!</h3>
-                <p className="mb-4">We’ll connect with you soon!</p>
-                <button
-                  onClick={closePopup}
-                  className="px-4 py-2 text-white bg-blue-500 rounded-lg hover:bg-blue-400"
+            <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-60 z-50">
+              <motion.div
+                className="bg-white p-8 rounded-lg shadow-lg text-center max-w-md mx-auto space-y-6"
+                initial={{ opacity: 0, scale: 0.8 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 0.5 }}
+              >
+                <div className="flex items-center justify-center w-12 h-12 mx-auto bg-green-100 rounded-full">
+                  <svg
+                    className="w-6 h-6 text-green-500"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth="2"
+                      d="M5 13l4 4L19 7"
+                    />
+                  </svg>
+                </div>
+
+                <motion.h3
+                  className="text-2xl font-bold text-green-600"
+                  initial={{ y: -10, opacity: 0 }}
+                  animate={{ y: 0, opacity: 1 }}
+                  transition={{ delay: 0.1 }}
+                >
+                  Application Submitted Successfully!
+                </motion.h3>
+
+                <motion.p
+                  className="text-gray-600"
+                  initial={{ y: -10, opacity: 0 }}
+                  animate={{ y: 0, opacity: 1 }}
+                  transition={{ delay: 0.2 }}
+                >
+                  Thank you for applying! We’ll connect with you soon.
+                </motion.p>
+
+                <motion.button
+                  onClick={() => setShowPopup(false)}
+                  className="mt-4 bg-red-500 text-white px-5 py-2 rounded-full shadow-md hover:bg-red-400 transition"
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  transition={{ delay: 0.3 }}
                 >
                   Close
-                </button>
-              </div>
+                </motion.button>
+              </motion.div>
             </div>
           )}
 
-          {/* Form for submission */}
+
           <motion.form
             onSubmit={handleSubmit}
-            className="p-6 bg-white border rounded-lg shadow-lg md:p-8"
-            initial={{ opacity: 0, scale: 0.8 }}
-            whileInView={{ opacity: 1, scale: 1 }}
+            className="p-8 bg-white rounded-lg shadow-md space-y-6"
+            initial={{ opacity: 0, scale: 0.95 }}
+            animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.5 }}
           >
-            {/* Name Field */}
-            <div className="mb-4">
-              <label className="block text-gray-700">Name</label>
-              <div className="flex items-center border border-gray-300 rounded">
-                <FaUser className="ml-2" />
+            {[
+              { label: "Full Name", name: "name", type: "text", error: errors.name },
+              { label: "Email", name: "email", type: "email", error: errors.email },
+              { label: "Phone", name: "mobile", type: "text", error: errors.mobile },
+              { label: "College / University", name: "college", type: "text", error: errors.college },
+            ].map(({ label, name, type, error }, idx) => (
+              <div key={idx} className="space-y-1">
+                <label className="font-medium">
+                  {label}<span className="text-red-500">*</span>
+                </label>
                 <input
-                  type="text"
-                  name="name"
-                  value={formData.name}
+                  type={type}
+                  name={name}
+                  value={formData[name]}
                   onChange={handleChange}
-                  required
-                  className="w-full p-2 focus:outline-none"
+                  className="w-full border border-gray-300 p-2 rounded focus:outline-none"
+                  placeholder={`Enter your ${label.toLowerCase()}`}
                 />
+                {error && <p className="text-red-500 text-sm">{error}</p>}
               </div>
+            ))}
+
+            <div className="space-y-1">
+              <label className="font-medium">
+                Qualification<span className="text-red-500">*</span>
+              </label>
+              <select
+                name="qualification"
+                value={formData.qualification}
+                onChange={handleChange}
+                className="w-full border border-gray-300 p-2 rounded appearance-none focus:outline-none"
+              >
+                <option value="">Select an option</option>
+                <option value="Diploma">Diploma</option>
+                <option value="B.Tech">B.Tech</option>
+                <option value="Others">Others</option>
+              </select>
+              {errors.qualification && <p className="text-red-500 text-sm">{errors.qualification}</p>}
             </div>
 
-            {/* Email Field */}
-            <div className="mb-4">
-              <label className="block text-gray-700">Email</label>
-              <div className="flex items-center border border-gray-300 rounded">
-                <FaEnvelope className="ml-2" />
-                <input
-                  type="email"
-                  name="email"
-                  value={formData.email}
-                  onChange={handleChange}
-                  required
-                  className="w-full p-2 focus:outline-none"
-                />
-              </div>
+            <div className="space-y-1">
+              <label className="font-medium">
+                Select Program<span className="text-red-500">*</span>
+              </label>
+              <select
+                name="internshipType"
+                value={formData.internshipType}
+                onChange={handleChange}
+                className="w-full border border-gray-300 p-2 rounded appearance-none focus:outline-none"
+              >
+                <option value="">Select</option>
+                {internshipPrograms.map((prog, idx) => (
+                  <option key={idx} value={prog}>{prog}</option>
+                ))}
+              </select>
+              {errors.internshipType && <p className="text-red-500 text-sm">{errors.internshipType}</p>}
             </div>
 
-            {/* Mobile Field */}
-            <div className="mb-4">
-              <label className="block text-gray-700">Mobile Number</label>
-              <div className="flex items-center border border-gray-300 rounded">
-                <FaMobileAlt className="ml-2" />
-                <input
-                  type="text"
-                  name="mobile"
-                  value={formData.mobile}
-                  onChange={handleChange}
-                  required
-                  className="w-full p-2 focus:outline-none"
-                />
-              </div>
-            </div>
-
-            {/* Internship Type Dropdown */}
-            <div className="mb-4">
-              <label className="block text-gray-700">Select Internship Type</label>
-              <div className="relative">
-                <select
-                  name="internshipType"
-                  value={formData.internshipType}
-                  onChange={handleChange}
-                  required
-                  className="w-full p-2 pr-10 border border-gray-300 rounded appearance-none"
-                >
-                  <option value="">--Select an Internship--</option>
-                  {internshipTypes.map((internship, index) => (
-                    <option key={index} value={internship}>
-                      {internship}
-                    </option>
-                  ))}
-                </select>
-                <FaBriefcase className="absolute pointer-events-none right-3 top-3" />
-              </div>
-            </div>
-
-            {/* Resume Upload */}
-            <div className="mb-4">
-              <label className="block text-gray-700">Upload Resume (Optional)</label>
-              <div className="flex items-center border border-gray-300 rounded">
-                <FaFileUpload className="ml-2" />
-                <input
-                  type="file"
-                  name="resume"
-                  onChange={handleChange}
-                  accept="image/*"
-                  className="w-full p-2 focus:outline-none"
-                />
-              </div>
+            <div className="space-y-1">
+              <label className="font-medium">Resume</label>
+              <input
+                type="file"
+                name="resume"
+                onChange={handleChange}
+                accept="application/pdf, application/msword, image/*"
+                className="w-full border border-gray-300 p-2 rounded focus:outline-none"
+              />
             </div>
 
             <button
               type="submit"
-              className="w-full p-2 text-white transition rounded bg-primary hover:bg-primary/70"
+              className="w-full py-2 bg-red-500 text-white rounded hover:bg-red-600 transition"
             >
-              Submit Application
+              Register
             </button>
           </motion.form>
         </>

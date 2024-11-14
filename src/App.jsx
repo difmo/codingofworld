@@ -30,6 +30,7 @@ import ShowBlogs from "./pages/AddBlogs/ShowBlogs";
 import BlogPage from "./pages/AddBlogs/BlogPage";
 import Sidebar from "./components/Navbar/ShowblogSidebar";
 import ShowBlogLayout from "./pages/Layout/ShowBlogLayout";
+import StudentData from "./components/student/StudentData";
 
 const App = () => {
   return (
@@ -47,6 +48,7 @@ const App = () => {
           <Route path="/signupscreen" element={<SingUpScreen />} />
           <Route path="/loginscreen" element={<LoginScreen />} />
           <Route path="/userdetails" element={<UserDetails />} />
+          <Route path="/admin/internship" element={<StudentData />} />
 
         <Route element={<ShowBlogLayout />}>
           <Route path="/show-blogs" element={<ShowBlogs />} />
