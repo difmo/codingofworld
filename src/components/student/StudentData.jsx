@@ -61,6 +61,8 @@ const StudentData = () => {
               <th className='px-4 py-2 border'>Sr No.</th>
               <th className='px-4 py-2 border'>Student Name</th>
               <th className='px-4 py-2 border'>Email</th>
+              <th className='px-4 py-2 border'>College</th>
+              <th className='px-4 py-2 border'>Qualification</th>
               <th className='px-4 py-2 border'>Internship Type</th>
               <th className='px-4 py-2 border'>Mobile</th>
               <th className='px-4 py-2 border'>Date</th>
@@ -73,6 +75,8 @@ const StudentData = () => {
                 <td className='px-4 py-2 border'>{index+1}</td>
                 <td className='px-4 py-2 border'>{student.name}</td>
                 <td className='px-4 py-2 border'>{student.email}</td>
+                <td className='px-4 py-2 border'>{student.college}</td>
+                <td className='px-4 py-2 border'>{student.qualification}</td>
                 <td className='px-4 py-2 border'>{student.internshipType}</td>
                 <td className='px-4 py-2 border'>{student.mobile}</td>
                 <td className='px-4 py-2 border'>{student.createdAt}</td>
