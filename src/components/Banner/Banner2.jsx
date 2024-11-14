@@ -42,7 +42,7 @@ const Banner2 = () => {
               </p>
             </p>
             <a
-              href="https://chat.whatsapp.com/FQSKgJ5f1eIAhlyF5sVym0"
+              href="https://chat.whatsapp.com/E347xrhuUdkJWImKXDj4N5"
               className="primary-btn !mt-8"
             >
               Join Now
