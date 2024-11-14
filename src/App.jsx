@@ -33,6 +33,8 @@ import AdminDashboard from "./pages/AdminProminent/MenuPages/AdminDashboard";
 import ClientContactPage from "./pages/AdminProminent/ClientContactPage";
 import LoginUsersAdmin from "./pages/AdminProminent/LoginUsersAdmin";
 import CreateBlogLayout from "./pages/Layout/CreateBlogLayout";
+import StudentData from "./components/student/StudentData";
+import Popupbloge from "./pages/Popupbloge";
 
 const App = () => {
   return (
@@ -49,7 +51,9 @@ const App = () => {
           <Route path="/tcsnqtcourse" element={<TcsNqtCourse />} />
           <Route path="/signupscreen" element={<SingUpScreen />} />
           <Route path="/loginscreen" element={<LoginScreen />} />
-          <Route path="/userdetails" element={<UserDetails />} />
+          {/* <Route path="/userdetails" element={<UserDetails />} /> */}
+          <Route path="/popupbloge" element={<Popupbloge />} />
+          <Route path="/admin/internship" element={<StudentData />} />
 
           <Route element={<ShowBlogLayout />}>
             <Route path="/show-blogs" element={<ShowBlogs />} />
@@ -57,7 +61,10 @@ const App = () => {
           </Route>
         </Route>
 
-        <Route element={<StudentSidebarLayout />}>
+        <Route path="*" element={<NotFound />} />
+        <Route path="/ads.txt" />
+
+        <Route element={<SidebarLayout />}>
           <Route path="/home1" element={<First />} />
           <Route path="/about1" element={<Second />} />
           <Route path="/starttcsnqt" element={<TCSNQT />} />
