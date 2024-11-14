@@ -1,7 +1,6 @@
 import React from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 
-// Importing pages
 import HomeScreen from "./pages/HomeScreen";
 import Layout from "./pages/Layout/layout";
 import ContactUs from "./pages/ContactUs";
@@ -19,18 +18,21 @@ import SingUpScreen from "./pages/AuthScreens/SignUpScreen";
 import LoginScreen from "./pages/AuthScreens/LoginScreen";
 import First from "./pages/Sidebarpages/First";
 import Second from "./pages/Sidebarpages/Second";
-import SidebarLayout from "./pages/Layout/SidebarLayout";
+import StudentSidebarLayout from "./pages/Layout/StudentSidebarLayout";
 import FindSmallestElement from "./pages/AllCourses/TcsNqtCourse/Questions/OnArray/FindSmallestElement";
-import BlogLayout from "./pages/Layout/BlogLayout";
 import Addblogs from "./pages/AddBlogs/Addblogs";
 import UserDetails from "./components/UserProfile/UserDetails";
 import AllBlogs from "./pages/AddBlogs/AllBlogs";
 import EditBlog from "./pages/AddBlogs/EditBlog";
 import ShowBlogs from "./pages/AddBlogs/ShowBlogs";
 import BlogPage from "./pages/AddBlogs/BlogPage";
-import Sidebar from "./components/Navbar/ShowblogSidebar";
 import ShowBlogLayout from "./pages/Layout/ShowBlogLayout";
-import StudentData from "./components/student/StudentData";
+import StudentData from "./pages/AdminProminent/student/StudentData";
+import AdminLayout from "./pages/Layout/AdminLayout";
+import AdminDashboard from "./pages/AdminProminent/MenuPages/AdminDashboard";
+import ClientContactPage from "./pages/AdminProminent/ClientContactPage";
+import LoginUsersAdmin from "./pages/AdminProminent/LoginUsersAdmin";
+import CreateBlogLayout from "./pages/Layout/CreateBlogLayout";
 
 const App = () => {
   return (
@@ -48,33 +50,37 @@ const App = () => {
           <Route path="/signupscreen" element={<SingUpScreen />} />
           <Route path="/loginscreen" element={<LoginScreen />} />
           <Route path="/userdetails" element={<UserDetails />} />
-          <Route path="/admin/internship" element={<StudentData />} />
 
-        <Route element={<ShowBlogLayout />}>
-          <Route path="/show-blogs" element={<ShowBlogs />} />
-          <Route path="/blog/:blogId" element={<BlogPage />} />
+          <Route element={<ShowBlogLayout />}>
+            <Route path="/show-blogs" element={<ShowBlogs />} />
+            <Route path="/blog/:blogId" element={<BlogPage />} />
+          </Route>
         </Route>
 
-        </Route>
-
-
-        <Route path="*" element={<NotFound />} />
-        <Route path="/ads.txt" />
-
-        <Route element={<SidebarLayout />}>
+        <Route element={<StudentSidebarLayout />}>
           <Route path="/home1" element={<First />} />
           <Route path="/about1" element={<Second />} />
           <Route path="/starttcsnqt" element={<TCSNQT />} />
           <Route path="/findsmallest" element={<FindSmallestElement />} />
         </Route>
 
-        <Route element={<BlogLayout />}>
+        <Route element={<CreateBlogLayout />}>
           <Route path="/addblogs" element={<Addblogs />} />
           <Route path="/all-blogs" element={<AllBlogs />} />
           <Route path="/edit-blog/:blogId" element={<EditBlog />} />
         </Route>
 
+        {/* <Route element={<AdminLayout />}>
+          <Route path="/admin-dashboard" element={<AdminDashboard />} />
+          <Route path="/admin/internship" element={<StudentData />} />
+          <Route path="/admin/client-contact" element={<ClientContactPage />} />
+          <Route path="/admin/blog" element={<AdminblogPage />} />
+          <Route path="/admin/login-users" element={<LoginUsersAdmin />} />
+          <Route path="/admin/edit-student/:id" element={<StudentData />} />
+        </Route> */}
+
         <Route path="/dummy" element={<Dummy />} />
+        <Route path="*" element={<NotFound />} />
       </Routes>
     </Router>
   );

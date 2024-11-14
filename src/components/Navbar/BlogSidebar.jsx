@@ -36,10 +36,6 @@ const BlogSidebar = ({ toggleSidebar }) => {
             All Blogs
           </Link>
         </li>
-    
-       
-     
-        
       </ul>
     </div>
   );

@@ -4,7 +4,7 @@ import { Outlet } from "react-router-dom";
 import StudentSidebar from "../../components/Navbar/StudentSidebar";
 import StudentNavbar from "../../components/Navbar/StudentNavbar";
 
-const SidebarLayout = ({ children }) => {
+const StudentSidebarLayout = ({ children }) => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 
   const toggleSidebar = () => {
@@ -35,4 +35,4 @@ const SidebarLayout = ({ children }) => {
   );
 };
 
-export default SidebarLayout;
+export default StudentSidebarLayout;

@@ -1,11 +1,11 @@
 import React, { useState } from "react";
 
-const BlogNavbar = ({toggleSidebar}) => {
+const AdminNavbar = ({toggleSidebar}) => {
  
   return (
-    <div className="top-0 z-30 bg-black border-b border-gray-500">
+    <div className="top-0 z-30 bg-white border-b border-gray-100">
       <div className="items-center justify-between hidden p-4 md:flex">
-        <div className="text-lg font-semibold text-white">Welcome on Blog page Page</div>
+        <div className="text-lg font-semibold text-primary">Admin</div>
       </div>
 
       <div className="flex items-center justify-between p-4 md:hidden">
@@ -36,4 +36,4 @@ const BlogNavbar = ({toggleSidebar}) => {
   );
 };
 
-export default BlogNavbar;
+export default AdminNavbar;

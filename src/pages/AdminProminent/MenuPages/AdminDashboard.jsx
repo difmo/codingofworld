@@ -1,72 +1,75 @@
 import React, { useEffect, useState } from 'react';
-import { db, collection, getDocs, query, where } from '../../firebase'; 
-import { AiOutlineShoppingCart, AiOutlineUser, AiOutlineAppstoreAdd } from 'react-icons/ai';
-import { Pie } from 'react-chartjs-2';
+import { db } from '../../../firebase'; // Firebase configuration and db export
+import { collection, getDocs } from 'firebase/firestore';
+import { AiOutlineShoppingCart, AiOutlineUser, AiOutlineAppstoreAdd, AiOutlineFileText } from 'react-icons/ai';
+import { Bar, Pie } from 'react-chartjs-2';
 import { Chart as ChartJS, CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend, ArcElement } from 'chart.js';
 
+// Register Chart.js components
 ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend, ArcElement);
 
 const AdminDashboard = () => {
-  const [ordersCount, setOrdersCount] = useState(0);
-  const [liveOrdersCount, setLiveOrdersCount] = useState(0);
-  const [ongoingOrdersCount, setOngoingOrdersCount] = useState(0);
-  const [completedOrdersCount, setCompletedOrdersCount] = useState(0);
-  const [usersCount, setUsersCount] = useState(0);
-  const [itemsCount, setItemsCount] = useState(0);
+  const [totalBlogs, setTotalBlogs] = useState(0);
+  const [totalUsers, setTotalUsers] = useState(0);
+  const [totalInterns, setTotalInterns] = useState(0);
+  const [totalContacts, setTotalContacts] = useState(0);
 
-  const fetchDashboardData = async () => {
-    try {
-      const ordersSnapshot = await getDocs(collection(db, 'orders'));
-      setOrdersCount(ordersSnapshot.size);
-
-      const liveOrdersSnapshot = await getDocs(query(collection(db, 'orders'), where('status', '==', 'Live')));
-      setLiveOrdersCount(liveOrdersSnapshot.size);
-
-      const ongoingOrdersSnapshot = await getDocs(query(collection(db, 'orders'), where('status', '==', 'ongoing')));
-      setOngoingOrdersCount(ongoingOrdersSnapshot.size);
-
-      const completedOrdersSnapshot = await getDocs(query(collection(db, 'orders'), where('status', '==', 'completed')));
-      setCompletedOrdersCount(completedOrdersSnapshot.size);
-
-      const usersSnapshot = await getDocs(collection(db, 'users'));
-      setUsersCount(usersSnapshot.size);
-
-      const itemsSnapshot = await getDocs(collection(db, 'items'));
-      setItemsCount(itemsSnapshot.size);
-    } catch (error) {
-      console.error('Error fetching dashboard data:', error);
-    }
-  };
-
+  // Fetch data from Firestore
   useEffect(() => {
-    fetchDashboardData();
-  }, []);
+    const fetchData = async () => {
+      try {
+        // Get Blogs data
+        const blogsCollection = collection(db, 'blogs');
+        const blogsSnapshot = await getDocs(blogsCollection);
+        setTotalBlogs(blogsSnapshot.size); // Size of the collection is the total count of blogs
 
-  const orderData = {
-    labels: ['Live Orders', 'Ongoing Orders', 'Completed Orders'],
+        // Get Users data
+        const usersCollection = collection(db, 'users');
+        const usersSnapshot = await getDocs(usersCollection);
+        setTotalUsers(usersSnapshot.size); // Size of the collection is the total count of users
+
+        // Get Interns data
+        const internsCollection = collection(db, 'internships'); // Collection for Interns
+        const internsSnapshot = await getDocs(internsCollection);
+        setTotalInterns(internsSnapshot.size); // Size of the collection is the total count of interns
+
+        // Get Contacts data
+        const contactsCollection = collection(db, 'contacts');
+        const contactsSnapshot = await getDocs(contactsCollection);
+        setTotalContacts(contactsSnapshot.size); // Size of the collection is the total count of contacts
+      } catch (error) {
+        console.error('Error fetching data: ', error);
+      }
+    };
+
+    fetchData();
+  }, []); // Empty array ensures this effect runs only once
+
+  // Bar Chart Data
+  const barData = {
+    labels: ['Blogs', 'Users', 'Interns', 'Contacts'],
     datasets: [
       {
-        data: [liveOrdersCount, ongoingOrdersCount, completedOrdersCount],
-        backgroundColor: ['#FFB64D', '#6FBF73', '#4D8BFF'],
-        hoverBackgroundColor: ['#FF9F3F', '#4D8B4D', '#4D73FF'],
+        label: 'Total Count',
+        data: [totalBlogs, totalUsers, totalInterns, totalContacts],
+        backgroundColor: ['#4A90E2', '#7ED321', '#F5A623', '#D0021B'],
+        borderColor: ['#4A90E2', '#7ED321', '#F5A623', '#D0021B'],
+        borderWidth: 1,
       },
     ],
   };
 
-  // Options for the pie chart
-  const orderOptions = {
-    plugins: {
-      tooltip: {
-        callbacks: {
-          label: function (tooltipItem) {
-            return tooltipItem.raw + ' orders';
-          },
-        },
+  // Pie Chart Data
+  const pieData = {
+    labels: ['Blogs', 'Users', 'Interns', 'Contacts'],
+    datasets: [
+      {
+        data: [totalBlogs, totalUsers, totalInterns, totalContacts],
+        backgroundColor: ['#4A90E2', '#7ED321', '#F5A623', '#D0021B'],
+        borderColor: ['#4A90E2', '#7ED321', '#F5A623', '#D0021B'],
+        borderWidth: 1,
       },
-      legend: {
-        position: 'top',
-      },
-    },
+    ],
   };
 
   return (
@@ -76,14 +79,14 @@ const AdminDashboard = () => {
 
       {/* Dashboard Stats */}
       <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
-        {/* Total Orders */}
+        {/* Total Blogs */}
         <div className="flex items-center justify-between p-6 transition duration-300 bg-white rounded-lg shadow-lg hover:shadow-2xl">
           <div>
-            <h2 className="text-xl font-semibold text-gray-800">Total Orders</h2>
-            <p className="text-3xl font-bold text-blue-600">{ordersCount}</p>
+            <h2 className="text-xl font-semibold text-gray-800">Total Blogs</h2>
+            <p className="text-3xl font-bold text-blue-600">{totalBlogs}</p>
           </div>
           <div className="p-3 text-blue-600 bg-blue-100 rounded-full">
-            <AiOutlineShoppingCart size={40} />
+            <AiOutlineFileText size={40} />
           </div>
         </div>
 
@@ -91,62 +94,49 @@ const AdminDashboard = () => {
         <div className="flex items-center justify-between p-6 transition duration-300 bg-white rounded-lg shadow-lg hover:shadow-2xl">
           <div>
             <h2 className="text-xl font-semibold text-gray-800">Total Users</h2>
-            <p className="text-3xl font-bold text-green-600">{usersCount}</p>
+            <p className="text-3xl font-bold text-green-600">{totalUsers}</p>
           </div>
           <div className="p-3 text-green-600 bg-green-100 rounded-full">
             <AiOutlineUser size={40} />
           </div>
         </div>
 
-        {/* Total Items */}
+        {/* Total Interns */}
         <div className="flex items-center justify-between p-6 transition duration-300 bg-white rounded-lg shadow-lg hover:shadow-2xl">
           <div>
-            <h2 className="text-xl font-semibold text-gray-800">Total Items</h2>
-            <p className="text-3xl font-bold text-purple-600">{itemsCount}</p>
+            <h2 className="text-xl font-semibold text-gray-800">Total Interns</h2>
+            <p className="text-3xl font-bold text-purple-600">{totalInterns}</p>
           </div>
           <div className="p-3 text-purple-600 bg-purple-100 rounded-full">
             <AiOutlineAppstoreAdd size={40} />
           </div>
         </div>
 
-        {/* Live Orders */}
+        {/* Total Contacts */}
         <div className="flex items-center justify-between p-6 transition duration-300 bg-white rounded-lg shadow-lg hover:shadow-2xl">
           <div>
-            <h2 className="text-xl font-semibold text-gray-800">Live Orders</h2>
-            <p className="text-3xl font-bold text-orange-600">{liveOrdersCount}</p>
+            <h2 className="text-xl font-semibold text-gray-800">Total Contacts</h2>
+            <p className="text-3xl font-bold text-orange-600">{totalContacts}</p>
           </div>
           <div className="p-3 text-orange-600 bg-orange-100 rounded-full">
             <AiOutlineShoppingCart size={40} />
           </div>
         </div>
-
-        {/* Ongoing Orders */}
-        <div className="flex items-center justify-between p-6 transition duration-300 bg-white rounded-lg shadow-lg hover:shadow-2xl">
-          <div>
-            <h2 className="text-xl font-semibold text-gray-800">Ongoing Orders</h2>
-            <p className="text-3xl font-bold text-yellow-600">{ongoingOrdersCount}</p>
-          </div>
-          <div className="p-3 text-yellow-600 bg-yellow-100 rounded-full">
-            <AiOutlineShoppingCart size={40} />
-          </div>
-        </div>
-
-        {/* Completed Orders */}
-        <div className="flex items-center justify-between p-6 transition duration-300 bg-white rounded-lg shadow-lg hover:shadow-2xl">
-          <div>
-            <h2 className="text-xl font-semibold text-gray-800">Completed Orders</h2>
-            <p className="text-3xl font-bold text-green-600">{completedOrdersCount}</p>
-          </div>
-          <div className="p-3 text-green-600 bg-green-100 rounded-full">
-            <AiOutlineShoppingCart size={40} />
-          </div>
-        </div>
       </div>
 
-      {/* Order Status Chart */}
-      <div className="p-6 mt-12 bg-white rounded-lg shadow-lg">
-        <h2 className="mb-4 text-2xl font-semibold text-gray-800">Order Status Overview</h2>
-        <Pie data={orderData} options={orderOptions} />
+      {/* Charts */}
+      <div className="grid grid-cols-1 gap-8 mt-12 md:grid-cols-2 lg:grid-cols-2">
+        {/* Bar Chart */}
+        <div className="p-6 bg-white rounded-lg shadow-lg">
+          <h3 className="mb-4 text-xl font-semibold text-gray-800">Data Overview (Bar Chart)</h3>
+          <Bar data={barData} />
+        </div>
+
+        {/* Pie Chart */}
+        <div className="p-6 bg-white rounded-lg shadow-lg">
+          <h3 className="mb-4 text-xl font-semibold text-gray-800">Data Breakdown (Pie Chart)</h3>
+          <Pie data={pieData} />
+        </div>
       </div>
     </div>
   );

@@ -1,76 +1,54 @@
 import React, { useState, useEffect } from "react";
-import { db, auth } from "../../firebase"; 
-import { collection, getDocs, deleteDoc, doc, query, where } from "firebase/firestore";
+import { db } from "../../firebase";
+import { collection, getDocs, deleteDoc, doc } from "firebase/firestore";
 import { useNavigate } from "react-router-dom";
 
-const AllBlogs = () => {
+const AdminBlogPage = () => {
   const [blogs, setBlogs] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null); // Added error state
   const navigate = useNavigate();
 
+  // Fetch blogs from Firestore
   useEffect(() => {
     const fetchBlogs = async () => {
       try {
-        const currentUser = auth.currentUser;
-
-        if (!currentUser) {
-          console.error("User is not logged in");
-          setError("User is not logged in");
-          return;
-        }
-
-        const userId = currentUser.uid;
-        console.log("User ID:", userId); // Debug: Check if the user ID is correct.
-
         const blogsCollection = collection(db, "blogs");
-
-        const blogsQuery = query(blogsCollection, where("userId", "==", userId));
-        const querySnapshot = await getDocs(blogsQuery);
-
-        // Debugging: Check the number of docs returned
-        console.log("Blogs Query Snapshot Size:", querySnapshot.size);
-
-        if (querySnapshot.empty) {
-          setError("No blogs found for this user.");
-        } else {
-          const blogsData = querySnapshot.docs.map(doc => ({
-            id: doc.id,
-            ...doc.data(),
-          }));
-          setBlogs(blogsData);
-        }
+        const querySnapshot = await getDocs(blogsCollection);
+        const blogsData = querySnapshot.docs.map(doc => ({
+          id: doc.id,
+          ...doc.data(),
+        }));
+        setBlogs(blogsData);
       } catch (error) {
         console.error("Error fetching blogs: ", error);
-        setError("Error fetching blogs");
       } finally {
         setLoading(false);
       }
     };
 
     fetchBlogs();
-  }, []); // Empty dependency array means this will only run once when the component mounts
+  }, []); // Only run on initial mount
 
+  // Handle delete blog
   const handleDelete = async (id) => {
     try {
-      await deleteDoc(doc(db, "blogs", id));
-      setBlogs(blogs.filter(blog => blog.id !== id)); 
+      await deleteDoc(doc(db, "blogs", id)); // Delete blog document
+      setBlogs(blogs.filter(blog => blog.id !== id)); // Remove deleted blog from state
     } catch (error) {
       console.error("Error deleting blog: ", error);
     }
   };
 
+  // Navigate to edit blog page
   const handleEdit = (id) => {
-    navigate(`/edit-blog/${id}`);  
+    navigate(`/edit-blog/${id}`);
   };
 
   return (
-    <div className="p-6 mx-auto text-white bg-black">
-      <h1 className="mb-6 text-3xl font-semibold text-center">My Blogs</h1>
+    <div className="p-6 mx-auto text-black ">
+      <h1 className="mb-6 text-3xl font-semibold text-center">All Blogs</h1>
       {loading ? (
         <p>Loading blogs...</p>
-      ) : error ? (
-        <p>{error}</p> // Display any error messages here
       ) : (
         <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {blogs.length === 0 ? (
@@ -79,7 +57,7 @@ const AllBlogs = () => {
             blogs.map((blog) => (
               <div
                 key={blog.id}
-                className="p-4 bg-gray-800 rounded-lg shadow-md cursor-pointer"
+                className="p-4 border rounded-lg shadow-md cursor-pointer"
               >
                 <h2 className="text-xl font-semibold">{blog.title}</h2>
                 <p className="mt-2" dangerouslySetInnerHTML={{ __html: blog.content.substring(0, 100) }} />
@@ -106,4 +84,4 @@ const AllBlogs = () => {
   );
 };
 
-export default AllBlogs;
+export default AdminBlogPage;
