@@ -3,40 +3,50 @@
 @tailwind utilities;
 
 
+@layer components {
+  .primary-btn {
+    @apply inline-block bg-primary text-white font-semibold rounded-lg hover:bg-secondary duration-200 shadow-[0px_10px_8px_-7px_#ffd978] hover:shadow-[0px_10px_8px_-7px_#69a79c] py-2 px-6;
+  }
+}
+
+@layer utilities {
+  .drop-shadow {
+    filter: drop-shadow(6px 8px 10px rgba(0, 0, 0, 0.5));
+  }
+}
 
 
 h1, h2, h3, h4, h5, h6 {
-    font-weight: bold;
-    line-height: 1.5;
-  }
-  
-  h1 {
-    font-size: 2.5rem; 
-  }
-  
-  h2 {
-    font-size: 2rem; /* Example size for h2 */
-  }
-  
-  h3 {
-    font-size: 1.75rem; /* Example size for h3 */
-  }
-  
-  ol {
-    list-style-type: decimal;
-    margin-left: 20px;
-  }
-  
-  li {
-    margin-bottom: 5px;
-  }
-  
-  /* Style for bold and italic text */
-  strong {
-    font-weight: bold;
-  }
-  
-  em {
-    font-style: italic;
-  }
-  
+  font-weight: bold;
+  line-height: 1.5;
+}
+
+h1 {
+  font-size: 2.5rem; 
+}
+
+h2 {
+  font-size: 2rem; /* Example size for h2 */
+}
+
+h3 {
+  font-size: 1.75rem; /* Example size for h3 */
+}
+
+ol {
+  list-style-type: decimal;
+  margin-left: 20px;
+}
+
+li {
+  margin-bottom: 5px;
+}
+
+/* Style for bold and italic text */
+strong {
+  font-weight: bold;
+}
+
+em {
+  font-style: italic;
+}

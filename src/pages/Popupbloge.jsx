@@ -1,8 +1,9 @@
 import React, { useState } from "react";
-import { getFirestore, collection, addDoc } from "firebase/firestore"; // Firestore SDK
+import { getFirestore, collection, addDoc } from "firebase/firestore"; 
 import { db } from "../firebase";
-import blog from "../assets/blog.jpg";
-const Popupbloge = () => {
+import { FaTimes } from "react-icons/fa"; // Import the cross icon
+
+const Popupbloge = ({ setPopUpOpen }) => {
   const [formData, setFormData] = useState({
     name: "",
     phone: "",
@@ -22,7 +23,6 @@ const Popupbloge = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [showPopup, setShowPopup] = useState(false);
 
-  // Define the form fields
   const fields = [
     { id: "name", label: "Name", type: "text" },
     { id: "phone", label: "Phone Number", type: "text" },
@@ -31,7 +31,6 @@ const Popupbloge = () => {
     { id: "address", label: "Address", type: "text" },
   ];
 
-  // Handle input changes
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
@@ -110,52 +109,74 @@ const Popupbloge = () => {
     }
   };
 
+  // Close the popup
+  const closePopup = () => {
+    setShowPopup(false);
+  };
+
   return (
     <>
-      <h2 className="text-2xl font-semibold mb-4 text-center">
-        Bloger Contact
-      </h2>
-
-      <div className="grid grid-cols-1 md:grid-cols-2 my-10 mx-4">
-        <div>
-          <img src={blog} />
-        </div>
-        <div className="  p-4 bg-white shadow-lg rounded-lg">
-          <form onSubmit={handleSubmit}>
-            {fields.map((field) => (
-              <div key={field.id} className="mb-4">
-                <label htmlFor={field.id} className="block text-gray-700">
-                  {field.label}
-                </label>
-                <input
-                  type={field.type}
-                  id={field.id}
-                  name={field.id}
-                  value={formData[field.id]}
-                  onChange={handleChange}
-                  className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-1 focus:ring-orange-500"
-                />
-                {errors[field.id] && (
-                  <p className="text-red-600 text-sm">{errors[field.id]}</p>
-                )}
-              </div>
-            ))}
-
+      {showPopup && (
+        <div
+          className="fixed inset-0 z-50 flex items-center justify-center bg-gray-800 bg-opacity-50"
+          onClick={closePopup} // Close the popup when clicking outside
+        >
+          <div
+            className="relative w-full max-w-md p-6 bg-white rounded-lg shadow-lg"
+            onClick={(e) => e.stopPropagation()} // Prevent closing on inner form click
+          >
             <button
-              type="submit"
-              className="w-full bg-orange-600 text-white py-2 rounded-lg hover:bg-orange-700 focus:outline-none focus:ring-2 focus:ring-orange-600"
-              disabled={isLoading}
+              onClick={closePopup} // Close the popup when clicking the cross
+              className="absolute p-2 text-gray-600 top-2 right-2 hover:text-gray-800"
             >
-              {isLoading ? "Submitting..." : "Submit"}
+              <FaTimes size={20} />
             </button>
-          </form>
-          {showPopup && (
-            <div className="mb-4 text-center text-green-500">
-              <p>Your form has been submitted successfully!</p>
-            </div>
-          )}
+            <form onSubmit={handleSubmit}>
+              <h2 className="mb-4 text-xl font-semibold text-center">
+                Submit Your Blog Details
+              </h2>
+              {fields.map((field) => (
+                <div key={field.id} className="mb-4">
+                  <label htmlFor={field.id} className="block text-gray-700">
+                    {field.label}
+                  </label>
+                  <input
+                    type={field.type}
+                    id={field.id}
+                    name={field.id}
+                    value={formData[field.id]}
+                    onChange={handleChange}
+                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-1 focus:ring-orange-500"
+                  />
+                  {errors[field.id] && (
+                    <p className="text-sm text-red-600">{errors[field.id]}</p>
+                  )}
+                </div>
+              ))}
+
+              <button
+                type="submit"
+                className="w-full py-2 text-white bg-orange-600 rounded-lg hover:bg-orange-700 focus:outline-none focus:ring-2 focus:ring-orange-600"
+                disabled={isLoading}
+              >
+                {isLoading ? "Submitting..." : "Submit"}
+              </button>
+            </form>
+
+            {showPopup && (
+              <div className="mt-4 text-center text-green-500">
+                <p>Your form has been submitted successfully!</p>
+                <button
+                  onClick={closePopup}
+                  className="px-4 py-2 mt-4 text-white bg-green-500 rounded-lg hover:bg-green-600"
+                >
+                  Close
+                </button>
+              </div>
+            )}
+          </div>
         </div>
-      </div>
+      )}
     </>
   );
 };

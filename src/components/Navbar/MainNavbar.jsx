@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from "react";
-
 import { FaTimes, FaUser, FaEdit, FaBlog, FaSignOutAlt } from "react-icons/fa";
 import { IoMdMenu } from "react-icons/io";
 import { motion, AnimatePresence } from "framer-motion";
-import { Link } from "react-router-dom"; // Import Link
+import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import logo from "../../assets/images/logo.svg";
 import "firebase/auth";
 import { db, auth } from "../../firebase";
+import Popupbloge from "../../pages/Popupbloge";
 
 const NavbarMenu = [
   { id: 1, title: "Home", path: "/" },
@@ -18,10 +18,12 @@ const NavbarMenu = [
   { id: 7, title: "Blogs", path: "/show-blogs" },
   { id: 8, title: "Internship", path: "/internship" },
 ];
+
 const MainNavbar = () => {
   const [isMobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [isUserLogin, setIsUserLogin] = useState(null);
+  const [showPopup, setShowPopup] = useState(false); // Popup state to toggle visibility
   const navigate = useNavigate();
-  const [isUserLogin, setisUserLogin] = useState(null);
 
   const toggleMobileMenu = () => {
     setMobileMenuOpen((prev) => !prev);
@@ -30,10 +32,10 @@ const MainNavbar = () => {
   useEffect(() => {
     const unsubscribe = auth.onAuthStateChanged((user) => {
       if (user) {
-        setisUserLogin(user);
+        setIsUserLogin(user);
         console.log("User is logged in:", user);
       } else {
-        setisUserLogin(null);
+        setIsUserLogin(null);
         console.log("User is not logged in");
       }
     });
@@ -49,16 +51,28 @@ const MainNavbar = () => {
       console.error("Error logging out:", error);
     }
   };
+
   const [isOpen, setIsOpen] = useState(false);
   const toggleSidebar = () => {
     setIsOpen(!isOpen);
   };
+
+  // Function to open the popup
+  const openPopup = () => {
+    setShowPopup(true);
+  };
+
+  // Function to close the popup
+  const closePopup = () => {
+    setShowPopup(false);
+  };
+
   return (
     <nav className="sticky top-0 z-20 w-full bg-white shadow-sm">
       <motion.div
         initial={{ opacity: 0, y: -50 }}
         animate={{ opacity: 1, y: 0 }}
-        className="container flex items-center justify-between py-5 mx-auto" // Centered container
+        className="container flex items-center justify-between py-5 mx-auto"
       >
         {/* Logo section */}
         <div className="flex items-center justify-center">
@@ -93,51 +107,32 @@ const MainNavbar = () => {
             ) : (
               <button
                 onClick={toggleSidebar}
-                className="p-2 rounded-full bg-blue-500 text-white hover:bg-blue-700"
+                className="p-2 text-white bg-blue-500 rounded-full hover:bg-blue-700"
               >
                 <FaUser />
               </button>
             )}
             <div>
-              {/* Profile Icon to toggle the sidebar */}
-
               {/* Sidebar with User Details */}
               {isOpen && (
-                <div className="bg-white shadow-md w-64 absolute top-16 right-5 border-2 rounded-lg">
+                <div className="absolute w-64 bg-white border-2 rounded-lg shadow-md top-16 right-5">
                   <button
                     onClick={toggleSidebar}
-                    className="absolute top-2 right-2 p-2 text-gray-600 hover:text-gray-800"
+                    className="absolute p-2 text-gray-600 top-2 right-2 hover:text-gray-800"
                   >
                     <FaTimes />
                   </button>
-                  <ul className="space-y-4 p-4">
-                    <li>
-                      <a
-                        href="#"
-                        className="flex items-center text-gray-700 hover:text-blue-600"
-                      >
-                        <FaUser className="mr-3" />
-                        <span>My Profile</span>
-                      </a>
-                    </li>
+                  <ul className="p-4 space-y-4">
                     <li>
                       <div
-                        onClick={() => navigate("/popupbloge")}
+                        onClick={openPopup} // Open the Create Blog popup
                         className="flex items-center text-gray-700 hover:text-blue-600"
                       >
                         <FaBlog className="mr-3" />
                         <span>Create Blogs</span>
                       </div>
                     </li>
-                    <li>
-                      <a
-                        href="#"
-                        className="flex items-center text-gray-700 hover:text-blue-600"
-                      >
-                        <FaEdit className="mr-3" />
-                        <span>Edit Profile</span>
-                      </a>
-                    </li>
+
                     <li>
                       <a
                         href="#"
@@ -161,10 +156,12 @@ const MainNavbar = () => {
           />
         </div>
       </motion.div>
+
+      {/* Mobile Menu */}
       <AnimatePresence>
         {isMobileMenuOpen && (
           <motion.div
-            className="absolute left-0 right-0 z-40 w-full p-4 mt-2 bg-white shadow-lg lg:hidden top-full" // Full width for mobile menu
+            className="absolute left-0 right-0 z-40 w-full p-4 mt-2 bg-white shadow-lg lg:hidden top-full"
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: "auto" }}
             exit={{ opacity: 0, height: 0 }}
@@ -190,6 +187,24 @@ const MainNavbar = () => {
           </motion.div>
         )}
       </AnimatePresence>
+
+      {/* Popup Component */}
+      {showPopup && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-gray-800 bg-opacity-50">
+          <div
+            className="w-full max-w-md p-6 bg-white rounded-lg shadow-lg"
+            onClick={(e) => e.stopPropagation()} // Prevent closing on inner form click
+          >
+            <button
+              onClick={closePopup} // Close the popup
+              className="absolute p-2 text-gray-600 top-2 right-2 hover:text-gray-800"
+            >
+              <FaTimes />
+            </button>
+            <Popupbloge setPopUpOpen={closePopup} /> 
+          </div>
+        </div>
+      )}
     </nav>
   );
 };
