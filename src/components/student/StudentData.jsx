@@ -21,26 +21,23 @@ const StudentData = () => {
           return docData; 
         });
         
-        // Store the fetched data in state
         setStudentData(data);
       } catch (err) {
-        // Handle any errors that occur during data fetching
         setError('Error fetching data: ' + err.message);
       } finally {
-        // Set loading to false once data has been fetched or if an error occurs
         setLoading(false);
       }
     };
 
-    fetchData(); // Call the fetchData function when the component mounts
-  }, []); // Empty dependency array means this will only run once (on component mount)
+    fetchData(); 
+  }, []); 
 
   if (loading) {
-    return <div>Loading...</div>; // Show loading message while data is being fetched
+    return <div>Loading...</div>; 
   }
 
   if (error) {
-    return <div>{error}</div>; // Show error message if there's an issue with data fetching
+    return <div>{error}</div>; 
   }
 
   return (
