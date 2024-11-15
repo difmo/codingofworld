@@ -37,8 +37,7 @@ import AdminBlogPage from "./pages/AdminProminent/AdminblogPage";
 import AdminController from "./Controller/AdminController";
 
 const App = () => {
-  const { isAdmin } = AdminController();
-
+  const { isAdmin, isUserLogin } = AdminController();
   return (
     <Router>
       <Routes>
@@ -60,22 +59,24 @@ const App = () => {
             <Route path="/blog/:blogId" element={<BlogPage />} />
           </Route>
         </Route>
-
         <Route path="*" element={<NotFound />} />
         <Route path="/ads.txt" />
-
         <Route element={<StudentSidebarLayout />}>
           <Route path="/home1" element={<First />} />
           <Route path="/about1" element={<Second />} />
           <Route path="/starttcsnqt" element={<TCSNQT />} />
           <Route path="/findsmallest" element={<FindSmallestElement />} />
         </Route>
+        {isUserLogin ? (
+          <Route element={<CreateBlogLayout />}>
+            <Route path="/addblogs" element={<Addblogs />} />
+            <Route path="/all-blogs" element={<AllBlogs />} />
+            <Route path="/edit-blog/:blogId" element={<EditBlog />} />
+          </Route>
+        ) : (
+          <Route path="*" element={<NotFound />} />
 
-        <Route element={<CreateBlogLayout />}>
-          <Route path="/addblogs" element={<Addblogs />} />
-          <Route path="/all-blogs" element={<AllBlogs />} />
-          <Route path="/edit-blog/:blogId" element={<EditBlog />} />
-        </Route>
+        )}
 
         {isAdmin ? (
           <Route element={<AdminLayout />}>
