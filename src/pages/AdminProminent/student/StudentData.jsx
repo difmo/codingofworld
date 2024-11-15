@@ -1,8 +1,8 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
+import { FaPencilAlt, FaTrashAlt, FaFilter } from "react-icons/fa";
 import { collection, getDocs, doc, deleteDoc, updateDoc } from "firebase/firestore";
 import { db } from "../../../firebase";
 import Modal from "./Model";
-import { FaPencilAlt, FaTrashAlt, FaFilter } from "react-icons/fa";
 
 const StudentData = () => {
   const [studentData, setStudentData] = useState([]);
@@ -25,10 +25,11 @@ const StudentData = () => {
   });
 
   const [dropdownOpen, setDropdownOpen] = useState(false); // State for dropdown visibility
+  const dropdownRef = useRef(null); // Reference for the dropdown container
 
   // Load column visibility from localStorage on mount
   useEffect(() => {
-    const savedVisibility = JSON.parse(localStorage.getItem('columnVisibility'));
+    const savedVisibility = JSON.parse(localStorage.getItem("columnVisibility"));
     if (savedVisibility) {
       setColumnVisibility(savedVisibility);
     }
@@ -38,11 +39,9 @@ const StudentData = () => {
         const querySnapshot = await getDocs(collection(db, "internships"));
         const data = querySnapshot.docs.map((doc) => {
           const docData = doc.data();
-
           if (docData.createdAt) {
             docData.createdAt = docData.createdAt.toDate().toLocaleDateString();
           }
-
           return { id: doc.id, ...docData };
         });
 
@@ -95,13 +94,31 @@ const StudentData = () => {
   const toggleColumnVisibility = (column) => {
     setColumnVisibility((prevVisibility) => {
       const newVisibility = { ...prevVisibility, [column]: !prevVisibility[column] };
-      
-      // Save the updated visibility state to localStorage
-      localStorage.setItem('columnVisibility', JSON.stringify(newVisibility));
-      
+      localStorage.setItem("columnVisibility", JSON.stringify(newVisibility));
       return newVisibility;
     });
   };
+
+  // Close dropdown if clicked outside
+  const handleClickOutside = (event) => {
+    if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+      setDropdownOpen(false); // Close dropdown if clicked outside
+    }
+  };
+
+  // Effect to handle outside clicks
+  useEffect(() => {
+    if (dropdownOpen) {
+      document.addEventListener("click", handleClickOutside);
+    } else {
+      document.removeEventListener("click", handleClickOutside);
+    }
+
+    // Cleanup on unmount or dropdown state change
+    return () => {
+      document.removeEventListener("click", handleClickOutside);
+    };
+  }, [dropdownOpen]);
 
   const handleDropdownToggle = () => {
     setDropdownOpen((prev) => !prev);
@@ -115,7 +132,7 @@ const StudentData = () => {
       <h2 className="text-4xl font-bold text-center">Student Internship Data</h2>
 
       {/* Dropdown for Column Visibility */}
-      <div className="relative inline-block py-3 text-left">
+      <div className="relative inline-block py-3 text-left" ref={dropdownRef}>
         <button
           type="button"
           className="inline-flex items-center justify-center text-gray-700 hover:text-gray-900 focus:outline-none"
@@ -125,7 +142,7 @@ const StudentData = () => {
           <span>Filter Columns</span>
         </button>
         {dropdownOpen && (
-          <div className="absolute right-0 w-48 mt-2 origin-top-right bg-white border border-gray-300 rounded-md shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
+          <div className="absolute w-48 mt-2 origin-top-right bg-white border border-gray-300 rounded-md shadow-lg -right-20 ring-1 ring-black ring-opacity-5 focus:outline-none">
             <div className="py-1">
               {Object.keys(columnVisibility).map((column) => (
                 <label key={column} className="block px-4 py-2 text-gray-700">
@@ -226,55 +243,32 @@ const StudentData = () => {
             >
               <div>
                 <label>Name:</label>
-                <input
-                  type="text"
-                  name="name"
-                  defaultValue={selectedStudent.name}
-                  required
-                />
+                <input type="text" name="name" defaultValue={selectedStudent.name} required />
               </div>
               <div>
                 <label>Email:</label>
-                <input
-                  type="email"
-                  name="email"
-                  defaultValue={selectedStudent.email}
-                  required
-                />
+                <input type="email" name="email" defaultValue={selectedStudent.email} required />
               </div>
               <div>
                 <label>College:</label>
-                <input
-                  type="text"
-                  name="college"
-                  defaultValue={selectedStudent.college}
-                />
+                <input type="text" name="college" defaultValue={selectedStudent.college} />
               </div>
               <div>
                 <label>Qualification:</label>
-                <input
-                  type="text"
-                  name="qualification"
-                  defaultValue={selectedStudent.qualification}
-                />
+                <input type="text" name="qualification" defaultValue={selectedStudent.qualification} />
               </div>
               <div>
                 <label>Internship Type:</label>
-                <input
-                  type="text"
-                  name="internshipType"
-                  defaultValue={selectedStudent.internshipType}
-                />
+                <input type="text" name="internshipType" defaultValue={selectedStudent.internshipType} />
               </div>
               <div>
                 <label>Mobile:</label>
-                <input
-                  type="text"
-                  name="mobile"
-                  defaultValue={selectedStudent.mobile}
-                />
+                <input type="text" name="mobile" defaultValue={selectedStudent.mobile} />
               </div>
-              <button type="submit" className="px-4 py-2 mt-4 text-white bg-blue-500 rounded-md">
+              <button
+                type="submit"
+                className="px-4 py-2 mt-4 text-white bg-blue-500 rounded-md"
+              >
                 Update Student
               </button>
             </form>

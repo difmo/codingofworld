@@ -1,8 +1,7 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import {
   FaTimes,
   FaUser,
-  FaEdit,
   FaBlog,
   FaSignOutAlt,
   FaPersonBooth,
@@ -17,8 +16,6 @@ import { db, auth } from "../../firebase";
 import Popupbloge from "../../pages/Popupbloge";
 import AdminController from "../../Controller/AdminController";
 
-
-
 const NavbarMenu = [
   { id: 1, title: "Home", path: "/" },
   { id: 2, title: "Our Courses", path: "/courses" },
@@ -32,16 +29,15 @@ const NavbarMenu = [
 const MainNavbar = () => {
   const [isMobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [showPopup, setShowPopup] = useState(false);
+  const [isOpen, setIsOpen] = useState(false);
+  const popupRef = useRef(null); // Ref for the popup container
   const navigate = useNavigate();
 
+  const { isAdmin, isUserLogin, blogPermission } = AdminController();
 
-   const {isAdmin,isUserLogin,blogPermission} = AdminController();
-
-    
   const toggleMobileMenu = () => {
     setMobileMenuOpen((prev) => !prev);
   };
-
 
   const handleLogout = async () => {
     try {
@@ -55,10 +51,30 @@ const MainNavbar = () => {
   const openPopup = () => setShowPopup(true);
   const closePopup = () => setShowPopup(false);
 
-  const [isOpen, setIsOpen] = useState(false);
   const toggleSidebar = () => {
     setIsOpen(!isOpen);
   };
+
+  const handleClickOutside = (event) => {
+    // Check if the clicked element is outside the popup container
+    if (popupRef.current && !popupRef.current.contains(event.target)) {
+      setShowPopup(false); // Close popup if clicked outside
+    }
+  };
+
+  // Effect to handle outside clicks for the popup
+  useEffect(() => {
+    if (showPopup) {
+      document.addEventListener("click", handleClickOutside);
+    } else {
+      document.removeEventListener("click", handleClickOutside);
+    }
+
+    // Cleanup on unmount or popup state change
+    return () => {
+      document.removeEventListener("click", handleClickOutside);
+    };
+  }, [showPopup]);
 
   return (
     <nav className="sticky top-0 z-20 w-full bg-white shadow-sm">
@@ -114,7 +130,7 @@ const MainNavbar = () => {
                     <FaTimes />
                   </button>
                   <ul className="p-4 space-y-4">
-                      {isAdmin && (
+                    {isAdmin && (
                       <li>
                         <div className="flex items-center text-gray-700 cursor-pointer hover:text-blue-600">
                           <FaPersonBooth className="mr-3" />
@@ -231,12 +247,12 @@ const MainNavbar = () => {
                     >
                       <FaBlog className="mr-3" />
                       {blogPermission == false ? (
-                          <span>Create Blogs</span>
-                        ) : (
-                          <span onClick={() => navigate("/all-blogs")}>
-                            Your Blogs
-                          </span>
-                        )}
+                        <span>Create Blogs</span>
+                      ) : (
+                        <span onClick={() => navigate("/all-blogs")}>
+                          Your Blogs
+                        </span>
+                      )}
                     </div>
                   </li>
 
@@ -260,8 +276,9 @@ const MainNavbar = () => {
       {showPopup && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-gray-800 bg-opacity-50">
           <div
-            className="w-full max-w-md p-6 bg-white rounded-lg shadow-lg"
-            onClick={(e) => e.stopPropagation()}
+            ref={popupRef} // Attach the ref to the popup container
+            className="w-full max-w-md p-6 bg-white rounded-lg shadow-lg popup-container"
+            onClick={(e) => e.stopPropagation()} // Prevent closing popup if clicked inside
           >
             <button
               onClick={closePopup}
