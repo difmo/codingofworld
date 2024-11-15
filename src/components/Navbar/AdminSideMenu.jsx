@@ -5,7 +5,7 @@ import AdminController from "../../Controller/AdminController";
 
 const AdminSidebar = ({ toggleSidebar }) => {
   const navigate = useNavigate();
-  const {isAdmin,isUserLogin,blogPermission} = AdminController();
+  const {isAdmin} = AdminController();
  if(!isAdmin) 
  {
   return "Not Found"; 

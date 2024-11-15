@@ -34,61 +34,10 @@ import CreateBlogLayout from "./pages/Layout/CreateBlogLayout";
 import Popupbloge from "./pages/Popupbloge";
 import StudentSidebarLayout from "./pages/Layout/StudentSidebarLayout";
 import AdminBlogPage from "./pages/AdminProminent/AdminblogPage";
-
-import { db, auth } from "./firebase";
-import { collection, doc, getDoc, getDocs, query, where } from "firebase/firestore";
-
+import AdminController from "./Controller/AdminController";
 
 const App = () => {
-  const [isAdmin, setIsAdmin] = useState(false);  // State to hold the admin status
-  const [isUserLogin, setIsUserLogin] = useState(null);
-
-
-  useEffect(() => {
-    const unsubscribe = auth.onAuthStateChanged((user) => {
-      if (user) {
-        if (user.emailVerified) {
-          setIsUserLogin(user);
-          fetchUserRole(user.uid);  // Fetch user role after login
-        } else {
-          console.log("Email is not verified yet");
-        }
-      } else {
-        setIsUserLogin(null);
-        setIsAdmin(false);
-        console.log("User is not logged in");
-      }
-    });
-
-    return () => unsubscribe();
-  }, []);
-
-  
-  const fetchUserRole = async (uid) => {
-    try {
-      const userQuery = query(collection(db, 'users'), where('uid', '==', uid));
-      const querySnapshot = await getDocs(userQuery);
-
-      if (!querySnapshot.empty) {
-        querySnapshot.forEach((doc) => {
-          const userData = doc.data();
-          if (userData.whoIs === "isAdmin") {
-            setIsAdmin(true);
-          } else {
-            setIsAdmin(false);
-          }
-        });
-      } else {
-        console.log("No user found with this UID");
-        setIsAdmin(false);
-      }
-    } catch (error) {
-      console.error("Error fetching user role:", error);
-    }
-  };
-
-
-
+  const { isAdmin } = AdminController();
 
   return (
     <Router>
@@ -128,16 +77,21 @@ const App = () => {
           <Route path="/edit-blog/:blogId" element={<EditBlog />} />
         </Route>
 
-  
-        <Route element={<AdminLayout />}>
-          <Route path="/admin-dashboard" element={<AdminDashboard />} />
-          <Route path="/admin/internship" element={<StudentData />} />
-          <Route path="/admin/client-contact" element={<ClientContactPage />} />
-          <Route path="/admin/blog" element={<AdminBlogPage />} />
-          <Route path="/admin/login-users" element={<LoginUsersAdmin />} />
-          <Route path="/admin/edit-student/:id" element={<StudentData />} />
-        </Route>
-
+        {isAdmin ? (
+          <Route element={<AdminLayout />}>
+            <Route path="/admin-dashboard" element={<AdminDashboard />} />
+            <Route path="/admin/internship" element={<StudentData />} />
+            <Route
+              path="/admin/client-contact"
+              element={<ClientContactPage />}
+            />
+            <Route path="/admin/blog" element={<AdminBlogPage />} />
+            <Route path="/admin/login-users" element={<LoginUsersAdmin />} />
+            <Route path="/admin/edit-student/:id" element={<StudentData />} />
+          </Route>
+        ) : (
+          <Route path="*" element={<NotFound />} />
+        )}
         <Route path="/dummy" element={<Dummy />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
