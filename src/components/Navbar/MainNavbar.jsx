@@ -17,15 +17,7 @@ import { db, auth } from "../../firebase";
 import Popupbloge from "../../pages/Popupbloge";
 import AdminController from "../../Controller/AdminController";
 
-import {
-  collection,
-  doc,
-  getDoc,
-  getDocs,
-  query,
-  where,
-} from "firebase/firestore";
-import AuthController from "../../Controller/AuthController";
+
 
 const NavbarMenu = [
   { id: 1, title: "Home", path: "/" },
@@ -44,13 +36,13 @@ const MainNavbar = () => {
 
 
    const {isAdmin,isUserLogin,blogPermission} = AdminController();
-    console.log(isUserLogin);
+
+    
   const toggleMobileMenu = () => {
     setMobileMenuOpen((prev) => !prev);
   };
 
 
-  // Handle logout
   const handleLogout = async () => {
     try {
       await auth.signOut();
@@ -60,11 +52,9 @@ const MainNavbar = () => {
     }
   };
 
-  // Open and close popup
   const openPopup = () => setShowPopup(true);
   const closePopup = () => setShowPopup(false);
 
-  // Toggle Sidebar menu visibility
   const [isOpen, setIsOpen] = useState(false);
   const toggleSidebar = () => {
     setIsOpen(!isOpen);
@@ -77,7 +67,6 @@ const MainNavbar = () => {
         animate={{ opacity: 1, y: 0 }}
         className="container flex items-center justify-between py-5 mx-auto"
       >
-        {/* Logo section */}
         <div className="flex items-center justify-center">
           <img src={logo} className="h-10 " />
           <div>
@@ -100,7 +89,7 @@ const MainNavbar = () => {
                 </Link>
               </li>
             ))}
-            {isUserLogin === null ? (
+            {!isUserLogin ? (
               <button
                 onClick={() => navigate("/signupscreen")}
                 className="primary-btn"

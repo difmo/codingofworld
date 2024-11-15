@@ -1,10 +1,12 @@
 import React from "react";
 import logo from "../../assets/images/logo.svg";
 import {useNavigate } from "react-router-dom";
+import AuthController from "../../Controller/AuthController";
 
 const AdminSidebar = ({ toggleSidebar }) => {
   const navigate = useNavigate();
-
+ const {isAdmin} = AuthController();  
+ if(!isAdmin) return;
   return (
     <div className="w-64 h-screen p-4 space-y-6 text-white border-r bg-[#ffffff]">
       <div className="flex flex-col w-full p-2 border rounded-lg">

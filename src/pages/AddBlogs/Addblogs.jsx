@@ -8,6 +8,7 @@ import { doc, setDoc, getDoc, updateDoc } from "firebase/firestore";
 import { v4 as uuidv4 } from "uuid";
 import { db, auth } from '../../firebase';
 import { getStorage, ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
+import AdminController from "../../Controller/AdminController";
 
 const AddBlogs = () => {
   const navigate = useNavigate();
@@ -19,7 +20,7 @@ const AddBlogs = () => {
   const [image, setImage] = useState(null); 
   const [fields, setFields] = useState([]);
   const [loading, setLoading] = useState(false);
-
+  const {bloggerName} = AdminController();
   useEffect(() => {
     if (blogId) {
       setLoading(true);
@@ -83,7 +84,6 @@ const AddBlogs = () => {
       uploadTask.on(
         "state_changed",
         (snapshot) => {
-          // Optionally show upload progress here
         },
         (error) => reject(error),
         () => {
@@ -114,6 +114,7 @@ const AddBlogs = () => {
         image: imageUrl,
         fields,
         userId,
+        bloggerName,
         createdAt: new Date(),
       };
 

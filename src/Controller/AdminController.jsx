@@ -60,6 +60,6 @@ const AdminController = () => {
     }
   };
 
-  return { isAdmin,isUserLogin,blogPermission };
+  return { isAdmin,isUserLogin,blogPermission,bloggerName };
 };
 export default AdminController;
