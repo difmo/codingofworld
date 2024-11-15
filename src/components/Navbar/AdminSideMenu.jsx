@@ -1,16 +1,10 @@
 import React from "react";
 import logo from "../../assets/images/logo.svg";
 import {useNavigate } from "react-router-dom";
-import AdminController from "../../Controller/AdminController";
 
 const AdminSidebar = ({ toggleSidebar }) => {
   const navigate = useNavigate();
-  const {isAdmin} = AdminController();
- if(!isAdmin) 
- {
-  return "Not Found"; 
 
- }
   return (
     <div className="w-64 h-screen p-4 space-y-6 text-white border-r bg-[#ffffff]">
       <div className="flex flex-col w-full p-2 border rounded-lg">

@@ -4,7 +4,6 @@ import { collection, getDocs } from 'firebase/firestore';
 import { AiOutlineShoppingCart, AiOutlineUser, AiOutlineAppstoreAdd, AiOutlineFileText } from 'react-icons/ai';
 import { Bar, Pie } from 'react-chartjs-2';
 import { Chart as ChartJS, CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend, ArcElement } from 'chart.js';
-import AdminController from '../../../Controller/AdminController';
 
 ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend, ArcElement);
 
@@ -15,10 +14,8 @@ const AdminDashboard = () => {
   const [totalContacts, setTotalContacts] = useState(0);
 
      
-  const {isAdmin,isUserLogin,blogPermission} = AdminController();
 
 
-  console.log("adminDashboard",isAdmin);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -73,10 +70,7 @@ const AdminDashboard = () => {
       },
     ],
   };
-  if(!isAdmin)
-    {
-      return "No permission you have for this page"
-    }
+
   
   return (
     <div className="min-h-screen p-6 bg-gray-100">
