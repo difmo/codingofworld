@@ -39,15 +39,15 @@ const NavbarMenu = [
 
 const MainNavbar = () => {
   const [isMobileMenuOpen, setMobileMenuOpen] = useState(false);
-  // const [isUserLogin, setIsUserLogin] = useState(null);
-  // const [isAdmin, setIsAdmin] = useState(false);
+  const [isUserLogin, setIsUserLogin] = useState(null);
+  const [isAdmin, setIsAdmin] = useState(false);
   const [showPopup, setShowPopup] = useState(false);
   const [blogPermission, setBlogPermission] = useState(false);
   const navigate = useNavigate();
 
 
-   const {isAdmin,isUserLogin} = AdminController();
-   const {isUserLoginn} = AuthController();
+  //  const {isAdmin,isUserLogin} = AdminController();
+  //  const {isUserLoginn} = AuthController();
   // Toggle mobile menu
   // console.log("ggggggggggg",!isUserLogin);
   // console.log("isAdmindfdfd",isAd  minn);
@@ -55,53 +55,53 @@ const MainNavbar = () => {
     setMobileMenuOpen((prev) => !prev);
   };
 
-  // useEffect(()   => {
-  //   const unsubscribe = auth.onAuthStateChanged((user) => {
-  //     if (user) {
-  //       if (user.emailVerified) {
-  //         setIsUserLogin(user);
-  //         fetchUserRole(user.uid);
-  //       } else {
-  //         console.log("Email is not verified yet");
-  //       }
-  //     } else {
-  //       setIsUserLogin(null);
-  //       setIsAdmin(false);
-  //       console.log("User is not logged in");
-  //     }
-  //   });
+  useEffect(()   => {
+    const unsubscribe = auth.onAuthStateChanged((user) => {
+      if (user) {
+        if (user.emailVerified) {
+          setIsUserLogin(user);
+          fetchUserRole(user.uid);
+        } else {
+          console.log("Email is not verified yet");
+        }
+      } else {
+        setIsUserLogin(null);
+        setIsAdmin(false);
+        console.log("User is not logged in");
+      }
+    });
 
-  //   return () => unsubscribe();
-  // }, []);
+    return () => unsubscribe();
+  }, []);
 
-  // const fetchUserRole = async (uid) => {
-  //   try {
-  //     const userQuery = query(collection(db, "users"), where("uid", "==", uid));
-  //     const querySnapshot = await getDocs(userQuery);
+  const fetchUserRole = async (uid) => {
+    try {
+      const userQuery = query(collection(db, "users"), where("uid", "==", uid));
+      const querySnapshot = await getDocs(userQuery);
 
-  //     if (!querySnapshot.empty) {
-  //       querySnapshot.forEach((doc) => {
-  //         const userData = doc.data();
-  //         if (userData.whoIs === "isAdmin") {
-  //           setIsAdmin(true);
-  //         } else {
-  //           setIsAdmin(false);
-  //         }
-  //         if (userData.isCreatePermission == true) {
-  //           setBlogPermission(true);
-  //         } else {
-  //           setBlogPermission(false);
-  //         } 
-  //         console.log("blogpermission", blogPermission);
-  //       });
-  //     } else {
-  //       console.log("No user found with this UID");
-  //       setIsAdmin(false);
-  //     }
-  //   } catch (error) {
-  //     console.error("Error fetching user role:", error);
-  //   }
-  // };
+      if (!querySnapshot.empty) {
+        querySnapshot.forEach((doc) => {
+          const userData = doc.data();
+          if (userData.whoIs === "isAdmin") {
+            setIsAdmin(true);
+          } else {
+            setIsAdmin(false);
+          }
+          if (userData.isCreatePermission == true) {
+            setBlogPermission(true);
+          } else {
+            setBlogPermission(false);
+          } 
+          console.log("blogpermission", blogPermission);
+        });
+      } else {
+        console.log("No user found with this UID");
+        setIsAdmin(false);
+      }
+    } catch (error) {
+      console.error("Error fetching user role:", error);
+    }
+  };
 
   // Handle logout
   const handleLogout = async () => {
