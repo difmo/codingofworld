@@ -1,5 +1,12 @@
 import React, { useEffect, useState } from "react";
-import { FaTimes, FaUser, FaEdit, FaBlog, FaSignOutAlt, FaPersonBooth } from "react-icons/fa";
+import {
+  FaTimes,
+  FaUser,
+  FaEdit,
+  FaBlog,
+  FaSignOutAlt,
+  FaPersonBooth,
+} from "react-icons/fa";
 import { IoMdMenu } from "react-icons/io";
 import { motion, AnimatePresence } from "framer-motion";
 import { Link } from "react-router-dom";
@@ -8,11 +15,21 @@ import logo from "../../assets/images/logo.svg";
 import "firebase/auth";
 import { db, auth } from "../../firebase";
 import Popupbloge from "../../pages/Popupbloge";
-import { collection, doc, getDoc, getDocs, query, where } from "firebase/firestore";
+import AdminController from "../../Controller/AdminController";
+
+import {
+  collection,
+  doc,
+  getDoc,
+  getDocs,
+  query,
+  where,
+} from "firebase/firestore";
+import AuthController from "../../Controller/AuthController";
 
 const NavbarMenu = [
   { id: 1, title: "Home", path: "/" },
-  { id: 2, title: "Our Courses", path: "/courses" },  
+  { id: 2, title: "Our Courses", path: "/courses" },
   { id: 3, title: "About Us", path: "/about" },
   { id: 4, title: "Our Training Team", path: "/trainingteam" },
   { id: 6, title: "Contact Us", path: "/contactus" },
@@ -22,58 +39,69 @@ const NavbarMenu = [
 
 const MainNavbar = () => {
   const [isMobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const [isUserLogin, setIsUserLogin] = useState(null);
-  const [isAdmin, setIsAdmin] = useState(false);  // State to hold the admin status
+  // const [isUserLogin, setIsUserLogin] = useState(null);
+  // const [isAdmin, setIsAdmin] = useState(false);
   const [showPopup, setShowPopup] = useState(false);
+  const [blogPermission, setBlogPermission] = useState(false);
   const navigate = useNavigate();
 
+
+   const {isAdmin,isUserLogin} = AdminController();
+   const {isUserLoginn} = AuthController();
   // Toggle mobile menu
+  // console.log("ggggggggggg",!isUserLogin);
+  // console.log("isAdmindfdfd",isAd  minn);
   const toggleMobileMenu = () => {
     setMobileMenuOpen((prev) => !prev);
   };
 
-  // Handle user login and role fetching
-  useEffect(() => {
-    const unsubscribe = auth.onAuthStateChanged((user) => {
-      if (user) {
-        if (user.emailVerified) {
-          setIsUserLogin(user);
-          fetchUserRole(user.uid);  // Fetch user role after login
-        } else {
-          console.log("Email is not verified yet");
-        }
-      } else {
-        setIsUserLogin(null);
-        setIsAdmin(false);
-        console.log("User is not logged in");
-      }
-    });
+  // useEffect(()   => {
+  //   const unsubscribe = auth.onAuthStateChanged((user) => {
+  //     if (user) {
+  //       if (user.emailVerified) {
+  //         setIsUserLogin(user);
+  //         fetchUserRole(user.uid);
+  //       } else {
+  //         console.log("Email is not verified yet");
+  //       }
+  //     } else {
+  //       setIsUserLogin(null);
+  //       setIsAdmin(false);
+  //       console.log("User is not logged in");
+  //     }
+  //   });
 
-    return () => unsubscribe();
-  }, []);
+  //   return () => unsubscribe();
+  // }, []);
 
-  const fetchUserRole = async (uid) => {
-    try {
-      const userQuery = query(collection(db, 'users'), where('uid', '==', uid));
-      const querySnapshot = await getDocs(userQuery);
+  // const fetchUserRole = async (uid) => {
+  //   try {
+  //     const userQuery = query(collection(db, "users"), where("uid", "==", uid));
+  //     const querySnapshot = await getDocs(userQuery);
 
-      if (!querySnapshot.empty) {
-        querySnapshot.forEach((doc) => {
-          const userData = doc.data();
-          if (userData.whoIs === "isAdmin") {
-            setIsAdmin(true);
-          } else {
-            setIsAdmin(false);
-          }
-        });
-      } else {
-        console.log("No user found with this UID");
-        setIsAdmin(false);
-      }
-    } catch (error) {
-      console.error("Error fetching user role:", error);
-    }
-  };
+  //     if (!querySnapshot.empty) {
+  //       querySnapshot.forEach((doc) => {
+  //         const userData = doc.data();
+  //         if (userData.whoIs === "isAdmin") {
+  //           setIsAdmin(true);
+  //         } else {
+  //           setIsAdmin(false);
+  //         }
+  //         if (userData.isCreatePermission == true) {
+  //           setBlogPermission(true);
+  //         } else {
+  //           setBlogPermission(false);
+  //         } 
+  //         console.log("blogpermission", blogPermission);
+  //       });
+  //     } else {
+  //       console.log("No user found with this UID");
+  //       setIsAdmin(false);
+  //     }
+  //   } catch (error) {
+  //     console.error("Error fetching user role:", error);
+  //   }
+  // };
 
   // Handle logout
   const handleLogout = async () => {
@@ -150,25 +178,30 @@ const MainNavbar = () => {
                     <FaTimes />
                   </button>
                   <ul className="p-4 space-y-4">
-                    {/* Only show Admin link if user is an Admin */}
-                    {isAdmin && (
+                      {isAdmin && (
                       <li>
-                        <div
-                          className="flex items-center text-gray-700 cursor-pointer hover:text-blue-600"
-                        >
+                        <div className="flex items-center text-gray-700 cursor-pointer hover:text-blue-600">
                           <FaPersonBooth className="mr-3" />
-                          <span onClick={() => navigate("/admin-dashboard")}>Admin</span>
+                          <span onClick={() => navigate("/admin-dashboard")}>
+                            Admin
+                          </span>
                         </div>
                       </li>
                     )}
 
                     <li>
                       <div
-                        onClick={openPopup} 
+                        onClick={openPopup}
                         className="flex items-center text-gray-700 cursor-pointer hover:text-blue-600"
                       >
                         <FaBlog className="mr-3" />
-                        <span>Create Blogs</span>
+                        {blogPermission == false ? (
+                          <span>Create Blogs</span>
+                        ) : (
+                          <span onClick={() => navigate("/all-blogs")}>
+                            Your Blogs
+                          </span>
+                        )}
                       </div>
                     </li>
 
@@ -212,72 +245,71 @@ const MainNavbar = () => {
                   <Link
                     to={menu.path}
                     className="block py-2 hover:text-secondary"
-                    onClick={() => setMobileMenuOpen(false)} 
+                    onClick={() => setMobileMenuOpen(false)}
                   >
                     {menu.title}
                   </Link>
                 </li>
               ))}
-               {isUserLogin === null ? (
-              <button
-                onClick={() => navigate("/signupscreen")}
-                className="primary-btn"
-              >
-                Sign In
-              </button>
-            ) : (
-              <button
-                onClick={toggleSidebar}
-                className="w-10 p-3 text-center text-white rounded-full bg-primary hover:bg-primary/70"
-              >
-                <FaUser /> 
-              </button>
-            )}
-              
+              {isUserLogin === null ? (
+                <button
+                  onClick={() => navigate("/signupscreen")}
+                  className="primary-btn"
+                >
+                  Sign In
+                </button>
+              ) : (
+                <button
+                  onClick={toggleSidebar}
+                  className="w-10 p-3 text-center text-white rounded-full bg-primary hover:bg-primary/70"
+                >
+                  <FaUser />
+                </button>
+              )}
             </ul>
             {isOpen && (
-                <div className="absolute w-64 bg-white border-2 rounded-lg shadow-md top-16 right-5">
-                  <button
-                    onClick={toggleSidebar}
-                    className="absolute p-2 text-gray-600 top-2 right-2 hover:text-gray-800"
-                  >
-                    <FaTimes />
-                  </button>
-                  <ul className="p-4 space-y-4">
-                    {/* Only show Admin link if user is an Admin */}
-                    {isAdmin && (
-                      <li>
-                        <div
-                          className="flex items-center text-gray-700 cursor-pointer hover:text-blue-600"
-                        >
-                          <FaPersonBooth className="mr-3" />
-                          <span onClick={() => navigate("/admin-dashboard")}>Admin</span>
-                        </div>
-                      </li>
-                    )}
-
+              <div className="absolute w-64 bg-white border-2 rounded-lg shadow-md top-16 right-5">
+                <button
+                  onClick={toggleSidebar}
+                  className="absolute p-2 text-gray-600 top-2 right-2 hover:text-gray-800"
+                >
+                  <FaTimes />
+                </button>
+                <ul className="p-4 space-y-4">
+                  {/* Only show Admin link if user is an Admin */}
+                  {isAdmin && (
                     <li>
-                      <div
-                        onClick={openPopup} 
-                        className="flex items-center text-gray-700 cursor-pointer hover:text-blue-600"
-                      >
-                        <FaBlog className="mr-3" />
-                        <span>Create Blogs</span>
+                      <div className="flex items-center text-gray-700 cursor-pointer hover:text-blue-600">
+                        <FaPersonBooth className="mr-3" />
+                        <span onClick={() => navigate("/admin-dashboard")}>
+                          Admin
+                        </span>
                       </div>
                     </li>
+                  )}
 
-                    <li>
-                      <a
-                        href="#"
-                        className="flex items-center text-gray-700 hover:text-blue-600"
-                      >
-                        <FaSignOutAlt className="mr-3" />
-                        <span onClick={handleLogout}>Logout</span>
-                      </a>
-                    </li>
-                  </ul>
-                </div>
-              )}
+                  <li>
+                    <div
+                      onClick={openPopup}
+                      className="flex items-center text-gray-700 cursor-pointer hover:text-blue-600"
+                    >
+                      <FaBlog className="mr-3" />
+                      <span>Create Blogs</span>
+                    </div>
+                  </li>
+
+                  <li>
+                    <a
+                      href="#"
+                      className="flex items-center text-gray-700 hover:text-blue-600"
+                    >
+                      <FaSignOutAlt className="mr-3" />
+                      <span onClick={handleLogout}>Logout</span>
+                    </a>
+                  </li>
+                </ul>
+              </div>
+            )}
           </motion.div>
         )}
       </AnimatePresence>
@@ -287,7 +319,7 @@ const MainNavbar = () => {
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-gray-800 bg-opacity-50">
           <div
             className="w-full max-w-md p-6 bg-white rounded-lg shadow-lg"
-            onClick={(e) => e.stopPropagation()} 
+            onClick={(e) => e.stopPropagation()}
           >
             <button
               onClick={closePopup}

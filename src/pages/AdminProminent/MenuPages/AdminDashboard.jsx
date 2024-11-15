@@ -1,11 +1,10 @@
 import React, { useEffect, useState } from 'react';
-import { db } from '../../../firebase'; // Firebase configuration and db export
+import { db } from '../../../firebase'; 
 import { collection, getDocs } from 'firebase/firestore';
 import { AiOutlineShoppingCart, AiOutlineUser, AiOutlineAppstoreAdd, AiOutlineFileText } from 'react-icons/ai';
 import { Bar, Pie } from 'react-chartjs-2';
 import { Chart as ChartJS, CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend, ArcElement } from 'chart.js';
 
-// Register Chart.js components
 ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend, ArcElement);
 
 const AdminDashboard = () => {
@@ -13,27 +12,39 @@ const AdminDashboard = () => {
   const [totalUsers, setTotalUsers] = useState(0);
   const [totalInterns, setTotalInterns] = useState(0);
   const [totalContacts, setTotalContacts] = useState(0);
+  const [isAdmin, setIsAdmin] = useState(false);
 
-  // Fetch data from Firestore
+     
+  useEffect(()=>{
+       const fetchIsAdmin = () =>
+       {
+        try{
+
+        }
+        catch(e)
+        {
+          console.log(e);
+        }
+       }
+  },[]);
+
+
+
   useEffect(() => {
     const fetchData = async () => {
       try {
-        // Get Blogs data
         const blogsCollection = collection(db, 'blogs');
         const blogsSnapshot = await getDocs(blogsCollection);
         setTotalBlogs(blogsSnapshot.size); // Size of the collection is the total count of blogs
 
-        // Get Users data
         const usersCollection = collection(db, 'users');
         const usersSnapshot = await getDocs(usersCollection);
         setTotalUsers(usersSnapshot.size); // Size of the collection is the total count of users
 
-        // Get Interns data
         const internsCollection = collection(db, 'internships'); // Collection for Interns
         const internsSnapshot = await getDocs(internsCollection);
         setTotalInterns(internsSnapshot.size); // Size of the collection is the total count of interns
 
-        // Get Contacts data
         const contactsCollection = collection(db, 'contacts');
         const contactsSnapshot = await getDocs(contactsCollection);
         setTotalContacts(contactsSnapshot.size); // Size of the collection is the total count of contacts
@@ -44,6 +55,7 @@ const AdminDashboard = () => {
 
     fetchData();
   }, []); // Empty array ensures this effect runs only once
+
 
   // Bar Chart Data
   const barData = {
