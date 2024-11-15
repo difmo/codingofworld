@@ -5,6 +5,9 @@ import { useEffect, useState } from "react";
 const AdminController = () => {
   const [isAdmin, setIsAdmin] = useState(false);
   const [isUserLogin, setIsUserLogin] = useState(null);
+  const [blogPermission, setBlogPermission] = useState(false);
+
+  const [bloggerName, setbloggerName] = useState();
 
   useEffect(() => {
     const unsubscribe = auth.onAuthStateChanged((user) => {
@@ -31,6 +34,15 @@ const AdminController = () => {
       if (!querySnapshot.empty) {
         querySnapshot.forEach((doc) => {
           const userData = doc.data();
+          if(userData.isCreatePermission == true)
+          {
+            setBlogPermission(true);
+          }
+          if(userData.name)
+          {
+            setbloggerName(userData.name);
+            console.log(userData.name);
+          }
           if(userData.whoIs == "isAdmin")
           {
             setIsAdmin(true);
@@ -48,6 +60,6 @@ const AdminController = () => {
     }
   };
 
-  return { isAdmin,isUserLogin };
+  return { isAdmin,isUserLogin,blogPermission };
 };
 export default AdminController;
