@@ -30,7 +30,7 @@ const MainNavbar = () => {
   const [isMobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [showPopup, setShowPopup] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
-  const popupRef = useRef(null); // Ref for the popup container
+  const popupRef = useRef(null);
   const navigate = useNavigate();
 
   const { isAdmin, isUserLogin, blogPermission } = AdminController();
@@ -203,7 +203,10 @@ const MainNavbar = () => {
               ))}
               {!isUserLogin ? (
                 <button
-                  onClick={() => navigate("/signupscreen")}
+                  onClick={() => {
+                    navigate("/signupscreen");
+                    setMobileMenuOpen(false);
+                  }}
                   className="primary-btn"
                 >
                   Sign In
@@ -270,13 +273,12 @@ const MainNavbar = () => {
         )}
       </AnimatePresence>
 
-      {/* Popup */}
       {showPopup && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-gray-800 bg-opacity-50">
           <div
-            ref={popupRef} // Attach the ref to the popup container
+            ref={popupRef}
             className="w-full max-w-md p-6 bg-white rounded-lg shadow-lg popup-container"
-            onClick={(e) => e.stopPropagation()} // Prevent closing popup if clicked inside
+            onClick={(e) => e.stopPropagation()}
           >
             <button
               onClick={closePopup}

@@ -90,7 +90,7 @@ const InternshipForm = () => {
   return (
     <section className="pt-8 mx-auto md:w-2/3 lg:w-1/2">
       <motion.h2
-        className="text-3xl font-semibold text-center text-red-700 mb-8"
+        className="mb-8 text-3xl font-semibold text-center text-red-700"
         initial={{ opacity: 0, y: -20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6 }}
@@ -99,44 +99,13 @@ const InternshipForm = () => {
       </motion.h2>
 
       {isLoading ? (
-        <div className="flex flex-col items-center justify-center text-center space-y-4 p-8 bg-gray-100 rounded-md shadow-lg">
-          <motion.div
-            className="flex items-center justify-center w-16 h-16 rounded-full border-t-4 border-red-500 border-opacity-75 animate-spin"
-            initial={{ scale: 0 }}
-            animate={{ scale: 1 }}
-            transition={{ duration: 0.5 }}
-          >
-            <svg
-              className="w-10 h-10 text-red-500"
-              fill="none"
-              viewBox="0 0 24 24"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z"
-                stroke="currentColor"
-                strokeWidth="2"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              />
-            </svg>
-          </motion.div>
-          <motion.h3
-            className="text-2xl font-semibold text-gray-700"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 0.3 }}
-          >
-            Submitting Your Application...
-          </motion.h3>
-          <p className="text-gray-500">Please wait while we process your data.</p>
-        </div>
+      <Loader/>
       ) : (
         <>
           {showPopup && (
-            <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-60 z-50">
+            <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-60">
               <motion.div
-                className="bg-white p-8 rounded-lg shadow-lg text-center max-w-md mx-auto space-y-6"
+                className="max-w-md p-8 mx-auto space-y-6 text-center bg-white rounded-lg shadow-lg"
                 initial={{ opacity: 0, scale: 0.8 }}
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ duration: 0.5 }}
@@ -177,7 +146,7 @@ const InternshipForm = () => {
 
                 <motion.button
                   onClick={() => setShowPopup(false)}
-                  className="mt-4 bg-red-500 text-white px-5 py-2 rounded-full shadow-md hover:bg-red-400 transition"
+                  className="px-5 py-2 mt-4 text-white transition bg-red-500 rounded-full shadow-md hover:bg-red-400"
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
                   transition={{ delay: 0.3 }}
@@ -191,7 +160,7 @@ const InternshipForm = () => {
 
           <motion.form
             onSubmit={handleSubmit}
-            className="p-8 bg-white rounded-lg shadow-md space-y-6"
+            className="p-8 space-y-6 bg-white rounded-lg shadow-md"
             initial={{ opacity: 0, scale: 0.95 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.5 }}
@@ -211,10 +180,10 @@ const InternshipForm = () => {
                   name={name}
                   value={formData[name]}
                   onChange={handleChange}
-                  className="w-full border border-gray-300 p-2 rounded focus:outline-none"
+                  className="w-full p-2 border border-gray-300 rounded focus:outline-none"
                   placeholder={`Enter your ${label.toLowerCase()}`}
                 />
-                {error && <p className="text-red-500 text-sm">{error}</p>}
+                {error && <p className="text-sm text-red-500">{error}</p>}
               </div>
             ))}
 
@@ -226,14 +195,14 @@ const InternshipForm = () => {
                 name="qualification"
                 value={formData.qualification}
                 onChange={handleChange}
-                className="w-full border border-gray-300 p-2 rounded appearance-none focus:outline-none"
+                className="w-full p-2 border border-gray-300 rounded appearance-none focus:outline-none"
               >
                 <option value="">Select an option</option>
                 <option value="Diploma">Diploma</option>
                 <option value="B.Tech">B.Tech</option>
                 <option value="Others">Others</option>
               </select>
-              {errors.qualification && <p className="text-red-500 text-sm">{errors.qualification}</p>}
+              {errors.qualification && <p className="text-sm text-red-500">{errors.qualification}</p>}
             </div>
 
             <div className="space-y-1">
@@ -244,14 +213,14 @@ const InternshipForm = () => {
                 name="internshipType"
                 value={formData.internshipType}
                 onChange={handleChange}
-                className="w-full border border-gray-300 p-2 rounded appearance-none focus:outline-none"
+                className="w-full p-2 border border-gray-300 rounded appearance-none focus:outline-none"
               >
                 <option value="">Select</option>
                 {internshipPrograms.map((prog, idx) => (
                   <option key={idx} value={prog}>{prog}</option>
                 ))}
               </select>
-              {errors.internshipType && <p className="text-red-500 text-sm">{errors.internshipType}</p>}
+              {errors.internshipType && <p className="text-sm text-red-500">{errors.internshipType}</p>}
             </div>
 
             <div className="space-y-1">
@@ -261,13 +230,13 @@ const InternshipForm = () => {
                 name="resume"
                 onChange={handleChange}
                 accept="application/pdf, application/msword, image/*"
-                className="w-full border border-gray-300 p-2 rounded focus:outline-none"
+                className="w-full p-2 border border-gray-300 rounded focus:outline-none"
               />
             </div>
 
             <button
               type="submit"
-              className="w-full py-2 bg-red-500 text-white rounded hover:bg-red-600 transition"
+              className="w-full py-2 text-white transition bg-red-500 rounded hover:bg-red-600"
             >
               Register
             </button>

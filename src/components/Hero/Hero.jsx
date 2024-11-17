@@ -7,6 +7,7 @@ import HeroPng3 from "../../assets/headerimg/webdev.svg";
 import { animate, motion } from "framer-motion";
 import { useNavigate } from "react-router-dom";
 import EventModel from "../Events/EventModel";
+import EventForm from "../Events/EventForm";
 
 export const FadeUp = (delay) => {
   return {
@@ -30,6 +31,8 @@ export const FadeUp = (delay) => {
 
 const Hero = () => {
   const [currentImage, setCurrentImage] = useState(0);
+  const [isModalOpen, setIsModalOpen] = useState(false); // State to control modal visibility
+
   const [currentTextIndex, setCurrentTextIndex] = useState(0);
   const navigate = useNavigate();
   const images = [HeroPng1, HeroPng2, HeroPng3];
@@ -49,6 +52,16 @@ const Hero = () => {
 
     return () => clearInterval(textInterval);
   }, [textOptions.length]);
+
+
+  const openModal = () => {
+    setIsModalOpen(true);
+  };
+
+  // Close modal function
+  const closeModal = () => {
+    setIsModalOpen(false);
+  };
   return (
     <section className="relative overflow-hidden bg-light">
       <div className=" container md:px-32 grid grid-cols-1 md:grid-cols-2 min-h-[650px]">
@@ -107,8 +120,12 @@ const Hero = () => {
       </div>
 
       <div className="absolute top-0 z-10 w-full"> 
-        <EventModel />
+        <EventModel onClick={openModal}  />
        </div>
+       <div className="absolute top-0 w-full">
+        {isModalOpen && <EventForm onClose={closeModal} />}
+      </div>
+    
     </section>
   );
 };
