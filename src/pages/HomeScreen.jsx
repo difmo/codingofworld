@@ -13,14 +13,14 @@ const HomeScreen = () => {
   return (
     <div>
       <Hero />
-      <AdComponent/>
+      <AdComponent />
       <Services />
       <Banner />
       <Subscribe />
       <Banner2 />
       <Features />
       <FAQ />
-      
+     
     </div>
   );
 };
