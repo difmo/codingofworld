@@ -19,7 +19,7 @@ const EventForm = ({ onClose }) => {
   // Handle form validation
   const validateForm = () => {
     if (!name || !email || !mobileNumber || !collegeName) {
-      setError("Please all fields carefully");
+      setError("Please fill all fields carefully");
       return false;
     }
     if (!/\S+@\S+\.\S+/.test(email)) {
