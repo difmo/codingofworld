@@ -6,14 +6,14 @@ import img from "../../assets/images/ourt.png";
 const Banner2 = () => {
   return (
     <section>
-      <div className="container py-14 md:py-24 grid grid-cols-1 md:grid-cols-2 gap-8 space-y-6 md:space-y-0">
+      <div className="container grid grid-cols-1 gap-8 py-14 md:py-24 md:grid-cols-2 md:space-y-0">
         {/* Banner Text */}
         <motion.div
           initial={{ opacity: 0, x: -50 }}
           whileInView={{ opacity: 1, x: 0 }}
           className="flex flex-col justify-center"
         >
-          <div className="text-center md:text-left space-y-4 lg:max-w-[500px]">
+          <div className="space-y-4 text-center md:text-left ">
             <h1 className="text-4xl font-bold !leading-snug">
               Join Our Community to Start your Journey
             </h1>
@@ -45,14 +45,15 @@ const Banner2 = () => {
             </a>
           </div>
         </motion.div>
-        {/* Banner Image */}
-        <div className="flex justify-center items-center">
+        <div className="flex items-center justify-center">
           <motion.img
             initial={{ opacity: 0, x: 50 }}
             whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true, amount: 0.2 }}
+            transition={{ duration: 0.8 }}
             src={img}
-            alt=""
-            className="w-[550px] md:w-[700px] object-cover  "
+            alt="Animated Image"
+            className="object-cover w-full h-full"
           />
         </div>
       </div>

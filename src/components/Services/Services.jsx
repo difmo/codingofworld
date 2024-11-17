@@ -72,28 +72,29 @@ const SlideLeft = (delay) => {
 const Services = () => {
   return (
     <section className="bg-white">
-      <div className="container pt-16 pb-14">
-        <h1 className="pb-10 text-4xl font-bold text-left">
-          Skill-Boosting Training for Your Success
-        </h1>
-        <div className="grid grid-cols-2 gap-8 sm:grid-cols-3 md:grid-cols-6">
-          {ServicesData.map((service) => (
-            <motion.div
-              variants={SlideLeft(service.delay)}
-              initial="initial"
-              whileInView={"animate"}
-              viewport={{ once: true }}
-              className="bg-[#f4f4f4] rounded-2xl flex flex-col gap-4 items-center justify-center p-4 py-7 hover:bg-white hover:scale-110 duration-300 hover:shadow-2xl"
-            >
-              <div className="mb-4 text-4xl"> {service.icon}</div>
-              <h1 className="px-3 text-lg font-semibold text-center">
-                {service.title}
-              </h1>
-            </motion.div>
-          ))}
-        </div>
+    <div className="container pt-16 pb-14">
+      <h1 className="pb-10 text-4xl font-bold text-left">
+        Skill-Boosting Training for Your Success
+      </h1>
+      <div className="grid grid-cols-2 gap-8 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6">
+        {ServicesData.map((service) => (
+          <motion.div
+            variants={SlideLeft(service.delay)}
+            initial="initial"
+            whileInView={"animate"}
+            viewport={{ once: true }}
+            className="bg-[#f4f4f4] rounded-2xl flex flex-col gap-4 items-center justify-center p-4 py-7 hover:bg-white hover:scale-105 duration-300 hover:shadow-2xl"
+          >
+            <div className="mb-4 text-4xl"> {service.icon}</div>
+            <h1 className="px-3 text-lg font-semibold text-center">
+              {service.title}
+            </h1>
+          </motion.div>
+        ))}
       </div>
-    </section>
+    </div>
+  </section>
+  
   );
 };
 

@@ -37,7 +37,6 @@ const InternshipsSection = () => {
                                 </div>
                             </div>
                             <img
-                                src="https://lh3.googleusercontent.com/S16VBbAJsdSohSo_KfzucG70IGH2qcEt_4MMZLseQQK7bXc2MC6wiJrXXcaMnU7IzCZzFz3seMInrKsR4AsCvRol75jCnsEDbwwKLxzW_1FfHatFnhc=w800"
                                 alt="Google interns"
                                 className="w-full h-auto mt-8 rounded-lg md:hidden"
                             />

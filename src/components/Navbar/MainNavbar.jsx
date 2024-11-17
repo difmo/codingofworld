@@ -56,13 +56,11 @@ const MainNavbar = () => {
   };
 
   const handleClickOutside = (event) => {
-    // Check if the clicked element is outside the popup container
     if (popupRef.current && !popupRef.current.contains(event.target)) {
       setShowPopup(false); // Close popup if clicked outside
     }
   };
 
-  // Effect to handle outside clicks for the popup
   useEffect(() => {
     if (showPopup) {
       document.addEventListener("click", handleClickOutside);
@@ -203,7 +201,7 @@ const MainNavbar = () => {
                   </Link>
                 </li>
               ))}
-              {isUserLogin === null ? (
+              {!isUserLogin ? (
                 <button
                   onClick={() => navigate("/signupscreen")}
                   className="primary-btn"

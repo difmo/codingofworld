@@ -53,19 +53,19 @@ const internships = [
 
 const Internships = () => {
   return (
-    <section className=" mx-auto p-6 ">
+    <section className="p-6 mx-auto ">
       <h2 className="text-2xl font-bold text-center">Browse our internships</h2>
-      <p className="text-center mb-6 relative  ">
+      <p className="relative mb-6 text-center ">
         The internships below are not exhaustive, and may or may not be
         currently available, but provide a taste of the various internships
         Google offers.
       </p>
 
-      <ul className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6  container    ">
+      <ul className="container grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 ">
         {internships.map((internship, index) => (
           <div
             key={index}
-            className="relative flex flex-col justify-evenly border rounded-lg overflow-hidden shadow-lg transition-transform transform hover:scale-105 group p-10 "
+            className="relative flex flex-col p-10 overflow-hidden transition-transform transform border rounded-lg shadow-lg justify-evenly hover:scale-105 group "
           >
             <h3 className="text-3xl font-semibold text-center">
               {internship.title}
@@ -78,17 +78,17 @@ const Internships = () => {
             >
               <div className="transition-opacity duration-300 ">
                 <img
-                  className="w-full h-28 object-cover my-2"
+                  className="object-cover w-full my-2 h-28"
                   src={internship.image}
                   alt={internship.title}
                   loading="lazy"
                 />
               </div>
-              <p className="text-center opacity-0  transition-opacity duration-300 absolute inset-0 flex items-center justify-center bg-white z-10 m-5">
+              <p className="absolute inset-0 z-10 flex items-center justify-center m-5 text-center transition-opacity duration-300 bg-white opacity-0">
                 {internship.description}
               </p>
             </a>
-            <div className="bg-primary text-center rounded-md p-2">
+            <div className="p-2 text-center rounded-md bg-primary">
               <span className="text-white">Learn more</span>
             </div>
           </div>

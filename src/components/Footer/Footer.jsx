@@ -19,7 +19,7 @@ const Footer = () => {
         whileInView={{ opacity: 1, y: 0 }}
         className="container"
       >
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12 md:gap-4">
+        <div className="grid grid-cols-1 gap-12 md:grid-cols-2 lg:grid-cols-3 md:gap-4">
           {/* first section */}
           <div className="space-y-4 max-w-[300px]">
             <h1 className="text-2xl font-bold">The Coding World Institute</h1>
@@ -110,9 +110,9 @@ const Footer = () => {
               <a href="https://www.facebook.com/difmotech" target="_blank">
                 <FaFacebook className="duration-200 cursor-pointer hover:text-primary hover:scale-105" />
               </a>
-              <a href="https://github.com/difmo" target="_blank">
+              {/* <a href="https://github.com/difmo" target="_blank">
                 <FaGit className="duration-200 cursor-pointer hover:text-primary hover:scale-105" />
-              </a>
+              </a> */}
             </div>
           </div>
         </div>

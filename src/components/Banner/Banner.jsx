@@ -10,9 +10,9 @@ import service from "../../assets/headerimg/1.svg";
 const Banner = () => {
   return (
     <section>
-      <div className="container py-14 md:py-24 grid grid-cols-1 md:grid-cols-2 gap-8 space-y-6 md:space-y-0">
+      <div className="container grid grid-cols-1 gap-8 space-y-6 py-14 md:py-24 md:grid-cols-2 md:space-y-0">
         {/* Banner Image */}
-        <div className="flex justify-center items-center">
+        <div className="flex items-center justify-center">
           <motion.img
             initial={{ opacity: 0, x: -50 }}
             whileInView={{ opacity: 1, x: 0 }}
@@ -20,12 +20,12 @@ const Banner = () => {
             transition={{ duration: 0.5, ease: "easeInOut" }}
             src={service}
             alt=""
-            className="w-[550px] md:max-w-[550px] object-cover "
+            className="object-cover w-full h-full "
           />
         </div>
         {/* Banner Text */}
         <div className="flex flex-col justify-center">
-          <div className="text-center md:text-left space-y-12">
+          <div className="space-y-12 text-center md:text-left">
             <motion.h1
               initial={{ opacity: 0, scale: 0.5 }}
               whileInView={{ opacity: 1, scale: 1 }}
