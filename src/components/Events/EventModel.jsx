@@ -1,16 +1,23 @@
-import React from 'react';
+import React from "react";
 
-const EventModel = ({onClick}) => {
+const EventModel = ({ onClick }) => {
   return (
     <div className="fixed w-full ">
-      <div className="w-full overflow-hidden">
-        <div className="flex animate-marquee">
-          <div className="text-xl text-black whitespace-nowrap">
-        Don't miss out on the chance to register for our exclusive Demo Class, happening on 20th November 2024 To 22th November 2024.   <span className='p-1 text-white border rounded-full cursor-pointer bg-primary' onClick={onClick}>Register now</span> This is your opportunity to get a hands-on introduction to our expert-led training sessions. <span className='p-1 text-white border rounded-full cursor-pointer bg-primary' onClick={onClick}>Register now</span>
-          </div>
-        
-        </div>
-      </div>
+<div className="w-full px-4 py-4 overflow-hidden md:px-6 lg:px-8">
+  <div className="flex flex-col items-center justify-between space-y-4 sm:flex-row sm:space-y-0 animate">
+    <div className="text-lg text-center text-black sm:text-xl whitespace-wrap sm:text-left">
+      Join our Demo Class, Nov 20–22, 2024, for a hands-on session with expert trainers.
+    </div>
+    <span
+      className="p-2 text-center text-white border rounded-full cursor-pointer bg-primary"
+      onClick={onClick}
+    >
+      Register now
+    </span>
+  </div>
+</div>
+
+
 
       <style jsx>{`
         /* Defining the scrolling animation */

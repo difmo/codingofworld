@@ -9,6 +9,7 @@ import FAQ from "./Faq";
 import AdComponent from "./GoogleAdd";
 
 
+
 const HomeScreen = () => {
   return (
     <div>

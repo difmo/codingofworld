@@ -31,7 +31,7 @@ export const FadeUp = (delay) => {
 
 const Hero = () => {
   const [currentImage, setCurrentImage] = useState(0);
-  const [isModalOpen, setIsModalOpen] = useState(false); // State to control modal visibility
+  const [isModalOpen, setIsModalOpen] = useState(true); // State to control modal visibility
 
   const [currentTextIndex, setCurrentTextIndex] = useState(0);
   const navigate = useNavigate();
@@ -119,9 +119,9 @@ const Hero = () => {
         </div>
       </div>
 
-      <div className="absolute top-0 z-10 w-full"> 
+      {/* <div className="absolute top-0 z-10 w-full"> 
         <EventModel onClick={openModal}  />
-       </div>
+       </div> */}
        <div className="absolute top-0 w-full">
         {isModalOpen && <EventForm onClose={closeModal} />}
       </div>
