@@ -34,7 +34,12 @@ import CreateBlogLayout from "./pages/Layout/CreateBlogLayout";
 import Popupbloge from "./pages/Popupbloge";
 import StudentSidebarLayout from "./pages/Layout/StudentSidebarLayout";
 import AdminBlogPage from "./pages/AdminProminent/AdminblogPage";
+<<<<<<< HEAD
 import AdminController from "./Controller/AdminController";
+=======
+import Services from "./components/Services/Services";
+import CoursePage from "./pages/CoursePage";
+>>>>>>> amar
 
 const App = () => {
   const { isAdmin, isUserLogin } = AdminController();
@@ -44,6 +49,7 @@ const App = () => {
         <Route element={<Layout />}>
           <Route path="/" element={<HomeScreen />} />
           <Route path="/contactus" element={<ContactUs />} />
+          <Route path="/services" element={<Services />} />
           <Route path="/courses" element={<Courses />} />
           <Route path="/about" element={<About />} />
           <Route path="/trainingteam" element={<TrainingTeam />} />
@@ -53,6 +59,7 @@ const App = () => {
           <Route path="/signupscreen" element={<SingUpScreen />} />
           <Route path="/loginscreen" element={<LoginScreen />} />
           <Route path="/popupbloge" element={<Popupbloge />} />
+          <Route path="/coursepage" element={<CoursePage />} />
 
           <Route element={<ShowBlogLayout />}>
             <Route path="/show-blogs" element={<ShowBlogs />} />

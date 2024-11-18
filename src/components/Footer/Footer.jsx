@@ -1,4 +1,5 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 import {
   FaFacebook,
   FaGit,
@@ -12,6 +13,8 @@ import { TbWorldWww } from "react-icons/tb";
 import { motion } from "framer-motion";
 
 const Footer = () => {
+  const navigate = useNavigate();
+
   return (
     <footer className="py-28 bg-[#f7f7f7]">
       <motion.div
@@ -19,8 +22,13 @@ const Footer = () => {
         whileInView={{ opacity: 1, y: 0 }}
         className="container"
       >
+<<<<<<< HEAD
         <div className="grid grid-cols-1 gap-12 md:grid-cols-2 lg:grid-cols-3 md:gap-4">
           {/* first section */}
+=======
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12 md:gap-4">
+          {/* First Section */}
+>>>>>>> amar
           <div className="space-y-4 max-w-[300px]">
             <h1 className="text-2xl font-bold">The Coding World Institute</h1>
             <p className="text-dark2">
@@ -30,48 +38,69 @@ const Footer = () => {
             </p>
           </div>
 
-          {/* second section */}
+          {/* Second Section */}
           <div className="grid grid-cols-2 gap-10">
             <div className="space-y-4">
               <h1 className="text-2xl font-bold">Courses</h1>
-              <div className="text-dark2">
-                <ul className="space-y-2 text-lg">
-                  <li className="duration-200 cursor-pointer hover:text-secondary">
-                    Web Development
-                  </li>
-                  <li className="duration-200 cursor-pointer hover:text-secondary">
-                    Software Development
-                  </li>
-                  <li className="duration-200 cursor-pointer hover:text-secondary">
-                    Apps Development
-                  </li>
-                  <li className="duration-200 cursor-pointer hover:text-secondary">
-                    E-learning
-                  </li>
-                </ul>
-              </div>
+              <ul className="space-y-2 text-lg text-dark2">
+                <li
+                  className="duration-200 cursor-pointer hover:text-secondary"
+                  onClick={() => navigate("/coursepage")}
+                >
+                  React Development
+                </li>
+                <li
+                  className="duration-200 cursor-pointer hover:text-secondary"
+                  onClick={() => navigate("/coursepage")}
+                >
+                  Mern Development
+                </li>
+                <li
+                  className="duration-200 cursor-pointer hover:text-secondary"
+                  onClick={() => navigate("/coursepage")}
+                >
+                  App Development
+                </li>
+                <li
+                  className="duration-200 cursor-pointer hover:text-secondary"
+                  onClick={() => navigate("/coursepage")}
+                >
+                  DSA
+                </li>
+              </ul>
             </div>
             <div className="space-y-4">
               <h1 className="text-2xl font-bold">Links</h1>
-              <div className="text-dark2">
-                <ul className="space-y-2 text-lg">
-                  <li className="duration-200 cursor-pointer hover:text-secondary">
-                    Home
-                  </li>
-                  <li className="duration-200 cursor-pointer hover:text-secondary">
-                    Services
-                  </li>
-                  <li className="duration-200 cursor-pointer hover:text-secondary">
-                    About
-                  </li>
-                  <li className="duration-200 cursor-pointer hover:text-secondary">
-                    Contact
-                  </li>
-                </ul>
-              </div>
+              <ul className="space-y-2 text-lg text-dark2">
+                <li
+                  className="duration-200 cursor-pointer hover:text-secondary"
+                  onClick={() => navigate("/")}
+                >
+                  Home
+                </li>
+                <li
+                  className="duration-200 cursor-pointer hover:text-secondary"
+                  onClick={() => navigate("/courses")}
+                >
+                  Our Courses
+                </li>
+                <li
+                  className="duration-200 cursor-pointer hover:text-secondary"
+                  onClick={() => navigate("/about")}
+                >
+                  About
+                </li>
+                <li
+                  className="duration-200 cursor-pointer hover:text-secondary"
+                  onClick={() => navigate("/contactus")}
+                >
+                  Contact
+                </li>
+              </ul>
             </div>
           </div>
-          {/* third section */}
+
+          {/* Third Section */}
           <div className="space-y-4 max-w-[300px]">
             <h1 className="text-2xl font-bold">Get In Touch</h1>
             <div className="flex items-center">
@@ -84,33 +113,67 @@ const Footer = () => {
                 Go
               </button>
             </div>
-            {/* social icons */}
+
+            {/* Social Icons */}
             <div className="flex py-3 space-x-6">
               <a
-                href="https://chat.whatsapp.com/FwZdLFOAPIZDf5xCmvt7RO "
+                href="https://chat.whatsapp.com/FwZdLFOAPIZDf5xCmvt7RO"
                 target="_blank"
+                rel="noopener noreferrer"
               >
                 <FaWhatsapp className="duration-200 cursor-pointer hover:text-primary hover:scale-105" />
               </a>
-              <a href="https://www.instagram.com/thedifmo" target="_blank">
+              <a
+                href="https://www.instagram.com/thedifmo"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
                 <FaInstagram className="duration-200 cursor-pointer hover:text-primary hover:scale-105" />
               </a>
-              <a href="https://difmo-sigma.vercel.app/" target="_blank">
+              <a
+                href="https://difmo-sigma.vercel.app/"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
                 <TbWorldWww className="duration-200 cursor-pointer hover:text-primary hover:scale-105" />
               </a>
-              <a href="https://www.linkedin.com/company/difmo/" target="_blank">
+              <a
+                href="https://www.linkedin.com/company/difmo/"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
                 <FaLinkedin className="duration-200 cursor-pointer hover:text-primary hover:scale-105" />
               </a>
-              <a href="https://x.com/difmotech" target="_blank">
+              <a
+                href="https://x.com/difmotech"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
                 <FaTwitter className="duration-200 cursor-pointer hover:text-primary hover:scale-105" />
               </a>
-              <a href="https://www.youtube.com/@thedifmo" target="_blank">
+              <a
+                href="https://www.youtube.com/@thedifmo"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
                 <FaYoutube className="duration-200 cursor-pointer hover:text-primary hover:scale-105" />
               </a>
-              <a href="https://www.facebook.com/difmotech" target="_blank">
+              <a
+                href="https://www.facebook.com/difmotech"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
                 <FaFacebook className="duration-200 cursor-pointer hover:text-primary hover:scale-105" />
               </a>
+<<<<<<< HEAD
               {/* <a href="https://github.com/difmo" target="_blank">
+=======
+              <a
+                href="https://github.com/difmo"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+>>>>>>> amar
                 <FaGit className="duration-200 cursor-pointer hover:text-primary hover:scale-105" />
               </a> */}
             </div>
