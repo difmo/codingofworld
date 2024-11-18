@@ -75,10 +75,10 @@ const Hero = () => {
               variants={FadeUp(0.6)}
               initial="initial"
               animate="animate"
-              className="text-3xl lg:text-5xl  font-bold !leading-snug"
+              className="text-2xl lg:text-4xl  font-bold !leading-snug"
             >
               <span className=" text-secondary">
-              <EventModel onClick={openModal} />
+              Join our Demo Class, Nov 20–22, 2024, for a hands-on session with expert trainers.
 
               </span>{" "}
             </motion.h1>
@@ -88,13 +88,13 @@ const Hero = () => {
               animate="animate"
               className="flex justify-center md:justify-start"
             >
-              {/* <button
-                onClick={() => navigate("/contactus")}
-                className="flex items-center gap-2 primary-btn group"
+              <button
+                onClick={openModal}
+                className="flex items-center gap-2 primary-btn group blinking-btn"
               >
-                Get Started
+               join now
                 <IoIosArrowRoundForward className="text-xl duration-300 group-hover:translate-x-2 group-hover:-rotate-45" />
-              </button> */}
+              </button>
             </motion.div>
           </div>
         </div>
@@ -128,6 +128,42 @@ const Hero = () => {
       <div className="absolute top-0 w-full">
         {isModalOpen && <EventForm onClose={closeModal} />}
       </div>
+
+
+      <style jsx>{`
+        /* Keyframe animation for blinking effect */
+        @keyframes blink {
+          0% {
+            opacity: 1;
+          }
+          50% {
+            opacity: 0.5;
+          }
+          100% {
+            opacity: 1;
+          }
+        }
+
+        /* Button styles */
+        .blinking-btn {
+          animation: blink 1s infinite;
+        }
+
+        .primary-btn {
+          background-color: #ff6b6b; /* Example primary button color */
+          color: white;
+          padding: 12px 24px;
+          border-radius: 8px;
+          border: none;
+          font-weight: bold;
+          text-transform: uppercase;
+          transition: transform 0.3s ease;
+        }
+
+        .primary-btn:hover {
+          transform: scale(1.05);
+        }
+      `}</style>
     </section>
   );
 };

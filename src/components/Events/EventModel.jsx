@@ -3,10 +3,9 @@ import { IoIosArrowRoundForward } from "react-icons/io";
 
 const EventModel = ({ onClick }) => {
   return (
-    <div className="w-full">
-      <div className="w-full px-4 py-4 overflow-hidden md:px-6 lg:px-8">
+      <div className="w-full ">
         <div className="flex flex-col items-center justify-between space-y-4 sm:space-y-0 animate">
-          <div className="text-2xl text-center text-primary sm:text-xl whitespace-wrap sm:text-left">
+          <div className="text-4xl text-center text-primary sm:text-xl whitespace-wrap sm:text-left">
             Join our Demo Class, Nov 20–22, 2024, for a hands-on session with expert trainers.
           </div>
           <button
@@ -17,7 +16,6 @@ const EventModel = ({ onClick }) => {
             <IoIosArrowRoundForward className="text-sm duration-300 group-hover:translate-x-2 group-hover:-rotate-45" />
           </button>
         </div>
-      </div>
 
       {/* Inline CSS */}
       <style jsx>{`
