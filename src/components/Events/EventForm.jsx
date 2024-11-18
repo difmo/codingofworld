@@ -99,7 +99,7 @@ const EventForm = ({ onClose }) => {
 
         <div className="flex flex-col justify-center p-8 bg-opacity-75 rounded-lg ">
           <h2 className="mb-4 text-2xl font-bold text-center text-white">
-            Register For Your Demo Classes
+            Register For Our Demo Classes
           </h2>
           {error && <div className="mb-4 text-center text-white">{error}</div>}
 
