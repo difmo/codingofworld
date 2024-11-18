@@ -15,7 +15,7 @@ const HomeScreen = () => {
     <div>
       <Hero />
       <AdComponent/>
-      <Services />
+       <Services />
       <Banner />
       <Subscribe />
       <Banner2 />

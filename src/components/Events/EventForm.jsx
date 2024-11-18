@@ -1,8 +1,8 @@
 import React, { useState, useEffect, useRef } from "react";
 import { FaTimes } from "react-icons/fa";
-import { db } from "../../firebase"; // Import your Firebase config
-import { collection, addDoc } from "firebase/firestore"; // Import addDoc and collection from Firebase
-import image from "../Events/eventbg.svg"; // Your background image
+import { db } from "../../firebase"; 
+import { collection, addDoc } from "firebase/firestore"; 
+import image from "../Events/eventbg.svg"; 
 import Loader from "../Loader";
 
 const EventForm = ({ onClose }) => {
@@ -11,12 +11,11 @@ const EventForm = ({ onClose }) => {
   const [mobileNumber, setMobileNumber] = useState("");
   const [collegeName, setCollegeName] = useState("");
   const [error, setError] = useState("");
-  const [loading, setLoading] = useState(false); // New loading state
-  const [success, setSuccess] = useState(false); // New success state
+  const [loading, setLoading] = useState(false); 
+  const [success, setSuccess] = useState(false); 
 
   const modalRef = useRef(null);
 
-  // Handle form validation
   const validateForm = () => {
     if (!name || !email || !mobileNumber || !collegeName) {
       setError("Please fill all fields carefully");
@@ -34,16 +33,15 @@ const EventForm = ({ onClose }) => {
     return true;
   };
 
-  // Handle form submission and send data to Firebase
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log("Form submitted"); // Debug log
+    console.log("Form submitted"); 
 
     if (validateForm()) {
-      setLoading(true); // Start loading
+      setLoading(true); 
 
       try {
-        console.log("Adding document to Firestore..."); // Debug log
+        console.log("Adding document to Firestore..."); 
         await addDoc(collection(db, "event", "democlass", "registrations"), {
           name,
           email,
@@ -52,16 +50,16 @@ const EventForm = ({ onClose }) => {
           createdAt: new Date(),
         });
 
-        console.log("Document added successfully!"); // Debug log
+        console.log("Document added successfully!"); 
 
-        // State updates after successful submission
-        setSuccess(true); // Set success to true
-        setLoading(false); // Stop loading
+       
+        setSuccess(true); 
+        setLoading(false);
 
-        console.log("Success state updated."); // Debug log
+        console.log("Success state updated."); 
       } catch (error) {
         console.error("Error adding document: ", error);
-        setLoading(false); // Stop loading in case of error
+        setLoading(false); 
         setError("An error occurred. Please try again later.");
       }
     }
@@ -84,7 +82,7 @@ const EventForm = ({ onClose }) => {
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50">
       <div
-        ref={modalRef} // Attach ref to the modal container
+        ref={modalRef} 
         className="relative w-full max-w-lg p-8 overflow-hidden rounded-lg bg-primary animate-popup"
         style={{
           backgroundImage: `url(${image})`,
@@ -120,7 +118,7 @@ const EventForm = ({ onClose }) => {
               </div>
               <div className="flex justify-center mt-4">
                 <button
-                  onClick={onClose} // This will close the modal or trigger any other action you want
+                  onClick={onClose} 
                   className="px-6 py-2 text-lg font-semibold transition-all bg-white border-2 rounded-3xl text-primary border-primary hover:bg-primary hover:text-white"
                 >
                   Close
@@ -129,7 +127,6 @@ const EventForm = ({ onClose }) => {
             </div>
           )}
 
-          {/* Form */}
           {!loading && !success && (
             <form onSubmit={handleSubmit}>
               <div className="mb-4">

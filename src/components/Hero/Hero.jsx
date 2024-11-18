@@ -68,7 +68,7 @@ const Hero = () => {
   };
   return (
     <section className="relative overflow-hidden bg-light">
-      <div className=" container md:px-32 grid grid-cols-1 md:grid-cols-2 min-h-[650px]">
+      <div className="container grid grid-cols-1 md:px-32 md:grid-cols-2">
         <div className="relative flex flex-col justify-center py-14 md:py-0 ">
           <div className="text-center md:text-left space-y-10 lg:max-w-[400px] z-10">
             <motion.h1
@@ -78,9 +78,9 @@ const Hero = () => {
               className="text-2xl lg:text-4xl  font-bold !leading-snug"
             >
               <span className=" text-secondary">
-              Join our Demo Class, Nov 20–22, 2024, for a hands-on session with expert trainers.
+              Join our Demo Class, Nov 20–22-2024, for a hands-on session with expert trainers.
 
-              </span>{" "}
+              </span>
             </motion.h1>
             <motion.div
               variants={FadeUp(0.8)}

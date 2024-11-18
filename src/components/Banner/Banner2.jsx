@@ -1,12 +1,11 @@
 import React from "react";
-import BannerPng from "../../assets/banner.png";
 import { motion } from "framer-motion";
 import img from "../../assets/images/ourt.png";
 
 const Banner2 = () => {
   return (
     <section>
-      <div className="container grid grid-cols-1 gap-8 py-14 md:py-24 md:grid-cols-2 md:space-y-0">
+      <div className="container grid grid-cols-1 gap-8 overflow-hidden py-14 md:py-24 md:grid-cols-2 md:space-y-0">
         {/* Banner Text */}
         <motion.div
           initial={{ opacity: 0, x: -50 }}
@@ -53,8 +52,8 @@ const Banner2 = () => {
             transition={{ duration: 0.8 }}
             src={img}
             alt="Animated Image"
-            className="object-cover w-full h-full"
-          />
+            className="object-contain w-full h-auto"
+            />
         </div>
       </div>
     </section>
