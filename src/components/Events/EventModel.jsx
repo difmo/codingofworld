@@ -1,43 +1,57 @@
 import React from "react";
+import { IoIosArrowRoundForward } from "react-icons/io";
 
 const EventModel = ({ onClick }) => {
   return (
-    <div className="fixed w-full ">
-<div className="w-full px-4 py-4 overflow-hidden md:px-6 lg:px-8">
-  <div className="flex flex-col items-center justify-between space-y-4 sm:flex-row sm:space-y-0 animate">
-    <div className="text-lg text-center text-black sm:text-xl whitespace-wrap sm:text-left">
-      Join our Demo Class, Nov 20–22, 2024, for a hands-on session with expert trainers.
-    </div>
-    <span
-      className="p-2 text-center text-white border rounded-full cursor-pointer bg-primary"
-      onClick={onClick}
-    >
-      Register now
-    </span>
-  </div>
-</div>
+    <div className="w-full">
+      <div className="w-full px-4 py-4 overflow-hidden md:px-6 lg:px-8">
+        <div className="flex flex-col items-center justify-between space-y-4 sm:space-y-0 animate">
+          <div className="text-2xl text-center text-primary sm:text-xl whitespace-wrap sm:text-left">
+            Join our Demo Class, Nov 20–22, 2024, for a hands-on session with expert trainers.
+          </div>
+          <button
+            onClick={onClick}
+            className="flex items-center gap-2 primary-btn group blinking-btn"
+          >
+            Join now
+            <IoIosArrowRoundForward className="text-sm duration-300 group-hover:translate-x-2 group-hover:-rotate-45" />
+          </button>
+        </div>
+      </div>
 
-
-
+      {/* Inline CSS */}
       <style jsx>{`
-        /* Defining the scrolling animation */
-        @keyframes marquee {
+        /* Keyframe animation for blinking effect */
+        @keyframes blink {
           0% {
-            transform: translateX(100%); /* Start from the right */
+            opacity: 1;
+          }
+          50% {
+            opacity: 0.5;
           }
           100% {
-            transform: translateX(-100%); /* End at the left */
+            opacity: 1;
           }
         }
 
-        .animate-marquee {
-          display: flex;
-          animation: marquee 50s linear infinite; /* Adjust the speed here (60s) */
+        /* Button styles */
+        .blinking-btn {
+          animation: blink 1s infinite;
         }
 
-        /* Ensure the parent container has overflow hidden */
-        .overflow-hidden {
-          overflow: hidden;
+        .primary-btn {
+          background-color: #ff6b6b; /* Example primary button color */
+          color: white;
+          padding: 12px 24px;
+          border-radius: 8px;
+          border: none;
+          font-weight: bold;
+          text-transform: uppercase;
+          transition: transform 0.3s ease;
+        }
+
+        .primary-btn:hover {
+          transform: scale(1.05);
         }
       `}</style>
     </div>

@@ -36,7 +36,12 @@ const Hero = () => {
   const [currentTextIndex, setCurrentTextIndex] = useState(0);
   const navigate = useNavigate();
   const images = [HeroPng1, HeroPng2, HeroPng3];
-  const textOptions = ["Website", "Mobile App", "A Robot "]; //
+  const textOptions = [
+    // "Intern Today, Lead Tomorrow",
+    // "Where Education Meets Innovation.",
+    // "Your Pathway to Digital Excellence ",
+    // <EventModel onClick={openModal} />,
+  ]; //
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrentImage((prevImage) => (prevImage + 1) % images.length);
@@ -52,7 +57,6 @@ const Hero = () => {
 
     return () => clearInterval(textInterval);
   }, [textOptions.length]);
-
 
   const openModal = () => {
     setIsModalOpen(true);
@@ -73,11 +77,10 @@ const Hero = () => {
               animate="animate"
               className="text-3xl lg:text-5xl  font-bold !leading-snug"
             >
-              Let's Learn to build a{" "}
               <span className=" text-secondary">
-                {textOptions[currentTextIndex]}
+              <EventModel onClick={openModal} />
+
               </span>{" "}
-              for your business
             </motion.h1>
             <motion.div
               variants={FadeUp(0.8)}
@@ -85,13 +88,13 @@ const Hero = () => {
               animate="animate"
               className="flex justify-center md:justify-start"
             >
-              <button
+              {/* <button
                 onClick={() => navigate("/contactus")}
                 className="flex items-center gap-2 primary-btn group"
               >
                 Get Started
                 <IoIosArrowRoundForward className="text-xl duration-300 group-hover:translate-x-2 group-hover:-rotate-45" />
-              </button>
+              </button> */}
             </motion.div>
           </div>
         </div>
@@ -106,7 +109,7 @@ const Hero = () => {
             transition={{ duration: 0.6, ease: "easeInOut" }}
             src={images[currentImage]}
             alt=""
-            className="w-[400px] xl:w-[600px] relative z-10 "
+            className="relative z-10 "
           />
           <motion.img
             initial={{ x: -50, opacity: 0 }}
@@ -119,13 +122,12 @@ const Hero = () => {
         </div>
       </div>
 
-      <div className="absolute top-0 z-10 w-full"> 
-        <EventModel onClick={openModal}  />
-       </div>
-       <div className="absolute top-0 w-full">
+      {/* <div className="absolute top-0 z-10 w-full">
+        <EventModel onClick={openModal} />
+      </div> */}
+      <div className="absolute top-0 w-full">
         {isModalOpen && <EventForm onClose={closeModal} />}
       </div>
-    
     </section>
   );
 };
