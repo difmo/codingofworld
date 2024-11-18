@@ -119,9 +119,9 @@ const Hero = () => {
         </div>
       </div>
 
-      {/* <div className="absolute top-0 z-10 w-full"> 
+      <div className="absolute top-0 z-10 w-full"> 
         <EventModel onClick={openModal}  />
-       </div> */}
+       </div>
        <div className="absolute top-0 w-full">
         {isModalOpen && <EventForm onClose={closeModal} />}
       </div>
