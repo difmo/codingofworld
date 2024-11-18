@@ -85,7 +85,7 @@ const EventForm = ({ onClose }) => {
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50">
       <div
         ref={modalRef} // Attach ref to the modal container
-        className="relative w-full max-w-xl p-8 overflow-hidden rounded-lg animate-popup"
+        className="relative w-full max-w-lg p-8 overflow-hidden rounded-lg bg-primary animate-popup"
         style={{
           backgroundImage: `url(${image})`,
           backgroundSize: "cover",
