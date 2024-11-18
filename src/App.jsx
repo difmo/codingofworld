@@ -34,12 +34,8 @@ import CreateBlogLayout from "./pages/Layout/CreateBlogLayout";
 import Popupbloge from "./pages/Popupbloge";
 import StudentSidebarLayout from "./pages/Layout/StudentSidebarLayout";
 import AdminBlogPage from "./pages/AdminProminent/AdminblogPage";
-<<<<<<< HEAD
-import AdminController from "./Controller/AdminController";
-=======
 import Services from "./components/Services/Services";
 import CoursePage from "./pages/CoursePage";
->>>>>>> amar
 
 const App = () => {
   const { isAdmin, isUserLogin } = AdminController();
