@@ -101,7 +101,7 @@ const EventForm = ({ onClose }) => {
 
         <div className="flex flex-col justify-center p-8 bg-opacity-75 rounded-lg ">
           <h2 className="mb-4 text-2xl font-bold text-center text-white">
-            Register for Our Demo Classes
+            Register For Your Demo Classes
           </h2>
           {error && <div className="mb-4 text-center text-white">{error}</div>}
 
@@ -142,7 +142,7 @@ const EventForm = ({ onClose }) => {
                   id="name"
                   value={name}
                   onChange={(e) => setName(e.target.value)}
-                  className="w-full p-2 my-1 text-black bg-white rounded-sm outline-none"
+                  className="w-full p-2 text-black bg-white rounded-sm outline-none"
                 />
               </div>
 
@@ -156,7 +156,7 @@ const EventForm = ({ onClose }) => {
                   placeholder="Email"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
-                  className="w-full p-2 my-1 text-black bg-white rounded-sm outline-none"
+                  className="w-full p-2 text-black bg-white rounded-sm outline-none"
                 />
               </div>
 
@@ -170,7 +170,7 @@ const EventForm = ({ onClose }) => {
                   placeholder="Mobile Number"
                   value={mobileNumber}
                   onChange={(e) => setMobileNumber(e.target.value)}
-                  className="w-full p-2 my-1 text-black bg-white rounded-sm outline-none"
+                  className="w-full p-2 text-black bg-white rounded-sm outline-none"
                 />
               </div>
 
@@ -184,7 +184,7 @@ const EventForm = ({ onClose }) => {
                   placeholder="College Name"
                   value={collegeName}
                   onChange={(e) => setCollegeName(e.target.value)}
-                  className="w-full p-2 my-1 text-black bg-white rounded-sm outline-none"
+                  className="w-full p-2 text-black bg-white rounded-sm outline-none"
                 />
               </div>
 
