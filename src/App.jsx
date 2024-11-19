@@ -36,7 +36,7 @@ import StudentSidebarLayout from "./pages/Layout/StudentSidebarLayout";
 import AdminBlogPage from "./pages/AdminProminent/AdminblogPage";
 import Services from "./components/Services/Services";
 import CoursePage from "./pages/CoursePage";
-
+import AlldetailCourese from "./pages/AlldetailCourese";
 const App = () => {
   return (
     <Router>
@@ -53,7 +53,7 @@ const App = () => {
           <Route path="/tcsnqtcourse" element={<TcsNqtCourse />} />
           <Route path="/signupscreen" element={<SingUpScreen />} />
           <Route path="/loginscreen" element={<LoginScreen />} />
-          {/* <Route path="/userdetails" element={<UserDetails />} /> */}
+          <Route path="/alldeatilcourese" element={<AlldetailCourese />} />
           <Route path="/popupbloge" element={<Popupbloge />} />
           <Route path="/coursepage" element={<CoursePage />} />
 

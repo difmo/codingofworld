@@ -8,7 +8,6 @@ import Features from "./WhatWeOffer";
 import FAQ from "./Faq";
 import AdComponent from "./GoogleAdd";
 
-
 const HomeScreen = () => {
   return (
     <div>
@@ -20,7 +19,6 @@ const HomeScreen = () => {
       <Banner2 />
       <Features />
       <FAQ />
-     
     </div>
   );
 };
