@@ -72,7 +72,7 @@ const AlldetailCourese = () => {
       ],
     },
     {
-      // // img: img6,
+      // // img: img6,  
       id: "6",
       title: "Flutter Development",
       description:
