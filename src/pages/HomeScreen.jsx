@@ -7,6 +7,7 @@ import Subscribe from "../components/Subscribe/Subscribe";
 import Features from "./WhatWeOffer";
 import FAQ from "./Faq";
 import AdComponent from "./GoogleAdd";
+import AlldetailCourese from "./AlldetailCourese";
 
 const HomeScreen = () => {
   return (
@@ -19,6 +20,7 @@ const HomeScreen = () => {
       <Banner2 />
       <Features />
       <FAQ />
+      <AlldetailCourese />
     </div>
   );
 };
