@@ -11,15 +11,15 @@ const InternshipDetails = () => {
   }
 
   return (
-    <div className="p-6 mx-auto max-w-2xl">
-      <h2 className="text-4xl font-bold text-center">{internship.title}</h2>
+    <div className="py-10 px-6 mx-auto max-w-2xl">
+      <h2 className="text-3xl md:text-4xl font-bold ">{internship.title}</h2>
       <img
         src={internship.image}
         alt={internship.title}
         className="my-4 w-full h-64 object-cover rounded-md"
       />
       <p className="text-lg text-gray-700">{internship.description}</p>
-      <div className="mt-6 text-center">
+      {/* <div className="mt-6 text-center">
         <a
           href={internship.link}
           target="_blank"
@@ -28,7 +28,7 @@ const InternshipDetails = () => {
         >
           Learn More
         </a>
-      </div>
+      </div> */}
     </div>
   );
 };

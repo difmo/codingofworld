@@ -38,7 +38,7 @@ export const LinkData = [
 ];
 export const courses = [
   {
-    id: 1,
+    id: 1,  
     cover: img2,
     // title: " Tcs Nqt : Take Your Dream Job",
   },

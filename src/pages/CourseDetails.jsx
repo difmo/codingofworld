@@ -14,7 +14,7 @@ const courses = [
       "Work with Collections, Streams, and Lambda expressions.",
       "Build real-world Java applications.",
     ],
-    price: "$55",
+    // price: "$55",
   },
 
   {
@@ -27,7 +27,7 @@ const courses = [
       "Create responsive UI for mobile applications.",
       "Integrate with REST APIs and databases.",
     ],
-    price: "$60",
+    // price: "$60",
   },
 ];
 
@@ -59,12 +59,12 @@ const CourseDetails = () => {
           </ul>
         </div>
         <p className="text-xl font-semibold mt-6">Price: {course.price}</p>
-        <button
+        {/* <button
           onClick={() => alert('Enroll Now!')}
           className="mt-6 px-6 py-3 bg-green-500 text-white font-semibold rounded-lg shadow-md hover:bg-green-600 focus:outline-none focus:ring-2 focus:ring-green-400 focus:ring-opacity-75"
         >
           Enroll Now
-        </button>
+        </button> */}
       </div>
     </div>
   );

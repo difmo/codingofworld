@@ -12,6 +12,7 @@ import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
 import SyntaxHighlighter from "react-syntax-highlighter";
 import { dracula } from "react-syntax-highlighter/dist/esm/styles/hljs";
+import MainLoader from "../../components/MainLoader";
 
 const BlogPage = () => {
   const { blogId } = useParams();
@@ -25,7 +26,6 @@ const BlogPage = () => {
         const blogDoc = await getDoc(doc(db, "blogs", blogId));
         if (blogDoc.exists()) {
           setBlog(blogDoc.data());
-          // console.log(blog.name);
         } else {
           setError("Blog not found");
         }
@@ -40,7 +40,7 @@ const BlogPage = () => {
   }, [blogId]);
 
   if (loading) {
-    return <div>Loading blog...</div>;
+    return <div><MainLoader /></div>;
   }
 
   if (error) {
@@ -48,7 +48,7 @@ const BlogPage = () => {
   }
 
   return (
-    <div className="max-w-5xl mx-auto text-black ">
+    <div className="max-w-5xl pt-9 mx-auto text-black ">
       <h1 className="mb-6 text-3xl font-semibold text-primary">{blog.title}</h1>
       <div
         className="p-4 mb-6"
@@ -64,12 +64,14 @@ const BlogPage = () => {
               </h2>
             )}
 
-            {field.type === "description" && (
-              <p
-                className="text-lg"
-                dangerouslySetInnerHTML={{ __html: field.value }}
-              />
-            )}
+            <div className="max-w-5xl pt-9 mx-auto text-black content-container">
+              {field.type === "description" && (
+                <p
+                  className="text-lg"
+                  dangerouslySetInnerHTML={{ __html: field.value }}
+                />
+              )}
+            </div>
 
             {field.type === "link" && (
               <a href={field.value} className="text-blue-400">
@@ -109,3 +111,16 @@ const BlogPage = () => {
 };
 
 export default BlogPage;
+
+
+
+
+
+
+
+
+
+
+
+
+

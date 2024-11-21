@@ -10,6 +10,8 @@ import { db } from "../../firebase";
 import { collection, getDocs } from "firebase/firestore";
 import "react-quill/dist/quill.snow.css";
 import { useNavigate } from "react-router-dom";
+import Loader from "../../components/Loader";
+import MainLoader from "../../components/MainLoader";
 
 const ShowBlogs = () => {
   const [blogs, setBlogs] = useState([]);
@@ -43,20 +45,19 @@ const ShowBlogs = () => {
   }, []);
 
   if (loading) {
-    return <div>Loading blogs...</div>;
+    return <div><MainLoader/></div>;
   }
 
   if (error) {
     return <div>{error}</div>;
   }
 
-  // If no blogs, show the fallback message
   if (blogs.length === 0) {
     return <div>No blogs available</div>;
   }
 
   return (
-    <div className="flex">
+    <div className="flex ">
       <div className="p-6 text-black ">
           <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {blogs.map((blog) => (
