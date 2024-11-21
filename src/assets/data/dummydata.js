@@ -40,68 +40,46 @@ export const courses = [
   {
     id: 1,
     cover: img2,
-    // title: " Tcs Nqt : Take Your Dream Job",
-    path: "/tcsnqtcourse",
   },
   {
     id: 2,
     cover: img5,
-    // title: "Flutter Development: Build Beautiful Apps",
-    path: "/alldeatilcourese",
   },
   {
     id: 3,
     cover: img6,
-    // title: "Java Fundamentals: Building Robust Applications",
-    path: "/alldeatilcourese",
   },
   {
     id: 4,
     cover: img11,
-    // title: "React for Beginners: Create Interactive UIs",
-    path: "/alldeatilcourese",
   },
   {
     id: 5,
     cover: img3,
-    // title: "Node.js Essentials: Power Your Backend",
-    path: "/alldeatilcourese",
   },
   {
     id: 6,
     cover: img13,
-    // title: "Web Development with JavaScript: Full Stack Journey",
-    path: "/javascript-course",
   },
   {
     id: 7,
     cover: img8,
-    // title: " Tcs Nqt : Take Your Dream Job",
-    path: "/tcsnqtcourse",
   },
   {
     id: 8,
     cover: img10,
-    // title: "Flutter Development: Build Beautiful Apps",
-    path: "/flutter-course",
   },
 
   {
     id: 9,
     cover: img12,
-    // title: "React for Beginners: Create Interactive UIs",
-    path: "/react-course",
   },
   {
     id: 10,
     cover: img14,
-    // title: "Node.js Essentials: Power Your Backend",
-    path: "/nodejs-course",
   },
   {
     id: 11,
     cover: img15,
-    // title: "Web Development with JavaScript: Full Stack Journey",
-    path: "/javascript-course",
   },
 ];

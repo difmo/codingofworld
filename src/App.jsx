@@ -36,12 +36,16 @@ import StudentSidebarLayout from "./pages/Layout/StudentSidebarLayout";
 import AdminBlogPage from "./pages/AdminProminent/AdminblogPage";
 import Services from "./components/Services/Services";
 import CoursePage from "./pages/CoursePage";
+import AdminController from "./Controller/AdminController";
+import ScrollToTop from "./components/ScrollTop";
+
 import AlldetailCourese from "./pages/AlldetailCourese";
+import CourseDetails from "./pages/CourseDetails";
 const App = () => {
   const { isAdmin, isUserLogin } = AdminController();
   return (
     <Router>
-          <ScrollToTop /> 
+      <ScrollToTop />
       <Routes>
         <Route element={<Layout />}>
           <Route path="/" element={<HomeScreen />} />
@@ -58,6 +62,7 @@ const App = () => {
           <Route path="/alldeatilcourese" element={<AlldetailCourese />} />
           <Route path="/popupbloge" element={<Popupbloge />} />
           <Route path="/coursepage" element={<CoursePage />} />
+          <Route path="/course/:id" element={<CourseDetails/>} />
 
           <Route element={<ShowBlogLayout />}>
             <Route path="/show-blogs" element={<ShowBlogs />} />

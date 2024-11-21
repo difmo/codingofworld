@@ -41,7 +41,7 @@ export const Courses = () => {
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 p-6">
           {courses.map((item) => (
             <div
-              onClick={() => navigate(item.path)}
+            onClick={() => navigate(`/course/${item.id}`)}  
               key={item.id}
               className="relative bg-white shadow-xl rounded-lg overflow-hidden transition-transform transform hover:scale-105 hover:shadow-2xl"
             >
@@ -52,12 +52,7 @@ export const Courses = () => {
                   className="object-cover w-full h-full transition duration-300 ease-in-out delay-150 rounded-t-lg cursor-pointer"
                 />
               </div>
-              {/* Uncomment and modify if you want to display course title */}
-              {/* <div className="p-3 text">
-              <h3 className="h-10 my-4 font-medium text-black">
-                {item.title}
-              </h3>
-            </div> */}
+
 
               <div className="flex items-center justify-between p-3 border-t border-gray-200">
                 <span className="text-sm text-primary">Free</span>
