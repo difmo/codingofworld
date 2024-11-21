@@ -8,8 +8,8 @@ const InternshipsSection = () => {
     const navigate  = useNavigate();
     return (
         <>
-            <section className="pt-4 hero-sub ">
-                <div className="container flex flex-col items-center justify-between max-w-screen-xl mx-auto md:flex-row">
+            <section className="pt-4 m-3 hero-sub  ">
+                <div className="container border p-10 flex flex-col items-center justify-between max-w-screen-xl mx-auto md:flex-row">
                     {/* Text Content */}
                     <div className="hero-text-wrapper md:w-1/2">
                         <h2 className="mb-4 text-3xl font-bold hero-title">Internships</h2>
@@ -25,23 +25,7 @@ const InternshipsSection = () => {
                     </div>
 
                     {/* Image Section */}
-                    <div className="flex justify-center mt-8 images-wrapper md:w-1/2 md:justify-end md:mt-0">
-                        <div className="relative">
-                            <div className="absolute inset-0 flex items-center justify-center">
-                                <div className="flex items-center justify-center w-64 h-64 overflow-hidden transform -translate-y-16 bg-white rounded-full">
-                                    <img
-                                        src={img}
-                                        alt="Google interns"
-                                        className="object-cover w-full h-full"
-                                    />
-                                </div>
-                            </div>
-                            <img
-                                alt="Google interns"
-                                className="w-full h-auto mt-8 rounded-lg md:hidden"
-                            />
-                        </div>
-                    </div>
+                    
                 </div>
             </section>
                 <CarouselContent />

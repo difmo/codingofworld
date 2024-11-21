@@ -9,11 +9,9 @@ const ShowBlogLayout = ({ children }) => {
    
 
       <div className="flex flex-1">
-        <div className="sticky w-64 h-screen top-20 ">
-          <ShowblogSidebar />
-        </div>
+     
 
-        <div className="flex-1 p-8 overflow-y-auto ">
+        <div className="flex-1 md:container overflow-y-auto ">
           {children}
           
           <Outlet />
