@@ -15,6 +15,7 @@ export const Courses = () => {
 
   return (
     <section className="courses bg-[#F3F4F8] pt-4">
+      
       <div className="w-4/5 m-auto">
         <div className="py-16 heading">
           <h1 className="text-3xl font-semibold text-black">

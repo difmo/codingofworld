@@ -14,13 +14,8 @@ const HomeScreen = () => {
   return (
     <div>
       <Hero />
-<<<<<<< HEAD
-      <AdComponent/>
-       <Services />
-=======
       <AdComponent />
       <Services />
->>>>>>> amar
       <Banner />
       <Subscribe />
       <Banner2 />
