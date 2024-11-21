@@ -20,7 +20,7 @@ const HomeScreen = () => {
       <Banner2 />
       <Features />
       <FAQ />
-      <AlldetailCourese />
+      {/* <AlldetailCourese /> */}
     </div>
   );
 };
