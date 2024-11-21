@@ -9,6 +9,7 @@ import CourseCard from "../components/Cards/CourseCard";
 import img1 from "../assets/Coures/1.jpg";
 import img2 from "../assets/Coures/7.jpg";
 import img3 from "../assets/Coures/4.jpg";
+import AlldetailCourese from "./AlldetailCourese";
 
 export const Courses = () => {
   const navigate = useNavigate();
@@ -24,34 +25,40 @@ export const Courses = () => {
             <span className="text-primary">Diffmo Technologies</span>
           </h1>
           <span className="block mt-2 text-sm">
-            you don't have to struggle alone, you've got our assistance and
+            You don't have to struggle alone, you've got our assistance and
             help.
           </span>
         </div>
-        <div className="grid grid-cols-1 gap-8 md:grid-cols-3">
+
+        {/* First grid for displaying courses data */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 p-6">
           {coursesData.map((course, index) => (
             <CourseCard key={index} course={course} />
           ))}
         </div>
-        <div className="grid grid-cols-1 gap-8 md:grid-cols-3">
+
+        {/* Second grid for displaying additional courses */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 p-6">
           {courses.map((item) => (
             <div
               onClick={() => navigate(item.path)}
               key={item.id}
-              className="border rounded-lg cursor-pointer box shadow-shadow1"
+              className="relative bg-white shadow-xl rounded-lg overflow-hidden transition-transform transform hover:scale-105 hover:shadow-2xl"
             >
-              <div className="relative w-full  overflow-hidden rounded-t-lg images">
+              <div className="relative w-full overflow-hidden rounded-t-lg images hover:bg-red-600">
                 <img
                   src={item.cover}
-                  alt=""
-                  className="object-cover w-full h-full transition duration-300 ease-in-out delay-150 rounded-t-lg cursor-pointer hover:scale-12"
+                  alt={item.title}
+                  className="object-cover w-full h-full transition duration-300 ease-in-out delay-150 rounded-t-lg cursor-pointer"
                 />
               </div>
+              {/* Uncomment and modify if you want to display course title */}
               {/* <div className="p-3 text">
-                <h3 className="h-10 my-4 font-medium text-black">
-                  {item.title}
-                </h3>
-              </div> */}
+              <h3 className="h-10 my-4 font-medium text-black">
+                {item.title}
+              </h3>
+            </div> */}
+
               <div className="flex items-center justify-between p-3 border-t border-gray-200">
                 <span className="text-sm text-primary">Free</span>
                 <NavLink to="/" className="text-[14px] ml-2 flex items-center">

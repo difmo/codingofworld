@@ -6,6 +6,8 @@ import card2 from "../assets/OurTrainingTeam/2.png";
 import card3 from "../assets/OurTrainingTeam/3.png";
 import card4 from "../assets/OurTrainingTeam/4.png";
 import card5 from "../assets/OurTrainingTeam/5.png";
+import card6 from "../assets/OurTrainingTeam/re.jpg";
+import card7 from "../assets/OurTrainingTeam/am.jpg";
 const teamMembers = [
   {
     name: "Er.Dinesh Kumar",
@@ -17,44 +19,32 @@ const teamMembers = [
     name: "Er.Aakash Gupta",
     role: "Mobile App Developer(Java, Flutter, iOS & Android , UI/UX design ).",
     image: card3,
-    // bio: "Bob specializes in full-stack web development and loves sharing his knowledge with students.",
   },
   {
     name: "Er.Vimal Raj",
     role: "Frontend Developer proficient in Next.js, React.js, React Native.",
     image: card2,
-    // bio: "Charlie is a data scientist with a knack for explaining complex topics in simple terms.",
   },
   {
     name: "Pritam Kumar Shram",
     role: "Software Developer specializing in React Native, Flutter, Node.js.",
     image: card4,
-    // bio: "Diana is an experienced designer who focuses on creating user-friendly interfaces.",
   },
   {
     name: "Er.Aman kumar",
     role: "Front-End Developer(HTML, CSS, JavaScript, React, UI/UX, Responsive Design).",
     image: card5,
-    // bio: "Diana is an experienced designer who focuses on creating user-friendly interfaces.",
   },
-  // {
-  //   name: "Diana Prince",
-  //   role: "UI/UX Design Trainer",
-  //   // image: card1,
-  //   bio: "Diana is an experienced designer who focuses on creating user-friendly interfaces.",
-  // },
-  // {
-  //   name: "Diana Prince",
-  //   role: "UI/UX Design Trainer",
-  //   // image: card2,
-  //   bio: "Diana is an experienced designer who focuses on creating user-friendly interfaces.",
-  // },
-  // {
-  //   name: "Diana Prince",
-  //   role: "UI/UX Design Trainer",
-  //   // image: card3,
-  //   bio: "Diana is an experienced designer who focuses on creating user-friendly interfaces.",
-  // },
+  {
+    name: "Ritanshu Shukla ",
+    role: " Data Analyst Skilled in Data Cleaning, Visualization, and Predictive Analytics ",
+    image: card6,
+  },
+  {
+    name: "Amar Maurya",
+    role: "Web Applications with React.js, Tailwind CSS, and Firebase at Difmo Technologies ",
+    image: card7,
+  },
 ];
 
 const fadeIn = {

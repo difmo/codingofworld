@@ -36,9 +36,7 @@ import StudentSidebarLayout from "./pages/Layout/StudentSidebarLayout";
 import AdminBlogPage from "./pages/AdminProminent/AdminblogPage";
 import Services from "./components/Services/Services";
 import CoursePage from "./pages/CoursePage";
-import AdminController from "./Controller/AdminController";
-import ScrollToTop from "./components/ScrollTop";
-
+import AlldetailCourese from "./pages/AlldetailCourese";
 const App = () => {
   const { isAdmin, isUserLogin } = AdminController();
   return (
@@ -57,6 +55,7 @@ const App = () => {
           <Route path="/tcsnqtcourse" element={<TcsNqtCourse />} />
           <Route path="/signupscreen" element={<SingUpScreen />} />
           <Route path="/loginscreen" element={<LoginScreen />} />
+          <Route path="/alldeatilcourese" element={<AlldetailCourese />} />
           <Route path="/popupbloge" element={<Popupbloge />} />
           <Route path="/coursepage" element={<CoursePage />} />
 
