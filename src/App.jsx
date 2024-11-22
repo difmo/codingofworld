@@ -36,7 +36,6 @@ import AdminBlogPage from "./pages/AdminProminent/AdminblogPage";
 import Services from "./components/Services/Services";
 import CoursePage from "./pages/CoursePage";
 import AdminController from "./Controller/AdminController";
-import ScrollToTop from "./components/ScrollTop";
 
 import AlldetailCourese from "./pages/AlldetailCourese";
 import CourseDetails from "./pages/CourseDetails";
@@ -44,8 +43,7 @@ import InternshipDetails from "./pages/InternshipDetails";
 const App = () => {
   const { isAdmin, isUserLogin } = AdminController();
   return (
-    <Router>
-      <ScrollToTop />
+    <Router future={{ v7_startTransition: true, v7_relativeSplatPath: true }}>
       <Routes>
         <Route element={<Layout />}>
           <Route path="/" element={<HomeScreen />} />
