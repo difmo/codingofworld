@@ -40,10 +40,12 @@ import AdminController from "./Controller/AdminController";
 import AlldetailCourese from "./pages/AlldetailCourese";
 import CourseDetails from "./pages/CourseDetails";
 import InternshipDetails from "./pages/InternshipDetails";
+import ScrollToTop from "./components/ScrollTop";
 const App = () => {
   const { isAdmin, isUserLogin } = AdminController();
   return (
     <Router future={{ v7_startTransition: true, v7_relativeSplatPath: true }}>
+      <ScrollToTop/>
       <Routes>
         <Route element={<Layout />}>
           <Route path="/" element={<HomeScreen />} />
