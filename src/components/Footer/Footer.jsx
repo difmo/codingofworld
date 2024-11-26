@@ -16,7 +16,7 @@ const Footer = () => {
   const navigate = useNavigate();
 
   return (
-    <footer className="py-28 bg-[#f7f7f7]">
+    <footer className="pt-28 bg-[#f7f7f7]">
       <motion.div
         initial={{ opacity: 0, y: 50 }}
         whileInView={{ opacity: 1, y: 0 }}
@@ -166,11 +166,15 @@ const Footer = () => {
                 rel="noopener noreferrer"
               >
                 <FaGit className="duration-200 cursor-pointer hover:text-primary hover:scale-105" />
-              </a> 
+              </a>
             </div>
           </div>
         </div>
       </motion.div>
+      <hr className="bg-gray-200 h-[2px] mt-5 w-full" />
+      <div className="text-dark2 items-center justify-center flex py-3">
+        © 2024 Coding of World. All Rights Reserved.
+      </div>
     </footer>
   );
 };

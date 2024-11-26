@@ -5,8 +5,7 @@ const internships = [
   {
     id: 1,
     title: "Web Development",
-    description:
-      "Join our dynamic marketing team to help promote our latest products. This internship offers hands-on experience in digital marketing strategies and social media management.",
+    description: "",
     link: "Mern Stack",
     image:
       "https://img.freepik.com/premium-photo/blue-technology-background-abstract-digital-tech-circlecopy-space-isolated-with-white_660230-166389.jpg",
@@ -59,29 +58,30 @@ const internships = [
 ];
 
 const Internships = () => {
-  const navigate = useNavigate(); 
+  const navigate = useNavigate();
 
   return (
     <section className="p-6 mx-auto">
-      <h2 className="text-2xl font-bold text-center">Our internships</h2>
-      <p className="relative mb-6 text-center">
+      <h2 className="text-6xl py-3 font-bold text-center">Our internships</h2>
+      <p className="relative mb-6 py-3 text-xl text-center">
         The internships below are not exhaustive, and may or may not be
         currently available, but provide a taste of the various internships
         Coding of world offers.
       </p>
-
-      <ul className="container grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+      {/* We are not just a course provider; we are here to help you build a brighter future. */}
+      <ul className="container grid grid-cols-1 gap-12 sm:grid-cols-1 lg:grid-cols-2">
         {internships.map((internship) => (
           <li
             key={internship.id}
-            className="relative cursor-pointer flex flex-col p-10 overflow-hidden transition-transform transform rounded-lg shadow-lg justify-evenly hover:scale-105 group bg-gradient-to-r from-primary/30 to-white"
-
+            className="relative cursor-pointer flex flex-col p-12  overflow-hidden transition-transform transform rounded-lg shadow-lg justify-evenly hover:scale-105 group bg-gradient-to-r from-primary/30 to-white"
             onClick={() => navigate(`/internship/${internship.id}`)}
           >
-            <h3 className="text-2xl  text-black bg-white text-center">{internship.title}</h3>
+            <h3 className="text-2xl  text-black bg-white text-center">
+              {internship.title}
+            </h3>
             <div className="transition-opacity duration-300">
               <img
-                className="object-cover w-full my-2 h-28"
+                className="object-cover w-full my-2 h-48"
                 src={internship.image}
                 alt={internship.title}
                 loading="lazy"
@@ -90,10 +90,7 @@ const Internships = () => {
             <p className="absolute inset-0 z-10 flex items-center justify-center m-5 text-center transition-opacity duration-300 bg-white opacity-0">
               {internship.description}
             </p>
-            <div
-              className="p-2 text-center rounded-md bg-primary/70 cursor-pointer"
-             
-            >
+            <div className="p-2 text-center rounded-md bg-primary/70 cursor-pointer">
               <span className="text-white">Learn more</span>
             </div>
           </li>

@@ -1,6 +1,6 @@
 import React from "react";
 import logo from "../../assets/images/logo.svg";
-import {useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 const AdminSidebar = ({ toggleSidebar }) => {
   const navigate = useNavigate();
@@ -56,6 +56,15 @@ const AdminSidebar = ({ toggleSidebar }) => {
           className="flex items-center px-4 py-3 mb-2 text-white transition duration-200 rounded-lg cursor-pointer bg-primary hover:bg-blue-600"
         >
           Blogs
+        </li>
+        <li
+          onClick={() => {
+            navigate("/admin/internship-Details");
+            toggleSidebar();
+          }}
+          className="flex items-center px-4 py-3 mb-2 text-white transition duration-200 rounded-lg cursor-pointer bg-primary hover:bg-blue-600"
+        >
+          Internship Details 
         </li>
       </ul>
     </div>
