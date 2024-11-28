@@ -1,93 +1,90 @@
-import React from "react";
-import { useParams } from "react-router-dom";
-
+import React, { useState, useEffect } from "react";
+import { useNavigate, useParams } from "react-router-dom";
+import { db } from ".././firebase";
+import { doc, getDoc } from "firebase/firestore";
 const InternshipDetails = () => {
-  const { id } = useParams(); // Get the internship id from the URL params
+  const navigate = useNavigate();
+  const { id } = useParams();
+  const [internship, setInternship] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
-  const internship = internships.find((intern) => intern.id === parseInt(id));
+  useEffect(() => {
+    const fetchInternship = async () => {
+      try {
+        const docRef = doc(db, "newinternship", id);
+        const docSnap = await getDoc(docRef);
+        if (docSnap.exists()) {
+          setInternship(docSnap.data());
+        } else {
+          setError("Internship not found!");
+        }
+      } catch (err) {
+        console.error("Error fetching internship:", err);
+        setError("Failed to load internship.");
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchInternship();
+  }, [id]);
+
+  if (loading) {
+    return <div>Loading internship details...</div>; // Loading state
+  }
+
+  if (error) {
+    return <div>{error}</div>; // Error state
+  }
 
   if (!internship) {
-    return <p>Internship not found!</p>; // If internship is not found
+    return <p>Internship not found!</p>; // If no internship data is found
   }
 
   return (
-    <div className="py-10 px-6 mx-auto max-w-2xl">
-      <h2 className="text-3xl md:text-4xl font-bold ">{internship.title}</h2>
-      <img
-        src={internship.image}
-        alt={internship.title}
-        className="my-4 w-full h-64 object-cover rounded-md"
-      />
-      <p className="text-lg text-gray-700">{internship.description}</p>
-      {/* <div className="mt-6 text-center">
-        <a
-          href={internship.link}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="px-6 py-3 text-white bg-primary rounded-md hover:bg-primary/40"
-        >
-          Learn More
-        </a>
-      </div> */}
+    <div className="py-10 px-4 sm:px-8 lg:px-64">
+      <h2 className="text-3xl md:text-6xl text-center font-bold mb-6">
+        {internship.title}
+      </h2>
+      <div className="flex justify-between flex-wrap">
+        {/* Thumbnail on the left side */}
+        <div className="w-full md:w-1/2 p-3">
+          <img
+            src={internship.thumbnailUrl}
+            alt={internship.title}
+            className="my-4 object-cover rounded-md w-full"
+          />
+        </div>
+
+        {/* Bio and button section */}
+        <div className="p-4 md:p-12 w-full md:w-1/2">
+          <div>
+            <p
+              className="text-lg mt-2"
+              dangerouslySetInnerHTML={{ __html: internship.bio }}
+            />
+          </div>
+          <div className="py-7">
+            <button
+              onClick={() => navigate("/internshipform")}
+              className="px-4 py-2 text-white transition-all duration-300 bg-primary hover:bg-primary/60 rounded-xl w-full md:w-auto"
+            >
+              ENROLL NOW
+            </button>
+          </div>
+        </div>
+      </div>
+
+      {/* Description Section */}
+      <div className="mt-8">
+        <p
+          className="text-lg mt-2"
+          dangerouslySetInnerHTML={{ __html: internship.description }}
+        />
+      </div>
     </div>
   );
 };
 
 export default InternshipDetails;
-
-const internships = [
-  {
-    id: 1,
-    title: "Web Development",
-    description:
-      "React.js is an open-source JavaScript library used for building user interfaces (UI). It focuses on creating reusable UI components, making it easier to manage and update complex web applications.", 
-    link: "Mern Stack",
-    image:
-      "https://img.freepik.com/premium-photo/blue-technology-background-abstract-digital-tech-circlecopy-space-isolated-with-white_660230-166389.jpg",
-  },
-  {
-    id: 2,
-    title: "Java Development",
-    description:
-      "Work with our data analytics team to gather insights and support decision-making processes. This role involves analyzing data trends and preparing reports for stakeholders.",
-    link: "",
-    image:
-      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQaPcs0BFfc4yvzXRgMPeBHO9AHvgS49Qtoqw&s",
-  },
-  {
-    id: 3,
-    title: "Flutter Development",
-    description:
-      "Collaborate with our product management team to assist in developing and launching new products. You’ll gain experience in project management and cross-functional teamwork.",
-    link: "",
-    image:
-      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS7z93pM3W1Qz6vnY1X5DqFsHWAywd2rNPoLQ&s  0",
-  },
-  {
-    id: 4,
-    title: "Python Development",
-    description:
-      "Assist our HR team in various tasks including recruitment, onboarding, and employee engagement initiatives. This is a great opportunity to learn about HR practices in a corporate setting.",
-    link: "",
-    image:
-      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRxV508rIJPKb66gQHUc_QDs-N4y-XjhuuzmQ&s",
-  },
-  {
-    id: 5,
-    title: "Php Development",
-    description:
-      "Gain experience in financial analysis and reporting by joining our finance team. You will assist in budget preparation and financial forecasting for upcoming projects.",
-    link: "",
-    image:
-      "https://images.unsplash.com/photo-1556740749-887f6717d7e4?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwxMTc3M3wwfDF8c2VhcmNofDE0Mnx8ZmluYW5jZSUyMGxhbmd1YWdlfGVufDB8fHx8MTYzNzk5NTI5NA&ixlib=rb-1.2.1&q=80&w=400",
-  },
-  {
-    id: 6,
-    title: "Android Development",
-    description:
-      "Gain experience in financial analysis and reporting by joining our finance team. You will assist in budget preparation and financial forecasting for upcoming projects.",
-    link: "",
-    image:
-      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTXo9CFWAhcBujk6qgTff4Wb87Ubh0mO91arQ&s",
-  },
-];

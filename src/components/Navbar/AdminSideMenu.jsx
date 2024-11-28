@@ -15,7 +15,7 @@ const AdminSidebar = ({ toggleSidebar }) => {
         <li
           onClick={() => {
             navigate("/admin-dashboard");
-            toggleSidebar();
+            // toggleSidebar();
           }}
           className="flex items-center px-4 py-3 mb-2 text-white transition duration-200 rounded-lg cursor-pointer bg-primary hover:bg-blue-600"
         >
@@ -24,7 +24,7 @@ const AdminSidebar = ({ toggleSidebar }) => {
         <li
           onClick={() => {
             navigate("/admin/internship");
-            toggleSidebar();
+            // toggleSidebar();
           }}
           className="flex items-center px-4 py-3 mb-2 text-white transition duration-200 rounded-lg cursor-pointer bg-primary hover:bg-blue-600"
         >
@@ -33,7 +33,7 @@ const AdminSidebar = ({ toggleSidebar }) => {
         <li
           onClick={() => {
             navigate("/admin/client-contact");
-            toggleSidebar();
+            // toggleSidebar();
           }}
           className="flex items-center px-4 py-3 mb-2 text-white transition duration-200 rounded-lg cursor-pointer bg-primary hover:bg-blue-600"
         >
@@ -42,7 +42,7 @@ const AdminSidebar = ({ toggleSidebar }) => {
         <li
           onClick={() => {
             navigate("/admin/login-users");
-            toggleSidebar();
+            // toggleSidebar();
           }}
           className="flex items-center px-4 py-3 mb-2 text-white transition duration-200 rounded-lg cursor-pointer bg-primary hover:bg-blue-600"
         >
@@ -51,7 +51,7 @@ const AdminSidebar = ({ toggleSidebar }) => {
         <li
           onClick={() => {
             navigate("/admin/blog");
-            toggleSidebar();
+            // toggleSidebar();
           }}
           className="flex items-center px-4 py-3 mb-2 text-white transition duration-200 rounded-lg cursor-pointer bg-primary hover:bg-blue-600"
         >
@@ -59,12 +59,21 @@ const AdminSidebar = ({ toggleSidebar }) => {
         </li>
         <li
           onClick={() => {
-            navigate("/admin/internship-Details");
-            toggleSidebar();
+            navigate("./admin/createNewInternship");
+            // toggleSidebar();
           }}
           className="flex items-center px-4 py-3 mb-2 text-white transition duration-200 rounded-lg cursor-pointer bg-primary hover:bg-blue-600"
         >
-          Internship Details 
+          Create New Internship
+        </li>
+        <li
+          onClick={() => {
+            navigate("./admin/allInternship");
+            // toggleSidebar();
+          }}
+          className="flex items-center px-4 py-3 mb-2 text-white transition duration-200 rounded-lg cursor-pointer bg-primary hover:bg-blue-600"
+        >
+          All Internship
         </li>
       </ul>
     </div>

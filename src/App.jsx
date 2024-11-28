@@ -41,11 +41,15 @@ import AlldetailCourese from "./pages/AlldetailCourese";
 import CourseDetails from "./pages/CourseDetails";
 import InternshipDetails from "./pages/InternshipDetails";
 import ScrollToTop from "./components/ScrollTop";
+import CreateNewInternship from "./pages/AdminProminent/Internship-Det/CreateNewInternship";
+import AllInternship from "./pages/AdminProminent/Internship-Det/AllInternship";
+import EditInternship from "./pages/AdminProminent/Internship-Det/EditInternship";
+
 const App = () => {
   const { isAdmin, isUserLogin } = AdminController();
   return (
     <Router future={{ v7_startTransition: true, v7_relativeSplatPath: true }}>
-      <ScrollToTop/>
+      <ScrollToTop />
       <Routes>
         <Route element={<Layout />}>
           <Route path="/" element={<HomeScreen />} />
@@ -62,7 +66,7 @@ const App = () => {
           <Route path="/alldeatilcourese" element={<AlldetailCourese />} />
           <Route path="/popupbloge" element={<Popupbloge />} />
           <Route path="/coursepage" element={<CoursePage />} />
-          <Route path="/course/:id" element={<CourseDetails/>} />
+          <Route path="/course/:id" element={<CourseDetails />} />
           <Route path="/internship/:id" element={<InternshipDetails />} />
 
           <Route element={<ShowBlogLayout />}>
@@ -86,7 +90,6 @@ const App = () => {
           </Route>
         ) : (
           <Route path="*" element={<NotFound />} />
-
         )}
 
         {isAdmin ? (
@@ -100,6 +103,12 @@ const App = () => {
             <Route path="/admin/blog" element={<AdminBlogPage />} />
             <Route path="/admin/login-users" element={<LoginUsersAdmin />} />
             <Route path="/admin/edit-student/:id" element={<StudentData />} />
+            <Route
+              path="/admin/createNewInternship"
+              element={<CreateNewInternship />}
+            />
+            <Route path="/admin/allInternship" element={<AllInternship />} />
+            <Route path="/edit-internship/:id" element={<EditInternship />} />
           </Route>
         ) : (
           <Route path="*" element={<NotFound />} />
