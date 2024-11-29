@@ -9,8 +9,9 @@ import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage"; //
 const CreateNewInternship = () => {
   const navigate = useNavigate();
   const [title, setTitle] = useState(""); // To store title input
+  const [shortDescription, setShortDescription] = useState(""); // To store short description
   const [description, setDescription] = useState(""); // To store description (ReactQuill)
-  const [bio, setBio] = useState(""); // To store bio (new section)
+  const [bio, setBio] = useState(""); // To store bio
   const [thumbnail, setThumbnail] = useState(null); // To store thumbnail image
   const [loading, setLoading] = useState(false);
 
@@ -36,7 +37,6 @@ const CreateNewInternship = () => {
         uploadTask.on(
           "state_changed",
           (snapshot) => {
-            // You can add progress bar here if needed
             const progress =
               (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
             console.log("Upload is " + progress + "% done");
@@ -52,9 +52,10 @@ const CreateNewInternship = () => {
             // Now store internship data in Firestore
             const internshipData = {
               title,
+              shortDescription, // Save the short description
               description,
-              bio, // Save the bio
-              thumbnailUrl: downloadURL, // Store the image URL
+              bio,
+              thumbnailUrl: downloadURL,
               createdAt: new Date(),
             };
 
@@ -101,6 +102,25 @@ const CreateNewInternship = () => {
             />
           </div>
 
+          {/* Short Description input */}
+          <div>
+            <label
+              htmlFor="shortDescription"
+              className="block text-sm font-medium text-gray-700"
+            >
+              Short Description
+            </label>
+            <input
+              type="text"
+              id="shortDescription"
+              value={shortDescription}
+              onChange={(e) => setShortDescription(e.target.value)}
+              required
+              className="mt-2 p-2 w-full border border-gray-300 rounded"
+              placeholder="Enter a short description"
+            />
+          </div>
+
           {/* Description input using ReactQuill */}
           <div>
             <label
@@ -131,7 +151,7 @@ const CreateNewInternship = () => {
             />
           </div>
 
-          {/* Bio input (new section) using ReactQuill */}
+          {/* Bio input */}
           <div>
             <label
               htmlFor="bio"
@@ -187,7 +207,7 @@ const CreateNewInternship = () => {
           <button
             type="submit"
             className="bg-blue-500 text-white p-2 rounded"
-            disabled={loading || !title || !description || !bio || !thumbnail}
+            disabled={loading || !title || !shortDescription || !description || !bio || !thumbnail}
           >
             {loading ? "Saving..." : "Save"}
           </button>

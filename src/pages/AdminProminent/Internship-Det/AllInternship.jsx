@@ -62,65 +62,54 @@ const AllInternship = () => {
 
   return (
     <div className="p-4">
-    <h1 className="text-2xl font-bold mb-4 text-center">All Internships</h1>
-    <div className="overflow-x-auto">
-      <table className="w-full table-auto mx-auto text-center">
-        <thead>
-          <tr>
-            <th className="px-4 py-2 border-b">Title</th>
-            {/* <th className="px-4 py-2 border-b">Description</th>
-            <th className="px-4 py-2 border-b">Bio</th> New Bio column */}
-            <th className="px-4 py-2 border-b">Thumbnail</th>
-            <th className="px-4 py-2 border-b">Actions</th>
-          </tr>
-        </thead>
-        <tbody>
-          {internships.map((internship) => (
-            <tr key={internship.id} className="hover:bg-gray-100">
-              <td className="px-4 py-2 border-b">{internship.title}</td>
-              {/* <td className="px-4 py-2 border-b w-40 h-20">
-                {internship.description.replace(/<\/?[^>]+(>|$)/g, "")}
-              </td> */}
-              {/* Display Bio
-              <td className="px-4 py-2 border-b ">
-                {internship.bio
-                  ? internship.bio.replace(/<\/?[^>]+(>|$)/g, "") // Optionally clean HTML
-                  : "No bio available"}
-              </td> */}
-  
-              {/* Display Thumbnail */}
-              <td className="px-4 py-2 border-b">
-                {internship.thumbnailUrl && (
-                  <img
-                    src={internship.thumbnailUrl}
-                    alt="Thumbnail"
-                    className="w-20 h-20 object-cover mx-auto"
-                  />
-                )}
-              </td>
-  
-              {/* Actions for Edit and Delete */}
-              <td className="px-4 py-2 border-b">
-                <button
-                  onClick={() => handleEdit(internship.id)}
-                  className="bg-blue-500 text-white px-4 py-2 rounded mr-2"
-                >
-                  Edit
-                </button>
-                <button
-                  onClick={() => handleDelete(internship.id)}
-                  className="bg-red-500 text-white px-4 py-2 rounded"
-                >
-                  Delete
-                </button>
-              </td>
+      <h1 className="text-2xl font-bold mb-4 text-center">All Internships</h1>
+      <div className="overflow-x-auto">
+        <table className="w-full table-auto mx-auto text-center">
+          <thead>
+            <tr>
+              <th className="px-4 py-2 border-b">Title</th>
+              {/* <th className="px-4 py-2 border-b">Bio</th>   */}
+              <th className="px-4 py-2 border-b">Thumbnail</th>
+              <th className="px-4 py-2 border-b">Actions</th>
             </tr>
-          ))}
-        </tbody>
-      </table>
+          </thead>
+          <tbody>
+            {internships.map((internship) => (
+              <tr key={internship.id} className="hover:bg-gray-100">
+                <td className="px-4 py-2 border-b">{internship.title}</td>
+
+                {/* Display Thumbnail */}
+                <td className="px-4 py-2 border-b">
+                  {internship.thumbnailUrl && (
+                    <img
+                      src={internship.thumbnailUrl}
+                      alt="Thumbnail"
+                      className="w-20 h-20 object-cover mx-auto"
+                    />
+                  )}
+                </td>
+
+                {/* Actions for Edit and Delete */}
+                <td className="px-4 py-2 border-b">
+                  <button
+                    onClick={() => handleEdit(internship.id)}
+                    className="bg-blue-500 text-white px-4 py-2 rounded mr-2"
+                  >
+                    Edit
+                  </button>
+                  <button
+                    onClick={() => handleDelete(internship.id)}
+                    className="bg-red-500 text-white px-4 py-2 rounded"
+                  >
+                    Delete
+                  </button>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
     </div>
-  </div>
-  
   );
 };
 

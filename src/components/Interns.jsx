@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { collection, getDocs, doc, deleteDoc } from "firebase/firestore";
+import { collection, getDocs } from "firebase/firestore";
 import { db } from "../firebase";
+
 const Internships = () => {
   const [internships, setInternships] = useState([]); // State to store internship data
   const [loading, setLoading] = useState(true); // State for loading
@@ -37,7 +38,6 @@ const Internships = () => {
     return <div>{error}</div>; // Display error if any
   }
 
-  console.log(internships, "querySnapshot");
   return (
     <section className="p-6 mx-auto">
       <h2 className="text-6xl py-3 font-bold text-center">Our Internships</h2>
@@ -52,28 +52,35 @@ const Internships = () => {
         {internships.map((internship) => (
           <li
             key={internship.id}
-            className="relative cursor-pointer flex flex-col p-8 overflow-hidden transition-all transform rounded-xl shadow-md justify-between bg-white hover:scale-105 hover:shadow-xl border-2 border-gray-300"
+            className="py-4 relative cursor-pointer flex flex-col overflow-hidden transition-all transform rounded-xl shadow-md justify-between bg-white hover:scale-105 hover:shadow-xl border-gray-300"
             onClick={() => navigate(`/internship/${internship.id}`)}
           >
-            <h3 className="text-3xl content-container text-black bg-white text-center md:h-12 item-center py-1">
-              {internship.title}
-            </h3>
-
             <div className="transition-opacity duration-300 my-2">
               <img
-                className="object-cover w-full h-40"
+                className="object-cover w-full h-60 rounded-xl"
                 src={internship.thumbnailUrl}
                 alt={internship.title}
                 loading="lazy"
               />
+              <h3 className="text-3xl px-2 font-bold content-container text-black md:h-12 py-4">
+                {internship.title}
+              </h3>
             </div>
 
             <p className="absolute inset-0 z-10 flex items-center justify-center m-5 text-center transition-opacity duration-300 bg-white opacity-0">
               {internship.description}
             </p>
 
-            <div className="p-2 text-center rounded-full bg-primary/70 cursor-pointer">
-              <span className="text-white">Explore now</span>
+            {/* Short bio description */}
+            <p
+              className="px-2 py-2 text-xl text-gray-600 font-serif"
+              dangerouslySetInnerHTML={{ __html: internship.shortDescription }}
+            />
+
+            <div className="justify-center flex">
+              <div className="p-2 text-center rounded-xl bg-primary/70 cursor-pointer md:w-[80%] w-full sm:w-[80%]   ">
+                <span className="text-white">Explore now</span>
+              </div>
             </div>
           </li>
         ))}

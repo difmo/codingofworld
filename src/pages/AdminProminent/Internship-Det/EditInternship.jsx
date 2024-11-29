@@ -13,6 +13,7 @@ const EditInternship = () => {
   const [title, setTitle] = useState(""); // Store the title of the internship
   const [description, setDescription] = useState(""); // Store the description of the internship
   const [bio, setBio] = useState(""); // Store the bio of the internship
+  const [shortDescription, setShortDescription] = useState(""); // Store the short description
   const [thumbnailUrl, setThumbnailUrl] = useState(""); // Store the thumbnail image URL
   const [loading, setLoading] = useState(true); // Loading state to show loading spinner while fetching data
   const [thumbnail, setThumbnail] = useState(null); // Store thumbnail file if it's being changed
@@ -29,6 +30,7 @@ const EditInternship = () => {
           setTitle(data.title);
           setDescription(data.description);
           setBio(data.bio); // Set the bio from Firestore
+          setShortDescription(data.shortDescription || ""); // Set the short description from Firestore
           setThumbnailUrl(data.thumbnailUrl);
         } else {
           console.log("Internship not found!");
@@ -61,6 +63,7 @@ const EditInternship = () => {
         title,
         description,
         bio, // Add bio to the updated internship object
+        shortDescription, // Add short description to the updated internship object
         thumbnailUrl, // Keep the old thumbnailUrl if no new image is uploaded
       };
 
@@ -120,6 +123,25 @@ const EditInternship = () => {
             required
             className="mt-2 p-2 w-full border border-gray-300 rounded"
             placeholder="Enter internship title"
+          />
+        </div>
+
+        {/* Short Description input */}
+        <div>
+          <label
+            htmlFor="shortDescription"
+            className="block text-sm font-medium text-gray-700"
+          >
+            Short Description
+          </label>
+          <input
+            type="text"
+            id="shortDescription"
+            value={shortDescription}
+            onChange={(e) => setShortDescription(e.target.value)}
+            required
+            className="mt-2 p-2 w-full border border-gray-300 rounded"
+            placeholder="Enter a short description"
           />
         </div>
 
