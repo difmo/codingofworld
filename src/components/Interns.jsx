@@ -4,21 +4,21 @@ import { collection, getDocs } from "firebase/firestore";
 import { db } from "../firebase";
 
 const Internships = () => {
-  const [internships, setInternships] = useState([]); // State to store internship data
-  const [loading, setLoading] = useState(true); // State for loading
-  const [error, setError] = useState(null); // State for errors
-  const navigate = useNavigate(); // For navigation
+  const [internships, setInternships] = useState([]); 
+  const [loading, setLoading] = useState(true); 
+  const [error, setError] = useState(null); 
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchInternships = async () => {
       try {
         // Fetch the internships from Firestore
-        const querySnapshot = await getDocs(collection(db, "newinternship")); // Ensure your Firestore collection name is correct
+        const querySnapshot = await getDocs(collection(db, "newinternship")); 
         const internshipsArray = [];
         querySnapshot.forEach((doc) => {
           internshipsArray.push({ ...doc.data(), id: doc.id });
         });
-        setInternships(internshipsArray); // Set the fetched internships
+        setInternships(internshipsArray); 
         setLoading(false); // Stop loading
       } catch (err) {
         console.error("Error fetching internships:", err);
@@ -31,11 +31,11 @@ const Internships = () => {
   }, []);
 
   if (loading) {
-    return <div>Loading internships...</div>; // Display loading state
+    return <div>Loading internships...</div>; 
   }
 
   if (error) {
-    return <div>{error}</div>; // Display error if any
+    return <div>{error}</div>; 
   }
 
   return (

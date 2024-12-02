@@ -3,7 +3,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import { db } from ".././firebase";
 import { doc, getDoc } from "firebase/firestore";
 const InternshipDetails = () => {
-  const navigate = useNavigate();
+   const navigate = useNavigate();
   const { id } = useParams();
   const [internship, setInternship] = useState(null);
   const [loading, setLoading] = useState(true);

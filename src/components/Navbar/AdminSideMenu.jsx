@@ -75,6 +75,24 @@ const AdminSidebar = ({ toggleSidebar }) => {
         >
           All Internship
         </li>
+        <li
+          onClick={() => {
+            navigate("/admin/createnewcourse");
+            // toggleSidebar();
+          }}
+          className="flex items-center px-4 py-3 mb-2 text-white transition duration-200 rounded-lg cursor-pointer bg-primary hover:bg-blue-600"
+        >
+          Create New Course
+        </li>
+        <li
+          onClick={() => {
+            navigate("/admin/allcoures ");
+            // toggleSidebar();
+          }}
+          className="flex items-center px-4 py-3 mb-2 text-white transition duration-200 rounded-lg cursor-pointer bg-primary hover:bg-blue-600"
+        >
+          All Course
+        </li>
       </ul>
     </div>
   );

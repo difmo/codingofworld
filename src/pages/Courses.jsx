@@ -1,8 +1,8 @@
-import React from "react";
-import { courses } from "../assets/data/dummydata";
+import React, { useEffect, useState } from "react";
+// import { courses } from "../assets/data/dummydata";
 import { FaBook } from "react-icons/fa";
 import { AiFillStar } from "react-icons/ai";
-import { NavLink } from "react-router-dom";
+// import { NavLink } from "react-router-dom";
 import { HiOutlineArrowNarrowRight } from "react-icons/hi";
 import { useNavigate } from "react-router-dom";
 import CourseCard from "../components/Cards/CourseCard";
@@ -10,13 +10,38 @@ import img1 from "../assets/Coures/1.jpg";
 import img2 from "../assets/Coures/7.jpg";
 import img3 from "../assets/Coures/4.jpg";
 import AlldetailCourese from "./AlldetailCourese";
+import { collection, getDocs } from "firebase/firestore";
+import { db } from "../firebase";
 
 export const Courses = () => {
   const navigate = useNavigate();
+  const [course, setCourse] = useState([]); // Store course data
+  const [error, setError] = useState(null); // Error state
+  const [loading, setLoading] = useState(true);
+  // Fetch Course data from Firestore
+  useEffect(() => {
+    const fetchCourse = async () => {
+      try {
+        const querySnapshot = await getDocs(collection(db, "newcourse"));
+        const fetchedCourse = [];
+        querySnapshot.forEach((doc) => {
+          fetchedCourse.push({ ...doc.data(), id: doc.id });
+        });
+        setCourse(fetchedCourse);
+        // console.log("erererer", course.id);
+        setLoading(false);
+      } catch (error) {
+        console.error("Error fetching Course:", error);
+        setError("Failed to load Course.");
+        setLoading(false);
+      }
+    };
 
+    fetchCourse();
+  }, []);
+  console.log(course, "course");
   return (
     <section className="courses bg-[#F3F4F8] pt-4">
-      
       <div className="w-4/5 m-auto">
         <div className="py-16 heading">
           <h1 className="text-3xl font-semibold text-black">
@@ -32,33 +57,37 @@ export const Courses = () => {
 
         {/* First grid for displaying courses data */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 p-6">
-          {coursesData.map((course, index) => (
+          {/* {coursesData.map((course, index) => (
             <CourseCard key={index} course={course} />
-          ))}
+          ))} */}
         </div>
 
         {/* Second grid for displaying additional courses */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 p-6">
-          {courses.map((item) => (
+          {course.map((item) => (
             <div
-            onClick={() => navigate(`/course/${item.id}`)}  
+              onClick={() => navigate(`/details/${item.id}`)}
               key={item.id}
-              className="relative bg-white shadow-xl rounded-lg overflow-hidden transition-transform transform hover:scale-105 hover:shadow-2xl"
+              className="relative bg-white shadow-xl rounded-lg overflow-hidden transition-transform transform hover:scale-95 hover:shadow-2xl"
             >
               <div className="relative w-full overflow-hidden rounded-t-lg images hover:bg-red-600">
                 <img
-                  src={item.cover}
+                  src={item.thumbnailUrl}
                   alt={item.title}
                   className="object-cover w-full h-full transition duration-300 ease-in-out delay-150 rounded-t-lg cursor-pointer"
                 />
               </div>
-
-
+              <p
+                className="px-2 py-2 text-xl text-gray-600 font-serif"
+                dangerouslySetInnerHTML={{ __html: item.shortDescription }}
+              />
               <div className="flex items-center justify-between p-3 border-t border-gray-200">
                 <span className="text-sm text-primary">Free</span>
-                <NavLink to="/" className="text-[14px] ml-2 flex items-center">
+                {/* <NavLink to="/" > */}
+                <span className="text-[14px] ml-2 flex items-center">
                   Know Details <HiOutlineArrowNarrowRight />
-                </NavLink>
+                </span>
+                {/* </NavLink> */}
               </div>
             </div>
           ))}

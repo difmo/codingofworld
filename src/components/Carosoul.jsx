@@ -1,79 +1,74 @@
 import React, { useEffect, useState } from "react";
-import slid1 from "../assets/intershipSlider/1.png";
-import slid2 from "../assets/intershipSlider/2.png";
-import slid3 from "../assets/intershipSlider/3.png";
+import { db } from "../firebase"; // Import your Firebase configuration
+import { collection, getDocs } from "firebase/firestore"; // Firestore methods
 
-const CarouselContent = () => {
-  const [currentIndex, setCurrentIndex] = useState(0);
+const CourseList = () => {
+  const [courses, setCourses] = useState([]); // State to store fetched courses
+  const [loading, setLoading] = useState(true); // Loading state
+  const [error, setError] = useState(null); // Error state
 
-  const slides = [
-    {
-      src: slid1,
-      alt: "Google intern wearing a hat on a hike",
-      content:
-        "Master the fundamentals of coding with hands-on training. Learn from industry professionals and start building your tech career!",
-    },
-    {
-      src: slid2,
-      alt: "Google intern and her dog",
-      content:
-        "Gain real-world experience in full-stack development through our immersive coding bootcamps. Get ready for a high-demand career in tech!",
-    },
-    {
-      src: slid3,
-      alt: "Google interns making a G",
-      content:
-        " Join our interactive workshops and become proficient in the latest web technologies like React, Node.js, and more!",
-    },
-  ];
-
+  // Fetch courses from Firestore
   useEffect(() => {
-    const intervalId = setInterval(() => {
-      handlePrev();
-    }, 2000); // 2000 ms = 2 seconds
+    const fetchCourses = async () => {
+      try {
+        const querySnapshot = await getDocs(collection(db, "courses")); // Replace "courses" with your Firestore collection name
+        const fetchedCourses = [];
+        querySnapshot.forEach((doc) => {
+          fetchedCourses.push({ ...doc.data(), id: doc.id }); // Include document ID
+        });
+        setCourses(fetchedCourses);
+        setLoading(false);
+      } catch (err) {
+        console.error("Error fetching courses:", err);
+        setError("Failed to load courses. Please try again later.");
+        setLoading(false);
+      }
+    };
 
-    return () => clearInterval(intervalId);
-  }, []); // Empty array means this effect runs only once when the component mounts
+    fetchCourses();
+  }, []);
 
-  const handlePrev = () => {
-    setCurrentIndex((prevIndex) =>
-      prevIndex > 0 ? prevIndex - 1 : slides.length - 1
-    );
-  };
+  if (loading) {
+    return <div>Loading courses...</div>;
+  }
 
-  const handleNext = () => {
-    setCurrentIndex((prevIndex) =>
-      prevIndex < slides.length - 1 ? prevIndex + 1 : 0
-    );
-  };
+  if (error) {
+    return <div>{error}</div>;
+  }
 
   return (
-    <div className="flex flex-col items-center justify-center p-10 ">
-      <div className="flex-col flex md:flex-row w-full max-w-4xl mx-auto">
-        <div className="flex-shrink-0 w-full h-auto">
-          <img
-            src={slides[currentIndex].src}
-            alt={slides[currentIndex].alt}
-            className="object-cover bg-cover w-full h-300px"
-          />
-        </div>
-      </div>
-      <div className=" w-full  flex items-center justify-center bg-white p-4 ">
-        <p className="text-lg text-gray-800">{slides[currentIndex].content}</p>
-      </div>
-      <div className="flex justify-center mt-4">
-        {slides.map((_, index) => (
-          <button
-            key={index}
-            className={`w-3 h-3 mx-1 rounded-full ${
-              currentIndex === index ? "bg-primary" : "bg-gray-400"
-            } hover:bg-gray-500`}
-            onClick={() => setCurrentIndex(index)}
-          />
-        ))}
+    <div className="p-4">
+      <h1 className="text-2xl font-bold mb-4 text-center">All Courses</h1>
+      <div className="overflow-x-auto">
+        <table className="w-full table-auto mx-auto text-center">
+          <thead>
+            <tr>
+              <th className="px-4 py-2 border-b">Title</th>
+              <th className="px-4 py-2 border-b">Description</th>
+              <th className="px-4 py-2 border-b">Thumbnail</th>
+            </tr>
+          </thead>
+          <tbody>
+            {courses.map((course) => (
+              <tr key={course.id} className="hover:bg-gray-100">
+                <td className="px-4 py-2 border-b">{course.title}</td>
+                <td className="px-4 py-2 border-b">{course.description}</td>
+                <td className="px-4 py-2 border-b">
+                  {course.thumbnailUrl && (
+                    <img
+                      src={course.thumbnailUrl}
+                      alt={course.title}
+                      className="w-20 h-20 object-cover mx-auto"
+                    />
+                  )}
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
       </div>
     </div>
   );
 };
 
-export default CarouselContent;
+export default CourseList;

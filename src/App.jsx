@@ -44,6 +44,9 @@ import ScrollToTop from "./components/ScrollTop";
 import CreateNewInternship from "./pages/AdminProminent/Internship-Det/CreateNewInternship";
 import AllInternship from "./pages/AdminProminent/Internship-Det/AllInternship";
 import EditInternship from "./pages/AdminProminent/Internship-Det/EditInternship";
+import CreatenewCourse from "./pages/AdminProminent/CourseAdmin/CreatenewCourse";
+import Allcourse from "./pages/AdminProminent/CourseAdmin/Allcourse";
+import EditCourse from "./pages/AdminProminent/CourseAdmin/EditCourse";
 
 const App = () => {
   const { isAdmin, isUserLogin } = AdminController();
@@ -65,8 +68,8 @@ const App = () => {
           <Route path="/loginscreen" element={<LoginScreen />} />
           <Route path="/alldeatilcourese" element={<AlldetailCourese />} />
           <Route path="/popupbloge" element={<Popupbloge />} />
-          <Route path="/coursepage" element={<CoursePage />} />
-          <Route path="/course/:id" element={<CourseDetails />} />
+          <Route path="/coursepagex" element={<CoursePage />} />
+          <Route path="/details /:id" element={<CourseDetails />} />
           <Route path="/internship/:id" element={<InternshipDetails />} />
 
           <Route element={<ShowBlogLayout />}>
@@ -109,6 +112,12 @@ const App = () => {
             />
             <Route path="/admin/allInternship" element={<AllInternship />} />
             <Route path="/edit-internship/:id" element={<EditInternship />} />
+            <Route
+              path="/admin/createnewcourse"
+              element={<CreatenewCourse />}
+            />
+            <Route path="/admin/allcoures" element={<Allcourse />} />
+            <Route path="/edit-course/:id" element={<EditCourse />} />
           </Route>
         ) : (
           <Route path="*" element={<NotFound />} />
