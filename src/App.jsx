@@ -11,7 +11,6 @@ import InternshipsSection from "./pages/Internship";
 import InternshipForm from "./pages/IntershipForm";
 import TcsNqtCourse from "./pages/AllCourses/TcsNqtCourse/TcsNqtCoursedescri";
 import NotFound from "./pages/NotFound";
-import Dummy from "./pages/dummy";
 
 import TCSNQT from "./pages/AllCourses/TcsNqtCourse/StartTcsNqt";
 import SingUpScreen from "./pages/AuthScreens/SignUpScreen";
@@ -36,11 +35,17 @@ import StudentSidebarLayout from "./pages/Layout/StudentSidebarLayout";
 import AdminBlogPage from "./pages/AdminProminent/AdminblogPage";
 import Services from "./components/Services/Services";
 import CoursePage from "./pages/CoursePage";
+import AdminController from "./Controller/AdminController";
+import ScrollToTop from "./components/ScrollTop";
 
+import AlldetailCourese from "./pages/AlldetailCourese";
+import CourseDetails from "./pages/CourseDetails";
+import InternshipDetails from "./pages/InternshipDetails";
 const App = () => {
   const { isAdmin, isUserLogin } = AdminController();
   return (
     <Router>
+      <ScrollToTop />
       <Routes>
         <Route element={<Layout />}>
           <Route path="/" element={<HomeScreen />} />
@@ -54,8 +59,11 @@ const App = () => {
           <Route path="/tcsnqtcourse" element={<TcsNqtCourse />} />
           <Route path="/signupscreen" element={<SingUpScreen />} />
           <Route path="/loginscreen" element={<LoginScreen />} />
+          <Route path="/alldeatilcourese" element={<AlldetailCourese />} />
           <Route path="/popupbloge" element={<Popupbloge />} />
           <Route path="/coursepage" element={<CoursePage />} />
+          <Route path="/course/:id" element={<CourseDetails/>} />
+          <Route path="/internship/:id" element={<InternshipDetails />} />
 
           <Route element={<ShowBlogLayout />}>
             <Route path="/show-blogs" element={<ShowBlogs />} />
@@ -96,7 +104,6 @@ const App = () => {
         ) : (
           <Route path="*" element={<NotFound />} />
         )}
-        <Route path="/dummy" element={<Dummy />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
     </Router>

@@ -7,26 +7,21 @@ import Subscribe from "../components/Subscribe/Subscribe";
 import Features from "./WhatWeOffer";
 import FAQ from "./Faq";
 import AdComponent from "./GoogleAdd";
-
+import AlldetailCourese from "./AlldetailCourese";
 
 
 const HomeScreen = () => {
   return (
     <div>
       <Hero />
-<<<<<<< HEAD
-      <AdComponent/>
-       <Services />
-=======
       <AdComponent />
       <Services />
->>>>>>> amar
       <Banner />
       <Subscribe />
       <Banner2 />
       <Features />
       <FAQ />
-     
+      {/* <AlldetailCourese /> */}
     </div>
   );
 };

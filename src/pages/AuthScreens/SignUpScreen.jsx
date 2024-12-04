@@ -71,6 +71,7 @@ export default function SignUpScreen() {
             uid: user.uid, 
             email: user.email,
             whoIs: "isUser",
+            isCreatePermission: false,
             createdAt: new Date(),
           });
   
@@ -100,12 +101,12 @@ export default function SignUpScreen() {
     <section className="h-full bg-gray-100 md:h-screen">
       <div className="flex flex-col items-center justify-center sm:flex-row ">
       <div className=" md:flex md:w-6/12 lg:w-6/12">
-          <img src={signup} className="w-full" alt="Sample" />
+          <img src={signup} className="w-full p-20" alt="Sample" />
         </div>
 
         <div className="w-full p-4 md:w-8/12 lg:w-5/12 xl:w-5/12">
           <form onSubmit={formik.handleSubmit}>
-            <div className="flex items-center justify-center lg:justify-start">
+            <div onClick={()=>alert("Sorry! Not available at this moment")} className="flex items-center justify-center lg:justify-start">
               <p className="mb-0 mr-4 text-lg">Sign up with</p>
               <IconsComponent IconName={FaFacebookF} />
               <IconsComponent IconName={FaTwitter} />
@@ -144,10 +145,10 @@ export default function SignUpScreen() {
             {successMessage && <p className="text-green-500">{successMessage}</p>}
 
             <div className="flex items-center justify-between mb-6">
-              <CustomCheckbox />
-              <a href="#!" className="text-sm">
+              {/* <CustomCheckbox /> */}
+              {/* <a href="#!" className="text-sm">
                 Terms and conditions
-              </a>
+              </a> */}
             </div>
 
             <div className="text-center lg:text-left">

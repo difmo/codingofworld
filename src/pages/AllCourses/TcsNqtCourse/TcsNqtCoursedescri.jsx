@@ -1,5 +1,4 @@
 import React from "react";
-import img from "../../../assets/bg/fact_bg.jpg";
 import { useNavigate } from "react-router-dom";
 
 const TcsNqtCourse = () => {

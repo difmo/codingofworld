@@ -65,7 +65,6 @@ const EventForm = ({ onClose }) => {
     }
   };
 
-  // Close modal if clicked outside
   const handleOutsideClick = (e) => {
     if (modalRef.current && !modalRef.current.contains(e.target)) {
       onClose();
@@ -198,7 +197,7 @@ const EventForm = ({ onClose }) => {
         </div>
       </div>
 
-      {/* Animation */}
+    
       <style jsx>{`
         @keyframes popup {
           0% {

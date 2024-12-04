@@ -8,6 +8,7 @@ import { animate, motion } from "framer-motion";
 import { useNavigate } from "react-router-dom";
 import EventModel from "../Events/EventModel";
 import EventForm from "../Events/EventForm";
+import ScrollToTop from "../ScrollTop";
 
 export const FadeUp = (delay) => {
   return {
@@ -29,7 +30,7 @@ export const FadeUp = (delay) => {
   };
 };
 
-const Hero = () => {
+const   Hero = () => {
   const [currentImage, setCurrentImage] = useState(0);
   const [isModalOpen, setIsModalOpen] = useState(true); // State to control modal visibility
 
@@ -37,9 +38,9 @@ const Hero = () => {
   const navigate = useNavigate();
   const images = [HeroPng1, HeroPng2, HeroPng3];
   const textOptions = [
-    // "Intern Today, Lead Tomorrow",
-    // "Where Education Meets Innovation.",
-    // "Your Pathway to Digital Excellence ",
+    "Master the latest technologies with hands-on coding tutorials.",
+"Stay ahead in tech with cutting-edge programming lessons.",
+    "Explore AI, web development, and more with Coding of World!",
     // <EventModel onClick={openModal} />,
   ]; //
   useEffect(() => {
@@ -68,6 +69,7 @@ const Hero = () => {
   };
   return (
     <section className="relative overflow-hidden bg-light">
+       <ScrollToTop /> 
       <div className="container grid grid-cols-1 md:px-32 md:grid-cols-2">
         <div className="relative flex flex-col justify-center py-14 md:py-0 ">
           <div className="text-center md:text-left space-y-10 lg:max-w-[400px] z-10">
@@ -75,11 +77,10 @@ const Hero = () => {
               variants={FadeUp(0.6)}
               initial="initial"
               animate="animate"
-              className="text-2xl lg:text-4xl  font-bold !leading-snug"
+              className="text-2xl lg:text-5xl  font-bold !leading-snug"
             >
               <span className=" text-secondary">
-              Join our Demo Class, Nov 20–22-2024, for a hands-on session with expert trainers.
-
+               {textOptions[currentTextIndex]}
               </span>
             </motion.h1>
             <motion.div
@@ -88,13 +89,13 @@ const Hero = () => {
               animate="animate"
               className="flex justify-center md:justify-start"
             >
-              <button
+              {/* <button
                 onClick={openModal}
                 className="flex items-center gap-2 primary-btn group blinking-btn"
               >
                join now
                 <IoIosArrowRoundForward className="text-xl duration-300 group-hover:translate-x-2 group-hover:-rotate-45" />
-              </button>
+              </button> */}
             </motion.div>
           </div>
         </div>

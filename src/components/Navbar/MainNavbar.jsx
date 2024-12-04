@@ -28,7 +28,7 @@ const NavbarMenu = [
 
 const MainNavbar = () => {
   const [isMobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const [showPopup, setShowPopup] = useState(false);
+  const [showPopup, setShowPopup] = useState(false);  // State to control the modal visibility
   const [isOpen, setIsOpen] = useState(false);
   const popupRef = useRef(null);
   const navigate = useNavigate();
@@ -48,16 +48,16 @@ const MainNavbar = () => {
     }
   };
 
-  const openPopup = () => setShowPopup(true);
-  const closePopup = () => setShowPopup(false);
+  const openPopup = () => setShowPopup(true);  // Open the modal
+  const closePopup = () => setShowPopup(false);  // Close the modal
 
   const toggleSidebar = () => {
     setIsOpen(!isOpen);
   };
+  // dsfsfsfdf
 
   const handleClickOutside = (event) => {
     if (popupRef.current && !popupRef.current.contains(event.target)) {
-      setShowPopup(false); // Close popup if clicked outside
     }
   };
 
@@ -68,7 +68,6 @@ const MainNavbar = () => {
       document.removeEventListener("click", handleClickOutside);
     }
 
-    // Cleanup on unmount or popup state change
     return () => {
       document.removeEventListener("click", handleClickOutside);
     };
@@ -139,21 +138,29 @@ const MainNavbar = () => {
                       </li>
                     )}
 
-                    <li>
-                      <div
-                        onClick={openPopup}
-                        className="flex items-center text-gray-700 cursor-pointer hover:text-blue-600"
-                      >
-                        <FaBlog className="mr-3" />
-                        {blogPermission == false ? (
+                    {/* Show Create Blogs if blogPermission is false */}
+                    {!blogPermission ? (
+                      <li>
+                        <div
+                          onClick={openPopup}
+                          className="flex items-center text-gray-700 cursor-pointer hover:text-blue-600"
+                        >
+                          <FaBlog className="mr-3" />
                           <span>Create Blogs</span>
-                        ) : (
+                        </div>
+                      </li>
+                    ) : (
+                      <li>
+                        <div
+                          className="flex items-center text-gray-700 cursor-pointer hover:text-blue-600"
+                        >
+                          <FaBlog className="mr-3" />
                           <span onClick={() => navigate("/all-blogs")}>
                             Your Blogs
                           </span>
-                        )}
-                      </div>
-                    </li>
+                        </div>
+                      </li>
+                    )}
 
                     <li>
                       <a
@@ -229,7 +236,6 @@ const MainNavbar = () => {
                   <FaTimes />
                 </button>
                 <ul className="p-4 space-y-4">
-                  {/* Only show Admin link if user is an Admin */}
                   {isAdmin && (
                     <li>
                       <div className="flex items-center text-gray-700 cursor-pointer hover:text-blue-600">
@@ -241,21 +247,29 @@ const MainNavbar = () => {
                     </li>
                   )}
 
-                  <li>
-                    <div
-                      onClick={openPopup}
-                      className="flex items-center text-gray-700 cursor-pointer hover:text-blue-600"
-                    >
-                      <FaBlog className="mr-3" />
-                      {blogPermission == false ? (
+                  {/* Show Create Blogs if blogPermission is false */}
+                  {!blogPermission ? (
+                    <li>
+                      <div
+                        onClick={openPopup}
+                        className="flex items-center text-gray-700 cursor-pointer hover:text-blue-600"
+                      >
+                        <FaBlog className="mr-3" />
                         <span>Create Blogs</span>
-                      ) : (
+                      </div>
+                    </li>
+                  ) : (
+                    <li>
+                      <div
+                        className="flex items-center text-gray-700 cursor-pointer hover:text-blue-600"
+                      >
+                        <FaBlog className="mr-3" />
                         <span onClick={() => navigate("/all-blogs")}>
                           Your Blogs
                         </span>
-                      )}
-                    </div>
-                  </li>
+                      </div>
+                    </li>
+                  )}
 
                   <li>
                     <a
@@ -273,6 +287,7 @@ const MainNavbar = () => {
         )}
       </AnimatePresence>
 
+      {/* Modal Popup */}
       {showPopup && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-gray-800 bg-opacity-50">
           <div
