@@ -17,6 +17,7 @@ const EditCourse = () => {
   const [thumbnailUrl, setThumbnailUrl] = useState(""); // Store the thumbnail image URL
   const [loading, setLoading] = useState(true); // Loading state
   const [thumbnail, setThumbnail] = useState(null); // Store thumbnail file if being changed
+  const [saving, setSaving] = useState(false); // Saving state for "Save Changes"
 
   // Fetch course data from Firestore
   useEffect(() => {
@@ -54,7 +55,7 @@ const EditCourse = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setLoading(true);
+    setSaving(true);
 
     try {
       let updatedCourse = {
@@ -85,7 +86,7 @@ const EditCourse = () => {
     } catch (error) {
       console.error("Error updating course:", error);
     } finally {
-      setLoading(false);
+      setSaving(false);
     }
   };
 
@@ -198,10 +199,14 @@ const EditCourse = () => {
         {/* Submit */}
         <button
           type="submit"
-          className="bg-blue-500 text-white px-4 py-2 rounded"
-          disabled={loading}
+          className="bg-blue-500 text-white px-4 py-2 rounded flex items-center justify-center"
+          disabled={saving}
         >
-          {loading ? "Saving..." : "Save Changes"}
+          {saving ? (
+            <div className="loader border-t-transparent border-white h-5 w-5 rounded-full animate-spin"></div>
+          ) : (
+            "Save Changes"
+          )}
         </button>
       </form>
     </div>

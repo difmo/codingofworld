@@ -1,24 +1,17 @@
 import React, { useEffect, useState } from "react";
-// import { courses } from "../assets/data/dummydata";
-import { FaBook } from "react-icons/fa";
-import { AiFillStar } from "react-icons/ai";
-// import { NavLink } from "react-router-dom";
 import { HiOutlineArrowNarrowRight } from "react-icons/hi";
 import { useNavigate } from "react-router-dom";
-import CourseCard from "../components/Cards/CourseCard";
-import img1 from "../assets/Coures/1.jpg";
-import img2 from "../assets/Coures/7.jpg";
-import img3 from "../assets/Coures/4.jpg";
-import AlldetailCourese from "./AlldetailCourese";
 import { collection, getDocs } from "firebase/firestore";
 import { db } from "../firebase";
+import Loader from "../components/Loader";
 
 export const Courses = () => {
   const navigate = useNavigate();
   const [course, setCourse] = useState([]); // Store course data
   const [error, setError] = useState(null); // Error state
-  const [loading, setLoading] = useState(true);
-  // Fetch Course data from Firestore
+  const [loading, setLoading] = useState(true); // Loading state for fetching courses
+  const [navigating, setNavigating] = useState(false); // Loading state for navigation
+
   useEffect(() => {
     const fetchCourse = async () => {
       try {
@@ -28,7 +21,6 @@ export const Courses = () => {
           fetchedCourse.push({ ...doc.data(), id: doc.id });
         });
         setCourse(fetchedCourse);
-        // console.log("erererer", course.id);
         setLoading(false);
       } catch (error) {
         console.error("Error fetching Course:", error);
@@ -39,7 +31,39 @@ export const Courses = () => {
 
     fetchCourse();
   }, []);
-  console.log(course, "course");
+
+  const handleNavigation = (id) => {
+    setNavigating(true); // Show loader
+    setTimeout(() => {
+      navigate(`/details/${id}`);
+      setNavigating(false); // Hide loader after navigation
+    }, 500); // Optional delay for smooth UX
+  };
+
+  if (loading) {
+    return (
+      <div className="flex items-center justify-center h-screen">
+        <Loader />
+      </div>
+    );
+  }
+
+  if (error) {
+    return (
+      <div className="flex items-center justify-center h-screen text-red-500">
+        {error}
+      </div>
+    );
+  }
+
+  if (navigating) {
+    return (
+      <div className="flex items-center justify-center h-screen">
+        <Loader />
+      </div>
+    );
+  }
+
   return (
     <section className="courses bg-[#F3F4F8] pt-4">
       <div className="w-4/5 m-auto">
@@ -55,26 +79,19 @@ export const Courses = () => {
           </span>
         </div>
 
-        {/* First grid for displaying courses data */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 p-6">
-          {/* {coursesData.map((course, index) => (
-            <CourseCard key={index} course={course} />
-          ))} */}
-        </div>
-
-        {/* Second grid for displaying additional courses */}
+        {/* Courses grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 p-6">
           {course.map((item) => (
             <div
-              onClick={() => navigate(`/details/${item.id}`)}
+              onClick={() => handleNavigation(item.id)}
               key={item.id}
-              className="relative bg-white shadow-xl rounded-lg overflow-hidden transition-transform transform hover:scale-95 hover:shadow-2xl"
+              className="relative bg-white shadow-xl rounded-lg overflow-hidden transition-transform transform hover:scale-95 hover:shadow-2xl cursor-pointer"
             >
               <div className="relative w-full overflow-hidden rounded-t-lg images hover:bg-red-600">
                 <img
                   src={item.thumbnailUrl}
                   alt={item.title}
-                  className="object-cover w-full h-full transition duration-300 ease-in-out delay-150 rounded-t-lg cursor-pointer"
+                  className="object-cover w-full h-full transition duration-300 ease-in-out delay-150 rounded-t-lg"
                 />
               </div>
               <p
@@ -83,11 +100,9 @@ export const Courses = () => {
               />
               <div className="flex items-center justify-between p-3 border-t border-gray-200">
                 <span className="text-sm text-primary">Free</span>
-                {/* <NavLink to="/" > */}
                 <span className="text-[14px] ml-2 flex items-center">
                   Know Details <HiOutlineArrowNarrowRight />
                 </span>
-                {/* </NavLink> */}
               </div>
             </div>
           ))}
@@ -96,58 +111,3 @@ export const Courses = () => {
     </section>
   );
 };
-
-const coursesData = [
-  {
-    // title: "Master Data Structures and Algorithms using C++",
-    image: img1,
-    features: {
-      feature1: "350+ problems & 6 projects",
-      feature2: "Foundation, Basics, and Advanced modules",
-      feature3: "Progress tracking and feedback",
-      feature4: "Certificate of Excellence/Completion",
-      feature5: "Placement assistance",
-      feature6: "Doubt support",
-      feature7:
-        "Curriculum designed for beginners, No coding experience required",
-    },
-    price: " ₹3999 ",
-    discount: "₹4999",
-    link: "/internshipform",
-  },
-  {
-    // title: "Web Development with HTML, CSS, and React, Nodejs , Express js ",
-    image: img2,
-    features: {
-      feature1: "50+ projects & 5 assignments",
-      feature2: "From basics to advanced frontend development",
-      feature3: "Complete front-end web development curriculum",
-      feature4: "Placement assistance included",
-      feature5: "Placement assistance",
-      feature6: "Doubt support",
-      feature7:
-        "Curriculum designed for beginners, No coding experience required",
-    },
-    price: " ₹4599 ",
-    discount: "₹5999",
-    link: "/internshipform",
-  },
-  {
-    // title:
-    // "Introduction to Python for Data Science Introduction to Python for Data Science",
-    image: img3,
-    features: {
-      feature1: "Hands-on projects in Python",
-      feature2: "Introduction to data analysis and visualization",
-      feature3: "Python programming and libraries",
-      feature4: "Online workshops with experts",
-      feature5: "Placement assistance",
-      feature6: "Doubt support",
-      feature7:
-        "Curriculum designed for beginners, No coding experience required",
-    },
-    price: "₹4599 ",
-    discount: " ₹5599",
-    link: "/internshipform",
-  },
-];

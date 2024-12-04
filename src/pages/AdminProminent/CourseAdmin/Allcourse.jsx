@@ -2,10 +2,11 @@ import React, { useState, useEffect } from "react";
 import { db } from "../../../firebase"; // Import Firestore config
 import { collection, getDocs, doc, deleteDoc } from "firebase/firestore"; // Firestore methods
 import { useNavigate } from "react-router-dom";
+import Loader from "../../../components/Loader";
 
 const Allcourse = () => {
-     const [loading, setLoading] = useState(true); // Loading state
-    const navigate = useNavigate(); // For navigation
+  const [loading, setLoading] = useState(true); // Loading state
+  const navigate = useNavigate(); // For navigation
   const [course, setCourse] = useState([]); // Store course data
   const [error, setError] = useState(null); // Error state
 
@@ -52,7 +53,11 @@ const Allcourse = () => {
   };
 
   if (loading) {
-    return <div>Loading Course...</div>;
+    return (
+      <div>
+        <Loader />
+      </div>
+    );
   }
 
   if (error) {

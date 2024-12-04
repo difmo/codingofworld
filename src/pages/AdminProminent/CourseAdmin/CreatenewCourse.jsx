@@ -2,64 +2,87 @@ import React, { useState } from "react";
 import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
 import { useNavigate } from "react-router-dom";
-import { db, storage } from "../../../firebase"; // Import Firebase configuration
-import { collection, addDoc } from "firebase/firestore"; // Firestore methods
-import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage"; // Firebase Storage methods
+import { db, storage } from "../../../firebase";
+import { collection, addDoc } from "firebase/firestore";
+import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
 
 const CreatenewCourse = () => {
   const navigate = useNavigate();
-  const [title, setTitle] = useState(""); // To store title input
-  const [shortDescription, setShortDescription] = useState(""); // To store short description
-  const [description, setDescription] = useState(""); // To store description (ReactQuill)
-  const [bio, setBio] = useState(""); // To store bio
-  const [thumbnail, setThumbnail] = useState(null); // To store thumbnail image
+  const [title, setTitle] = useState("");
+  const [shortDescription, setShortDescription] = useState("");
+  const [description, setDescription] = useState("");
+  const [bio, setBio] = useState("");
+  const [thumbnail, setThumbnail] = useState(null);
   const [loading, setLoading] = useState(false);
+  const [uploadProgress, setUploadProgress] = useState(0);
+  const [message, setMessage] = useState("");
 
-  // Handle file input change for thumbnail image
   const handleThumbnailChange = (e) => {
     const file = e.target.files[0];
     if (file) {
-      setThumbnail(file); // Store the selected file
+      setThumbnail(file);
     }
   };
 
-  // Handle form submission
+  const validateForm = () => {
+    if (!title || title.length < 5) {
+      setMessage("Title must be at least 5 characters.");
+      return false;
+    }
+    if (!shortDescription || shortDescription.length < 40) {
+      setMessage("Short description must be at least 40 characters.");
+      return false;
+    }
+    if (!description) {
+      setMessage("Please provide a detailed description.");
+      return false;
+    }
+    if (!bio) {
+      setMessage("Please provide a bio.");
+      return false;
+    }
+    if (!thumbnail) {
+      setMessage("Please upload a thumbnail image.");
+      return false;
+    }
+    setMessage("");
+    return true;
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
+    if (!validateForm()) return;
     setLoading(true);
+
     try {
-      // Upload thumbnail image to Firebase Storage
       if (thumbnail) {
         const storageRef = ref(storage, `thumbnails/${thumbnail.name}`);
         const uploadTask = uploadBytesResumable(storageRef, thumbnail);
 
-        // Wait for upload completion
         uploadTask.on(
           "state_changed",
           (snapshot) => {
             const progress =
               (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-            console.log("Upload is " + progress + "% done");
+            setUploadProgress(progress);
           },
           (error) => {
             console.error("Error uploading image:", error);
+            setMessage("Error uploading thumbnail image.");
             setLoading(false);
           },
           async () => {
-            // Get the download URL of the uploaded thumbnail
             const downloadURL = await getDownloadURL(uploadTask.snapshot.ref);
 
-            // Now store course data in Firestore
             const courseData = {
               title,
-              shortDescription, // Save the short description
+              shortDescription,
               description,
               bio,
               thumbnailUrl: downloadURL,
               createdAt: new Date(),
             };
 
-            // Save the data to Firestore
             const docRef = await addDoc(
               collection(db, "newcourse"),
               courseData
@@ -67,23 +90,41 @@ const CreatenewCourse = () => {
             console.log("Document written with ID: ", docRef.id);
 
             setLoading(false);
-            navigate("/admin/allcourse"); // Redirect after successful save
+            setMessage("Course created successfully!");
+            setTimeout(() => navigate("/admin/allcourse"), 2000);
           }
         );
       }
     } catch (error) {
       console.error("Error saving course:", error);
+      setMessage("An error occurred while saving the course.");
       setLoading(false);
     }
   };
 
   return (
-    <div className="p-4 max-w-xl mx-auto">
-      {loading ? (
-        <p>Loading...</p>
-      ) : (
-        <form onSubmit={handleSubmit} className="space-y-4">
-          {/* Title input */}
+    <div className="relative">
+      {loading && (
+        <div className="fixed inset-0 flex items-center justify-center bg-gray-800 bg-opacity-50 z-50">
+          <div className="flex flex-col items-center">
+            <div className="loader border-t-4 border-blue-500 rounded-full w-16 h-16 animate-spin"></div>
+            <p className="text-white mt-4">Submitting...</p>
+          </div>
+        </div>
+      )}
+
+      <div className="max-w-4xl mx-auto p-6 bg-white shadow-lg rounded-lg">
+        <form onSubmit={handleSubmit} className="space-y-6">
+          <h1 className="text-2xl font-bold text-gray-800">
+            Create New Course
+          </h1>
+
+          {message && (
+            <p className="text-sm text-red-600 bg-red-100 p-2 rounded">
+              {message}
+            </p>
+          )}
+
           <div>
             <label
               htmlFor="title"
@@ -96,13 +137,11 @@ const CreatenewCourse = () => {
               id="title"
               value={title}
               onChange={(e) => setTitle(e.target.value)}
-              required
-              className="mt-2 p-2 w-full border border-gray-300 rounded"
+              className="mt-2 p-3 w-full border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500"
               placeholder="Enter course title"
             />
           </div>
 
-          {/* Short Description input */}
           <div>
             <label
               htmlFor="shortDescription"
@@ -110,18 +149,16 @@ const CreatenewCourse = () => {
             >
               Short Description
             </label>
-            <input
-              type="text"
+            <textarea
               id="shortDescription"
               value={shortDescription}
               onChange={(e) => setShortDescription(e.target.value)}
-              required
-              className="mt-2 p-2 w-full border border-gray-300 rounded"
-              placeholder="Enter a short description"
+              className="mt-2 p-3 w-full border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500"
+              placeholder="Enter a short description (40-100 characters)"
+              rows={1}
             />
           </div>
 
-          {/* Description input using ReactQuill */}
           <div>
             <label
               htmlFor="description"
@@ -133,25 +170,11 @@ const CreatenewCourse = () => {
               id="description"
               value={description}
               onChange={setDescription}
-              className="w-full mt-2 mb-4"
+              className="mt-2"
               placeholder="Enter course description"
-              modules={{
-                toolbar: [
-                  [{ header: "1" }, { header: "2" }],
-                  [{ font: [] }],
-                  [{ size: ["small", "normal", "large", "huge"] }],
-                  ["bold", "italic", "underline"],
-                  ["link"],
-                  [{ list: "ordered" }, { list: "bullet" }],
-                  ["blockquote", "code-block"],
-                  ["image"],
-                  ["clean"],
-                ],
-              }}
             />
           </div>
 
-          {/* Bio input */}
           <div>
             <label
               htmlFor="bio"
@@ -163,25 +186,11 @@ const CreatenewCourse = () => {
               id="bio"
               value={bio}
               onChange={setBio}
-              className="w-full mt-2 mb-4"
+              className="mt-2"
               placeholder="Enter course bio"
-              modules={{
-                toolbar: [
-                  [{ header: "1" }, { header: "2" }],
-                  [{ font: [] }],
-                  [{ size: ["small", "normal", "large", "huge"] }],
-                  ["bold", "italic", "underline"],
-                  ["link"],
-                  [{ list: "ordered" }, { list: "bullet" }],
-                  ["blockquote", "code-block"],
-                  ["image"],
-                  ["clean"],
-                ],
-              }}
             />
           </div>
 
-          {/* Thumbnail input */}
           <div>
             <label
               htmlFor="thumbnail"
@@ -193,7 +202,7 @@ const CreatenewCourse = () => {
               type="file"
               id="thumbnail"
               onChange={handleThumbnailChange}
-              className="mt-2 p-2 w-full border border-gray-300 rounded"
+              className="mt-2 w-full text-sm text-gray-500"
               accept="image/*"
             />
             {thumbnail && (
@@ -203,23 +212,24 @@ const CreatenewCourse = () => {
             )}
           </div>
 
-          {/* Submit Button */}
+          {uploadProgress > 0 && (
+            <div className="w-full bg-gray-200 rounded-full h-2.5">
+              <div
+                className="bg-blue-500 h-2.5 rounded-full"
+                style={{ width: `${uploadProgress}%` }}
+              ></div>
+            </div>
+          )}
+
           <button
             type="submit"
-            className="bg-blue-500 text-white p-2 rounded"
-            disabled={
-              loading ||
-              !title ||
-              !shortDescription ||
-              !description ||
-              !bio ||
-              !thumbnail
-            }
+            className="w-full bg-blue-500 text-white p-3 rounded-lg font-medium hover:bg-blue-600 focus:ring-2 focus:ring-blue-400"
+            disabled={loading}
           >
-            {loading ? "Saving..." : "Save"}
+            Save
           </button>
         </form>
-      )}
+      </div>
     </div>
   );
 };
