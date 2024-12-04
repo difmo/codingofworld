@@ -47,6 +47,7 @@ import EditInternship from "./pages/AdminProminent/Internship-Det/EditInternship
 import CreatenewCourse from "./pages/AdminProminent/CourseAdmin/CreatenewCourse";
 import Allcourse from "./pages/AdminProminent/CourseAdmin/Allcourse";
 import EditCourse from "./pages/AdminProminent/CourseAdmin/EditCourse";
+import Codowo from "./pages/Codowo/Codowo";
 
 const App = () => {
   const { isAdmin, isUserLogin } = AdminController();
@@ -54,6 +55,14 @@ const App = () => {
     <Router future={{ v7_startTransition: true, v7_relativeSplatPath: true }}>
       <ScrollToTop />
       <Routes>
+              
+        {/* solve quesiton area  */}
+        <Route>
+
+        <Route path="/codowo" element={<Codowo />} />
+
+        </Route>
+        
         <Route element={<Layout />}>
           <Route path="/" element={<HomeScreen />} />
           <Route path="/contactus" element={<ContactUs />} />

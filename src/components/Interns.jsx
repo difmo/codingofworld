@@ -42,8 +42,8 @@ const Internships = () => {
     <>
       {" "}
       <section className="p-6 mx-auto">
-        <h2 className="text-6xl py-3 font-bold text-center">Our Internships</h2>
-        <p className="relative mb-6 py-3 text-xl text-center">
+        <h2 className="py-3 text-6xl font-bold text-center">Our Internships</h2>
+        <p className="relative py-3 mb-6 text-xl text-center">
           The internships below are not exhaustive, and may or may not be
           currently available, but provide a taste of the various internships
           Coding of World offers.
@@ -54,17 +54,17 @@ const Internships = () => {
           {internships.map((internship) => (
             <li
               key={internship.id}
-              className="py-4 relative cursor-pointer flex flex-col overflow-hidden transition-all transform rounded-xl shadow-md justify-between bg-white hover:scale-105 hover:shadow-xl border-gray-300"
+              className="relative flex flex-col justify-between py-4 overflow-hidden transition-all transform bg-white border-gray-300 shadow-md cursor-pointer rounded-xl hover:scale-105 hover:shadow-xl"
               onClick={() => navigate(`/internship/${internship.id}`)}
             >
-              <div className="transition-opacity duration-300 my-2">
+              <div className="my-2 transition-opacity duration-300">
                 <img
                   className="object-cover w-full h-60 rounded-xl"
                   src={internship.thumbnailUrl}
                   alt={internship.title}
                   loading="lazy"
                 />
-                <h3 className="text-3xl px-2 font-bold content-container text-black md:h-12 py-4">
+                <h3 className="px-2 py-4 text-3xl font-bold text-black content-container md:h-12">
                   {internship.title}
                 </h3>
               </div>
@@ -75,13 +75,13 @@ const Internships = () => {
 
               {/* Short bio description */}
               <p
-                className="px-2 py-2 text-xl text-gray-600 font-serif"
+                className="px-2 py-2 font-serif text-xl text-gray-600"
                 dangerouslySetInnerHTML={{
                   __html: internship.shortDescription,
                 }}
               />
 
-              <div className="justify-center flex">
+              <div className="flex justify-center">
                 <div className="p-2 text-center rounded-xl bg-primary/70 cursor-pointer md:w-[80%] w-full sm:w-[80%]   ">
                   <span className="text-white">Explore now</span>
                 </div>

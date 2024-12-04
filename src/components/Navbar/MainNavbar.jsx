@@ -83,7 +83,7 @@ const MainNavbar = () => {
         <div className="flex items-center justify-center">
           <img src={logo} className="h-10 " />
           <div>
-            <h1 className="pl-2 text-xl font-bold">
+            <h1 className="pl-2 text-xl font-bold font-play ">
               Coding of <span className="text-primary">World</span>
             </h1>
           </div>
@@ -95,9 +95,9 @@ const MainNavbar = () => {
               <li key={menu.id}>
                 <Link
                   to={menu.path}
-                  className="relative inline-block px-3 py-2 hover:text-secondary group"
+                  className="relative inline-block px-3 py-2 font-play hover:text-secondary group"
                 >
-                  <div className="absolute bottom-0 hidden w-2 h-2 mt-4 -translate-x-1/2 rounded-full bg-secondary left-1/2 top-1/2 group-hover:block"></div>
+                  <div className="absolute bottom-0 hidden w-2 h-2 mt-4 -translate-x-1/2 rounded-full bg-secondary font-play left-1/2 top-1/2 group-hover:block"></div>
                   {menu.title}
                 </Link>
               </li>
@@ -126,11 +126,11 @@ const MainNavbar = () => {
                   >
                     <FaTimes />
                   </button>
-                  <ul className="p-4 space-y-4">
+                  <ul className="p-4 space-y-4 font-play" >
                     {isAdmin && (
                       <li>
                         <div className="flex items-center text-gray-700 cursor-pointer hover:text-blue-600">
-                          <FaPersonBooth className="mr-3" />
+                          <FaPersonBooth className="mr-3 font-play" />
                           <span onClick={() => navigate("/admin-dashboard")}>
                             Admin
                           </span>
@@ -143,7 +143,7 @@ const MainNavbar = () => {
                       <li>
                         <div
                           onClick={openPopup}
-                          className="flex items-center text-gray-700 cursor-pointer hover:text-blue-600"
+                          className="flex items-center text-gray-700 cursor-pointer font-play hover:text-blue-600"
                         >
                           <FaBlog className="mr-3" />
                           <span>Create Blogs</span>
@@ -152,7 +152,7 @@ const MainNavbar = () => {
                     ) : (
                       <li>
                         <div
-                          className="flex items-center text-gray-700 cursor-pointer hover:text-blue-600"
+                          className="flex items-center text-gray-700 cursor-pointer font-play hover:text-blue-600"
                         >
                           <FaBlog className="mr-3" />
                           <span onClick={() => navigate("/all-blogs")}>
@@ -165,7 +165,7 @@ const MainNavbar = () => {
                     <li>
                       <a
                         href="#"
-                        className="flex items-center text-gray-700 hover:text-blue-600"
+                        className="flex items-center text-gray-700 font-play hover:text-blue-600"
                       >
                         <FaSignOutAlt className="mr-3" />
                         <span onClick={handleLogout}>Logout</span>
@@ -201,7 +201,7 @@ const MainNavbar = () => {
                 <li key={menu.id}>
                   <Link
                     to={menu.path}
-                    className="block py-2 hover:text-secondary"
+                    className="block py-2 font-play hover:text-secondary"
                     onClick={() => setMobileMenuOpen(false)}
                   >
                     {menu.title}
@@ -238,7 +238,7 @@ const MainNavbar = () => {
                 <ul className="p-4 space-y-4">
                   {isAdmin && (
                     <li>
-                      <div className="flex items-center text-gray-700 cursor-pointer hover:text-blue-600">
+                      <div className="flex items-center text-gray-700 cursor-pointer font-play hover:text-blue-600">
                         <FaPersonBooth className="mr-3" />
                         <span onClick={() => navigate("/admin-dashboard")}>
                           Admin
@@ -252,7 +252,7 @@ const MainNavbar = () => {
                     <li>
                       <div
                         onClick={openPopup}
-                        className="flex items-center text-gray-700 cursor-pointer hover:text-blue-600"
+                        className="flex items-center text-gray-700 cursor-pointer font-play hover:text-blue-600"
                       >
                         <FaBlog className="mr-3" />
                         <span>Create Blogs</span>
@@ -261,7 +261,7 @@ const MainNavbar = () => {
                   ) : (
                     <li>
                       <div
-                        className="flex items-center text-gray-700 cursor-pointer hover:text-blue-600"
+                        className="flex items-center text-gray-700 cursor-pointer font-play hover:text-blue-600"
                       >
                         <FaBlog className="mr-3" />
                         <span onClick={() => navigate("/all-blogs")}>
@@ -274,7 +274,7 @@ const MainNavbar = () => {
                   <li>
                     <a
                       href="#"
-                      className="flex items-center text-gray-700 hover:text-blue-600"
+                      className="flex items-center text-gray-700 font-play hover:text-blue-600"
                     >
                       <FaSignOutAlt className="mr-3" />
                       <span onClick={handleLogout}>Logout</span>

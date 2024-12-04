@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import { db } from ".././firebase";
+import { db } from "../firebase";
 import { doc, getDoc } from "firebase/firestore";
+
 const InternshipDetails = () => {
-   const navigate = useNavigate();
+  const navigate = useNavigate();
   const { id } = useParams();
   const [internship, setInternship] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -31,44 +32,45 @@ const InternshipDetails = () => {
   }, [id]);
 
   if (loading) {
-    return <div>Loading internship details...</div>; // Loading state
+    return <div className="text-xl text-center">Loading internship details...</div>;
   }
 
   if (error) {
-    return <div>{error}</div>; // Error state
+    return <div className="text-xl text-center text-red-500">{error}</div>;
   }
 
   if (!internship) {
-    return <p>Internship not found!</p>; // If no internship data is found
+    return <p className="text-xl text-center">Internship not found!</p>;
   }
 
   return (
-    <div className="py-10 px-4 sm:px-8 lg:px-64">
-      <h2 className="text-3xl md:text-6xl text-center font-bold mb-6">
+    <div className="px-4 py-10 sm:px-8 lg:px-16 xl:px-32">
+      <h2 className="mb-6 text-3xl font-bold text-center text-gray-800 font-play md:text-5xl lg:text-6xl">
         {internship.title}
       </h2>
-      <div className="flex justify-between flex-wrap">
-        {/* Thumbnail on the left side */}
-        <div className="w-full md:w-1/2 p-3">
+
+      <div className="flex flex-col items-center md:flex-row md:justify-between">
+        {/* Thumbnail Section */}
+        <div className="w-full mb-6 md:w-1/2 md:mb-0">
           <img
             src={internship.thumbnailUrl}
             alt={internship.title}
-            className="my-4 object-cover rounded-md w-full"
+            className="object-cover w-full rounded-lg shadow-lg h-72 md:h-96"
           />
         </div>
 
-        {/* Bio and button section */}
-        <div className="p-4 md:p-12 w-full md:w-1/2">
-          <div>
+        {/* Bio and Enroll Button Section */}
+        <div className="w-full p-6 md:w-1/2 md:p-8">
+          <div className="mb-6 content-container">
             <p
-              className="text-lg mt-2"
+              className="text-lg leading-relaxed text-gray-700 font-anek_telugu"
               dangerouslySetInnerHTML={{ __html: internship.bio }}
             />
           </div>
-          <div className="py-7">
+          <div className="text-center">
             <button
               onClick={() => navigate("/internshipform")}
-              className="px-4 py-2 text-white transition-all duration-300 bg-primary hover:bg-primary/60 rounded-xl w-full md:w-auto"
+              className="px-6 py-3 text-white transition-all duration-300 transform rounded-lg shadow-md bg-primary hover:bg-primary/80 hover:scale-105"
             >
               ENROLL NOW
             </button>
@@ -77,9 +79,10 @@ const InternshipDetails = () => {
       </div>
 
       {/* Description Section */}
-      <div className="mt-8">
+      <div className="mt-12 content-container">
+        <h3 className="mb-4 text-2xl font-semibold text-gray-800">Internship Details</h3>
         <p
-          className="text-lg mt-2"
+          className="text-lg leading-relaxed text-gray-700 font-anek_telugu"
           dangerouslySetInnerHTML={{ __html: internship.description }}
         />
       </div>

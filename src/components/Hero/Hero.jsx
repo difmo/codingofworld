@@ -77,7 +77,7 @@ const Hero = () => {
               animate="animate"
               className="text-2xl lg:text-5xl  font-bold !leading-snug"
             >
-              <span className=" text-secondary">
+              <span className=" text-secondary font-anek_telugu">
                 {textOptions[currentTextIndex]}
               </span>
             </motion.h1>
