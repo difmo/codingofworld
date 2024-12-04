@@ -40,7 +40,11 @@ const BlogPage = () => {
   }, [blogId]);
 
   if (loading) {
-    return <div><MainLoader /></div>;
+    return (
+      <div>
+        <MainLoader />
+      </div>
+    );
   }
 
   if (error) {
@@ -111,16 +115,3 @@ const BlogPage = () => {
 };
 
 export default BlogPage;
-
-
-
-
-
-
-
-
-
-
-
-
-

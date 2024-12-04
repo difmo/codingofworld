@@ -30,19 +30,17 @@ export const FadeUp = (delay) => {
   };
 };
 
-const   Hero = () => {
+const Hero = () => {
   const [currentImage, setCurrentImage] = useState(0);
-  const [isModalOpen, setIsModalOpen] = useState(true); // State to control modal visibility
-
+  const [isModalOpen, setIsModalOpen] = useState(true);
   const [currentTextIndex, setCurrentTextIndex] = useState(0);
-  const navigate = useNavigate();
   const images = [HeroPng1, HeroPng2, HeroPng3];
   const textOptions = [
     "Master the latest technologies with hands-on coding tutorials.",
-"Stay ahead in tech with cutting-edge programming lessons.",
+    "Stay ahead in tech with cutting-edge programming lessons.",
     "Explore AI, web development, and more with Coding of World!",
-    // <EventModel onClick={openModal} />,
-  ]; //
+  ];
+  
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrentImage((prevImage) => (prevImage + 1) % images.length);
@@ -63,13 +61,13 @@ const   Hero = () => {
     setIsModalOpen(true);
   };
 
-  // Close modal function
   const closeModal = () => {
     setIsModalOpen(false);
   };
+
   return (
     <section className="relative overflow-hidden bg-light">
-       <ScrollToTop /> 
+      <ScrollToTop />
       <div className="container grid grid-cols-1 md:px-32 md:grid-cols-2">
         <div className="relative flex flex-col justify-center py-14 md:py-0 ">
           <div className="text-center md:text-left space-y-10 lg:max-w-[400px] z-10">
@@ -80,7 +78,7 @@ const   Hero = () => {
               className="text-2xl lg:text-5xl  font-bold !leading-snug"
             >
               <span className=" text-secondary">
-               {textOptions[currentTextIndex]}
+                {textOptions[currentTextIndex]}
               </span>
             </motion.h1>
             <motion.div
@@ -89,17 +87,10 @@ const   Hero = () => {
               animate="animate"
               className="flex justify-center md:justify-start"
             >
-              {/* <button
-                onClick={openModal}
-                className="flex items-center gap-2 primary-btn group blinking-btn"
-              >
-               join now
-                <IoIosArrowRoundForward className="text-xl duration-300 group-hover:translate-x-2 group-hover:-rotate-45" />
-              </button> */}
+              {/* Add your button or other actions here */}
             </motion.div>
           </div>
         </div>
-        {/* Hero Image */}
 
         <div className="flex items-center justify-center ">
           <motion.img
@@ -109,62 +100,61 @@ const   Hero = () => {
             exit={{ opacity: 0 }}
             transition={{ duration: 0.6, ease: "easeInOut" }}
             src={images[currentImage]}
-            alt=""
-            className="relative z-10 "
+            alt="Hero Image"
+            className="relative z-10"
           />
           <motion.img
             initial={{ x: -50, opacity: 0 }}
             animate={{ x: 0, opacity: 1 }}
             transition={{ duration: 0.6, delay: 0.2, ease: "easeInOut" }}
             src={Blob}
-            alt=""
-            className="absolute  -bottom-32 w-[800px] md:w-[1500px] -z-[0] hidden md:block"
+            alt="Blob"
+            className="absolute -bottom-32 w-[800px] md:w-[1500px] -z-[0] hidden md:block"
           />
         </div>
       </div>
 
-      {/* <div className="absolute top-0 z-10 w-full">
-        <EventModel onClick={openModal} />
-      </div> */}
       <div className="absolute top-0 w-full">
         {isModalOpen && <EventForm onClose={closeModal} />}
       </div>
 
-
-      <style jsx>{`
-        /* Keyframe animation for blinking effect */
-        @keyframes blink {
-          0% {
-            opacity: 1;
+      {/* Regular CSS for styles */}
+      <style>
+        {`
+          /* Keyframe animation for blinking effect */
+          @keyframes blink {
+            0% {
+              opacity: 1;
+            }
+            50% {
+              opacity: 0.5;
+            }
+            100% {
+              opacity: 1;
+            }
           }
-          50% {
-            opacity: 0.5;
+
+          /* Button styles */
+          .blinking-btn {
+            animation: blink 1s infinite;
           }
-          100% {
-            opacity: 1;
+
+          .primary-btn {
+            background-color: #ff6b6b; /* Example primary button color */
+            color: white;
+            padding: 12px 24px;
+            border-radius: 8px;
+            border: none;
+            font-weight: bold;
+            text-transform: uppercase;
+            transition: transform 0.3s ease;
           }
-        }
 
-        /* Button styles */
-        .blinking-btn {
-          animation: blink 1s infinite;
-        }
-
-        .primary-btn {
-          background-color: #ff6b6b; /* Example primary button color */
-          color: white;
-          padding: 12px 24px;
-          border-radius: 8px;
-          border: none;
-          font-weight: bold;
-          text-transform: uppercase;
-          transition: transform 0.3s ease;
-        }
-
-        .primary-btn:hover {
-          transform: scale(1.05);
-        }
-      `}</style>
+          .primary-btn:hover {
+            transform: scale(1.05);
+          }
+        `}
+      </style>
     </section>
   );
 };

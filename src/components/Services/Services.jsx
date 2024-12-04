@@ -83,6 +83,7 @@ const Services = () => {
             initial="initial"
             whileInView={"animate"}
             viewport={{ once: true }}
+            key={service.id}
             className="bg-[#f4f4f4] rounded-2xl flex flex-col gap-4 items-center justify-center p-4 py-7 hover:bg-white hover:scale-105 duration-300 hover:shadow-2xl"
           >
             <div className="mb-4 text-4xl"> {service.icon}</div>

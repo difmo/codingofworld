@@ -16,7 +16,8 @@ const Banner2 = () => {
             <h1 className="text-4xl font-bold !leading-snug">
               Join Our Community to Start your Journey
             </h1>
-            <p className="text-dark">
+            {/* Fixed issue: Replaced the outer <p> with a <div> */}
+            <div className="text-dark">
               <p>
                 React.js is a powerful library for building fast, scalable web
                 apps with features like React Hooks, Context API, and React
@@ -29,13 +30,12 @@ const Banner2 = () => {
                 and excelling in competitive programming and software
                 development.
               </p>
-
               <p>
                 Python is a versatile, beginner-friendly language widely used in
                 web development, data science, AI, and automation, known for its
                 simplicity and robust libraries.
               </p>
-            </p>
+            </div>
             <a
               href=" https://chat.whatsapp.com/FwZdLFOAPIZDf5xCmvt7RO "
               className="primary-btn !mt-8"
@@ -53,7 +53,7 @@ const Banner2 = () => {
             src={img}
             alt="Animated Image"
             className="object-contain w-full h-auto"
-            />
+          />
         </div>
       </div>
     </section>

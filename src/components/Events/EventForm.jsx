@@ -197,8 +197,8 @@ const EventForm = ({ onClose }) => {
         </div>
       </div>
 
-    
-      <style jsx>{`
+      {/* Animation */}
+      <style>{`
         @keyframes popup {
           0% {
             opacity: 0;

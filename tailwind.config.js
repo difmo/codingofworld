@@ -4,10 +4,10 @@ export default {
   theme: {
     extend: {
       transitionProperty: {
-        'transform': 'transform',
+        transform: "transform",
       },
       translate: {
-        'full': '100%',
+        full: "100%",
       },
       fontFamily: {
         poppins: ["Poppins", "sans-serif"],

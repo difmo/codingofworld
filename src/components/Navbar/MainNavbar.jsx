@@ -54,7 +54,7 @@ const MainNavbar = () => {
   const toggleSidebar = () => {
     setIsOpen(!isOpen);
   };
-  // dsfsfsfdf
+  // dsfsfsfddsfdff
 
   const handleClickOutside = (event) => {
     if (popupRef.current && !popupRef.current.contains(event.target)) {

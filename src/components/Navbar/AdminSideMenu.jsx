@@ -1,6 +1,6 @@
 import React from "react";
 import logo from "../../assets/images/logo.svg";
-import {useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 const AdminSidebar = ({ toggleSidebar }) => {
   const navigate = useNavigate();
@@ -15,7 +15,7 @@ const AdminSidebar = ({ toggleSidebar }) => {
         <li
           onClick={() => {
             navigate("/admin-dashboard");
-            toggleSidebar();
+            // toggleSidebar();
           }}
           className="flex items-center px-4 py-3 mb-2 text-white transition duration-200 rounded-lg cursor-pointer bg-primary hover:bg-blue-600"
         >
@@ -24,7 +24,7 @@ const AdminSidebar = ({ toggleSidebar }) => {
         <li
           onClick={() => {
             navigate("/admin/internship");
-            toggleSidebar();
+            // toggleSidebar();
           }}
           className="flex items-center px-4 py-3 mb-2 text-white transition duration-200 rounded-lg cursor-pointer bg-primary hover:bg-blue-600"
         >
@@ -33,7 +33,7 @@ const AdminSidebar = ({ toggleSidebar }) => {
         <li
           onClick={() => {
             navigate("/admin/client-contact");
-            toggleSidebar();
+            // toggleSidebar();
           }}
           className="flex items-center px-4 py-3 mb-2 text-white transition duration-200 rounded-lg cursor-pointer bg-primary hover:bg-blue-600"
         >
@@ -42,7 +42,7 @@ const AdminSidebar = ({ toggleSidebar }) => {
         <li
           onClick={() => {
             navigate("/admin/login-users");
-            toggleSidebar();
+            // toggleSidebar();
           }}
           className="flex items-center px-4 py-3 mb-2 text-white transition duration-200 rounded-lg cursor-pointer bg-primary hover:bg-blue-600"
         >
@@ -51,11 +51,47 @@ const AdminSidebar = ({ toggleSidebar }) => {
         <li
           onClick={() => {
             navigate("/admin/blog");
-            toggleSidebar();
+            // toggleSidebar();
           }}
           className="flex items-center px-4 py-3 mb-2 text-white transition duration-200 rounded-lg cursor-pointer bg-primary hover:bg-blue-600"
         >
           Blogs
+        </li>
+        <li
+          onClick={() => {
+            navigate("./admin/createNewInternship");
+            // toggleSidebar();
+          }}
+          className="flex items-center px-4 py-3 mb-2 text-white transition duration-200 rounded-lg cursor-pointer bg-primary hover:bg-blue-600"
+        >
+          Create New Internship
+        </li>
+        <li
+          onClick={() => {
+            navigate("./admin/allInternship");
+            // toggleSidebar();
+          }}
+          className="flex items-center px-4 py-3 mb-2 text-white transition duration-200 rounded-lg cursor-pointer bg-primary hover:bg-blue-600"
+        >
+          All Internship
+        </li>
+        <li
+          onClick={() => {
+            navigate("/admin/createnewcourse");
+            // toggleSidebar();
+          }}
+          className="flex items-center px-4 py-3 mb-2 text-white transition duration-200 rounded-lg cursor-pointer bg-primary hover:bg-blue-600"
+        >
+          Create New Course
+        </li>
+        <li
+          onClick={() => {
+            navigate("/admin/allcoures ");
+            // toggleSidebar();
+          }}
+          className="flex items-center px-4 py-3 mb-2 text-white transition duration-200 rounded-lg cursor-pointer bg-primary hover:bg-blue-600"
+        >
+          All Course
         </li>
       </ul>
     </div>

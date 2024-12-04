@@ -87,7 +87,7 @@ const AddBlogs = () => {
         },
         (error) => reject(error),
         () => {
-          // Get download URL after upload completes
+      
           getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
             resolve(downloadURL);
           });
