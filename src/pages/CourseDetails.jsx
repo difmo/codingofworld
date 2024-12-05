@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { db } from "../firebase";
 import { doc, getDoc } from "firebase/firestore";
+import Loader from "../components/Loader";
 const CourseDetails = () => {
   const navigate = useNavigate();
   const { id } = useParams();
@@ -31,7 +32,7 @@ const CourseDetails = () => {
   }, [id]);
 
   if (loading) {
-    return <div>Loading course details...</div>; // Loading state
+    return <Loader />; // Loading state
   }
 
   if (error) {

@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { collection, getDocs } from "firebase/firestore";
 import { db } from "../firebase";
+import Loader from "./Loader";
 
 const Internships = () => {
   const [internships, setInternships] = useState([]);
@@ -31,7 +32,7 @@ const Internships = () => {
   }, []);
 
   if (loading) {
-    return <div>Loading internships...</div>;
+    return <Loader />;
   }
 
   if (error) {

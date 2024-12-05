@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { db } from "../firebase"; // Import your Firebase configuration
 import { collection, getDocs } from "firebase/firestore"; // Firestore methods
+import Loader from "./Loader";
 
 const CourseList = () => {
   const [courses, setCourses] = useState([]); // State to store fetched courses
-  const [loading, setLoading] = useState(true); // Loading state
+  const [loading, setLoading] = useState(""); // Loading state
   const [error, setError] = useState(null); // Error state
 
   // Fetch courses from Firestore
@@ -29,14 +30,7 @@ const CourseList = () => {
   }, []);
 
   if (loading) {
-    return (
-      <div className="flex items-center justify-center h-screen">
-        <div className="loader border-t-transparent border-blue-500 h-10 w-10 rounded-full animate-spin"></div>
-        <span className="ml-4 text-blue-500 text-lg font-semibold">
-          Loading courses...
-        </span>
-      </div>
-    );
+    return <Loader />;
   }
 
   if (error) {
@@ -51,23 +45,21 @@ const CourseList = () => {
     <div className="p-4">
       <div className="overflow-x-auto">
         <table className="w-full table-auto mx-auto text-center">
-          <tbody>
-            {courses.map((course) => (
-              <tr key={course.id} className="hover:bg-gray-100">
-                <td className="px-4 py-2 border-b">{course.title}</td>
-                <td className="px-4 py-2 border-b">{course.description}</td>
-                <td className="px-4 py-2 border-b">
-                  {course.thumbnailUrl && (
-                    <img
-                      src={course.thumbnailUrl}
-                      alt={course.title}
-                      className="w-20 h-20 object-cover mx-auto"
-                    />
-                  )}
-                </td>
-              </tr>
-            ))}
-          </tbody>
+          {courses.map((course) => (
+            <tr key={course.id} className="hover:bg-gray-100">
+              <td className="px-4 py-2 border-b">{course.title}</td>
+              <td className="px-4 py-2 border-b">{course.description}</td>
+              <td className="px-4 py-2 border-b">
+                {course.thumbnailUrl && (
+                  <img
+                    src={course.thumbnailUrl}
+                    alt={course.title}
+                    className="w-20 h-20 object-cover mx-auto"
+                  />
+                )}
+              </td>
+            </tr>
+          ))}
         </table>
       </div>
     </div>

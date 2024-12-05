@@ -96,8 +96,16 @@ export const Courses = () => {
               </div>
               <p
                 className="px-2 py-2 text-xl text-gray-600 font-serif"
-                dangerouslySetInnerHTML={{ __html: item.shortDescription }}
+                dangerouslySetInnerHTML={{
+                  __html: item.shortDescription
+                    ? item.shortDescription
+                        .split(" ") // Split the string by spaces into an array of words
+                        .slice(0, 7) // Get the first 10 words
+                        .join(" ") + "..." // Join the words back and append "..."
+                    : "",
+                }}
               />
+
               <div className="flex items-center justify-between p-3 border-t border-gray-200">
                 <span className="text-sm text-primary">Free</span>
                 <span className="text-[14px] ml-2 flex items-center">

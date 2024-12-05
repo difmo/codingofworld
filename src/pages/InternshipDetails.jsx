@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { db } from "../firebase";
 import { doc, getDoc } from "firebase/firestore";
+import Loader from "../components/Loader";
 
 const InternshipDetails = () => {
   const navigate = useNavigate();
@@ -32,7 +33,7 @@ const InternshipDetails = () => {
   }, [id]);
 
   if (loading) {
-    return <div className="text-xl text-center">Loading internship details...</div>;
+    return <Loader />;
   }
 
   if (error) {
@@ -80,7 +81,9 @@ const InternshipDetails = () => {
 
       {/* Description Section */}
       <div className="mt-12 content-container">
-        <h3 className="mb-4 text-2xl font-semibold text-gray-800">Internship Details</h3>
+        <h3 className="mb-4 text-2xl font-semibold text-gray-800">
+          Internship Details
+        </h3>
         <p
           className="text-lg leading-relaxed text-gray-700 font-anek_telugu"
           dangerouslySetInnerHTML={{ __html: internship.description }}

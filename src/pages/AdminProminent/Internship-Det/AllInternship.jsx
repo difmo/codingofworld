@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { db } from "../../../firebase"; // Import Firestore config
 import { collection, getDocs, doc, deleteDoc } from "firebase/firestore"; // Firestore methods
 import { useNavigate } from "react-router-dom";
+import Loader from "../../../components/Loader";
 
 const AllInternship = () => {
   const [internships, setInternships] = useState([]); // Store internship data
@@ -17,7 +18,7 @@ const AllInternship = () => {
         const fetchedInternships = [];
         querySnapshot.forEach((doc) => {
           fetchedInternships.push({ ...doc.data(), id: doc.id });
-        });
+        }); 
         setInternships(fetchedInternships);
         setLoading(false);
       } catch (error) {
@@ -53,7 +54,7 @@ const AllInternship = () => {
   };
 
   if (loading) {
-    return <div>Loading internships...</div>;
+    return <Loader />;
   }
 
   if (error) {
