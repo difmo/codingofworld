@@ -48,6 +48,7 @@ import CreatenewCourse from "./pages/AdminProminent/CourseAdmin/CreatenewCourse"
 import Allcourse from "./pages/AdminProminent/CourseAdmin/Allcourse";
 import EditCourse from "./pages/AdminProminent/CourseAdmin/EditCourse";
 import Codowo from "./pages/Codowo/Codowo";
+import CourseLayout from "./pages/Layout/CourseLayout";
 
 const App = () => {
   const { isAdmin, isUserLogin } = AdminController();
@@ -55,14 +56,11 @@ const App = () => {
     <Router future={{ v7_startTransition: true, v7_relativeSplatPath: true }}>
       <ScrollToTop />
       <Routes>
-              
         {/* solve quesiton area  */}
         <Route>
-
-        <Route path="/codowo" element={<Codowo />} />
-
+          <Route path="/codowo" element={<Codowo />} />
         </Route>
-        
+
         <Route element={<Layout />}>
           <Route path="/" element={<HomeScreen />} />
           <Route path="/contactus" element={<ContactUs />} />
@@ -78,8 +76,13 @@ const App = () => {
           <Route path="/alldeatilcourese" element={<AlldetailCourese />} />
           <Route path="/popupbloge" element={<Popupbloge />} />
           <Route path="/coursepagex" element={<CoursePage />} />
-          <Route path="/details/:id" element={<CourseDetails />} />
+          {/* <Route path="/details/:id" element={<CourseDetails />} /> */}
           <Route path="/internship/:id" element={<InternshipDetails />} />
+
+          <Route element={<CourseLayout/>}>
+            
+            <Route path="/details/:id" element={<CourseDetails />} />
+          </Route>
 
           <Route element={<ShowBlogLayout />}>
             <Route path="/show-blogs" element={<ShowBlogs />} />

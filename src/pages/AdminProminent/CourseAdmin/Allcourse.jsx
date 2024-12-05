@@ -23,7 +23,7 @@ const Allcourse = () => {
         setLoading(false);
       } catch (error) {
         console.error("Error fetching Course:", error);
-        setError("Failed to load Course.");
+        setError("Failed to load Course.");   
         setLoading(false);
       }
     };
