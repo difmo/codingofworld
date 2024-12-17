@@ -9,6 +9,7 @@ import { useNavigate } from "react-router-dom";
 import EventModel from "../Events/EventModel";
 import EventForm from "../Events/EventForm";
 import ScrollToTop from "../ScrollTop";
+import MyBot from "../Abot/Mybot";
 
 export const FadeUp = (delay) => {
   return {
@@ -118,6 +119,7 @@ const Hero = () => {
         {isModalOpen && <EventForm onClose={closeModal} />}
       </div>
 
+<MyBot/>
       {/* Regular CSS for styles */}
       <style>
         {`

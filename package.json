@@ -12,6 +12,7 @@
   "dependencies": {
     "@heroicons/react": "^2.1.5",
     "@monaco-editor/react": "^4.6.0",
+    "axios": "^1.7.9",
     "chart.js": "^4.4.6",
     "firebase": "^11.0.1",
     "formik": "^2.4.6",
