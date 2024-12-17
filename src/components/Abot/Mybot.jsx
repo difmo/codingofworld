@@ -68,18 +68,18 @@ const MyBot = () => {
     return (
         <div>
             {/* Minimized floating button on small devices */}
-            
+            {!isOpen && (
                 <div
                     className="fixed z-20 flex items-center justify-center w-16 h-16 bg-red-500 rounded-full shadow-xl cursor-pointer md:hidden bottom-5 right-5 sm:w-16 md:w-20"
                     onClick={toggleChat}  // Open chat when clicked
                 >
                     <FaRobot className="text-3xl text-white" />
                 </div>
-           
+            )}
 
             {/* Chatbot Container (Only visible when the chatbot is open) */}
         
-                <div className={`fixed z-10 ${!isOpen ? "block":"hidden"} md:flex-row    w-full bg-white shadow-2xl bottom-5 right-5 sm:w-80 md:w-96 chatbot-container rounded-xl`}>
+                <div className={`fixed z-10 ${isOpen ? "hidden":"md:block"}  w-full bg-white shadow-2xl bottom-5 right-5 sm:w-80 md:w-96 chatbot-container rounded-xl`}>
                     {/* Chatbot Header */}
                     <div className="flex items-center justify-between p-3 text-white bg-red-500 rounded-t-xl">
                         <div className="flex items-center space-x-3">
