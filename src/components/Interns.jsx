@@ -13,79 +13,91 @@ const Internships = () => {
   useEffect(() => {
     const fetchInternships = async () => {
       try {
-        // Fetch the internships from Firestore
         const querySnapshot = await getDocs(collection(db, "newinternship"));
         const internshipsArray = [];
         querySnapshot.forEach((doc) => {
           internshipsArray.push({ ...doc.data(), id: doc.id });
         });
         setInternships(internshipsArray);
-        setLoading(false); // Stop loading
+        setLoading(false);
       } catch (err) {
         console.error("Error fetching internships:", err);
-        setError("Failed to load internships.");
-        setLoading(false); // Stop loading
+        setError("Failed to load internships. Please try again later.");
+        setLoading(false);
       }
     };
 
-    fetchInternships(); // Call the function to fetch data
+    fetchInternships();
   }, []);
 
   if (loading) {
-    return <Loader />;
+    return (
+      <div className="flex items-center justify-center h-screen">
+        <Loader />
+      </div>
+    );
   }
 
   if (error) {
-    return <div>{error}</div>;
+    return (
+      <div className="mt-12 text-xl text-center text-red-500">
+        <p>{error}</p>
+      </div>
+    );
   }
 
   return (
     <>
-      {" "}
-      <section className="p-6 mx-auto">
-        <h2 className="py-3 text-6xl font-bold text-center">Our Internships</h2>
-        <p className="relative py-3 mb-6 text-xl text-center">
-          The internships below are not exhaustive, and may or may not be
-          currently available, but provide a taste of the various internships
-          Coding of World offers.
+      <section className="bg-[#FFF] py-8">
+        <h2 className="text-4xl font-bold text-center text-black">
+          Explore Our Internships
+        </h2>
+        <p className="px-12 py-3 mb-6 text-xl text-center text-gray-700">
+          The internships below offer a glimpse into the opportunities available
+          at Coding of World. Gain hands-on experience in web development,
+          mobile app development, AI/ML, and more.
         </p>
 
-        {/* Displaying the internships in a grid */}
+        {/* Display internships in a responsive grid */}
         <ul className="container grid grid-cols-1 gap-12 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3">
           {internships.map((internship) => (
             <li
               key={internship.id}
-              className="relative flex flex-col justify-between py-4 overflow-hidden transition-all transform bg-white border-gray-300 shadow-md cursor-pointer rounded-xl hover:scale-105 hover:shadow-xl"
+              className="relative flex flex-col justify-between overflow-hidden transition-all transform bg-white border border-gray-300 shadow-lg cursor-pointer rounded-xl hover:scale-105 hover:shadow-xl hover:bg-[#f7f7f7] hover:border-primary"
               onClick={() => navigate(`/internship/${internship.id}`)}
             >
-              <div className="my-2 transition-opacity duration-300">
+              <div className="transition-opacity duration-300 ">
                 <img
-                  className="object-cover w-full h-60 rounded-xl"
+                  className="object-cover w-full h-60 rounded-t-xl" // Only top corners rounded
                   src={internship.thumbnailUrl}
                   alt={internship.title}
                   loading="lazy"
                 />
-                <h3 className="px-2 py-4 text-3xl font-bold text-black content-container md:h-12">
+                <h3 className="px-4 py-4 text-2xl font-semibold text-black">
                   {internship.title}
                 </h3>
               </div>
 
-              <p className="absolute inset-0 z-10 flex items-center justify-center m-5 text-center transition-opacity duration-300 bg-white opacity-0">
-                {internship.description}
-              </p>
-
-              {/* Short bio description */}
               <p
-                className="px-2 py-2 font-serif text-xl text-gray-600"
+                className="px-4 py-2 font-serif text-base text-gray-600"
                 dangerouslySetInnerHTML={{
                   __html: internship.shortDescription,
                 }}
               />
 
-              <div className="flex justify-center">
-                <div className="p-2 text-center rounded-xl bg-primary/70 cursor-pointer md:w-[80%] w-full sm:w-[80%]   ">
-                  <span className="text-white">Explore now</span>
-                </div>
+              {/* Internship details (Duration and Level) */}
+              <div className="flex items-center justify-between p-4 text-xs text-gray-500 md:text-sm">
+                <span className="font-medium">{internship.duration}</span>
+                <span className="font-medium">{internship.level}</span>
+              </div>
+              {/* Action Button */}
+              <div className="left-0 w-full p-4 bottom-10 bg-gradient-to-t from-black/60 to-transparent rounded-b-xl">
+                <button
+                  className="w-full px-4 py-2 text-lg text-white transition-all bg-primary rounded-xl hover:bg-primary/90"
+                  onClick={() => navigate(`/internship/${internship.id}`)}
+                >
+                  Explore Internship
+                </button>
               </div>
             </li>
           ))}

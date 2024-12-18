@@ -19,11 +19,11 @@ import AdminController from "../../Controller/AdminController";
 const NavbarMenu = [
   { id: 1, title: "Home", path: "/" },
   { id: 2, title: "Our Courses", path: "/courses" },
-  { id: 3, title: "About Us", path: "/about" },
-  { id: 4, title: "Our Training Team", path: "/trainingteam" },
-  { id: 6, title: "Contact Us", path: "/contactus" },
-  { id: 7, title: "Blogs", path: "/show-blogs" },
-  { id: 8, title: "Internship", path: "/internship" },
+  { id: 3, title: "Internship", path: "/internship" },
+  { id: 4, title: "About Us", path: "/about" },
+  { id: 5, title: "Contact Us", path: "/contactus" },
+  { id: 6, title: "Blogs", path: "/show-blogs" },
+
 ];
 
 const MainNavbar = () => {

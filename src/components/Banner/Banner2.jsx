@@ -19,21 +19,13 @@ const Banner2 = () => {
             {/* Fixed issue: Replaced the outer <p> with a <div> */}
             <div className="text-dark">
               <p>
-                React.js is a powerful library for building fast, scalable web
-                apps with features like React Hooks, Context API, and React
-                Router, ideal for dynamic UIs and cross-platform development
-                with React Native.
+              Learn & Grow: Master web development, mobile apps, AI/ML, and robotics with expert-led training.
               </p>
               <p>
-                Data Structures and Algorithms (DSA) in C++ are essential for
-                solving complex problems efficiently, optimizing performance,
-                and excelling in competitive programming and software
-                development.
+              Hands-On Experience: Gain real-world skills through internships and projects.
               </p>
               <p>
-                Python is a versatile, beginner-friendly language widely used in
-                web development, data science, AI, and automation, known for its
-                simplicity and robust libraries.
+              Launch Your Career: Benefit from 100% placement assistance and turn your passion into a profession.
               </p>
             </div>
             <a

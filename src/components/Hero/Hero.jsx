@@ -37,10 +37,11 @@ const Hero = () => {
   const [currentTextIndex, setCurrentTextIndex] = useState(0);
   const images = [HeroPng1, HeroPng2, HeroPng3];
   const textOptions = [
-    "Master the latest technologies with hands-on coding tutorials.",
-    "Stay ahead in tech with cutting-edge programming lessons.",
-    "Explore AI, web development, and more with Coding of World!",
+    ["Master in-demand technologies with hands-on tutorials", " at Coding of World"],
+    ["Stay ahead in tech with expert-led lessons", " from Coding of World"],
+    ["Explore AI, web development, and more", " with Coding of World’s training"]
   ];
+  
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -78,8 +79,11 @@ const Hero = () => {
               animate="animate"
               className="text-2xl lg:text-5xl  font-bold !leading-snug"
             >
-              <span className=" text-secondary font-anek_telugu">
-                {textOptions[currentTextIndex]}
+              <span className="text-red-500 font-anek_telugu">
+                {textOptions[currentTextIndex][0]}
+              </span>
+              <span className="text-black font-anek_telugu">
+                {textOptions[currentTextIndex][1]}
               </span>
             </motion.h1>
             <motion.div
@@ -119,10 +123,10 @@ const Hero = () => {
         {isModalOpen && <EventForm onClose={closeModal} />}
       </div>
 
-<div className="z-20">
-<MyBot />
-</div>
-      
+      <div className="z-20">
+        <MyBot />
+      </div>
+
       {/* Regular CSS for styles */}
       <style>
         {`
