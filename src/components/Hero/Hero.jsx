@@ -41,7 +41,7 @@ const Hero = () => {
     "Stay ahead in tech with cutting-edge programming lessons.",
     "Explore AI, web development, and more with Coding of World!",
   ];
-  
+
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrentImage((prevImage) => (prevImage + 1) % images.length);
@@ -119,7 +119,10 @@ const Hero = () => {
         {isModalOpen && <EventForm onClose={closeModal} />}
       </div>
 
-<MyBot/>
+<div className="z-20">
+<MyBot />
+</div>
+      
       {/* Regular CSS for styles */}
       <style>
         {`

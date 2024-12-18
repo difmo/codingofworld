@@ -109,10 +109,10 @@ const Features = () => {
   const isInView = useInView(ref, { once: true });
 
   return (
-    <div className="relative z-10 px-4 mx-auto bg-cover max-w-8xl font-dmSans sm:px-6">
+    <div className="relative px-4 mx-auto bg-cover max-w-8xl font-dmSans sm:px-6">
       <div className="pt-10 pb-10 md:pb-16" ref={ref}>
-        <div className="flex relative z-10 flex-col w-full items-center justify-center">
-          <h5 className="text-xl text-red-600 capitalize font-semibold">
+        <div className="relative z-10 flex flex-col items-center justify-center w-full">
+          <h5 className="text-xl font-semibold text-red-600 capitalize">
             FEATURES
           </h5>
           <h1 className="md:text-[50px] text-[26px] xs:text-[24px] text-center font-bold tracking-wide mt-2">

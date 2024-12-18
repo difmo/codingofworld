@@ -1,14 +1,14 @@
 import React, { useEffect, useState, useRef } from "react";
 import axios from "axios";
 import { FaRobot } from "react-icons/fa";
-import logo from "../../assets/images/logo.svg";
+import logo from "../../assets/images/chatboat.png";
 
 const MyBot = () => {
   const [userInput, setUserInput] = useState("");
   const [chatHistory, setChatHistory] = useState([]);
   const [loading, setLoading] = useState(false);
   const [defaultQuestions, setDefaultQuestions] = useState([]);
-  const [isOpen, setIsOpen] = useState(false);
+  const [isOpen, setIsOpen] = useState(window.innerWidth >= 768); // Open by default on desktop
   const chatContainerRef = useRef(null);
 
   useEffect(() => {
@@ -71,20 +71,35 @@ const MyBot = () => {
 
   return (
     <div>
+      {/* Floating button visible only on small screens */}
       {!isOpen && (
         <div
-          className="fixed z-20 flex items-center justify-center w-16 h-16 bg-red-500 rounded-full shadow-xl cursor-pointer md:hidden bottom-5 right-5"
+          className="fixed z-20 flex items-center justify-center w-16 h-16 bg-red-500 rounded-full shadow-xl cursor-pointer bottom-5 right-5 "
           onClick={toggleChat}
         >
-          <FaRobot className="text-3xl text-white" />
+           <img
+                src={logo}
+                alt="Company Logo"
+                className="object-contain w-12 h-12"
+              />
         </div>
       )}
 
+      {/* Chatbot container */}
       {isOpen && (
-        <div className="fixed z-10 w-full bg-white shadow-2xl bottom-5 right-5 sm:w-80 md:w-96 chatbot-container rounded-xl">
+        <div
+          className={`fixed z-10 w-full bg-white shadow-2xl bottom-0 right-0 sm:w-80 md:w-96 lg:w-[28rem] chatbot-container rounded-t-xl ${
+            window.innerWidth < 768 ? "rounded-t-xl" : "rounded-xl"
+          }`}
+        >
+          {/* Header */}
           <div className="flex items-center justify-between p-3 text-white bg-gradient-to-r from-red-500 to-red-700 rounded-t-xl">
             <div className="flex items-center space-x-3">
-              <FaRobot className="text-2xl animate-bounce" />
+            <img
+                src={logo}
+                alt="Company Logo"
+                className="object-contain w-8 h-8"
+              />
               <h1 className="text-sm font-bold sm:text-lg">Alice Assistant</h1>
             </div>
             <button className="text-xl text-white" onClick={toggleChat}>
@@ -92,6 +107,7 @@ const MyBot = () => {
             </button>
           </div>
 
+          {/* Chat History */}
           {chatHistory.length === 0 ? (
             <div className="flex flex-col items-center justify-center h-64 p-5 space-y-4 bg-gray-100">
               <img
@@ -109,7 +125,7 @@ const MyBot = () => {
           ) : (
             <div
               ref={chatContainerRef}
-              className="h-64 p-3 space-y-2 overflow-y-auto bg-gray-100 sm:h-72 md:h-80 chatbox"
+              className="h-64 p-3 space-y-2 overflow-y-auto bg-gray-100 sm:h-72 md:h-80 lg:h-[25rem] chatbox"
             >
               {chatHistory.map((entry, index) => (
                 <div
@@ -120,10 +136,9 @@ const MyBot = () => {
                       : "self-start bg-gray-300 text-gray-800"
                   }`}
                 >
-                  <strong className="mb-1 font-extrabold text-5x">
+                  <strong className="mb-1 font-extrabold">
                     {entry.sender}
                   </strong>
-
                   <span>{entry.message}</span>
                 </div>
               ))}
@@ -138,6 +153,7 @@ const MyBot = () => {
             </div>
           )}
 
+          {/* Input Form */}
           <form
             onSubmit={handleSubmit}
             className="flex items-center p-3 bg-gray-200 input-form rounded-b-xl"
