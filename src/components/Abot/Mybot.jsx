@@ -77,11 +77,11 @@ const MyBot = () => {
           className="fixed z-20 flex items-center justify-center w-16 h-16 bg-red-500 rounded-full shadow-xl cursor-pointer bottom-5 right-5 "
           onClick={toggleChat}
         >
-           <img
-                src={logo}
-                alt="Company Logo"
-                className="object-contain w-12 h-12"
-              />
+          <img
+            src={logo}
+            alt="Company Logo"
+            className="object-contain w-12 h-12"
+          />
         </div>
       )}
 
@@ -95,7 +95,7 @@ const MyBot = () => {
           {/* Header */}
           <div className="flex items-center justify-between p-3 text-white bg-gradient-to-r from-red-500 to-red-700 rounded-t-xl">
             <div className="flex items-center space-x-3">
-            <img
+              <img
                 src={logo}
                 alt="Company Logo"
                 className="object-contain w-8 h-8"
@@ -130,16 +130,30 @@ const MyBot = () => {
               {chatHistory.map((entry, index) => (
                 <div
                   key={index}
-                  className={`flex flex-col p-2 rounded-lg text-sm max-w-[80%] ${
-                    entry.sender === "You"
-                      ? "self-end bg-blue-500 text-white"
-                      : "self-start bg-gray-300 text-gray-800"
+                  className={`flex ${
+                    entry.sender === "You" ? "justify-end" : "justify-start"
                   }`}
                 >
-                  <strong className="mb-1 font-extrabold">
-                    {entry.sender}
-                  </strong>
-                  <span>{entry.message}</span>
+                  <div
+                    className={`p-3 rounded-lg text-sm max-w-[75%] shadow-md ${
+                      entry.sender === "You"
+                        ? "bg-gradient-to-r from-red-500 to-red-700 text-white"
+                        : "bg-gray-300 text-gray-800"
+                    }`}
+                    style={{
+                      borderTopLeftRadius:
+                        entry.sender === "You" ? "20px" : "5px",
+                      borderTopRightRadius:
+                        entry.sender === "You" ? "5px" : "20px",
+                      borderBottomLeftRadius: "20px",
+                      borderBottomRightRadius: "20px",
+                    }}
+                  >
+                    <strong className="block mb-1 font-semibold">
+                      {entry.sender}
+                    </strong>
+                    <span>{entry.message}</span>
+                  </div>
                 </div>
               ))}
 
