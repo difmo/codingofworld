@@ -17,6 +17,9 @@ const   HomeScreen = () => {
       <Services />
       <Banner />
       <Subscribe />
+      {/* 
+      Completed trainig students 
+      */}
       <Banner2 />
       <Features />
       <FAQ />
