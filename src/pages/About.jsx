@@ -30,25 +30,25 @@ export const About = () => {
           </div>
           <div className="grid grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-4">
             <AboutCard
-              color="bg-[#000]"
+              color="bg-red-500"
               icon={<FaPen size={50} />}
               title="400+ Online Courses"
               desc="Gain access to a wide range of courses across multiple domains."
             />
             <AboutCard
-              color="bg-[#000]"
+              color="bg-red-500"
               icon={<FaBookmark size={50} />}
               title="Expert Instructors"
               desc="Learn from industry leaders with years of experience."
             />
             <AboutCard
-              color="bg-[#000]"
+              color="bg-red-500"
               icon={<FaClipboard size={50} />}
               title="Flexible Learning"
               desc="Study at your own pace, whenever it suits you."
             />
             <AboutCard
-              color="bg-[#000]"
+              color="bg-red-500"
               icon={<FaLightbulb size={50} />}
               title="Certification"
               desc="Earn industry-recognized certificates to boost your career."
