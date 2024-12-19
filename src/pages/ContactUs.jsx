@@ -127,7 +127,7 @@ const ContactUs = () => {
         <div className="absolute inset-0 "></div>
         <div className="relative z-10 py-12 mx-auto text-center text-black">
           <h2 className="text-4xl font-extrabold text-primary">Get In Touch</h2>
-          <p className="mt-4 text-lg">We are here to assist you. Feel free to reach out!</p>
+          <p className="px-8 mt-4 text-lg">We are here to assist you. Feel free to reach out!</p>
         </div>
       </motion.section>
 
@@ -307,8 +307,10 @@ const ContactUs = () => {
         transition={{ duration: 0.6, delay: 0.2 }}
       >
         {/* Contact Map */}
+
+        <div className="container mx-auto lg:flex-row">
         <motion.div
-          className="mt-12"
+           className="p-1 bg-white rounded-lg shadow-md"
           variants={fadeInUp}
           initial="hidden"
           animate="visible"
@@ -324,6 +326,7 @@ const ContactUs = () => {
             referrerPolicy="no-referrer-when-downgrade"
           />
         </motion.div>
+        </div>
       </motion.section>
     </main>
   );
