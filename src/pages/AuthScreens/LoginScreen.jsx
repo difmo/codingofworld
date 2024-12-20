@@ -66,10 +66,7 @@ export default function LoginScreen() {
         <div className="mb-12 md:mb-0 md:w-8/12 lg:w-5/12">
           <form onSubmit={formik.handleSubmit}>
             <div className="flex items-center justify-center mb-4 lg:justify-start">
-              <p className="mb-0 mr-4 text-lg">Sign in with</p>
-              <IconsComponent IconName={FaFacebookF} />
-              <IconsComponent IconName={FaTwitter} />
-              <IconsComponent IconName={FaLinkedinIn} />
+              <p className="mb-0 mr-4 text-lg">Sign in with your</p>
             </div>
 
             {/* Separator */}

@@ -9,7 +9,7 @@ import {
 import { IoMdMenu } from "react-icons/io";
 import { motion, AnimatePresence } from "framer-motion";
 import { Link } from "react-router-dom";
-import { useNavigate } from "react-router-dom";
+  import { useNavigate } from "react-router-dom";
 import logo from "../../assets/images/logo.svg";
 import "firebase/auth";
 import { db, auth } from "../../firebase";
@@ -23,12 +23,11 @@ const NavbarMenu = [
   { id: 4, title: "About Us", path: "/about" },
   { id: 5, title: "Contact Us", path: "/contactus" },
   { id: 6, title: "Blogs", path: "/show-blogs" },
-
 ];
 
 const MainNavbar = () => {
   const [isMobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const [showPopup, setShowPopup] = useState(false);  // State to control the modal visibility
+  const [showPopup, setShowPopup] = useState(false); // State to control the modal visibility
   const [isOpen, setIsOpen] = useState(false);
   const popupRef = useRef(null);
   const navigate = useNavigate();
@@ -48,8 +47,8 @@ const MainNavbar = () => {
     }
   };
 
-  const openPopup = () => setShowPopup(true);  // Open the modal
-  const closePopup = () => setShowPopup(false);  // Close the modal
+  const openPopup = () => setShowPopup(true); // Open the modal
+  const closePopup = () => setShowPopup(false); // Close the modal
 
   const toggleSidebar = () => {
     setIsOpen(!isOpen);
@@ -78,7 +77,7 @@ const MainNavbar = () => {
       <motion.div
         initial={{ opacity: 0, y: -50 }}
         animate={{ opacity: 1, y: 0 }}
-        className="container flex items-center justify-between py-5 mx-auto"
+        className="container flex items-center justify-between px-4 py-4 mx-auto"
       >
         <div className="flex items-center justify-center">
           <img src={logo} className="h-10 " />
@@ -102,10 +101,11 @@ const MainNavbar = () => {
                 </Link>
               </li>
             ))}
+
             {!isUserLogin ? (
               <button
-                onClick={() => navigate("/signupscreen")}
-                className="primary-btn"
+                onClick={() => navigate("/loginscreen")}
+                className="h-8 text-[16px] px-8 py-1 rounded-md bg-red-100 text-red-500 hover:bg-red-600 focus:outline-none focus:ring-2 focus:ring-red-500 hover:text-white"
               >
                 Sign In
               </button>
@@ -117,6 +117,21 @@ const MainNavbar = () => {
                 <FaUser />
               </button>
             )}
+
+            <a href="tel:+9194455791624" className="flex items-center">
+              <button className="flex items-center gap-2 text-[16px] px-4 h-8 rounded-md bg-red-500 text-white hover:bg-red-600 focus:outline-none focus:ring-2 focus:ring-red-500">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="currentColor"
+                  viewBox="0 0 24 24"
+                  className="w-4 h-4"
+                >
+                  <path d="M22 16.92v3.34a2.25 2.25 0 01-2.45 2.24A20.31 20.31 0 012.54 5.46 2.25 2.25 0 014.78 3H8.2a2.25 2.25 0 012.25 2.03 14.91 14.91 0 001.07 4.42 2.25 2.25 0 01-.51 2.35l-1.33 1.33a16.82 16.82 0 006.29 6.29l1.33-1.33a2.25 2.25 0 012.35-.51 14.91 14.91 0 004.42 1.07A2.25 2.25 0 0122 16.92z" />
+                </svg>
+                Call now
+              </button>
+            </a>
+
             <div>
               {isOpen && (
                 <div className="absolute w-64 bg-white border-2 rounded-lg shadow-md top-16 right-5">
@@ -126,7 +141,7 @@ const MainNavbar = () => {
                   >
                     <FaTimes />
                   </button>
-                  <ul className="p-4 space-y-4 font-play" >
+                  <ul className="p-4 space-y-4 font-play">
                     {isAdmin && (
                       <li>
                         <div className="flex items-center text-gray-700 cursor-pointer hover:text-blue-600">
@@ -151,9 +166,7 @@ const MainNavbar = () => {
                       </li>
                     ) : (
                       <li>
-                        <div
-                          className="flex items-center text-gray-700 cursor-pointer font-play hover:text-blue-600"
-                        >
+                        <div className="flex items-center text-gray-700 cursor-pointer font-play hover:text-blue-600">
                           <FaBlog className="mr-3" />
                           <span onClick={() => navigate("/all-blogs")}>
                             Your Blogs
@@ -260,9 +273,7 @@ const MainNavbar = () => {
                     </li>
                   ) : (
                     <li>
-                      <div
-                        className="flex items-center text-gray-700 cursor-pointer font-play hover:text-blue-600"
-                      >
+                      <div className="flex items-center text-gray-700 cursor-pointer font-play hover:text-blue-600">
                         <FaBlog className="mr-3" />
                         <span onClick={() => navigate("/all-blogs")}>
                           Your Blogs

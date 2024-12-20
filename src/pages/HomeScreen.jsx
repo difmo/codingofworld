@@ -18,7 +18,7 @@ const   HomeScreen = () => {
       <Banner />
       <Subscribe />
       {/* 
-      Completed trainig students 
+      Completed trainig students show here 
       */}
       <Banner2 />
       <Features />
