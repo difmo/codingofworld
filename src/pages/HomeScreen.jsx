@@ -7,7 +7,7 @@ import Subscribe from "../components/Subscribe/Subscribe";
 import Features from "./WhatWeOffer";
 import FAQ from "./Faq";
 import AdComponent from "./GoogleAdd";
-
+  
 
 const   HomeScreen = () => {
   return (

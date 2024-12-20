@@ -48,92 +48,145 @@ import CreatenewCourse from "./pages/AdminProminent/CourseAdmin/CreatenewCourse"
 import Allcourse from "./pages/AdminProminent/CourseAdmin/Allcourse";
 import EditCourse from "./pages/AdminProminent/CourseAdmin/EditCourse";
 import Codowo from "./pages/Codowo/Codowo";
+import { Helmet, HelmetProvider } from "react-helmet-async";
 
 const App = () => {
   const { isAdmin, isUserLogin } = AdminController();
   return (
-    <Router future={{ v7_startTransition: true, v7_relativeSplatPath: true }}>
-      <ScrollToTop />
-      <Routes>
-              
-        {/* solve quesiton area  */}
-        <Route>
+    <HelmetProvider>
+      <Helmet>
+        {/* Primary Meta Tags */}
+        <title>
+          Coding of World - Internships, Training, and Career Guidance
+        </title>
+        <meta
+          name="description"
+          content="Explore Coding of World for internships, training programs, and skill development in web development, mobile app development, AI/ML, and robotics. Empower your future with the latest technologies and 100% placement assistance."
+        />
+        <meta
+          name="keywords"
+          content="internship, skills, future scope, technology, new technology, coding technology, technology coding, learn technology, technology and coding, tech programming, coding and technology, tech, technology and programming, coding in technology, technology programming, IT in mobile app & web development, learn about tech, programming experience, coding solving problems, world of coding, the world of coding, internship for students, internship program, paid internships, internship opportunities, internships 2022, internship program 2022, internship website, paid internship for students, student internship program, internship opportunities 2022, technology com, student intern, 2022 internships, an internship, internship at, internship in, coding of world"
+        />
+        <meta name="author" content="Coding of World" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta charSet="UTF-8" />
 
-        <Route path="/codowo" element={<Codowo />} />
+        {/* Open Graph / Facebook */}
+        <meta property="og:type" content="website" />
+        <meta
+          property="og:title"
+          content="Coding of World - Shape Your Future!"
+        />
+        <meta
+          property="og:description"
+          content="Join Coding of World to learn web development, mobile app development, AI/ML, and robotics with expert guidance and 100% placement assistance. Start your career today!"
+        />
+        <meta
+          property="og:image"
+          content="https://www.codingofworld.com/og-image.jpg"
+        />
+        <meta property="og:url" content="https://www.codingofworld.com" />
+        <meta property="og:site_name" content="Coding of World" />
 
-        </Route>
-        
-        <Route element={<Layout />}>
-          <Route path="/" element={<HomeScreen />} />
-          <Route path="/contactus" element={<ContactUs />} />
-          <Route path="/services" element={<Services />} />
-          <Route path="/courses" element={<Courses />} />
-          <Route path="/about" element={<About />} />
-          <Route path="/trainingteam" element={<TrainingTeam />} />
-          <Route path="/internship" element={<InternshipsSection />} />
-          <Route path="/internshipform" element={<InternshipForm />} />
-          <Route path="/tcsnqtcourse" element={<TcsNqtCourse />} />
-          <Route path="/signupscreen" element={<SingUpScreen />} />
-          <Route path="/loginscreen" element={<LoginScreen />} />
-          <Route path="/alldeatilcourese" element={<AlldetailCourese />} />
-          <Route path="/popupbloge" element={<Popupbloge />} />
-          <Route path="/coursepagex" element={<CoursePage />} />
-          <Route path="/details/:id" element={<CourseDetails />} />
-          <Route path="/internship/:id" element={<InternshipDetails />} />
+        {/* Twitter */}
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta
+          name="twitter:title"
+          content="Coding of World - Internships and Training"
+        />
+        <meta
+          name="twitter:description"
+          content="Explore Coding of World for top-notch training in web development, mobile app development, AI/ML, and robotics. Build your future in technology today!"
+        />
+        <meta
+          name="twitter:image"
+          content="https://www.codingofworld.com/twitter-image.jpg"
+        />
 
-          <Route element={<ShowBlogLayout />}>
-            <Route path="/show-blogs" element={<ShowBlogs />} />
-            <Route path="/blog/:blogId" element={<BlogPage />} />
+        {/* Canonical URL */}
+        <link rel="canonical" href="https://www.codingofworld.com" />
+      </Helmet>
+
+      <Router future={{ v7_startTransition: true, v7_relativeSplatPath: true }}>
+        <ScrollToTop />
+        <Routes>
+          {/* solve quesiton area  */}
+          <Route>
+            <Route path="/codowo" element={<Codowo />} />
           </Route>
-        </Route>
-        <Route path="*" element={<NotFound />} />
-        <Route path="/ads.txt" />
-        <Route element={<StudentSidebarLayout />}>
-          <Route path="/home1" element={<First />} />
-          <Route path="/about1" element={<Second />} />
-          <Route path="/starttcsnqt" element={<TCSNQT />} />
-          <Route path="/findsmallest" element={<FindSmallestElement />} />
-        </Route>
-        {isUserLogin ? (
-          <Route element={<CreateBlogLayout />}>
-            <Route path="/addblogs" element={<Addblogs />} />
-            <Route path="/all-blogs" element={<AllBlogs />} />
-            <Route path="/edit-blog/:blogId" element={<EditBlog />} />
+
+          <Route element={<Layout />}>
+            <Route path="/" element={<HomeScreen />} />
+            <Route path="/contactus" element={<ContactUs />} />
+            <Route path="/services" element={<Services />} />
+            <Route path="/courses" element={<Courses />} />
+            <Route path="/about" element={<About />} />
+            <Route path="/trainingteam" element={<TrainingTeam />} />
+            <Route path="/internship" element={<InternshipsSection />} />
+            <Route path="/internshipform" element={<InternshipForm />} />
+            <Route path="/tcsnqtcourse" element={<TcsNqtCourse />} />
+            <Route path="/signupscreen" element={<SingUpScreen />} />
+            <Route path="/loginscreen" element={<LoginScreen />} />
+            <Route path="/alldeatilcourese" element={<AlldetailCourese />} />
+            <Route path="/popupbloge" element={<Popupbloge />} />
+            <Route path="/coursepagex" element={<CoursePage />} />
+            <Route path="/details/:id" element={<CourseDetails />} />
+            <Route path="/internship/:id" element={<InternshipDetails />} />
+
+            <Route element={<ShowBlogLayout />}>
+              <Route path="/show-blogs" element={<ShowBlogs />} />
+              <Route path="/blog/:blogId" element={<BlogPage />} />
+            </Route>
           </Route>
-        ) : (
           <Route path="*" element={<NotFound />} />
-        )}
-
-        {isAdmin ? (
-          <Route element={<AdminLayout />}>
-            <Route path="/admin-dashboard" element={<AdminDashboard />} />
-            <Route path="/admin/internship" element={<StudentData />} />
-            <Route
-              path="/admin/client-contact"
-              element={<ClientContactPage />}
-            />
-            <Route path="/admin/blog" element={<AdminBlogPage />} />
-            <Route path="/admin/login-users" element={<LoginUsersAdmin />} />
-            <Route path="/admin/edit-student/:id" element={<StudentData />} />
-            <Route
-              path="/admin/createNewInternship"
-              element={<CreateNewInternship />}
-            />
-            <Route path="/admin/allInternship" element={<AllInternship />} />
-            <Route path="/edit-internship/:id" element={<EditInternship />} />
-            <Route
-              path="/admin/createnewcourse"
-              element={<CreatenewCourse />}
-            />
-            <Route path="/admin/allcoures" element={<Allcourse />} />
-            <Route path="/edit-course/:id" element={<EditCourse />} />
+          <Route path="/ads.txt" />
+          <Route element={<StudentSidebarLayout />}>
+            <Route path="/home1" element={<First />} />
+            <Route path="/about1" element={<Second />} />
+            <Route path="/starttcsnqt" element={<TCSNQT />} />
+            <Route path="/findsmallest" element={<FindSmallestElement />} />
           </Route>
-        ) : (
+          {isUserLogin ? (
+            <Route element={<CreateBlogLayout />}>
+              <Route path="/addblogs" element={<Addblogs />} />
+              <Route path="/all-blogs" element={<AllBlogs />} />
+              <Route path="/edit-blog/:blogId" element={<EditBlog />} />
+            </Route>
+          ) : (
+            <Route path="*" element={<NotFound />} />
+          )}
+
+          {isAdmin ? (
+            <Route element={<AdminLayout />}>
+              <Route path="/admin-dashboard" element={<AdminDashboard />} />
+              <Route path="/admin/internship" element={<StudentData />} />
+              <Route
+                path="/admin/client-contact"
+                element={<ClientContactPage />}
+              />
+              <Route path="/admin/blog" element={<AdminBlogPage />} />
+              <Route path="/admin/login-users" element={<LoginUsersAdmin />} />
+              <Route path="/admin/edit-student/:id" element={<StudentData />} />
+              <Route
+                path="/admin/createNewInternship"
+                element={<CreateNewInternship />}
+              />
+              <Route path="/admin/allInternship" element={<AllInternship />} />
+              <Route path="/edit-internship/:id" element={<EditInternship />} />
+              <Route
+                path="/admin/createnewcourse"
+                element={<CreatenewCourse />}
+              />
+              <Route path="/admin/allcoures" element={<Allcourse />} />
+              <Route path="/edit-course/:id" element={<EditCourse />} />
+            </Route>
+          ) : (
+            <Route path="*" element={<NotFound />} />
+          )}
           <Route path="*" element={<NotFound />} />
-        )}
-        <Route path="*" element={<NotFound />} />
-      </Routes>
-    </Router>
+        </Routes>
+      </Router>
+    </HelmetProvider>
   );
 };
 
