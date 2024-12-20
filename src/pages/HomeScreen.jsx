@@ -13,7 +13,7 @@ const   HomeScreen = () => {
   return (
     <div>
       <Hero />
-      <AdComponent />
+      {/* <AdComponent /> */}
       <Services />
       <Banner />
       <Subscribe />
