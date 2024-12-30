@@ -119,7 +119,6 @@ const AdminDashboard = () => {
             <p className="text-3xl font-bold text-orange-600">{totalContacts}</p>
           </div>
           <div className="p-3 text-orange-600 bg-orange-100 rounded-full">
-            <AiOutlineShoppingCart size={40} />
           </div>
         </div>
       </div>

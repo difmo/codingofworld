@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
-
 import HomeScreen from "./pages/HomeScreen";
 import Layout from "./pages/Layout/layout";
 import ContactUs from "./pages/ContactUs";
@@ -11,7 +10,6 @@ import InternshipsSection from "./pages/Internship";
 import InternshipForm from "./pages/IntershipForm";
 import TcsNqtCourse from "./pages/AllCourses/TcsNqtCourse/TcsNqtCoursedescri";
 import NotFound from "./pages/NotFound";
-
 import TCSNQT from "./pages/AllCourses/TcsNqtCourse/StartTcsNqt";
 import SingUpScreen from "./pages/AuthScreens/SignUpScreen";
 import LoginScreen from "./pages/AuthScreens/LoginScreen";
@@ -36,7 +34,6 @@ import AdminBlogPage from "./pages/AdminProminent/AdminblogPage";
 import Services from "./components/Services/Services";
 import CoursePage from "./pages/CoursePage";
 import AdminController from "./Controller/AdminController";
-
 import AlldetailCourese from "./pages/AlldetailCourese";
 import CourseDetails from "./pages/CourseDetails";
 import InternshipDetails from "./pages/InternshipDetails";
