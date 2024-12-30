@@ -9,6 +9,9 @@ import { useNavigate } from "react-router-dom";
 import EventModel from "../Events/EventModel";
 import EventForm from "../Events/EventForm";
 import ScrollToTop from "../ScrollTop";
+import MyBot from "../Abot/Mybot";
+import { Button } from "reactstrap";
+import { FaHandshake, FaUserTie, FaLightbulb } from "react-icons/fa";
 
 export const FadeUp = (delay) => {
   return {
@@ -31,16 +34,23 @@ export const FadeUp = (delay) => {
 };
 
 const Hero = () => {
+  const navigate=useNavigate();
   const [currentImage, setCurrentImage] = useState(0);
   const [isModalOpen, setIsModalOpen] = useState(true);
   const [currentTextIndex, setCurrentTextIndex] = useState(0);
   const images = [HeroPng1, HeroPng2, HeroPng3];
   const textOptions = [
-    "Master the latest technologies with hands-on coding tutorials.",
-    "Stay ahead in tech with cutting-edge programming lessons.",
-    "Explore AI, web development, and more with Coding of World!",
+    [
+      "Master in-demand technologies with hands-on tutorials",
+      " at Coding of World",
+    ],
+    ["Stay ahead in tech with expert-led lessons", " from Coding of World"],
+    [
+      "Explore AI, web development, and more",
+      " with Coding of World’s training",
+    ],
   ];
-  
+
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrentImage((prevImage) => (prevImage + 1) % images.length);
@@ -66,7 +76,7 @@ const Hero = () => {
   };
 
   return (
-    <section className="relative overflow-hidden bg-light">
+    <section className="relative overflow-hidden bg-white">
       <ScrollToTop />
       <div className="container grid grid-cols-1 md:px-32 md:grid-cols-2">
         <div className="relative flex flex-col justify-center py-14 md:py-0 ">
@@ -75,19 +85,68 @@ const Hero = () => {
               variants={FadeUp(0.6)}
               initial="initial"
               animate="animate"
-              className="text-2xl lg:text-5xl  font-bold !leading-snug"
+              className="text-2xl lg:text-2xl  font-bold !leading-snug"
             >
-              <span className=" text-secondary font-anek_telugu">
-                {textOptions[currentTextIndex]}
+              <span className="text-black font-anek_telugu">
+                {textOptions[currentTextIndex][0]}
+              </span>
+              <span className="text-red-500 font-anek_telugu">
+                {textOptions[currentTextIndex][1]}
               </span>
             </motion.h1>
+            {/* 
+            add span menu
+            
+            */}
+            <div className="flex flex-col gap-4">
+              {/* First sentence: Learning and AI-powered skills */}
+              <div className="flex items-center gap-2">
+                <FaLightbulb className="text-yellow-500" />
+                <span className="font-medium text-gray-800">
+                  Master cutting-edge tech and AI skills
+                </span>
+              </div>
+
+              {/* Second sentence: Industry experts */}
+              <div className="flex items-center gap-2">
+                <FaUserTie className="text-blue-500" />
+                <span className="font-medium text-gray-800">
+                  Learn directly from top industry leaders
+                </span>
+              </div>
+
+              {/* Third sentence: Partnered startups */}
+              <div className="flex items-center gap-2">
+                <FaHandshake className="text-green-500" />
+                <span className="font-medium text-gray-800">
+                  Partnered with 10+ startups and companies
+                </span>
+              </div>
+            </div>
+
             <motion.div
               variants={FadeUp(0.8)}
               initial="initial"
               animate="animate"
               className="flex justify-center md:justify-start"
             >
-              {/* Add your button or other actions here */}
+              <div className="flex items-center gap-4">
+                <div  className="flex items-center">
+                  <button 
+                  onClick={()=>navigate("/loginscreen")}
+                  
+                  className="flex items-center gap-2 text-[16px] px-4 h-12 rounded-md bg-red-500 text-white hover:bg-red-600 focus:outline-none focus:ring-2 focus:ring-red-500">
+                    Register for free
+                  </button>
+                </div>
+                <div className="flex items-center ">
+                  <button 
+                  onClick={()=>navigate("/courses")}
+                  className=" border-2 border-red-600 flex items-center gap-2 text-[16px] px-4 h-12 rounded-md bg-white text-red-500 hover:bg-red-500 hover:text-white focus:outline-none focus:ring-2 focus:ring-red-500 ">
+                    Explore courses
+                  </button>
+                </div>
+              </div>
             </motion.div>
           </div>
         </div>
@@ -116,6 +175,10 @@ const Hero = () => {
 
       <div className="absolute top-0 w-full">
         {isModalOpen && <EventForm onClose={closeModal} />}
+      </div>
+
+      <div className="z-20">
+        <MyBot />
       </div>
 
       {/* Regular CSS for styles */}

@@ -59,6 +59,10 @@ const ShowBlogs = () => {
   return (
     <div className="flex ">
       <div className="p-6 text-black ">
+      <h1 class="text-5xl py-10 font-extrabold text-center text-gray-900 sm:text-6xl md:text-5xl bg-gradient-to-r from-primary via-secondary to-pink-500 text-transparent bg-clip-text">
+  Our Blogs
+</h1>
+
           <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {blogs.map((blog) => (
             <div
