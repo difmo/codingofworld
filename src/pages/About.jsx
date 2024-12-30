@@ -12,6 +12,7 @@ import {
 import { AiOutlineCheck } from "react-icons/ai";
 import { useNavigate } from "react-router-dom";
 import InternshipForm from "./IntershipForm";
+import TrainingTeam from "./OurTrainingTeam";
 
 export const About = () => {
   const navigate = useNavigate();
@@ -21,37 +22,36 @@ export const About = () => {
         <div className="container">
           <div className="py-12 text-center heading">
             <h1 className="text-3xl font-semibold text-black">
-              Why An Scholercity Out Of The Ordinary
+              Why Choose Coding of World: A Unique Learning Experience
             </h1>
             <span className="block mt-2 text-sm">
-              You don't have to struggle alone; you've got our assistance and
-              help.
+              We believe in empowering students with knowledge and practical experience. With us, you're never alone in your learning journey!
             </span>
           </div>
           <div className="grid grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-4">
             <AboutCard
-              color="bg-[#000]"
+              color="bg-red-500"
               icon={<FaPen size={50} />}
-              title="400 Online Courses"
-              desc="You don't have to struggle alone, you've "
+              title="400+ Online Courses"
+              desc="Gain access to a wide range of courses across multiple domains."
             />
             <AboutCard
-              color="bg-[#000]"
+              color="bg-red-500"
               icon={<FaBookmark size={50} />}
               title="Expert Instructors"
-              desc="Learn from industry leaders."
+              desc="Learn from industry leaders with years of experience."
             />
             <AboutCard
-              color="bg-[#000]"
+              color="bg-red-500"
               icon={<FaClipboard size={50} />}
               title="Flexible Learning"
-              desc="Study at your own pace."
+              desc="Study at your own pace, whenever it suits you."
             />
             <AboutCard
-              color="bg-[#000]"
+              color="bg-red-500"
               icon={<FaLightbulb size={50} />}
               title="Certification"
-              desc="Earn recognized certificates."
+              desc="Earn industry-recognized certificates to boost your career."
             />
           </div>
         </div>
@@ -66,7 +66,7 @@ export const AboutCard = (props) => {
     <div
       className={`box shadow-md p-5 py-8 rounded-md text-white ${props.color} cursor-pointer transition ease-in-out delay-150 hover:-translate-y-4 duration-300`}
     >
-      <div className="text-white icon ">{props.icon}</div>
+      <div className="text-white icon">{props.icon}</div>
       <div className="mt-5 text">
         <h4 className="my-3 text-lg font-semibold">{props.title}</h4>
         <p className="text-sm">{props.desc}</p>
@@ -85,38 +85,22 @@ export const AboutContent = () => {
         <div className="w-full right md:w-2/3 md:mt-16">
           <div className="heading">
             <h1 className="text-3xl font-semibold text-black">
-              Accelerate Your IT Career with Expert Training
+              Empowering Future Tech Leaders with Hands-on Training
             </h1>
             <span className="block mt-2 text-sm leading-6">
-              At Coding of World, we’re dedicated to shaping the future of tech
-              talent by providing immersive internship, training, and
-              apprenticeship programs. Our mission is to prepare students to
-              thrive in high-demand fields like web development, mobile app
-              development, artificial intelligence (AI), machine learning (ML),
-              and robotics. Our programs go beyond theory to focus on
-              industry-relevant, practical skills. Through hands-on training,
-              real-world projects, and mentorship from experienced
-              professionals, students gain a deep understanding of cutting-edge
-              technologies and best practices. We offer tailored career guidance
-              to empower students with the tools, confidence, and direction
-              needed to make an impact in today’s competitive job market. Join
-              Coding of World to unlock your potential, upskill your future, and
-              take the first step toward an exciting tech career. Explore over
-              100,000 online courses, stay ahead with the latest skills, and
-              embark on a journey to stand out in the tech industry!
+              At Coding of World, we are committed to shaping the next generation of tech innovators. We offer immersive internship, training, and apprenticeship programs tailored for the ever-evolving fields of web development, mobile app development, AI, ML, and robotics. Our mission is to provide students with not just theoretical knowledge, but with the practical, industry-relevant skills required to excel in a competitive job market.
             </span>
             <ul className="my-5">
               <li className="flex items-center gap-5 text-sm">
-                <AiOutlineCheck className="text-green-500" /> Upskill your
-                organization.
+                <AiOutlineCheck className="text-green-500" /> Upskill your workforce with cutting-edge technologies.
               </li>
               <li className="flex items-center gap-5 my-2 text-sm">
                 <AiOutlineCheck className="text-green-500" />
-                Access more than 10 online courses.
+                Access over 10,000 online courses at your convenience.
               </li>
               <li className="flex items-center gap-5 text-sm">
                 <AiOutlineCheck className="text-green-500" />
-                Learn the latest skills.
+                Learn from seasoned professionals and industry experts.
               </li>
             </ul>
             <button
@@ -128,6 +112,8 @@ export const AboutContent = () => {
           </div>
         </div>
       </div>
+      <TrainingTeam />
     </section>
   );
 };
+

@@ -106,11 +106,12 @@ export default function SignUpScreen() {
 
         <div className="w-full p-4 md:w-8/12 lg:w-5/12 xl:w-5/12">
           <form onSubmit={formik.handleSubmit}>
-            <div onClick={()=>alert("Sorry! Not available at this moment")} className="flex items-center justify-center lg:justify-start">
+            <div onClick={
+              ()=>{
+                // alert("Sorry! Not available at this moment")
+              }
+              } className="flex items-center justify-center lg:justify-start">
               <p className="mb-0 mr-4 text-lg">Sign up with</p>
-              <IconsComponent IconName={FaFacebookF} />
-              <IconsComponent IconName={FaTwitter} />
-              <IconsComponent IconName={FaLinkedinIn} />
             </div>
 
             {/* Separator */}

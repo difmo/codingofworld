@@ -7,16 +7,19 @@ import Subscribe from "../components/Subscribe/Subscribe";
 import Features from "./WhatWeOffer";
 import FAQ from "./Faq";
 import AdComponent from "./GoogleAdd";
-
+  
 
 const   HomeScreen = () => {
   return (
     <div>
       <Hero />
-      <AdComponent />
+      {/* <AdComponent /> */}
       <Services />
       <Banner />
       <Subscribe />
+      {/* 
+      Completed trainig students show here 
+      */}
       <Banner2 />
       <Features />
       <FAQ />

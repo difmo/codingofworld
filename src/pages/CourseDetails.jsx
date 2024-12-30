@@ -68,16 +68,23 @@ const CourseDetails = () => {
           </div>
           <div className="py-7">
             <button
-              onClick={() => navigate("/internshipform")}
+              onClick={() => navigate("/home1")}
               className="px-4 py-2 text-white transition-all duration-300 bg-primary hover:bg-primary/60 rounded-xl w-full md:w-auto"
             >
               ENROLL NOW
             </button>
           </div>
+          {/* <div className="py-7">
+            <button
+              onClick={() => navigate("/internshipform")}
+              className="px-4 py-2 text-white transition-all duration-300 bg-primary hover:bg-primary/60 rounded-xl w-full md:w-auto"
+            >
+              ENROLL NOW
+            </button>
+          </div> */}
         </div>
       </div>
 
-      {/* Description Section */}
       <div className="mt-8">
         <p
           className="text-lg mt-2"

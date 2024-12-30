@@ -7,10 +7,10 @@ import Loader from "../components/Loader";
 
 export const Courses = () => {
   const navigate = useNavigate();
-  const [course, setCourse] = useState([]); // Store course data
-  const [error, setError] = useState(null); // Error state
-  const [loading, setLoading] = useState(true); // Loading state for fetching courses
-  const [navigating, setNavigating] = useState(false); // Loading state for navigation
+  const [course, setCourse] = useState([]); 
+  const [error, setError] = useState(null); 
+  const [loading, setLoading] = useState(true); 
+  const [navigating, setNavigating] = useState(false); 
 
   useEffect(() => {
     const fetchCourse = async () => {
@@ -24,7 +24,7 @@ export const Courses = () => {
         setLoading(false);
       } catch (error) {
         console.error("Error fetching Course:", error);
-        setError("Failed to load Course.");
+        setError("Sorry, we encountered an issue while loading the courses.");
         setLoading(false);
       }
     };
@@ -33,14 +33,14 @@ export const Courses = () => {
   }, []);
 
   const handleNavigation = (id) => {
-    setNavigating(true); // Show loader
+    setNavigating(true); 
     setTimeout(() => {
       navigate(`/details/${id}`);
-      setNavigating(false); // Hide loader after navigation
-    }, 500); // Optional delay for smooth UX
+      setNavigating(false); 
+    }, 500); 
   };
 
-  if (loading) {
+  if (loading || navigating) {
     return (
       <div className="flex items-center justify-center h-screen">
         <Loader />
@@ -56,36 +56,42 @@ export const Courses = () => {
     );
   }
 
-  if (navigating) {
-    return (
-      <div className="flex items-center justify-center h-screen">
-        <Loader />
-      </div>
-    );
-  }
-
   return (
     <section className="courses bg-[#F3F4F8] pt-4">
-      <div className="w-4/5 m-auto">
+      <div className="w-full max-w-screen-xl px-4 m-auto">
         <div className="py-16 heading">
-          <h1 className="text-3xl font-semibold text-black">
-            Find The Right <br />
-            Online Course For You With Certificates by{" "}
-            <span className="text-primary">Diffmo Technologies</span>
+          <h1 className="text-3xl font-semibold text-black md:text-4xl">
+            Discover the Perfect Online Course <br />
+            with Certificates from{" "}
+            <span className="text-primary">Difmo Technologies</span>
           </h1>
-          <span className="block mt-2 text-sm">
-            You don't have to struggle alone, you've got our assistance and
-            help.
+          <span className="block mt-2 text-sm md:text-base">
+            With our expert guidance, you don't have to navigate your learning
+            journey alone. Get the support you need to succeed.
           </span>
         </div>
 
+        {/* Filters */}
+        <div className="flex flex-col items-center justify-between mb-6 md:flex-row">
+          <input
+            type="text"
+            className="w-full p-2 mb-4 border border-gray-300 rounded md:w-1/3 md:mb-0"
+            placeholder="Search for courses..."
+          />
+          <select className="w-full p-2 border border-gray-300 rounded md:w-1/3">
+            <option>Sort by: Popularity</option>
+            <option>Newest</option>
+            <option>Highest Rated</option>
+          </select>
+        </div>
+
         {/* Courses grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 p-6">
+        <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {course.map((item) => (
             <div
               onClick={() => handleNavigation(item.id)}
               key={item.id}
-              className="relative bg-white shadow-xl rounded-lg overflow-hidden transition-transform transform hover:scale-95 hover:shadow-2xl cursor-pointer"
+              className="relative overflow-hidden transition-transform transform bg-white rounded-lg shadow-xl cursor-pointer hover:scale-95 hover:shadow-2xl"
             >
               <div className="relative w-full overflow-hidden rounded-t-lg images hover:bg-red-600">
                 <img
@@ -95,13 +101,13 @@ export const Courses = () => {
                 />
               </div>
               <p
-                className="px-2 py-2 text-xl text-gray-600 font-serif"
+                className="px-2 py-2 font-serif text-xl text-gray-600"
                 dangerouslySetInnerHTML={{
                   __html: item.shortDescription
                     ? item.shortDescription
-                        .split(" ") // Split the string by spaces into an array of words
-                        .slice(0, 7) // Get the first 10 words
-                        .join(" ") + "..." // Join the words back and append "..."
+                        .split(" ") 
+                        .slice(0, 12) 
+                        .join(" ") + "..." 
                     : "",
                 }}
               />
@@ -109,9 +115,13 @@ export const Courses = () => {
               <div className="flex items-center justify-between p-3 border-t border-gray-200">
                 <span className="text-sm text-primary">Free</span>
                 <span className="text-[14px] ml-2 flex items-center">
-                  Know Details <HiOutlineArrowNarrowRight />
+                  View Details <HiOutlineArrowNarrowRight />
                 </span>
               </div>
+
+             
+
+             
             </div>
           ))}
         </div>

@@ -6,6 +6,7 @@ import { getFirestore, collection, addDoc } from 'firebase/firestore'; // Firest
 import { getStorage, ref, uploadBytes, getDownloadURL } from 'firebase/storage'; // Firebase Storage SDK
 
 import { db } from '../firebase';
+import Loader from '../components/Loader';
 
 const internshipPrograms = [
   "Mobile App Development", "Web App Development", "Apprenticeship Training", "Summer Training",
