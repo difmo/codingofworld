@@ -7,10 +7,10 @@ import Loader from "../components/Loader";
 
 export const Courses = () => {
   const navigate = useNavigate();
-  const [course, setCourse] = useState([]); // Store course data
-  const [error, setError] = useState(null); // Error state
-  const [loading, setLoading] = useState(true); // Loading state for fetching courses
-  const [navigating, setNavigating] = useState(false); // Loading state for navigation
+  const [course, setCourse] = useState([]); 
+  const [error, setError] = useState(null); 
+  const [loading, setLoading] = useState(true); 
+  const [navigating, setNavigating] = useState(false); 
 
   useEffect(() => {
     const fetchCourse = async () => {
@@ -33,11 +33,11 @@ export const Courses = () => {
   }, []);
 
   const handleNavigation = (id) => {
-    setNavigating(true); // Show loader
+    setNavigating(true); 
     setTimeout(() => {
       navigate(`/details/${id}`);
-      setNavigating(false); // Hide loader after navigation
-    }, 500); // Optional delay for smoother user experience
+      setNavigating(false); 
+    }, 500); 
   };
 
   if (loading || navigating) {
@@ -105,9 +105,9 @@ export const Courses = () => {
                 dangerouslySetInnerHTML={{
                   __html: item.shortDescription
                     ? item.shortDescription
-                        .split(" ") // Split the string by spaces into an array of words
-                        .slice(0, 12) // Get the first 12 words for a more detailed preview
-                        .join(" ") + "..." // Join the words back and append "..."
+                        .split(" ") 
+                        .slice(0, 12) 
+                        .join(" ") + "..." 
                     : "",
                 }}
               />
