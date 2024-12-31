@@ -45,51 +45,13 @@ import CreatenewCourse from "./pages/AdminProminent/CourseAdmin/CreatenewCourse"
 import Allcourse from "./pages/AdminProminent/CourseAdmin/Allcourse";
 import EditCourse from "./pages/AdminProminent/CourseAdmin/EditCourse";
 import Codowo from "./pages/Codowo/Codowo";
-<<<<<<< HEAD
-import CourseLayout from "./pages/Layout/CourseLayout";
-=======
 import { Helmet, HelmetProvider } from "react-helmet-async";
->>>>>>> main
+import Gallery from "./components/gallery/Gallery";
+import AdminGallery from "./pages/AdminProminent/Adgallery/AdGallery";
 
 const App = () => {
   const { isAdmin, isUserLogin } = AdminController();
   return (
-<<<<<<< HEAD
-    <Router future={{ v7_startTransition: true, v7_relativeSplatPath: true }}>
-      <ScrollToTop />
-      <Routes>
-        {/* solve quesiton area  */}
-        <Route>
-          <Route path="/codowo" element={<Codowo />} />
-        </Route>
-
-        <Route element={<Layout />}>
-          <Route path="/" element={<HomeScreen />} />
-          <Route path="/contactus" element={<ContactUs />} />
-          <Route path="/services" element={<Services />} />
-          <Route path="/courses" element={<Courses />} />
-          <Route path="/about" element={<About />} />
-          <Route path="/trainingteam" element={<TrainingTeam />} />
-          <Route path="/internship" element={<InternshipsSection />} />
-          <Route path="/internshipform" element={<InternshipForm />} />
-          <Route path="/tcsnqtcourse" element={<TcsNqtCourse />} />
-          <Route path="/signupscreen" element={<SingUpScreen />} />
-          <Route path="/loginscreen" element={<LoginScreen />} />
-          <Route path="/alldeatilcourese" element={<AlldetailCourese />} />
-          <Route path="/popupbloge" element={<Popupbloge />} />
-          <Route path="/coursepagex" element={<CoursePage />} />
-          {/* <Route path="/details/:id" element={<CourseDetails />} /> */}
-          <Route path="/internship/:id" element={<InternshipDetails />} />
-
-          <Route element={<CourseLayout/>}>
-            
-            <Route path="/details/:id" element={<CourseDetails />} />
-          </Route>
-
-          <Route element={<ShowBlogLayout />}>
-            <Route path="/show-blogs" element={<ShowBlogs />} />
-            <Route path="/blog/:blogId" element={<BlogPage />} />
-=======
     <HelmetProvider>
       <Helmet>
         {/* Primary Meta Tags */}
@@ -150,7 +112,6 @@ const App = () => {
           {/* solve quesiton area  */}
           <Route>
             <Route path="/codowo" element={<Codowo />} />
->>>>>>> main
           </Route>
 
           <Route element={<Layout />}>
@@ -170,6 +131,7 @@ const App = () => {
             <Route path="/coursepagex" element={<CoursePage />} />
             <Route path="/details/:id" element={<CourseDetails />} />
             <Route path="/internship/:id" element={<InternshipDetails />} />
+            <Route path="/gallery" element={<Gallery />} />
 
             <Route element={<ShowBlogLayout />}>
               <Route path="/show-blogs" element={<ShowBlogs />} />
@@ -217,6 +179,7 @@ const App = () => {
               />
               <Route path="/admin/allcoures" element={<Allcourse />} />
               <Route path="/edit-course/:id" element={<EditCourse />} />
+              <Route path="/adgallery" element={<AdminGallery/>}/>
             </Route>
           ) : (
             <Route path="*" element={<NotFound />} />

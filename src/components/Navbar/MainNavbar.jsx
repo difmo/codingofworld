@@ -9,7 +9,7 @@ import {
 import { IoMdMenu } from "react-icons/io";
 import { motion, AnimatePresence } from "framer-motion";
 import { Link } from "react-router-dom";
-  import { useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import logo from "../../assets/images/logo.svg";
 import "firebase/auth";
 import { db, auth } from "../../firebase";
@@ -20,9 +20,10 @@ const NavbarMenu = [
   { id: 1, title: "Home", path: "/" },
   { id: 2, title: "Our Courses", path: "/courses" },
   { id: 3, title: "Internship", path: "/internship" },
-  { id: 4, title: "About Us", path: "/about" },
-  { id: 5, title: "Contact Us", path: "/contactus" },
-  { id: 6, title: "Blogs", path: "/show-blogs" },
+  { id: 4, title: "Gallery", path: "/gallery" },
+  { id: 5, title: "About Us", path: "/about" },
+  { id: 6, title: "Contact Us", path: "/contactus" },
+  { id: 7, title: "Blogs", path: "/show-blogs" },
 ];
 
 const MainNavbar = () => {

@@ -111,7 +111,9 @@ const Features = () => {
     <div className="relative px-4 mx-auto bg-cover max-w-8xl font-dmSans sm:px-6">
       <div className="pt-10 pb-10 md:pb-16" ref={ref}>
         <div className="relative z-10 flex flex-col items-center justify-center w-full">
-          <h5 className="text-xl font-semibold text-red-600 capitalize">FEATURES</h5>
+          <h5 className="text-xl font-semibold text-red-600 capitalize">
+            FEATURES
+          </h5>
           <h1 className="md:text-[50px] text-[26px] xs:text-[24px] text-center font-bold tracking-wide mt-2">
             What We Offer?
           </h1>
@@ -126,13 +128,17 @@ const Features = () => {
                 animate={isInView ? "animate" : "initial"}
                 className="flex p-6 transition-all duration-300 transform bg-white border rounded-lg shadow-lg hover:scale-105 hover:shadow-xl"
               >
-                <div className="flex items-start gap-x-6">
-                  <div className="p-4 rounded-full bg-gradient-to-br from-red-500 to-red-600">
+                <div className="">
+                  <div className="p-4 flex justify-center  rounded-full bg-gradient-to-br from-red-500 to-red-600">
                     <span className="text-white">{feature.icon}</span>
                   </div>
                   <div>
-                    <p className="text-xl font-semibold text-gray-800">{feature.title}</p>
-                    <p className="mt-2 text-sm text-gray-600">{feature.description}</p>
+                    <p className="text-xl font-semibold text-gray-800">
+                      {feature.title}
+                    </p>
+                    <p className="mt-2 text-sm text-gray-600">
+                      {feature.description}
+                    </p>
                   </div>
                 </div>
               </motion.div>
