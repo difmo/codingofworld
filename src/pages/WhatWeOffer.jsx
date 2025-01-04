@@ -111,9 +111,9 @@ const Features = () => {
     <div className="relative px-4 mx-auto bg-cover max-w-8xl font-dmSans sm:px-6">
       <div className="pt-10 pb-10 md:pb-16" ref={ref}>
         <div className="relative z-10 flex flex-col items-center justify-center w-full">
-          <h5 className="text-xl font-semibold text-red-600 capitalize">FEATURES</h5>
-          <h1 className="md:text-[50px] text-[26px] xs:text-[24px] text-center font-bold tracking-wide mt-2">
-            What We Offer?
+          <h5 className="text-xl font-semibold text-primary capitalize">FEATURES</h5>
+          <h1 className="md:text-4xl text-[26px] text-secondaryblue xs:text-[24px] text-center font-bold tracking-wide mt-2">
+            What We <span className="text-primary">Offer</span>?
           </h1>
         </div>
         <div className="container flex justify-center mt-6">

@@ -31,9 +31,9 @@ const Banner = () => {
               whileInView={{ opacity: 1, scale: 1 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5 }}
-              className="text-3xl md:text-4xl font-bold !leading-snug"
+              className="text-3xl md:text-4xl font-bold text-secondaryblue !leading-snug"
             >
-              The World's Leading Online learning Platform
+              The World's Leading <span className="text-primary">Online learning</span>  Platform
             </motion.h1>
             <div className="flex flex-col gap-6">
               <motion.div

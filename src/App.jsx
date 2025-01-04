@@ -18,21 +18,28 @@ import LoginScreen from "./pages/AuthScreens/LoginScreen";
 import First from "./pages/Sidebarpages/First";
 import Second from "./pages/Sidebarpages/Second";
 import FindSmallestElement from "./pages/AllCourses/TcsNqtCourse/Questions/OnArray/FindSmallestElement";
+
+{/* /////////////////////////////////////////// Blog ///////////////////////////////////////////// */ }
 import Addblogs from "./pages/AddBlogs/Addblogs";
 import AllBlogs from "./pages/AddBlogs/AllBlogs";
 import EditBlog from "./pages/AddBlogs/EditBlog";
 import ShowBlogs from "./pages/AddBlogs/ShowBlogs";
 import BlogPage from "./pages/AddBlogs/BlogPage";
 import ShowBlogLayout from "./pages/Layout/ShowBlogLayout";
+import AdminBlogPage from "./pages/AdminProminent/AdminblogPage";
+import CreateBlogLayout from "./pages/Layout/CreateBlogLayout";
+import Popupbloge from "./pages/Popupbloge";
+
+
 import StudentData from "./pages/AdminProminent/student/StudentData";
+
+
+{/* /////////////////////////////////////////// Admin ///////////////////////////////////////////// */ }
 import AdminLayout from "./pages/Layout/AdminLayout";
 import AdminDashboard from "./pages/AdminProminent/MenuPages/AdminDashboard";
 import ClientContactPage from "./pages/AdminProminent/ClientContactPage";
 import LoginUsersAdmin from "./pages/AdminProminent/LoginUsersAdmin";
-import CreateBlogLayout from "./pages/Layout/CreateBlogLayout";
-import Popupbloge from "./pages/Popupbloge";
 import StudentSidebarLayout from "./pages/Layout/StudentSidebarLayout";
-import AdminBlogPage from "./pages/AdminProminent/AdminblogPage";
 import Services from "./components/Services/Services";
 import CoursePage from "./pages/CoursePage";
 import AdminController from "./Controller/AdminController";
@@ -48,8 +55,23 @@ import CreatenewCourse from "./pages/AdminProminent/CourseAdmin/CreatenewCourse"
 import Allcourse from "./pages/AdminProminent/CourseAdmin/Allcourse";
 import EditCourse from "./pages/AdminProminent/CourseAdmin/EditCourse";
 import Codowo from "./pages/Codowo/Codowo";
-import CourseLayout from "./pages/Layout/CourseLayout";
 import { Helmet, HelmetProvider } from "react-helmet-async";
+{/* /////////////////////////////////////////// Create Courses ///////////////////////////////////////////// */ }
+
+import CreateCourseLayout from "./pages/CreateCourses/Layout/CreateCourseLayout";
+import AllCoursesPage from "./pages/CreateCourses/Pages/AllCoursesPage";
+import CreateNewCourse from "./pages/CreateCourses/Pages/CreateNewCourse";
+import UserCoursePage from "./pages/CreateCourses/Pages/EditAndShowCourse";
+import AddTopicPage from "./pages/CreateCourses/Pages/Topics/AddTopicPage";
+import TopicDetailPage from "./pages/CreateCourses/Pages/Topics/TopicDetailPage";
+import ShowAllCoursesPage from "./pages/ShowCourses/Pages/ShowAllCoursesPage";
+import ShowCourseLayout from "./pages/ShowCourses/Layout/ShowCourseLayout";
+import ShowCourseDetails from "./pages/ShowCourses/Pages/ShowCourseDetail";
+import ShowTopicDetailPage from "./pages/ShowCourses/Pages/Topics/ShowTopicDetailPage";
+
+
+
+
 
 const App = () => {
   const { isAdmin, isUserLogin } = AdminController();
@@ -111,11 +133,12 @@ const App = () => {
       <Router future={{ v7_startTransition: true, v7_relativeSplatPath: true }}>
         <ScrollToTop />
         <Routes>
-          {/* solve quesiton area  */}
+          {/* //////////////////////////////////////////// Codowo ///////////////////////////////////////////// */}
           <Route>
             <Route path="/codowo" element={<Codowo />} />
           </Route>
 
+          {/* ///////////////////////////////////////////// Main //////////////////////////////////////////// */}
           <Route element={<Layout />}>
             <Route path="/" element={<HomeScreen />} />
             <Route path="/contactus" element={<ContactUs />} />
@@ -134,19 +157,50 @@ const App = () => {
             <Route path="/details/:id" element={<CourseDetails />} />
             <Route path="/internship/:id" element={<InternshipDetails />} />
 
+            {/* /////////////////////////////////////////// Show Courses ///////////////////////////////////////////// */}
+            <Route path="/show-coursee" element={<ShowAllCoursesPage />} />
+            <Route path="/showcoursee/:courseId" element={<ShowCourseDetails />} />
+
+            <Route element={<ShowCourseLayout />}>
+              <Route path="/showcourse/:courseId" element={<ShowCourseDetails />} />
+              {/* Add Topic */}
+              <Route path="/showcourse/:courseId/topic/:topicId" element={<ShowTopicDetailPage />} />
+            </Route>
+
+            {/* /////////////////////////////////////////// Show Blog ///////////////////////////////////////////// */}
             <Route element={<ShowBlogLayout />}>
               <Route path="/show-blogs" element={<ShowBlogs />} />
               <Route path="/blog/:blogId" element={<BlogPage />} />
             </Route>
           </Route>
-          <Route path="*" element={<NotFound />} />
-          <Route path="/ads.txt" />
-          <Route element={<StudentSidebarLayout />}>
-            <Route path="/home1" element={<First />} />
-            <Route path="/about1" element={<Second />} />
-            <Route path="/starttcsnqt" element={<TCSNQT />} />
-            <Route path="/findsmallest" element={<FindSmallestElement />} />
-          </Route>
+
+          {/* //////////////////////////////////////////// Create Courses //////////////////////////////////////////// */}
+
+          {isUserLogin ? (
+            <Route element={<CreateCourseLayout />}>
+
+              <Route path="/all-course" element={<AllCoursesPage />} />
+              <Route path="/usercourse/:courseId" element={<UserCoursePage />} />
+              <Route path="/create-course" element={<CreateNewCourse />} />
+              {/* Add Topic */}
+              <Route path="/usercourse/:courseId/add-topic" element={<AddTopicPage />} />
+              <Route path="/usercourse/:courseId/topic/:topicId" element={<TopicDetailPage />} />
+
+            </Route>
+          ) : (
+            <Route path="*" element={<NotFound />} />
+          )}
+
+          {/* //////////////////////////////////////////// Show Courses //////////////////////////////////////////// */}
+
+          {/* <Route element={<ShowCourseLayout />}> */}
+          {/* <Route path="/showcourse/:courseId" element={<ShowCourseDetails/>} /> */}
+          {/* Add Topic */}
+          {/* <Route path="/showcourse/:courseId/topic/:topicId" element={<ShowTopicDetailPage/>} /> */}
+          {/* </Route> */}
+
+
+          {/* /////////////////////////////////////////// Create Blog ///////////////////////////////////////////// */}
           {isUserLogin ? (
             <Route element={<CreateBlogLayout />}>
               <Route path="/addblogs" element={<Addblogs />} />
@@ -157,6 +211,19 @@ const App = () => {
             <Route path="*" element={<NotFound />} />
           )}
 
+          {/* //////////////////////////////////////////// Advertise /////////////////////////////////////////// */}
+          <Route path="/ads.txt" />
+
+          {/* //////////////////////////////////////////// Courses //////////////////////////////////////////// */}
+          <Route element={<StudentSidebarLayout />}>
+            <Route path="/home1" element={<First />} />
+            <Route path="/about1" element={<Second />} />
+            <Route path="/starttcsnqt" element={<TCSNQT />} />
+            <Route path="/findsmallest" element={<FindSmallestElement />} />
+          </Route>
+
+
+          {/* /////////////////////////////////////////// Admin ////////////////////////////////////////// */}
           {isAdmin ? (
             <Route element={<AdminLayout />}>
               <Route path="/admin-dashboard" element={<AdminDashboard />} />
@@ -184,6 +251,9 @@ const App = () => {
           ) : (
             <Route path="*" element={<NotFound />} />
           )}
+
+
+          {/* ///////////////////////////////////////////// Other /////////////////////////////////////// */}
           <Route path="*" element={<NotFound />} />
         </Routes>
       </Router>

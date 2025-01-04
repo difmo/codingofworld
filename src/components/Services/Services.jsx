@@ -73,8 +73,8 @@ const Services = () => {
   return (
     <section className="bg-white">
     <div className="container pt-16 pb-14">
-      <h1 className="pb-10 text-4xl font-bold text-left">
-        Skill-Boosting Training for Your Success
+      <h1 className="pb-10 text-4xl text-secondaryblue font-bold text-left">
+        Skill-Boosting <span className="text-primary">Training </span> for Your Success
       </h1>
       <div className="grid grid-cols-2 gap-8 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6">
         {ServicesData.map((service) => (

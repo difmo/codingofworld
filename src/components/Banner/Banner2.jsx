@@ -13,8 +13,8 @@ const Banner2 = () => {
           className="flex flex-col justify-center"
         >
           <div className="space-y-4 text-center md:text-left ">
-            <h1 className="text-4xl font-bold !leading-snug">
-              Join Our Community to Start your Journey
+            <h1 className="text-4xl font-bold text-secondaryblue !leading-snug">
+              Join <span className="text-primary"> Our Community</span> to Start your Journey
             </h1>
             {/* Fixed issue: Replaced the outer <p> with a <div> */}
             <div className="text-dark">

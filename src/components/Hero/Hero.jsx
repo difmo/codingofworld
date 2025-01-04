@@ -85,9 +85,9 @@ const Hero = () => {
               variants={FadeUp(0.6)}
               initial="initial"
               animate="animate"
-              className="text-2xl lg:text-2xl  font-bold !leading-snug"
+              className="text-2xl lg:text-3xl  font-bold !leading-snug"
             >
-              <span className="text-black font-anek_telugu">
+              <span className="text-secondaryblue font-anek_telugu">
                 {textOptions[currentTextIndex][0]}
               </span>
               <span className="text-red-500 font-anek_telugu">

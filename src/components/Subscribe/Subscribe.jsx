@@ -25,8 +25,8 @@ const Subscribe = () => {
           className="flex flex-col justify-center"
         >
           <div className="text-center space-y-4 lg:max-w-[530px] mx-auto">
-            <h1 className="text-4xl font-bold !leading-snug">
-            Join Thousands of Students Learning with Us
+            <h1 className="text-4xl font-bold text-secondaryblue !leading-snug">
+            Join Thousands of <span className="text-primary"> Students Learning</span> with Us
             </h1>
             <p>Real-world examples – Show practical applications.</p>
             <p>

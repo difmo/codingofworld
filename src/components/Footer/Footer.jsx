@@ -68,7 +68,7 @@ const Footer = () => {
         <div className="grid grid-cols-1 gap-12 md:grid-cols-2 lg:grid-cols-3 md:gap-4">
           {/* First Section */}
           <div className="space-y-4 max-w-[300px]">
-            <h1 className="text-2xl font-bold">Coding World Institute</h1>
+            <h1 className="text-2xl font-bold text-secondaryblue">Coding Of <span className="text-primary">World</span> Institute</h1>
             <p className="text-dark2">
               Offers students hands-on training and career guidance in web
               development, mobile apps, AI/ML, and robotics to launch successful
@@ -79,7 +79,7 @@ const Footer = () => {
           {/* Second Section */}
           <div className="grid grid-cols-2 gap-10">
             <div className="space-y-4">
-              <h1 className="text-2xl font-bold">Courses</h1>
+              <h1 className="text-2xl text-secondaryblue font-bold">Courses</h1>
               <ul className="space-y-2 text-lg text-dark2">
                 <li
                   className="duration-200 cursor-pointer hover:text-secondary"
@@ -102,7 +102,7 @@ const Footer = () => {
               </ul>
             </div>
             <div className="space-y-4">
-              <h1 className="text-2xl font-bold">Links</h1>
+              <h1 className="text-2xl text-secondaryblue font-bold">Links</h1>
               <ul className="space-y-2 text-lg text-dark2">
                 <li
                   className="duration-200 cursor-pointer hover:text-secondary"
@@ -128,7 +128,7 @@ const Footer = () => {
 
           {/* Third Section */}
           <div className="space-y-4 max-w-[300px]">
-            <h1 className="text-2xl font-bold">Get In Touch</h1>
+            <h1 className="text-2xl text-secondaryblue font-bold">Get In Touch</h1>
             
 
             <form onSubmit={handleSubmit} className="flex items-center">

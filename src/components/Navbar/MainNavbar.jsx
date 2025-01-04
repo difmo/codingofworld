@@ -19,6 +19,7 @@ import AdminController from "../../Controller/AdminController";
 const NavbarMenu = [
   { id: 1, title: "Home", path: "/" },
   { id: 2, title: "Our Courses", path: "/courses" },
+  { id: 2, title: "Our Courses2", path: "/show-coursee" },
   { id: 3, title: "Internship", path: "/internship" },
   { id: 4, title: "About Us", path: "/about" },
   { id: 5, title: "Contact Us", path: "/contactus" },
@@ -82,7 +83,7 @@ const MainNavbar = () => {
         <div className="flex items-center justify-center">
           <img src={logo} className="h-10 " />
           <div>
-            <h1 className="pl-2 text-xl font-bold font-play ">
+            <h1 className="pl-2 text-xl font-bold text-secondaryblue font-play ">
               Coding of <span className="text-primary">World</span>
             </h1>
           </div>
@@ -94,9 +95,9 @@ const MainNavbar = () => {
               <li key={menu.id}>
                 <Link
                   to={menu.path}
-                  className="relative inline-block px-3 py-2 font-play hover:text-secondary group"
+                  className="relative text-secondaryblue inline-block px-3 py-2 font-play hover:text-secondary group"
                 >
-                  <div className="absolute bottom-0 hidden w-2 h-2 mt-4 -translate-x-1/2 rounded-full bg-secondary font-play left-1/2 top-1/2 group-hover:block"></div>
+                  <div className="absolute bottom-0  hidden w-2 h-2 mt-4 -translate-x-1/2 rounded-full bg-secondary font-play left-1/2 top-1/2 group-hover:block"></div>
                   {menu.title}
                 </Link>
               </li>

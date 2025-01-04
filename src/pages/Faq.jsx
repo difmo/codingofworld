@@ -65,8 +65,8 @@ const FAQ = () => {
 
   return (
     <div ref={ref} className="px-4 py-16 mx-auto max-w-8xl sm:px-6 bg-gray-50">
-      <h2 className="mb-10 text-3xl font-bold text-center text-gray-800">
-        Frequently Asked Questions - Coding of World
+      <h2 className="mb-10 text-4xl font-bold text-center text-secondaryblue">
+        Frequently <span className="text-primary">Asked Questions</span>  - Coding of World
       </h2>
       <div className="container space-y-4">
         {faqs.map((faq, index) => (
