@@ -2,15 +2,12 @@ import React, { useState } from 'react';
 import { db } from '../../firebase';
 import { setDoc, getDoc, doc } from 'firebase/firestore';
 
-import TimerRangeController from '../../controller/TimerRangeController';
 import { useNavigate } from 'react-router-dom';
 import img from '../../assets/images/logo.svg';
-import AdminController from '../../controller/AdminController';
 
 const TestPage = () => {
     const [isUserLogin, setIsUserLogin] = useState(null);
     const [userUid, setUserUid] = useState(null);
-    const { status } = TimerRangeController();
     const [userData, setUserData] = useState({
         name: '',
         email: '',
@@ -102,12 +99,7 @@ const TestPage = () => {
             console.error("Error submitting test:", error);
         }
     };
-    console.log("IsActive", status);
-    if (status !== 'running') {
-        alert("Test is not active");
-        navigate('/login');
-        return;
-    }
+  
 
 
     return (
