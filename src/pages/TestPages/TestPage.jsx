@@ -28,7 +28,24 @@ const TestPage = () => {
         const { name, email, mobnum, stream } = userData;
         setIsFormComplete(name && email && mobnum && stream);  // Ensure all fields are filled
     }, [userData]); // Re-run when userData changes
+    useEffect(() => {
+        const unsubscribe = auth.onAuthStateChanged((user) => {
+            if (user) {
+                if (user.emailVerified) {
+                    setIsUserLogin(true);
+                    setUserUid(user.uid);
+                } else {
+                    console.log('Email is not verified yet');
+                    setIsUserLogin(false);
+                }
+            } else {
+                setIsUserLogin(false);
+                console.log('User is not logged in yet');
+            }
+        });
 
+        return () => unsubscribe();
+    }, []);
     useEffect(() => {
         const unsubscribe = auth.onAuthStateChanged((user) => {
             if (user) {
@@ -111,10 +128,33 @@ const TestPage = () => {
         }
     };
 
-    if (status !== 'running') {
-        return <div>Wait for Test Starting</div>;
-    }
 
+
+    auth.onAuthStateChanged((user) => {
+        if (user) {
+            if (user.emailVerified) {
+                setIsUserLogin(user);
+            } else {
+                console.log("Email is not verified yet");
+                setIsUserLogin(false);
+            }
+        } else {
+            setIsUserLogin(false);
+            console.log("User is not logged in yet");
+        }
+    });
+
+    if (status !== 'running' && !isUserLogin) {
+        console.log(status)
+        return <div className="flex justify-center items-center h-screen">Wait for Test Starting</div>;
+    }
+    if (!isUserLogin) {
+        return (
+            <div className="flex justify-center items-center h-screen">
+                <h1>Please log in to access the test.</h1>
+            </div>
+        );
+    }
     return (
         <div className="flex justify-center items-center h-screen bg-gray-100" style={{ backgroundImage: 'url(src/assets/images/153349.jpg)', backgroundSize: 'cover', backgroundPosition: 'center' }}>
             <div className="w-full mx-4 max-w-xl bg-white p-8 rounded-lg shadow-lg flex flex-col items-center">
@@ -235,7 +275,7 @@ const TestPage = () => {
 export default TestPage;
 
 
-const  questions = [
+const questions = [
     {
         id: 1,
         question: "What is the time complexity of accessing an element in an array by index?",
@@ -301,8 +341,8 @@ const  questions = [
 
 const TimerRangeController = () => {
 
-    const startTime = new Date('Thu Jan 09 2025 14:46:05 GMT+0530 (India Standard Time)');
-    const endTime = new Date('Thu Jan 09 2025 17:50:05 GMT+0530 (India Standard Time)');
+    const startTime = new Date('Thu Jan 10 2025 09:00:00 GMT+0530 (India Standard Time)');
+    const endTime = new Date('Thu Jan 11 2025 16:00:00 GMT+0530 (India Standard Time)');
 
     // Function to calculate time left
     const calculateTimeLeft = () => {

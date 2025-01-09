@@ -8,7 +8,7 @@ const InternshipsSection = () => {
   const navigate = useNavigate();
   return (
     <>
-      <CarouselContent />
+      {/* <CarouselContent /> */}
       <Internships />
     </>
   );
