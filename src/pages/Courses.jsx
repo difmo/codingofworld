@@ -7,10 +7,10 @@ import Loader from "../components/Loader";
 
 export const Courses = () => {
   const navigate = useNavigate();
-  const [course, setCourse] = useState([]); 
-  const [error, setError] = useState(null); 
-  const [loading, setLoading] = useState(true); 
-  const [navigating, setNavigating] = useState(false); 
+  const [course, setCourse] = useState([]);
+  const [error, setError] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const [navigating, setNavigating] = useState(false);
 
   useEffect(() => {
     const fetchCourse = async () => {
@@ -33,11 +33,11 @@ export const Courses = () => {
   }, []);
 
   const handleNavigation = (id) => {
-    setNavigating(true); 
+    setNavigating(true);
     setTimeout(() => {
       navigate(`/details/${id}`);
-      setNavigating(false); 
-    }, 500); 
+      setNavigating(false);
+    }, 500);
   };
 
   if (loading || navigating) {
@@ -57,7 +57,7 @@ export const Courses = () => {
   }
 
   return (
-    <section className="courses bg-[#F3F4F8] pt-4">
+    <section className="courses bg-[#F3F4F8] pt-4 pb-40">
       <div className="w-full max-w-screen-xl px-4 m-auto">
         <div className="py-16 heading">
           <h1 className="text-3xl font-semibold text-black md:text-4xl">
@@ -105,9 +105,9 @@ export const Courses = () => {
                 dangerouslySetInnerHTML={{
                   __html: item.shortDescription
                     ? item.shortDescription
-                        .split(" ") 
-                        .slice(0, 12) 
-                        .join(" ") + "..." 
+                      .split(" ")
+                      .slice(0, 12)
+                      .join(" ") + "..."
                     : "",
                 }}
               />
@@ -118,13 +118,10 @@ export const Courses = () => {
                   View Details <HiOutlineArrowNarrowRight />
                 </span>
               </div>
-
-             
-
-             
             </div>
           ))}
         </div>
+        <h1 className="mt-8">Want to contribut to make courses</h1>
       </div>
     </section>
   );

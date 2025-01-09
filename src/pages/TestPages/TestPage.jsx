@@ -116,7 +116,7 @@ const TestPage = () => {
     }
 
     return (
-        <div className="flex justify-center items-center h-screen bg-gray-100" style={{ backgroundImage: 'url(public/153349.jpg)', backgroundSize: 'cover', backgroundPosition: 'center' }}>
+        <div className="flex justify-center items-center h-screen bg-gray-100" style={{ backgroundImage: 'url(src/assets/images/153349.jpg)', backgroundSize: 'cover', backgroundPosition: 'center' }}>
             <div className="w-full mx-4 max-w-xl bg-white p-8 rounded-lg shadow-lg flex flex-col items-center">
                 {!completed ? (
                     <>
@@ -235,68 +235,69 @@ const TestPage = () => {
 export default TestPage;
 
 
-const questions = [
+const  questions = [
     {
         id: 1,
-        question: "What is the time complexity of binary search?",
-        options: ["O(log n)", "O(n)", "O(n^2)", "O(log n^2)"],
-        answer: "O(log n)",
+        question: "What is the time complexity of accessing an element in an array by index?",
+        options: ["O(1)", "O(n)", "O(log n)", "O(n^2)"],
+        answer: "O(1)",
     },
     {
         id: 2,
-        question: "Which data structure is used in depth-first search?",
+        question: "Which of the following is not a type of tree traversal?",
+        options: ["In-order", "Pre-order", "Post-order", "Diagonal-order"],
+        answer: "Diagonal-order",
+    },
+    {
+        id: 3,
+        question: "What is the space complexity of a recursive function using a stack for recursion?",
+        options: ["O(1)", "O(n)", "O(log n)", "O(n^2)"],
+        answer: "O(n)",
+    },
+    {
+        id: 4,
+        question: "Which sorting algorithm has the best time complexity in the worst case?",
+        options: ["Quick Sort", "Merge Sort", "Bubble Sort", "Insertion Sort"],
+        answer: "Merge Sort",
+    },
+    {
+        id: 5,
+        question: "What is the worst-case time complexity of Quick Sort?",
+        options: ["O(n log n)", "O(n^2)", "O(log n)", "O(n)"],
+        answer: "O(n^2)",
+    },
+    {
+        id: 6,
+        question: "Which data structure is best for implementing a priority queue?",
+        options: ["Array", "Stack", "Heap", "Linked List"],
+        answer: "Heap",
+    },
+    {
+        id: 7,
+        question: "What is the time complexity of inserting an element in a binary search tree (BST)?",
+        options: ["O(1)", "O(log n)", "O(n)", "O(n^2)"],
+        answer: "O(log n)",
+    },
+    {
+        id: 8,
+        question: "Which of the following is true for a graph represented by an adjacency matrix?",
+        options: ["Space complexity is O(n)", "It is good for sparse graphs", "Edge lookup time is O(1)", "It requires more space than adjacency list for dense graphs"],
+        answer: "Edge lookup time is O(1)",
+    },
+    {
+        id: 9,
+        question: "Which data structure is used to implement recursion in the form of function calls?",
         options: ["Queue", "Stack", "Linked List", "Array"],
         answer: "Stack",
     },
     {
-        id: 3,
-        question: "What is 2 + 2?",
-        options: ["3", "4", "5", "6"],
-        answer: "4",
-    },
-    {
-        id: 4,
-        question: "Which data structure follows FIFO (First In First Out) principle?",
-        options: ["Stack", "Queue", "Array", "Linked List"],
-        answer: "Queue",
-    },
-    {
-        id: 5,
-        question: "Which data structure follows LIFO (Last In First Out) principle?",
-        options: ["Stack", "Queue", "Array", "Linked List"],
-        answer: "Stack",
-    },
-    {
-        id: 6,
-        question: "Which data structure is used for implementing recursion?",
-        options: ["Queue", "Stack", "Array", "Linked List"],
-        answer: "Stack",
-    },
-    {
-        id: 7,
-        question: "Which data structure is used for implementing BFS (Breadth-First Search)?",
-        options: ["Queue", "Stack", "Array", "Linked List"],
-        answer: "Queue",
-    },
-    {
-        id: 8,
-        question: "What is the output of the following code: console.log(typeof null)?",
-        options: ["object", "null", "undefined", "string"],
-        answer: "object",
-    },
-    {
-        id: 9,
-        question: "Which method is used to add an element to the end of an array in JavaScript?",
-        options: ["push", "pop", "shift", "unshift"],
-        answer: "push",
-    },
-    {
         id: 10,
-        question: "What is the correct syntax to create a function in JavaScript?",
-        options: ["function myFunction()", "def myFunction()", "create myFunction()", "function:myFunction()"],
-        answer: "function myFunction()",
+        question: "Which of the following is a characteristic of a hash table?",
+        options: ["Elements are stored in a sorted order", "It uses a hash function to map keys to indices", "It supports only integer keys", "It is not efficient for searching"],
+        answer: "It uses a hash function to map keys to indices",
     },
 ];
+
 
 const TimerRangeController = () => {
 
