@@ -93,6 +93,15 @@ const AdminSidebar = ({ toggleSidebar }) => {
         >
           All Course
         </li>
+        <li
+          onClick={() => {
+            navigate("/admin/admin-student-test");
+            // toggleSidebar();
+          }}
+          className="flex items-center px-4 py-3 mb-2 text-white transition duration-200 rounded-lg cursor-pointer bg-primary hover:bg-blue-600"
+        >
+          Student Test
+        </li>
       </ul>
     </div>
   );

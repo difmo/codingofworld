@@ -68,6 +68,9 @@ import ShowAllCoursesPage from "./pages/ShowCourses/Pages/ShowAllCoursesPage";
 import ShowCourseLayout from "./pages/ShowCourses/Layout/ShowCourseLayout";
 import ShowCourseDetails from "./pages/ShowCourses/Pages/ShowCourseDetail";
 import ShowTopicDetailPage from "./pages/ShowCourses/Pages/Topics/ShowTopicDetailPage";
+import TestPage from "./pages/TestPages/TestPage";
+import AdminStudentTestPage from "./pages/TestPages/TestAdmin";
+import StudentTestDetails from "./pages/TestPages/TestDetails";
 
 
 
@@ -156,7 +159,8 @@ const App = () => {
             <Route path="/coursepagex" element={<CoursePage />} />
             <Route path="/details/:id" element={<CourseDetails />} />
             <Route path="/internship/:id" element={<InternshipDetails />} />
-
+            {/* ///////////////////////////////////////////// Student Tests //////////////////////////////////////////// */}
+            <Route path="/students-test" element={<TestPage />} />
             {/* /////////////////////////////////////////// Show Courses ///////////////////////////////////////////// */}
             <Route path="/show-coursee" element={<ShowAllCoursesPage />} />
             <Route path="/showcoursee/:courseId" element={<ShowCourseDetails />} />
@@ -247,6 +251,9 @@ const App = () => {
               />
               <Route path="/admin/allcoures" element={<Allcourse />} />
               <Route path="/edit-course/:id" element={<EditCourse />} />
+              <Route path="/admin/admin-student-test" element={<AdminStudentTestPage />} />
+              <Route path="/admin/admin-student-test" element={<AdminStudentTestPage />} />
+              <Route path="/admin/student/:studentId" element={<StudentTestDetails />} />
             </Route>
           ) : (
             <Route path="*" element={<NotFound />} />

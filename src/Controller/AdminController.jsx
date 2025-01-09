@@ -6,6 +6,7 @@ const AdminController = () => {
   const [isAdmin, setIsAdmin] = useState(false);
   const [isUserLogin, setIsUserLogin] = useState(null);
   const [blogPermission, setBlogPermission] = useState(false);
+  const [userUid, setUserUid] = useState(null);
 
   const [bloggerName, setbloggerName] = useState();
 
@@ -15,6 +16,7 @@ const AdminController = () => {
         if (user.emailVerified) {
           setIsUserLogin(user);
           fetchUserRole(user.uid);
+          setUserUid(user.uid);
         } else {
           console.log("Email is not verified yet");
         }
@@ -60,6 +62,6 @@ const AdminController = () => {
     }
   };
 
-  return { isAdmin,isUserLogin,blogPermission,bloggerName };
+  return { isAdmin,isUserLogin,blogPermission,bloggerName,userUid };
 };
 export default AdminController;

@@ -7,11 +7,13 @@ import Subscribe from "../components/Subscribe/Subscribe";
 import Features from "./WhatWeOffer";
 import FAQ from "./Faq";
 import AdComponent from "./GoogleAdd";
-  
+import TimerButton from "../components/TimerButton";
 
-const   HomeScreen = () => {
+
+const HomeScreen = () => {
   return (
     <div>
+
       <Hero />
       {/* <AdComponent /> */}
       <Services />

@@ -1,17 +1,15 @@
 import React, { useEffect, useState } from "react";
-import { IoIosArrowRoundForward } from "react-icons/io";
 import Blob from "../../assets/blob.svg";
 import HeroPng1 from "../../assets/headerimg/appdev.svg";
 import HeroPng2 from "../../assets/headerimg/iotandrobo.svg";
 import HeroPng3 from "../../assets/headerimg/webdev.svg";
-import { animate, motion } from "framer-motion";
+import { motion } from "framer-motion";
 import { useNavigate } from "react-router-dom";
-import EventModel from "../Events/EventModel";
 import EventForm from "../Events/EventForm";
 import ScrollToTop from "../ScrollTop";
 import MyBot from "../Abot/Mybot";
-import { Button } from "reactstrap";
 import { FaHandshake, FaUserTie, FaLightbulb } from "react-icons/fa";
+import TimerButton from "../TimerButton";
 
 export const FadeUp = (delay) => {
   return {
@@ -34,7 +32,7 @@ export const FadeUp = (delay) => {
 };
 
 const Hero = () => {
-  const navigate=useNavigate();
+  const navigate = useNavigate();
   const [currentImage, setCurrentImage] = useState(0);
   const [isModalOpen, setIsModalOpen] = useState(true);
   const [currentTextIndex, setCurrentTextIndex] = useState(0);
@@ -98,7 +96,7 @@ const Hero = () => {
             add span menu
             
             */}
-            <div className="flex flex-col gap-4">
+            <div className="flex items-center md:items-start flex-col gap-4">
               {/* First sentence: Learning and AI-powered skills */}
               <div className="flex items-center gap-2">
                 <FaLightbulb className="text-yellow-500" />
@@ -128,21 +126,26 @@ const Hero = () => {
               variants={FadeUp(0.8)}
               initial="initial"
               animate="animate"
-              className="flex justify-center md:justify-start"
+              className="flex flex-col items-center md:items-start justify-center md:justify-start"
             >
+              <div className="w-[312px]">   <TimerButton /> </div>
+
               <div className="flex items-center gap-4">
-                <div  className="flex items-center">
-                  <button 
-                  onClick={()=>navigate("/loginscreen")}
-                  
-                  className="flex items-center gap-2 text-[16px] px-4 h-12 rounded-md bg-red-500 text-white hover:bg-red-600 focus:outline-none focus:ring-2 focus:ring-red-500">
+
+                <div className="flex items-center">
+
+
+                  <button
+                    onClick={() => navigate("/loginscreen")}
+
+                    className="flex items-center gap-2 text-[16px] px-4 h-12 rounded-md bg-red-500 text-white hover:bg-red-600 focus:outline-none focus:ring-2 focus:ring-red-500">
                     Register for free
                   </button>
                 </div>
                 <div className="flex items-center ">
-                  <button 
-                  onClick={()=>navigate("/courses")}
-                  className=" border-2 border-red-600 flex items-center gap-2 text-[16px] px-4 h-12 rounded-md bg-white text-red-500 hover:bg-red-500 hover:text-white focus:outline-none focus:ring-2 focus:ring-red-500 ">
+                  <button
+                    onClick={() => navigate("/courses")}
+                    className=" border-2 border-red-600 flex items-center gap-2 text-[16px] px-4 h-12 rounded-md bg-white text-red-500 hover:bg-red-500 hover:text-white focus:outline-none focus:ring-2 focus:ring-red-500 ">
                     Explore courses
                   </button>
                 </div>
