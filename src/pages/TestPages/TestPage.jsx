@@ -1,7 +1,6 @@
-
+import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import img from '../../assets/images/logo.svg';
-import React, { useEffect, useState } from 'react';
 import { db } from '../../firebase';
 import { setDoc, getDoc, doc } from 'firebase/firestore';
 import { auth } from '../../firebase';
@@ -16,36 +15,19 @@ const TestPage = () => {
         stream: 'btech',
         answers: [],
     });
-    const [isFormComplete, setIsFormComplete] = useState(false); // New state for form completion
+    const [isFormComplete, setIsFormComplete] = useState(false);
     const [currentQuestion, setCurrentQuestion] = useState(0);
     const [completed, setCompleted] = useState(false);
     const navigate = useNavigate();
 
-    const { isActive, status } = TimerRangeController();
+    const { status, isActive } = TimerRangeController();  // Get status and isActive from TimerRangeController
 
     // Check if all fields are filled
     useEffect(() => {
         const { name, email, mobnum, stream } = userData;
         setIsFormComplete(name && email && mobnum && stream);  // Ensure all fields are filled
-    }, [userData]); // Re-run when userData changes
-    useEffect(() => {
-        const unsubscribe = auth.onAuthStateChanged((user) => {
-            if (user) {
-                if (user.emailVerified) {
-                    setIsUserLogin(true);
-                    setUserUid(user.uid);
-                } else {
-                    console.log('Email is not verified yet');
-                    setIsUserLogin(false);
-                }
-            } else {
-                setIsUserLogin(false);
-                console.log('User is not logged in yet');
-            }
-        });
+    }, [userData]);
 
-        return () => unsubscribe();
-    }, []);
     useEffect(() => {
         const unsubscribe = auth.onAuthStateChanged((user) => {
             if (user) {
@@ -54,6 +36,7 @@ const TestPage = () => {
                     setUserUid(user.uid);
                 } else {
                     console.log("Email is not verified yet");
+                    setIsUserLogin(false);
                 }
             } else {
                 setIsUserLogin(false);
@@ -93,7 +76,6 @@ const TestPage = () => {
 
         if (studentDoc.exists()) {
             const studentData = studentDoc.data();
-
             if (studentData.completed) {
                 alert("You have already submitted the test.");
                 return;
@@ -128,33 +110,22 @@ const TestPage = () => {
         }
     };
 
-
-
-    auth.onAuthStateChanged((user) => {
-        if (user) {
-            if (user.emailVerified) {
-                setIsUserLogin(user);
-            } else {
-                console.log("Email is not verified yet");
-                setIsUserLogin(false);
-            }
-        } else {
-            setIsUserLogin(false);
-            console.log("User is not logged in yet");
-        }
-    });
-
-    if (status !== 'running' && !isUserLogin) {
-        console.log(status)
-        return <div className="flex justify-center items-center h-screen">Wait for Test Starting</div>;
+    if (status === 'notStarted') {
+        return      <div className=" text-3xl flex justify-center items-center h-screen">Wait for the test to start...</div>;
     }
-    if (!isUserLogin) {
+
+    if (status === 'ended') {
+        return      <div className=" text-3xl flex justify-center items-center h-screen">The test has ended. Thank you!</div>;
+    }
+    if(!isUserLogin)
+    {
         return (
-            <div className="flex justify-center items-center h-screen">
-                <h1>Please log in to access the test.</h1>
+            <div className=" text-3xl flex justify-center items-center h-screen">
+            <div >First Login</div>
             </div>
         );
     }
+
     return (
         <div className="flex justify-center items-center h-screen bg-gray-100" style={{ backgroundImage: 'url(src/assets/images/153349.jpg)', backgroundSize: 'cover', backgroundPosition: 'center' }}>
             <div className="w-full mx-4 max-w-xl bg-white p-8 rounded-lg shadow-lg flex flex-col items-center">
@@ -213,7 +184,7 @@ const TestPage = () => {
                             </select>
                         </div>
 
-                        {/* Disable the next button if the form is not complete */}
+                        {/* Render Questions */}
                         {isFormComplete && (
                             <div className="mb-4 w-full">
                                 <h3 className="font-medium text-primary text-lg">Question {currentQuestion + 1}</h3>
@@ -273,6 +244,7 @@ const TestPage = () => {
 };
 
 export default TestPage;
+;
 
 
 const questions = [
