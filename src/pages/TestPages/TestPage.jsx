@@ -8,19 +8,35 @@ import img from '../../assets/images/logo.svg';
 import AdminController from '../../controller/AdminController';
 
 const TestPage = () => {
-    const { isUserLogin, userUid } = AdminController();
-    const {  status } = TimerRangeController();
+    const [isUserLogin, setIsUserLogin] = useState(null);
+    const [userUid, setUserUid] = useState(null);
+    const { status } = TimerRangeController();
     const [userData, setUserData] = useState({
         name: '',
         email: '',
-        mobnum:'',
+        mobnum: '',
         stream: 'btech',
         answers: [],
     });
     const navigate = useNavigate();
     const [currentQuestion, setCurrentQuestion] = useState(0);
     const [completed, setCompleted] = useState(false);
-
+    useEffect(() => {
+        const unsubscribe = auth.onAuthStateChanged((user) => {
+            if (user) {
+                if (user.emailVerified) {
+                    setIsUserLogin(user);
+                    setUserUid(user.uid);
+                } else {
+                    console.log("Email is not verified yet");
+                }
+            } else {
+                setIsUserLogin(false);
+                console.log("user is not login yet");
+            }
+        });
+        return () => unsubscribe();
+    });
     const handleAnswerChange = (e) => {
         const { value } = e.target;
         const updatedAnswers = [...userData.answers];
@@ -59,7 +75,7 @@ const TestPage = () => {
             }
         }
 
-        const { name, email,mobnum, stream, answers } = userData;
+        const { name, email, mobnum, stream, answers } = userData;
 
         const marks = answers.reduce((total, answer, index) => {
             if (answer === questions[index].answer) {
