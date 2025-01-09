@@ -45,6 +45,7 @@ const AdminController = () => {
             setbloggerName(userData.name);
             console.log(userData.name);
           }
+          // sdfdsf
           if(userData.whoIs == "isAdmin")
           {
             setIsAdmin(true);
