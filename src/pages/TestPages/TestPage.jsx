@@ -116,7 +116,7 @@ const TestPage = () => {
     }
 
     return (
-        <div className="flex justify-center items-center h-screen bg-gray-100" style={{ backgroundImage: 'url(public/networking-concept-still-life.jpg)', backgroundSize: 'cover', backgroundPosition: 'center' }}>
+        <div className="flex justify-center items-center h-screen bg-gray-100" style={{ backgroundImage: 'url(public/153349.jpg)', backgroundSize: 'cover', backgroundPosition: 'center' }}>
             <div className="w-full mx-4 max-w-xl bg-white p-8 rounded-lg shadow-lg flex flex-col items-center">
                 {!completed ? (
                     <>
