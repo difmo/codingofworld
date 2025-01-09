@@ -6,7 +6,7 @@ const TimerButton = () => {
 
 
     const startTime = new Date('Thu Jan 09 2025 14:46:05 GMT+0530 (India Standard Time)');
-    const endTime = new Date('Thu Jan 09 2025 16:24:05 GMT+0530 (India Standard Time)');
+    const endTime = new Date('Thu Jan 09 2025 16:50:05 GMT+0530 (India Standard Time)');
     
     const calculateTimeLeft = () => {
         const now = new Date();

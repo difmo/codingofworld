@@ -1,10 +1,10 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { db } from '../../firebase';
 import { setDoc, getDoc, doc } from 'firebase/firestore';
 
 import { useNavigate } from 'react-router-dom';
 import img from '../../assets/images/logo.svg';
-
+import { auth } from '../../firebase';
 const TestPage = () => {
     const [isUserLogin, setIsUserLogin] = useState(null);
     const [userUid, setUserUid] = useState(null);
@@ -16,6 +16,7 @@ const TestPage = () => {
         answers: [],
     });
     const navigate = useNavigate();
+    const { isActive, status } = TimerRangeController();
     const [currentQuestion, setCurrentQuestion] = useState(0);
     const [completed, setCompleted] = useState(false);
     useEffect(() => {
@@ -99,9 +100,8 @@ const TestPage = () => {
             console.error("Error submitting test:", error);
         }
     };
-  
 
-
+    if (status !== 'running') { return <div>Wait for Test Starting  </div> }
     return (
         <div className="flex justify-center items-center h-screen bg-gray-100" style={{ backgroundImage: 'url(public/networking-concept-still-life.jpg)', backgroundSize: 'cover', backgroundPosition: 'center' }}>
             <div className="w-full mx-4 max-w-xl bg-white p-8 rounded-lg shadow-lg flex flex-col items-center">
@@ -280,3 +280,51 @@ const questions = [
         answer: "function myFunction()",
     },
 ];
+
+const TimerRangeController = () => {
+
+    const startTime = new Date('Thu Jan 09 2025 14:46:05 GMT+0530 (India Standard Time)');
+    const endTime = new Date('Thu Jan 09 2025 16:50:05 GMT+0530 (India Standard Time)');
+
+    // Function to calculate time left
+    const calculateTimeLeft = () => {
+        const now = new Date();
+
+        // Check if the timer has not started yet
+        if (now < startTime) {
+            return 'notStarted';
+        }
+
+        const difference = endTime - now;
+
+        // Check if the timer has ended
+        if (difference <= 0) {
+            return 'ended';
+        }
+
+        return 'running';
+    };
+
+    const [status, setStatus] = useState(calculateTimeLeft());
+    const [isActive, setIsActive] = useState(false);
+
+    useEffect(() => {
+        const timer = setInterval(() => {
+            const currentStatus = calculateTimeLeft();
+            setStatus(currentStatus);
+
+            // Set button active only when timer is running
+            if (currentStatus === 'running') {
+                setIsActive(true);
+            } else {
+                setIsActive(false);
+            }
+        }, 1000);
+
+        // Cleanup interval on unmount
+        return () => clearInterval(timer);
+    }, []);
+
+    return { status, isActive };
+};
+
