@@ -32,7 +32,9 @@ export const FadeUp = (delay) => {
 };
 
 const Hero = () => {
+  
   const navigate = useNavigate();
+ 
   const [currentImage, setCurrentImage] = useState(0);
   const [isModalOpen, setIsModalOpen] = useState(true);
   const [currentTextIndex, setCurrentTextIndex] = useState(0);
@@ -72,6 +74,7 @@ const Hero = () => {
   const closeModal = () => {
     setIsModalOpen(false);
   };
+
 
   return (
     <section className="relative overflow-hidden bg-white">

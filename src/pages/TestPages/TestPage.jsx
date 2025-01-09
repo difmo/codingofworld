@@ -1,10 +1,11 @@
-import React, { useEffect, useState } from 'react';
-import { db } from '../../firebase';
-import { setDoc, getDoc, doc } from 'firebase/firestore';
 
 import { useNavigate } from 'react-router-dom';
 import img from '../../assets/images/logo.svg';
+import React, { useEffect, useState } from 'react';
+import { db } from '../../firebase';
+import { setDoc, getDoc, doc } from 'firebase/firestore';
 import { auth } from '../../firebase';
+
 const TestPage = () => {
     const [isUserLogin, setIsUserLogin] = useState(null);
     const [userUid, setUserUid] = useState(null);
@@ -15,10 +16,19 @@ const TestPage = () => {
         stream: 'btech',
         answers: [],
     });
-    const navigate = useNavigate();
-    const { isActive, status } = TimerRangeController();
+    const [isFormComplete, setIsFormComplete] = useState(false); // New state for form completion
     const [currentQuestion, setCurrentQuestion] = useState(0);
     const [completed, setCompleted] = useState(false);
+    const navigate = useNavigate();
+
+    const { isActive, status } = TimerRangeController();
+
+    // Check if all fields are filled
+    useEffect(() => {
+        const { name, email, mobnum, stream } = userData;
+        setIsFormComplete(name && email && mobnum && stream);  // Ensure all fields are filled
+    }, [userData]); // Re-run when userData changes
+
     useEffect(() => {
         const unsubscribe = auth.onAuthStateChanged((user) => {
             if (user) {
@@ -30,11 +40,12 @@ const TestPage = () => {
                 }
             } else {
                 setIsUserLogin(false);
-                console.log("user is not login yet");
+                console.log("User is not logged in yet");
             }
         });
         return () => unsubscribe();
-    });
+    }, []);
+
     const handleAnswerChange = (e) => {
         const { value } = e.target;
         const updatedAnswers = [...userData.answers];
@@ -47,6 +58,7 @@ const TestPage = () => {
             setCurrentQuestion(currentQuestion + 1);
         }
     };
+
     const handlePrevQuestion = () => {
         if (currentQuestion > 0) {
             setCurrentQuestion(currentQuestion - 1);
@@ -59,14 +71,12 @@ const TestPage = () => {
             return;
         }
 
-        // Check if the test has already been submitted
         const studentRef = doc(db, "students", userUid);
         const studentDoc = await getDoc(studentRef);
 
         if (studentDoc.exists()) {
             const studentData = studentDoc.data();
 
-            // Check if the test has already been completed
             if (studentData.completed) {
                 alert("You have already submitted the test.");
                 return;
@@ -101,7 +111,10 @@ const TestPage = () => {
         }
     };
 
-    if (status !== 'running') { return <div>Wait for Test Starting  </div> }
+    if (status !== 'running') {
+        return <div>Wait for Test Starting</div>;
+    }
+
     return (
         <div className="flex justify-center items-center h-screen bg-gray-100" style={{ backgroundImage: 'url(public/networking-concept-still-life.jpg)', backgroundSize: 'cover', backgroundPosition: 'center' }}>
             <div className="w-full mx-4 max-w-xl bg-white p-8 rounded-lg shadow-lg flex flex-col items-center">
@@ -140,7 +153,7 @@ const TestPage = () => {
                             <label className="block text-sm font-medium text-gray-700">Mobile Number</label>
                             <input
                                 type="number"
-                                value={userData.email}
+                                value={userData.mobnum}
                                 onChange={(e) => setUserData({ ...userData, mobnum: e.target.value })}
                                 className="mt-1 p-2 border border-primary rounded-md w-full"
                                 placeholder="Your number"
@@ -160,24 +173,27 @@ const TestPage = () => {
                             </select>
                         </div>
 
-                        <div className="mb-4 w-full">
-                            <h3 className="font-medium text-primary text-lg">Question {currentQuestion + 1}</h3>
-                            <p className="mb-2 text-secondaryblue">{questions[currentQuestion].question}</p>
-                            <div>
-                                {questions[currentQuestion].options.map((option, index) => (
-                                    <label key={index} className="block">
-                                        <input
-                                            type="radio"
-                                            value={option}
-                                            checked={userData.answers[currentQuestion] === option}
-                                            onChange={handleAnswerChange}
-                                            className="mr-2"
-                                        />
-                                        {option}
-                                    </label>
-                                ))}
+                        {/* Disable the next button if the form is not complete */}
+                        {isFormComplete && (
+                            <div className="mb-4 w-full">
+                                <h3 className="font-medium text-primary text-lg">Question {currentQuestion + 1}</h3>
+                                <p className="mb-2 text-secondaryblue">{questions[currentQuestion].question}</p>
+                                <div>
+                                    {questions[currentQuestion].options.map((option, index) => (
+                                        <label key={index} className="block">
+                                            <input
+                                                type="radio"
+                                                value={option}
+                                                checked={userData.answers[currentQuestion] === option}
+                                                onChange={handleAnswerChange}
+                                                className="mr-2"
+                                            />
+                                            {option}
+                                        </label>
+                                    ))}
+                                </div>
                             </div>
-                        </div>
+                        )}
 
                         <div className="flex justify-between items-center w-full">
                             <button
@@ -217,6 +233,7 @@ const TestPage = () => {
 };
 
 export default TestPage;
+
 
 const questions = [
     {
@@ -284,7 +301,7 @@ const questions = [
 const TimerRangeController = () => {
 
     const startTime = new Date('Thu Jan 09 2025 14:46:05 GMT+0530 (India Standard Time)');
-    const endTime = new Date('Thu Jan 09 2025 16:50:05 GMT+0530 (India Standard Time)');
+    const endTime = new Date('Thu Jan 09 2025 17:50:05 GMT+0530 (India Standard Time)');
 
     // Function to calculate time left
     const calculateTimeLeft = () => {
