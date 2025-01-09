@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import { db } from '../../firebase';
 import { collection, setDoc, getDoc, doc } from 'firebase/firestore';
-import AdminController from '../../controller/AdminController';
+import AdminController from '../../controller/AdminController.js';
+
 import TimerRangeController from '../../controller/TimerRangeController';
 import { useNavigate } from 'react-router-dom';
 import img from '../../assets/images/logo.svg';
