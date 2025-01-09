@@ -221,7 +221,7 @@ const handleSubmit = async () => {
       </div>
 
       <div className="absolute top-0 w-full">
-        {isModalOpen && <EventForm onClose={closeModal} />}
+        {/* {isModalOpen && <EventForm onClose={closeModal} />} */}
       </div>
 
       <div className="z-20">
