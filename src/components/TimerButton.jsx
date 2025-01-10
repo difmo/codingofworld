@@ -69,7 +69,7 @@ const TimerButton = () => {
 
     return (
         <div className="flex justify-center items-center w-full">
-            {time.status === 'notStarted' ? (
+            {/* {time.status === 'notStarted' ? (
                 <button className="bg-gray-500 mb-2 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline w-full">
                     Test time  9:00 AM(10) - 4:00 PM(11)
                 </button>
@@ -83,14 +83,14 @@ const TimerButton = () => {
                         {`${time.hours.toString().padStart(2, '0')}:${time.minutes.toString().padStart(2, '0')}:${time.seconds.toString().padStart(2, '0')}`}
                     </h1>
                 </button>
-            ) : (
+            ) : ( */}
                 <button
                     className="bg-red-500 mb-2 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline w-full"
                     onClick={() => alert('Test Ended')}
                 >
                     Test Ended
                 </button>
-            )}
+            {/* )} */}
         </div>
     );
 };
