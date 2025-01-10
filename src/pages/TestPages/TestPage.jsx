@@ -114,7 +114,8 @@ const TestPage = () => {
         return      <div className=" text-3xl flex justify-center items-center h-screen">Wait for the test to start...</div>;
     }
 
-    if (status === 'ended') {
+    // if (status === 'ended') {
+    if (true) {
         return      <div className=" text-3xl flex justify-center items-center h-screen">The test has ended. Thank you!</div>;
     }
     if(!isUserLogin)
