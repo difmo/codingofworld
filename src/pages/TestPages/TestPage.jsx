@@ -315,8 +315,8 @@ const questions = [
 const TimerRangeController = () => {
 
     const startTime = new Date('Thu Jan 11 2025 10:30:00 GMT+0530 (India Standard Time)');
-    const endTime = new Date('Thu Jan 11 2025 16:00:00 GMT+0530 (India Standard Time)');
-
+    const endTime = new Date('Thu Jan 11 2025 19:00:00 GMT+0530 (India Standard Time)');
+    
     // Function to calculate time left
     const calculateTimeLeft = () => {
         const now = new Date();

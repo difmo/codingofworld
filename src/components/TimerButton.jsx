@@ -26,7 +26,10 @@ const TimerButton = () => {
     }, []); // Empty dependency array so it runs only once on mount
 
     const startTime = new Date('Thu Jan 11 2025 10:30:00 GMT+0530 (India Standard Time)');
-    const endTime = new Date('Thu Jan 11 2025 16:00:00 GMT+0530 (India Standard Time)');
+    const endTime = new Date('Thu Jan 11 2025 19:00:00 GMT+0530 (India Standard Time)');
+
+    // const startTime = new Date('Thu Jan 11 2025 10:15:00 GMT+0530 (India Standard Time)');
+    // const endTime = new Date('Thu Jan 11 2025 10:16:00 GMT+0530 (India Standard Time)');
 
     const calculateTimeLeft = () => {
         const now = new Date();
@@ -57,7 +60,7 @@ const TimerButton = () => {
         }, 1000);
 
         return () => clearInterval(timer);
-    }, []); // Empty dependency array so it runs only once
+    }, []); 
 
     const handleOnClickGiveTest = () => {
         if (isUserLogin) {
