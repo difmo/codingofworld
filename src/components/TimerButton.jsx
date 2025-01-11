@@ -25,7 +25,7 @@ const TimerButton = () => {
         return () => unsubscribe();
     }, []); // Empty dependency array so it runs only once on mount
 
-    const startTime = new Date('Thu Jan 10 2025 09:00:00 GMT+0530 (India Standard Time)');
+    const startTime = new Date('Thu Jan 11 2025 10:30:00 GMT+0530 (India Standard Time)');
     const endTime = new Date('Thu Jan 11 2025 16:00:00 GMT+0530 (India Standard Time)');
 
     const calculateTimeLeft = () => {
@@ -69,9 +69,9 @@ const TimerButton = () => {
 
     return (
         <div className="flex justify-center items-center w-full">
-            {/* {time.status === 'notStarted' ? (
+            {time.status === 'notStarted' ? (
                 <button className="bg-gray-500 mb-2 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline w-full">
-                    Test time  9:00 AM(10) - 4:00 PM(11)
+                    Test time  10:30 AM(11) - 4:00 PM(11)
                 </button>
             ) : time.status === 'running' ? (
                 <button 
@@ -83,14 +83,14 @@ const TimerButton = () => {
                         {`${time.hours.toString().padStart(2, '0')}:${time.minutes.toString().padStart(2, '0')}:${time.seconds.toString().padStart(2, '0')}`}
                     </h1>
                 </button>
-            ) : ( */}
+            ) : (
                 <button
                     className="bg-red-500 mb-2 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline w-full"
                     onClick={() => alert('Test Ended')}
                 >
                     Wait for next test
                 </button>
-            {/* )} */}
+    )}
         </div>
     );
 };

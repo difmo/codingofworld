@@ -114,8 +114,8 @@ const TestPage = () => {
         return      <div className=" text-3xl flex justify-center items-center h-screen">Wait for the test to start...</div>;
     }
 
-    // if (status === 'ended') {
-    if (true) {
+    if (status === 'ended') {
+    // if (true) {
         return      <div className=" text-3xl flex justify-center items-center h-screen">The test has ended. Thank you!</div>;
     }
     if(!isUserLogin)
@@ -314,7 +314,7 @@ const questions = [
 
 const TimerRangeController = () => {
 
-    const startTime = new Date('Thu Jan 10 2025 09:00:00 GMT+0530 (India Standard Time)');
+    const startTime = new Date('Thu Jan 11 2025 10:30:00 GMT+0530 (India Standard Time)');
     const endTime = new Date('Thu Jan 11 2025 16:00:00 GMT+0530 (India Standard Time)');
 
     // Function to calculate time left
