@@ -71,7 +71,7 @@ const TimerButton = () => {
         <div className="flex justify-center items-center w-full">
             {time.status === 'notStarted' ? (
                 <button className="bg-gray-500 mb-2 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline w-full">
-                    Test time  10:30 AM(11) - 4:00 PM(11)
+                    Test time  10:30 AM(11) - 7:00 PM(11)
                 </button>
             ) : time.status === 'running' ? (
                 <button 
