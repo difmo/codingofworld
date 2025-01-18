@@ -11,10 +11,9 @@ export default {
       },
       fontFamily: {
         poppins: ["Poppins", "sans-serif"],
-        play: ['Play', 'sans-serif'], 
-        anek_telugu: ['"Anek Telugu"', 'sans-serif'],  // Custom Anek Telugu font
+        play: ["Play", "sans-serif"],
+        anek_telugu: ['"Anek Telugu"', "sans-serif"], // Custom Anek Telugu font
         // Add Play font here
-
       },
       colors: {
         primary: "#FF4F43",

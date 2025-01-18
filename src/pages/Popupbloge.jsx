@@ -40,7 +40,7 @@ const Popupbloge = ({ onClose }) => {
       await updateDoc(userRef, {
         name,   
         mobile,  
-        isCreatePermission: false
+        isCreatePermission: true
       }); 
 
       setSuccess("Data updated successfully!");

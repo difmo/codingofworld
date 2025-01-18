@@ -36,22 +36,17 @@ const AdminController = () => {
       if (!querySnapshot.empty) {
         querySnapshot.forEach((doc) => {
           const userData = doc.data();
-          if(userData.isCreatePermission == true)
-          {
+          if (userData.isCreatePermission == true) {
             setBlogPermission(true);
           }
-          if(userData.name)
-          {
+          if (userData.name) {
             setbloggerName(userData.name);
             console.log(userData.name);
           }
           // sdfdsf
-          if(userData.whoIs == "isAdmin")
-          {
+          if (userData.whoIs == "isAdmin") {
             setIsAdmin(true);
-          }
-          else
-          {
+          } else {
             setIsAdmin(false);
           }
         });
@@ -63,6 +58,6 @@ const AdminController = () => {
     }
   };
 
-  return { isAdmin,isUserLogin,blogPermission,bloggerName,userUid };
+  return { isAdmin, isUserLogin, blogPermission, bloggerName, userUid };
 };
 export default AdminController;
