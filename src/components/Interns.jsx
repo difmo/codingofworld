@@ -52,7 +52,7 @@ const Internships = () => {
         <h2 className="text-4xl font-bold text-center text-black">
           Explore Our Internships
         </h2>
-        <p className="px-12 py-3 mb-6 text-xl text-center text-gray-700">
+        <p className="px-12 py-3 mb-6 text-xl te  xt-center text-gray-700">
           The internships below offer a glimpse into the opportunities available
           at Coding of World. Gain hands-on experience in web development,
           mobile app development, AI/ML, and more.

@@ -1,7 +1,6 @@
-
+import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import img from '../../assets/images/logo.svg';
-import React, { useEffect, useState } from 'react';
 import { db } from '../../firebase';
 import { setDoc, getDoc, doc } from 'firebase/firestore';
 import { auth } from '../../firebase';
@@ -16,18 +15,18 @@ const TestPage = () => {
         stream: 'btech',
         answers: [],
     });
-    const [isFormComplete, setIsFormComplete] = useState(false); // New state for form completion
+    const [isFormComplete, setIsFormComplete] = useState(false);
     const [currentQuestion, setCurrentQuestion] = useState(0);
     const [completed, setCompleted] = useState(false);
     const navigate = useNavigate();
 
-    const { isActive, status } = TimerRangeController();
+    const { status, isActive } = TimerRangeController();  // Get status and isActive from TimerRangeController
 
     // Check if all fields are filled
     useEffect(() => {
         const { name, email, mobnum, stream } = userData;
         setIsFormComplete(name && email && mobnum && stream);  // Ensure all fields are filled
-    }, [userData]); // Re-run when userData changes
+    }, [userData]);
 
     useEffect(() => {
         const unsubscribe = auth.onAuthStateChanged((user) => {
@@ -37,6 +36,7 @@ const TestPage = () => {
                     setUserUid(user.uid);
                 } else {
                     console.log("Email is not verified yet");
+                    setIsUserLogin(false);
                 }
             } else {
                 setIsUserLogin(false);
@@ -76,7 +76,6 @@ const TestPage = () => {
 
         if (studentDoc.exists()) {
             const studentData = studentDoc.data();
-
             if (studentData.completed) {
                 alert("You have already submitted the test.");
                 return;
@@ -111,12 +110,25 @@ const TestPage = () => {
         }
     };
 
-    if (status !== 'running') {
-        return <div>Wait for Test Starting</div>;
+    if (status === 'notStarted') {
+        return      <div className=" text-3xl flex justify-center items-center h-screen">Wait for the test to start...</div>;
+    }
+
+    if (status === 'ended') {
+    // if (true) {
+        return      <div className=" text-3xl flex justify-center items-center h-screen">The test has ended. Thank you!</div>;
+    }
+    if(!isUserLogin)
+    {
+        return (
+            <div className=" text-3xl flex justify-center items-center h-screen">
+            <div >First Login</div>
+            </div>
+        );
     }
 
     return (
-        <div className="flex justify-center items-center h-screen bg-gray-100" style={{ backgroundImage: 'url(public/153349.jpg)', backgroundSize: 'cover', backgroundPosition: 'center' }}>
+        <div className="flex justify-center items-center h-screen bg-gray-100" style={{ backgroundImage: 'url(src/assets/images/153349.jpg)', backgroundSize: 'cover', backgroundPosition: 'center' }}>
             <div className="w-full mx-4 max-w-xl bg-white p-8 rounded-lg shadow-lg flex flex-col items-center">
                 {!completed ? (
                     <>
@@ -173,7 +185,7 @@ const TestPage = () => {
                             </select>
                         </div>
 
-                        {/* Disable the next button if the form is not complete */}
+                        {/* Render Questions */}
                         {isFormComplete && (
                             <div className="mb-4 w-full">
                                 <h3 className="font-medium text-primary text-lg">Question {currentQuestion + 1}</h3>
@@ -233,76 +245,78 @@ const TestPage = () => {
 };
 
 export default TestPage;
+;
 
 
 const questions = [
     {
         id: 1,
-        question: "What is the time complexity of binary search?",
-        options: ["O(log n)", "O(n)", "O(n^2)", "O(log n^2)"],
-        answer: "O(log n)",
+        question: "What is the time complexity of accessing an element in an array by index?",
+        options: ["O(1)", "O(n)", "O(log n)", "O(n^2)"],
+        answer: "O(1)",
     },
     {
         id: 2,
-        question: "Which data structure is used in depth-first search?",
+        question: "Which of the following is not a type of tree traversal?",
+        options: ["In-order", "Pre-order", "Post-order", "Diagonal-order"],
+        answer: "Diagonal-order",
+    },
+    {
+        id: 3,
+        question: "What is the space complexity of a recursive function using a stack for recursion?",
+        options: ["O(1)", "O(n)", "O(log n)", "O(n^2)"],
+        answer: "O(n)",
+    },
+    {
+        id: 4,
+        question: "Which sorting algorithm has the best time complexity in the worst case?",
+        options: ["Quick Sort", "Merge Sort", "Bubble Sort", "Insertion Sort"],
+        answer: "Merge Sort",
+    },
+    {
+        id: 5,
+        question: "What is the worst-case time complexity of Quick Sort?",
+        options: ["O(n log n)", "O(n^2)", "O(log n)", "O(n)"],
+        answer: "O(n^2)",
+    },
+    {
+        id: 6,
+        question: "Which data structure is best for implementing a priority queue?",
+        options: ["Array", "Stack", "Heap", "Linked List"],
+        answer: "Heap",
+    },
+    {
+        id: 7,
+        question: "What is the time complexity of inserting an element in a binary search tree (BST)?",
+        options: ["O(1)", "O(log n)", "O(n)", "O(n^2)"],
+        answer: "O(log n)",
+    },
+    {
+        id: 8,
+        question: "Which of the following is true for a graph represented by an adjacency matrix?",
+        options: ["Space complexity is O(n)", "It is good for sparse graphs", "Edge lookup time is O(1)", "It requires more space than adjacency list for dense graphs"],
+        answer: "Edge lookup time is O(1)",
+    },
+    {
+        id: 9,
+        question: "Which data structure is used to implement recursion in the form of function calls?",
         options: ["Queue", "Stack", "Linked List", "Array"],
         answer: "Stack",
     },
     {
-        id: 3,
-        question: "What is 2 + 2?",
-        options: ["3", "4", "5", "6"],
-        answer: "4",
-    },
-    {
-        id: 4,
-        question: "Which data structure follows FIFO (First In First Out) principle?",
-        options: ["Stack", "Queue", "Array", "Linked List"],
-        answer: "Queue",
-    },
-    {
-        id: 5,
-        question: "Which data structure follows LIFO (Last In First Out) principle?",
-        options: ["Stack", "Queue", "Array", "Linked List"],
-        answer: "Stack",
-    },
-    {
-        id: 6,
-        question: "Which data structure is used for implementing recursion?",
-        options: ["Queue", "Stack", "Array", "Linked List"],
-        answer: "Stack",
-    },
-    {
-        id: 7,
-        question: "Which data structure is used for implementing BFS (Breadth-First Search)?",
-        options: ["Queue", "Stack", "Array", "Linked List"],
-        answer: "Queue",
-    },
-    {
-        id: 8,
-        question: "What is the output of the following code: console.log(typeof null)?",
-        options: ["object", "null", "undefined", "string"],
-        answer: "object",
-    },
-    {
-        id: 9,
-        question: "Which method is used to add an element to the end of an array in JavaScript?",
-        options: ["push", "pop", "shift", "unshift"],
-        answer: "push",
-    },
-    {
         id: 10,
-        question: "What is the correct syntax to create a function in JavaScript?",
-        options: ["function myFunction()", "def myFunction()", "create myFunction()", "function:myFunction()"],
-        answer: "function myFunction()",
+        question: "Which of the following is a characteristic of a hash table?",
+        options: ["Elements are stored in a sorted order", "It uses a hash function to map keys to indices", "It supports only integer keys", "It is not efficient for searching"],
+        answer: "It uses a hash function to map keys to indices",
     },
 ];
 
+
 const TimerRangeController = () => {
 
-    const startTime = new Date('Thu Jan 09 2025 14:46:05 GMT+0530 (India Standard Time)');
-    const endTime = new Date('Thu Jan 09 2025 17:50:05 GMT+0530 (India Standard Time)');
-
+    const startTime = new Date('Thu Jan 11 2025 10:30:00 GMT+0530 (India Standard Time)');
+    const endTime = new Date('Thu Jan 11 2025 19:00:00 GMT+0530 (India Standard Time)');
+    
     // Function to calculate time left
     const calculateTimeLeft = () => {
         const now = new Date();

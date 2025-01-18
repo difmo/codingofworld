@@ -71,6 +71,7 @@ import ShowTopicDetailPage from "./pages/ShowCourses/Pages/Topics/ShowTopicDetai
 import TestPage from "./pages/TestPages/TestPage";
 import AdminStudentTestPage from "./pages/TestPages/TestAdmin";
 import StudentTestDetails from "./pages/TestPages/TestDetails";
+import StillWeWorkingPage from "./pages/StillWeWorkingPage";
 
 
 
@@ -262,6 +263,7 @@ const App = () => {
 
           {/* ///////////////////////////////////////////// Other /////////////////////////////////////// */}
           <Route path="*" element={<NotFound />} />
+          <Route path="/stillweworking" element={<StillWeWorkingPage/>} />
         </Routes>
       </Router>
     </HelmetProvider>

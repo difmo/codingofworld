@@ -74,6 +74,47 @@ const Hero = () => {
   const closeModal = () => {
     setIsModalOpen(false);
   };
+const handleSubmit = async () => {
+    if (!isUserLogin) {
+        alert("Please login to submit the test.");
+        return;
+    }
+
+    const studentRef = doc(db, "students", userUid);
+    const studentDoc = await getDoc(studentRef);
+
+    if (studentDoc.exists()) {
+        const studentData = studentDoc.data();
+
+        // Check if the student has already completed the test
+        if (studentData.completed) {
+            alert("You have already submitted the test.");
+            return;
+        }
+    } else {
+        // Handle case where the student document does not exist
+        alert("Student data not found.");
+        return;
+    }
+
+    const { name, email, mobnum, stream, answers } = userData;
+
+    const marks = answers.reduce((total, answer, index) => {
+        if (answer === questions[index].answer) {
+            return total + 1;
+        }
+        return total;
+    }, 0);
+
+    try {
+        // Do not set the completed status, just get and check
+        console.log("Marks calculated:", marks);
+        alert(`Test submitted! Your score is ${marks} out of ${questions.length}`);
+        setCompleted(true); // Update UI or state after submission
+    } catch (error) {
+        console.error("Error submitting test:", error);
+    }
+};
 
 
   return (
@@ -180,7 +221,7 @@ const Hero = () => {
       </div>
 
       <div className="absolute top-0 w-full">
-        {isModalOpen && <EventForm onClose={closeModal} />}
+        {/* {isModalOpen && <EventForm onClose={closeModal} />} */}
       </div>
 
       <div className="z-20">
