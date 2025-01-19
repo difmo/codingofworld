@@ -1,16 +1,70 @@
 import React, { useState, useEffect } from 'react';
-import { db, auth } from '../../firebase';
+import { db, auth  } from '../../firebase';
 import { doc, getDoc } from 'firebase/firestore';
+import { collection, getDocs, query, where } from "firebase/firestore";
 import { FaBlog, FaCertificate, FaFilePdf, FaPersonBooth } from 'react-icons/fa';
-import AdminController from '../../controller/AdminController';
 import { useNavigate } from 'react-router-dom';
 import CertificatesGeneratorComponent from '../../components/CertificatesGen/CertificatesGenerator';
 
+
 const ProfilePage = () => {
-    const { isAdmin, isUserLogin, blogPermission } = AdminController();
+
+    const [isAdmin, setIsAdmin] = useState(false);
+    const [isUserLogin, setIsUserLogin] = useState(null);
+    const [blogPermission, setBlogPermission] = useState(false);
+  
+    const [bloggerName, setbloggerName] = useState();
+  
+    useEffect(() => {
+      const unsubscribe = auth.onAuthStateChanged((user) => {
+        if (user) {
+          if (user.emailVerified) {
+            setIsUserLogin(user);
+            fetchUserRole(user.uid);
+            // setUserUid(user.uid);
+          } else {
+            console.log("Email is not verified yet");
+          }
+        } else {
+          setIsAdmin(false);
+          setIsUserLogin(false);
+          console.log("user is not login yet");
+        }
+      });
+      return () => unsubscribe();
+    });
+  
+    const fetchUserRole = async (uid) => {
+      try {
+        const userQuery = query(collection(db, "users"), where("uid", "==", uid));
+        const querySnapshot = await getDocs(userQuery);
+        if (!querySnapshot.empty) {
+          querySnapshot.forEach((doc) => {
+            const userData = doc.data();
+            if (userData.isCreatePermission == true) {
+              setBlogPermission(true);
+            }
+            if (userData.name) {
+              setbloggerName(userData.name);
+              console.log(userData.name);
+            }
+            // sdfdsf
+            if (userData.whoIs == "isAdmin") {
+              setIsAdmin(true);
+            } else {
+              setIsAdmin(false);
+            }
+          });
+        } else {
+          console.log("No user found with uid");
+        }
+      } catch (e) {
+        console.log(e);
+      }
+    };
+
+
     const navigate = useNavigate();
-
-
     // State to store the student's data
     const [studentData, setStudentData] = useState(null);
     const [loading, setLoading] = useState(true);
