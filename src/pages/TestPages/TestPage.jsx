@@ -8,6 +8,7 @@ import { auth } from '../../firebase';
 const TestPage = () => {
     const [isUserLogin, setIsUserLogin] = useState(null);
     const [userUid, setUserUid] = useState(null);
+    const [isTestCompleted, setIsTestCompleted] = useState(false);
     const [userData, setUserData] = useState({
         name: '',
         email: '',
@@ -27,8 +28,25 @@ const TestPage = () => {
         const { name, email, mobnum, stream } = userData;
         setIsFormComplete(name && email && mobnum && stream);  // Ensure all fields are filled
     }, [userData]);
-
     useEffect(() => {
+        const IsTestCompleted = async () => {
+
+            const studentRef = doc(db, "studensSecondTest", userUid);
+            const studentDoc = await getDoc(studentRef);
+
+            if (studentDoc.exists()) {
+                const studentData = studentDoc.data();
+                if (studentData.completed) {
+                    setIsTestCompleted(true);
+                   console.log("isTestCompleted = ", isTestCompleted);
+                }
+            }
+        }
+        IsTestCompleted();
+    }
+);
+    useEffect(() => {
+
         const unsubscribe = auth.onAuthStateChanged((user) => {
             if (user) {
                 if (user.emailVerified) {
@@ -44,6 +62,7 @@ const TestPage = () => {
             }
         });
         return () => unsubscribe();
+
     }, []);
 
     const handleAnswerChange = (e) => {
@@ -111,18 +130,28 @@ const TestPage = () => {
     };
 
     if (status === 'notStarted') {
-        return      <div className=" text-3xl flex justify-center items-center h-screen">Wait for the test to start...</div>;
+        return <div className=" text-3xl flex justify-center items-center h-screen">Wait for the test to start...</div>;
     }
 
     if (status === 'ended') {
-    // if (true) {
-        return      <div className=" text-3xl flex justify-center items-center h-screen">The test has ended. Thank you!</div>;
+        // if (true) {
+        return <div className=" text-3xl flex justify-center items-center h-screen">The test has ended. Thank you!</div>;
     }
-    if(!isUserLogin)
-    {
+    if (!isUserLogin) {
         return (
             <div className=" text-3xl flex justify-center items-center h-screen">
-            <div >First Login</div>
+                <div >First Login</div>
+            </div>
+        );
+    }
+
+
+    if (isTestCompleted) {
+        return (
+            <div className="flex justify-center items-center h-screen">
+            <div className="text-center">
+                <h3 className="font-medium text-lg text-green-500">You have Already Submitted the test</h3>
+            </div>
             </div>
         );
     }
@@ -248,109 +277,109 @@ export default TestPage;
 ;
 
 
-const questions=[
+const questions = [
     {
-      "question": "Which of the following is NOT a property of an ideal hashing function?",
-      "options": ["Uniform distribution of keys", "Efficient computation", "Collision occurrence frequently", "Deterministic output"],
-      "answer": "Collision occurrence frequently"
+        "question": "Which of the following is NOT a property of an ideal hashing function?",
+        "options": ["Uniform distribution of keys", "Efficient computation", "Collision occurrence frequently", "Deterministic output"],
+        "answer": "Collision occurrence frequently"
     },
     {
-      "question": "In computer architecture, the ‘Von Neumann bottleneck’ refers to:",
-      "options": ["Limited memory bandwidth", "Slow CPU processing speed", "Lack of parallelism in CPU", "Inefficient instruction execution"],
-      "answer": "Limited memory bandwidth"
+        "question": "In computer architecture, the ‘Von Neumann bottleneck’ refers to:",
+        "options": ["Limited memory bandwidth", "Slow CPU processing speed", "Lack of parallelism in CPU", "Inefficient instruction execution"],
+        "answer": "Limited memory bandwidth"
     },
     {
-      "question": "Which of the following scheduling algorithms causes starvation for low-priority processes?",
-      "options": ["Round Robin", "First Come First Serve", "Shortest Job Next", "Multilevel Queue Scheduling"],
-      "answer": "Shortest Job Next"
+        "question": "Which of the following scheduling algorithms causes starvation for low-priority processes?",
+        "options": ["Round Robin", "First Come First Serve", "Shortest Job Next", "Multilevel Queue Scheduling"],
+        "answer": "Shortest Job Next"
     },
     {
-      "question": "In networking, which layer of the OSI model is responsible for flow control and error handling?",
-      "options": ["Data Link Layer", "Transport Layer", "Network Layer", "Application Layer"],
-      "answer": "Transport Layer"
+        "question": "In networking, which layer of the OSI model is responsible for flow control and error handling?",
+        "options": ["Data Link Layer", "Transport Layer", "Network Layer", "Application Layer"],
+        "answer": "Transport Layer"
     },
     {
-      "question": "Which of the following best describes ‘Pipelining’ in CPU execution?",
-      "options": ["Parallel execution of independent instructions", "Execution of a single instruction in multiple steps", "Pre-fetching instructions before execution", "Reducing instruction latency through caching"],
-      "answer": "Execution of a single instruction in multiple steps"
+        "question": "Which of the following best describes ‘Pipelining’ in CPU execution?",
+        "options": ["Parallel execution of independent instructions", "Execution of a single instruction in multiple steps", "Pre-fetching instructions before execution", "Reducing instruction latency through caching"],
+        "answer": "Execution of a single instruction in multiple steps"
     },
     {
-      "question": "What is the worst-case time complexity of QuickSort?",
-      "options": ["O(n)", "O(n log n)", "O(n²)", "O(log n)"],
-      "answer": "O(n²)"
+        "question": "What is the worst-case time complexity of QuickSort?",
+        "options": ["O(n)", "O(n log n)", "O(n²)", "O(log n)"],
+        "answer": "O(n²)"
     },
     {
-      "question": "Which of the following data structures can be used to implement Dijkstra’s shortest path algorithm efficiently?",
-      "options": ["Stack", "Queue", "Binary Heap", "Hash Table"],
-      "answer": "Binary Heap"
+        "question": "Which of the following data structures can be used to implement Dijkstra’s shortest path algorithm efficiently?",
+        "options": ["Stack", "Queue", "Binary Heap", "Hash Table"],
+        "answer": "Binary Heap"
     },
     {
-      "question": "If a balanced BST has ‘n’ nodes, what is the height of the tree?",
-      "options": ["O(n)", "O(n log n)", "O(log n)", "O(√n)"],
-      "answer": "O(log n)"
+        "question": "If a balanced BST has ‘n’ nodes, what is the height of the tree?",
+        "options": ["O(n)", "O(n log n)", "O(log n)", "O(√n)"],
+        "answer": "O(log n)"
     },
     {
-      "question": "Which sorting algorithm is best suited for nearly sorted data?",
-      "options": ["Bubble Sort", "Merge Sort", "Insertion Sort", "Heap Sort"],
-      "answer": "Insertion Sort"
+        "question": "Which sorting algorithm is best suited for nearly sorted data?",
+        "options": ["Bubble Sort", "Merge Sort", "Insertion Sort", "Heap Sort"],
+        "answer": "Insertion Sort"
     },
     {
-      "question": "In a max heap, if the root node has index ‘i’, what is the index of its left child?",
-      "options": ["2i", "2i + 1", "2i - 1", "i/2"],
-      "answer": "2i + 1"
+        "question": "In a max heap, if the root node has index ‘i’, what is the index of its left child?",
+        "options": ["2i", "2i + 1", "2i - 1", "i/2"],
+        "answer": "2i + 1"
     },
     {
-      "question": "The sum of ages of A and B is 50 years. Five years ago, the ratio of their ages was 3:2. What is A’s present age?",
-      "options": ["30", "35", "40", "25"],
-      "answer": "35"
+        "question": "The sum of ages of A and B is 50 years. Five years ago, the ratio of their ages was 3:2. What is A’s present age?",
+        "options": ["30", "35", "40", "25"],
+        "answer": "35"
     },
     {
-      "question": "A train 500m long is running at 72 km/h. How long will it take to cross a tunnel 1 km long?",
-      "options": ["50 sec", "75 sec", "60 sec", "90 sec"],
-      "answer": "75 sec"
+        "question": "A train 500m long is running at 72 km/h. How long will it take to cross a tunnel 1 km long?",
+        "options": ["50 sec", "75 sec", "60 sec", "90 sec"],
+        "answer": "75 sec"
     },
     {
-      "question": "A can complete a work in 10 days, and B can complete the same work in 15 days. If they work together, how many days will it take to complete the work?",
-      "options": ["6 days", "5 days", "4 days", "7 days"],
-      "answer": "6 days"
+        "question": "A can complete a work in 10 days, and B can complete the same work in 15 days. If they work together, how many days will it take to complete the work?",
+        "options": ["6 days", "5 days", "4 days", "7 days"],
+        "answer": "6 days"
     },
     {
-      "question": "The average of 5 consecutive odd numbers is 45. Find the largest number.",
-      "options": ["49", "47", "51", "53"],
-      "answer": "49"
+        "question": "The average of 5 consecutive odd numbers is 45. Find the largest number.",
+        "options": ["49", "47", "51", "53"],
+        "answer": "49"
     },
     {
-      "question": "A man invested ₹5000 at 10% per annum compound interest for 2 years. What is the total amount after 2 years?",
-      "options": ["₹6000", "₹5500", "₹6050", "₹6050.50"],
-      "answer": "₹6050.50"
+        "question": "A man invested ₹5000 at 10% per annum compound interest for 2 years. What is the total amount after 2 years?",
+        "options": ["₹6000", "₹5500", "₹6050", "₹6050.50"],
+        "answer": "₹6050.50"
     },
     {
-      "question": "A is twice as fast as B in completing a task. If B takes 18 days to finish the work, how many days will A and B take together?",
-      "options": ["12 days", "9 days", "6 days", "10 days"],
-      "answer": "9 days"
+        "question": "A is twice as fast as B in completing a task. If B takes 18 days to finish the work, how many days will A and B take together?",
+        "options": ["12 days", "9 days", "6 days", "10 days"],
+        "answer": "9 days"
     },
     {
-      "question": "If 2 is coded as 4, 3 is coded as 9, and 4 is coded as 16, then 7 is coded as:",
-      "options": ["42", "21", "49", "35"],
-      "answer": "49"
+        "question": "If 2 is coded as 4, 3 is coded as 9, and 4 is coded as 16, then 7 is coded as:",
+        "options": ["42", "21", "49", "35"],
+        "answer": "49"
     },
     {
-      "question": "Find the missing number in the series: 2, 6, 12, 20, __, 42",
-      "options": ["30", "28", "32", "36"],
-      "answer": "28"
+        "question": "Find the missing number in the series: 2, 6, 12, 20, __, 42",
+        "options": ["30", "28", "32", "36"],
+        "answer": "28"
     },
     {
-      "question": "In a certain code language, 'MANGO' is written as 'LZMFN.' How is 'APPLE' written in the same code?",
-      "options": ["ZOOKD", "ZOOKF", "ZPPKD", "ZOOKE"],
-      "answer": "ZOOKE"
+        "question": "In a certain code language, 'MANGO' is written as 'LZMFN.' How is 'APPLE' written in the same code?",
+        "options": ["ZOOKD", "ZOOKF", "ZPPKD", "ZOOKE"],
+        "answer": "ZOOKE"
     },
     {
-      "question": "Pointing to a photograph, a man said, 'I have no brothers or sisters, but that man’s father is my father’s son.' Who is the person in the photograph?",
-      "options": ["His uncle", "His son", "His nephew", "Himself"],
-      "answer": "His son"
+        "question": "Pointing to a photograph, a man said, 'I have no brothers or sisters, but that man’s father is my father’s son.' Who is the person in the photograph?",
+        "options": ["His uncle", "His son", "His nephew", "Himself"],
+        "answer": "His son"
     }
-  ]
-  const TimerRangeController = () => {
+]
+const TimerRangeController = () => {
 
     const startTime = new Date('Thu Jan 19 2025 09:20:00 GMT+0530 (India Standard Time)');
     const endTime = new Date('Thu Jan 19 2025 21:00:00 GMT+0530 (India Standard Time)');
