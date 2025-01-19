@@ -9,7 +9,7 @@ import {
 import { IoMdMenu } from "react-icons/io";
 import { motion, AnimatePresence } from "framer-motion";
 import { Link } from "react-router-dom";
-  import { useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import logo from "../../assets/images/logo.svg";
 import "firebase/auth";
 import { db, auth } from "../../firebase";
@@ -202,7 +202,7 @@ const MainNavbar = () => {
         </div>
       </motion.div>
 
-      {/* Mobile Menu */}
+      {/* Mobile Menu start */}
       <AnimatePresence>
         {isMobileMenuOpen && (
           <motion.div

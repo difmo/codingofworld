@@ -6,11 +6,15 @@ import CustomInput from "../../components/InputAndButton/CustomInput";
 import CustomCheckbox from "../../components/InputAndButton/CustomCheckbox";
 import CustomButton from "../../components/InputAndButton/CustomButton";
 import IconsComponent from "../../components/Icons/Icons";
-import { createUserWithEmailAndPassword, getAuth, sendEmailVerification } from "firebase/auth";
-import { auth,db } from "../../firebase"; 
+import {
+  createUserWithEmailAndPassword,
+  getAuth,
+  sendEmailVerification,
+} from "firebase/auth";
+import { auth, db } from "../../firebase";
 import * as Yup from "yup";
 import { useFormik } from "formik";
-import { getFirestore, collection, addDoc } from 'firebase/firestore'; 
+import { getFirestore, collection, addDoc } from "firebase/firestore";
 
 const validationSchema = Yup.object().shape({
   email: Yup.string()
@@ -30,25 +34,22 @@ export default function SignUpScreen() {
   const waitForEmailVerification = async (user) => {
     try {
       const interval = setInterval(async () => {
-        await user.reload(); 
-  
+        await user.reload();
+
         if (user.emailVerified) {
-          clearInterval(interval); 
+          clearInterval(interval);
           setSuccessMessage("Email successfully verified!");
-  
+
           navigate("/loginscreen");
-  
         } else {
           console.log("Waiting for email verification...");
         }
-      }, 5000); 
-  
+      }, 5000);
     } catch (error) {
       console.error("Error checking email verification:", error);
     }
   };
-  
-  
+
   const formik = useFormik({
     initialValues: {
       email: "",
@@ -59,29 +60,35 @@ export default function SignUpScreen() {
       setErrorMessage("");
       setSuccessMessage("");
       setLoading(true);
-  
+
       try {
-        const userCredential = await createUserWithEmailAndPassword(auth, values.email, values.password);
+        const userCredential = await createUserWithEmailAndPassword(
+          auth,
+          values.email,
+          values.password
+        );
         const user = userCredential.user;
-  
+
         console.log("User:", user);
-  
+
         if (user) {
           await addDoc(collection(db, "users"), {
-            uid: user.uid, 
+            uid: user.uid,
             email: user.email,
             whoIs: "isUser",
-            isCreatePermission: false,
+            isCreatePermission: true,
             createdAt: new Date(),
           });
-  
+
           console.log("User added to Firestore!");
-  
+
           await sendEmailVerification(user);
-          setSuccessMessage("Verification email sent! Please check your inbox.");
-  
+          setSuccessMessage(
+            "Verification email sent! Please check your inbox."
+          );
+
           console.log("Please check your inbox for the verification email.");
-  
+
           waitForEmailVerification(user);
         } else {
           setErrorMessage("Failed to get a valid user object.");
@@ -94,23 +101,22 @@ export default function SignUpScreen() {
       }
     },
   });
-  
-  
 
   return (
     <section className="h-full bg-gray-100 md:h-screen">
       <div className="flex flex-col items-center justify-center sm:flex-row ">
-      <div className=" md:flex md:w-6/12 lg:w-6/12">
+        <div className=" md:flex md:w-6/12 lg:w-6/12">
           <img src={signup} className="w-full p-20" alt="Sample" />
         </div>
 
         <div className="w-full p-4 md:w-8/12 lg:w-5/12 xl:w-5/12">
           <form onSubmit={formik.handleSubmit}>
-            <div onClick={
-              ()=>{
+            <div
+              onClick={() => {
                 // alert("Sorry! Not available at this moment")
-              }
-              } className="flex items-center justify-center lg:justify-start">
+              }}
+              className="flex items-center justify-center lg:justify-start"
+            >
               <p className="mb-0 mr-4 text-lg">Sign up with</p>
             </div>
 
@@ -121,21 +127,21 @@ export default function SignUpScreen() {
               <div className="flex-1 border-t border-neutral-300" />
             </div>
 
-            <CustomInput 
-              placeholder={"Enter your email"} 
-              value={formik.values.email} 
-              onChange={formik.handleChange("email")} 
+            <CustomInput
+              placeholder={"Enter your email"}
+              value={formik.values.email}
+              onChange={formik.handleChange("email")}
               onBlur={formik.handleBlur("email")}
             />
             {formik.touched.email && formik.errors.email && (
               <p className="text-red-500">{formik.errors.email}</p>
             )}
 
-            <CustomInput 
-              placeholder={"Enter your password"} 
-              type="password" 
-              value={formik.values.password} 
-              onChange={formik.handleChange("password")} 
+            <CustomInput
+              placeholder={"Enter your password"}
+              type="password"
+              value={formik.values.password}
+              onChange={formik.handleChange("password")}
               onBlur={formik.handleBlur("password")}
             />
             {formik.touched.password && formik.errors.password && (
@@ -143,7 +149,9 @@ export default function SignUpScreen() {
             )}
 
             {errorMessage && <p className="text-red-500">{errorMessage}</p>}
-            {successMessage && <p className="text-green-500">{successMessage}</p>}
+            {successMessage && (
+              <p className="text-green-500">{successMessage}</p>
+            )}
 
             <div className="flex items-center justify-between mb-6">
               {/* <CustomCheckbox /> */}
@@ -153,8 +161,12 @@ export default function SignUpScreen() {
             </div>
 
             <div className="text-center lg:text-left">
-              <CustomButton type="submit" disabled={loading} text={loading ? "Registering..." : "Register"} />
-              
+              <CustomButton
+                type="submit"
+                disabled={loading}
+                text={loading ? "Registering..." : "Register"}
+              />
+
               <p className="mt-2 text-sm">
                 Have an account?{" "}
                 <a
