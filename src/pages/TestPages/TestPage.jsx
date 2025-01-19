@@ -71,7 +71,7 @@ const TestPage = () => {
             return;
         }
 
-        const studentRef = doc(db, "students", userUid);
+        const studentRef = doc(db, "studensSecondTest", userUid);
         const studentDoc = await getDoc(studentRef);
 
         if (studentDoc.exists()) {
