@@ -248,7 +248,7 @@ export default TestPage;
 ;
 
 
-[
+const questions=[
     {
       "question": "Which of the following is NOT a property of an ideal hashing function?",
       "options": ["Uniform distribution of keys", "Efficient computation", "Collision occurrence frequently", "Deterministic output"],
