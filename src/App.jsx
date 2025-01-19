@@ -72,6 +72,8 @@ import TestPage from "./pages/TestPages/TestPage";
 import AdminStudentTestPage from "./pages/TestPages/TestAdmin";
 import StudentTestDetails from "./pages/TestPages/TestDetails";
 import StillWeWorkingPage from "./pages/StillWeWorkingPage";
+import ProfilePage from "./pages/ProfilePage/ProfilePage";
+import CertificatesGeneratorComponent from "./components/CertificatesGen/CertificatesGenerator";
 
 
 
@@ -165,6 +167,8 @@ const App = () => {
             {/* /////////////////////////////////////////// Show Courses ///////////////////////////////////////////// */}
             <Route path="/show-coursee" element={<ShowAllCoursesPage />} />
             <Route path="/showcoursee/:courseId" element={<ShowCourseDetails />} />
+            <Route path="/user-profile" element={<ProfilePage/>} />
+            <Route path="/hello" element={<CertificatesGeneratorComponent/>} />
 
             <Route element={<ShowCourseLayout />}>
               <Route path="/showcourse/:courseId" element={<ShowCourseDetails />} />

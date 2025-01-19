@@ -248,87 +248,122 @@ export default TestPage;
 ;
 
 
-const questions = [
+[
     {
-        id: 1,
-        question: "What is the time complexity of accessing an element in an array by index?",
-        options: ["O(1)", "O(n)", "O(log n)", "O(n^2)"],
-        answer: "O(1)",
+      "question": "Which of the following is NOT a property of an ideal hashing function?",
+      "options": ["Uniform distribution of keys", "Efficient computation", "Collision occurrence frequently", "Deterministic output"],
+      "answer": "Collision occurrence frequently"
     },
     {
-        id: 2,
-        question: "Which of the following is not a type of tree traversal?",
-        options: ["In-order", "Pre-order", "Post-order", "Diagonal-order"],
-        answer: "Diagonal-order",
+      "question": "In computer architecture, the ‘Von Neumann bottleneck’ refers to:",
+      "options": ["Limited memory bandwidth", "Slow CPU processing speed", "Lack of parallelism in CPU", "Inefficient instruction execution"],
+      "answer": "Limited memory bandwidth"
     },
     {
-        id: 3,
-        question: "What is the space complexity of a recursive function using a stack for recursion?",
-        options: ["O(1)", "O(n)", "O(log n)", "O(n^2)"],
-        answer: "O(n)",
+      "question": "Which of the following scheduling algorithms causes starvation for low-priority processes?",
+      "options": ["Round Robin", "First Come First Serve", "Shortest Job Next", "Multilevel Queue Scheduling"],
+      "answer": "Shortest Job Next"
     },
     {
-        id: 4,
-        question: "Which sorting algorithm has the best time complexity in the worst case?",
-        options: ["Quick Sort", "Merge Sort", "Bubble Sort", "Insertion Sort"],
-        answer: "Merge Sort",
+      "question": "In networking, which layer of the OSI model is responsible for flow control and error handling?",
+      "options": ["Data Link Layer", "Transport Layer", "Network Layer", "Application Layer"],
+      "answer": "Transport Layer"
     },
     {
-        id: 5,
-        question: "What is the worst-case time complexity of Quick Sort?",
-        options: ["O(n log n)", "O(n^2)", "O(log n)", "O(n)"],
-        answer: "O(n^2)",
+      "question": "Which of the following best describes ‘Pipelining’ in CPU execution?",
+      "options": ["Parallel execution of independent instructions", "Execution of a single instruction in multiple steps", "Pre-fetching instructions before execution", "Reducing instruction latency through caching"],
+      "answer": "Execution of a single instruction in multiple steps"
     },
     {
-        id: 6,
-        question: "Which data structure is best for implementing a priority queue?",
-        options: ["Array", "Stack", "Heap", "Linked List"],
-        answer: "Heap",
+      "question": "What is the worst-case time complexity of QuickSort?",
+      "options": ["O(n)", "O(n log n)", "O(n²)", "O(log n)"],
+      "answer": "O(n²)"
     },
     {
-        id: 7,
-        question: "What is the time complexity of inserting an element in a binary search tree (BST)?",
-        options: ["O(1)", "O(log n)", "O(n)", "O(n^2)"],
-        answer: "O(log n)",
+      "question": "Which of the following data structures can be used to implement Dijkstra’s shortest path algorithm efficiently?",
+      "options": ["Stack", "Queue", "Binary Heap", "Hash Table"],
+      "answer": "Binary Heap"
     },
     {
-        id: 8,
-        question: "Which of the following is true for a graph represented by an adjacency matrix?",
-        options: ["Space complexity is O(n)", "It is good for sparse graphs", "Edge lookup time is O(1)", "It requires more space than adjacency list for dense graphs"],
-        answer: "Edge lookup time is O(1)",
+      "question": "If a balanced BST has ‘n’ nodes, what is the height of the tree?",
+      "options": ["O(n)", "O(n log n)", "O(log n)", "O(√n)"],
+      "answer": "O(log n)"
     },
     {
-        id: 9,
-        question: "Which data structure is used to implement recursion in the form of function calls?",
-        options: ["Queue", "Stack", "Linked List", "Array"],
-        answer: "Stack",
+      "question": "Which sorting algorithm is best suited for nearly sorted data?",
+      "options": ["Bubble Sort", "Merge Sort", "Insertion Sort", "Heap Sort"],
+      "answer": "Insertion Sort"
     },
     {
-        id: 10,
-        question: "Which of the following is a characteristic of a hash table?",
-        options: ["Elements are stored in a sorted order", "It uses a hash function to map keys to indices", "It supports only integer keys", "It is not efficient for searching"],
-        answer: "It uses a hash function to map keys to indices",
+      "question": "In a max heap, if the root node has index ‘i’, what is the index of its left child?",
+      "options": ["2i", "2i + 1", "2i - 1", "i/2"],
+      "answer": "2i + 1"
     },
-];
+    {
+      "question": "The sum of ages of A and B is 50 years. Five years ago, the ratio of their ages was 3:2. What is A’s present age?",
+      "options": ["30", "35", "40", "25"],
+      "answer": "35"
+    },
+    {
+      "question": "A train 500m long is running at 72 km/h. How long will it take to cross a tunnel 1 km long?",
+      "options": ["50 sec", "75 sec", "60 sec", "90 sec"],
+      "answer": "75 sec"
+    },
+    {
+      "question": "A can complete a work in 10 days, and B can complete the same work in 15 days. If they work together, how many days will it take to complete the work?",
+      "options": ["6 days", "5 days", "4 days", "7 days"],
+      "answer": "6 days"
+    },
+    {
+      "question": "The average of 5 consecutive odd numbers is 45. Find the largest number.",
+      "options": ["49", "47", "51", "53"],
+      "answer": "49"
+    },
+    {
+      "question": "A man invested ₹5000 at 10% per annum compound interest for 2 years. What is the total amount after 2 years?",
+      "options": ["₹6000", "₹5500", "₹6050", "₹6050.50"],
+      "answer": "₹6050.50"
+    },
+    {
+      "question": "A is twice as fast as B in completing a task. If B takes 18 days to finish the work, how many days will A and B take together?",
+      "options": ["12 days", "9 days", "6 days", "10 days"],
+      "answer": "9 days"
+    },
+    {
+      "question": "If 2 is coded as 4, 3 is coded as 9, and 4 is coded as 16, then 7 is coded as:",
+      "options": ["42", "21", "49", "35"],
+      "answer": "49"
+    },
+    {
+      "question": "Find the missing number in the series: 2, 6, 12, 20, __, 42",
+      "options": ["30", "28", "32", "36"],
+      "answer": "28"
+    },
+    {
+      "question": "In a certain code language, 'MANGO' is written as 'LZMFN.' How is 'APPLE' written in the same code?",
+      "options": ["ZOOKD", "ZOOKF", "ZPPKD", "ZOOKE"],
+      "answer": "ZOOKE"
+    },
+    {
+      "question": "Pointing to a photograph, a man said, 'I have no brothers or sisters, but that man’s father is my father’s son.' Who is the person in the photograph?",
+      "options": ["His uncle", "His son", "His nephew", "Himself"],
+      "answer": "His son"
+    }
+  ]
+  const TimerRangeController = () => {
 
+    const startTime = new Date('Thu Jan 19 2025 09:20:00 GMT+0530 (India Standard Time)');
+    const endTime = new Date('Thu Jan 19 2025 21:00:00 GMT+0530 (India Standard Time)');
 
-const TimerRangeController = () => {
-
-    const startTime = new Date('Thu Jan 11 2025 10:30:00 GMT+0530 (India Standard Time)');
-    const endTime = new Date('Thu Jan 11 2025 19:00:00 GMT+0530 (India Standard Time)');
-    
-    // Function to calculate time left
     const calculateTimeLeft = () => {
         const now = new Date();
 
-        // Check if the timer has not started yet
         if (now < startTime) {
             return 'notStarted';
         }
 
         const difference = endTime - now;
 
-        // Check if the timer has ended
         if (difference <= 0) {
             return 'ended';
         }

@@ -35,6 +35,8 @@ const MainNavbar = () => {
 
   const { isAdmin, isUserLogin, blogPermission } = AdminController();
 
+ 
+
   const toggleMobileMenu = () => {
     setMobileMenuOpen((prev) => !prev);
   };
@@ -112,7 +114,7 @@ const MainNavbar = () => {
               </button>
             ) : (
               <button
-                onClick={toggleSidebar}
+                onClick={()=>navigate("/user-profile")}
                 className="p-2 text-white rounded-full bg-primary hover:bg-primary/70"
               >
                 <FaUser />

@@ -25,8 +25,8 @@ const TimerButton = () => {
         return () => unsubscribe();
     }, []); // Empty dependency array so it runs only once on mount
 
-    const startTime = new Date('Thu Jan 11 2025 10:30:00 GMT+0530 (India Standard Time)');
-    const endTime = new Date('Thu Jan 11 2025 19:00:00 GMT+0530 (India Standard Time)');
+    const startTime = new Date('Thu Jan 19 2025 09:20:00 GMT+0530 (India Standard Time)');
+    const endTime = new Date('Thu Jan 19 2025 21:00:00 GMT+0530 (India Standard Time)');
 
     // const startTime = new Date('Thu Jan 11 2025 10:15:00 GMT+0530 (India Standard Time)');
     // const endTime = new Date('Thu Jan 11 2025 10:16:00 GMT+0530 (India Standard Time)');
