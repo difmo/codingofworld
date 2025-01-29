@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react";
-import { db } from "../../../../firebase";
-import { doc, getDoc, updateDoc } from "firebase/firestore";
+import { db,auth} from "../../../../firebase";
+import { doc, getDocs,getDoc, updateDoc,where,collection,query } from "firebase/firestore";
 import { useParams } from "react-router-dom";
 import ReactQuill from "react-quill";
-import "react-quill/dist/quill.snow.css"; 
+import "react-quill/dist/quill.snow.css"; // Import Quill CSS for styling
 
 const ShowTopicDetailPage = () => {
   const [topic, setTopic] = useState(null);
@@ -11,6 +11,58 @@ const ShowTopicDetailPage = () => {
   const [newTitle, setNewTitle] = useState('');
   const [newContent, setNewContent] = useState('');
   const { courseId, topicId } = useParams();
+  const  [admin, setIsAdmin] = useState(false); 
+  const [blogPermission, setBlogPermission] = useState(false);
+  const [userLogin, setIsUserLogin] = useState(false);
+  const [bloggerName, setbloggerName] = useState();
+
+  useEffect(() => {
+      const unsubscribe = auth.onAuthStateChanged((user) => {
+          if (user) {
+              if (user.emailVerified) {
+                  setIsUserLogin(user);
+                  fetchUserRole(user.uid);
+                  // setUserUid(user.uid);
+              } else {
+                  console.log("Email is not verified yet");
+              }
+          } else {
+              setIsAdmin(false);
+              setIsUserLogin(false);
+              console.log("user is not login yet");
+          }
+      });
+      return () => unsubscribe();
+  });
+
+  const fetchUserRole = async (uid) => {
+      try {
+          const userQuery = query(collection(db, "users"), where("uid", "==", uid));
+          const querySnapshot = await getDocs(userQuery);
+          if (!querySnapshot.empty) {
+              querySnapshot.forEach((doc) => {
+                  const userData = doc.data();
+                  if (userData.isCreatePermission == true) {
+                      setBlogPermission(true);
+                  }
+                  if (userData.name) {
+                      setbloggerName(userData.name);
+                      console.log(userData.name);
+                  }
+                  // sdfdsf
+                  if (userData.whoIs == "isAdmin") {
+                      setIsAdmin(true);
+                  } else {
+                      setIsAdmin(false);
+                  }
+              });
+          } else {
+              console.log("No user found with uid");
+          }
+      } catch (e) {
+          console.log(e);
+      }
+  };
 
   useEffect(() => {
     const fetchTopic = async () => {
@@ -61,7 +113,7 @@ const ShowTopicDetailPage = () => {
 
   return (
     <div className="max-w-4xl mx-auto p-6">
-      <h2 className="text-3xl font-semibold">{isEditMode ? "Edit Topic" : topic.title}</h2>
+      {/* <h2 className="text-3xl font-semibold">{isEditMode ? "Edit Topic" : topic.title}</h2> */}
       
       <div className="mt-4">
         {/* Title Input */}
@@ -96,13 +148,13 @@ const ShowTopicDetailPage = () => {
 
       {/* Buttons */}
       <div className="flex justify-between items-center mt-6">
-        <button
+       {blogPermission ? <button
           onClick={toggleEditMode}
           className="px-6 py-2 rounded-md text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500"
         >
-          {isEditMode ? "Cancel Edit" : "Edit Topic"}
-        </button>
-
+          {isEditMode ? "Cancel Edit" : "Edsdit Topic"}
+        </button>:null
+}
         {isEditMode && (
           <button
             onClick={handleSave}

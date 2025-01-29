@@ -77,12 +77,7 @@ const ShowCourseDetails = () => {
   return (
     <div className="max-w-4xl mx-auto p-6">
       {/* Header */}
-      <div className="mb-6 text-center">
-        <h2 className="text-3xl font-semibold text-gray-900">
-          {isEditMode ? 'Edit Course' : 'View Course'}
-        </h2>
-        <p className="text-gray-500">Manage the content of your course</p>
-      </div>
+
 
       {/* Course Form */}
       <div className="bg-white shadow-lg rounded-lg p-6 space-y-6">

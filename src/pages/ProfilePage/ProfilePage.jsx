@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { db, auth  } from '../../firebase';
+import { db, auth } from '../../firebase';
 import { doc, getDoc } from 'firebase/firestore';
 import { collection, getDocs, query, where } from "firebase/firestore";
 import { FaBlog, FaCertificate, FaFilePdf, FaPersonBooth } from 'react-icons/fa';
@@ -12,55 +12,55 @@ const ProfilePage = () => {
     const [isAdmin, setIsAdmin] = useState(false);
     const [isUserLogin, setIsUserLogin] = useState(null);
     const [blogPermission, setBlogPermission] = useState(false);
-  
+
     const [bloggerName, setbloggerName] = useState();
-  
+
     useEffect(() => {
-      const unsubscribe = auth.onAuthStateChanged((user) => {
-        if (user) {
-          if (user.emailVerified) {
-            setIsUserLogin(user);
-            fetchUserRole(user.uid);
-            // setUserUid(user.uid);
-          } else {
-            console.log("Email is not verified yet");
-          }
-        } else {
-          setIsAdmin(false);
-          setIsUserLogin(false);
-          console.log("user is not login yet");
-        }
-      });
-      return () => unsubscribe();
-    });
-  
-    const fetchUserRole = async (uid) => {
-      try {
-        const userQuery = query(collection(db, "users"), where("uid", "==", uid));
-        const querySnapshot = await getDocs(userQuery);
-        if (!querySnapshot.empty) {
-          querySnapshot.forEach((doc) => {
-            const userData = doc.data();
-            if (userData.isCreatePermission == true) {
-              setBlogPermission(true);
-            }
-            if (userData.name) {
-              setbloggerName(userData.name);
-              console.log(userData.name);
-            }
-            // sdfdsf
-            if (userData.whoIs == "isAdmin") {
-              setIsAdmin(true);
+        const unsubscribe = auth.onAuthStateChanged((user) => {
+            if (user) {
+                if (user.emailVerified) {
+                    setIsUserLogin(user);
+                    fetchUserRole(user.uid);
+                    // setUserUid(user.uid);
+                } else {
+                    console.log("Email is not verified yet");
+                }
             } else {
-              setIsAdmin(false);
+                setIsAdmin(false);
+                setIsUserLogin(false);
+                console.log("user is not login yet");
             }
-          });
-        } else {
-          console.log("No user found with uid");
+        });
+        return () => unsubscribe();
+    });
+
+    const fetchUserRole = async (uid) => {
+        try {
+            const userQuery = query(collection(db, "users"), where("uid", "==", uid));
+            const querySnapshot = await getDocs(userQuery);
+            if (!querySnapshot.empty) {
+                querySnapshot.forEach((doc) => {
+                    const userData = doc.data();
+                    if (userData.isCreatePermission == true) {
+                        setBlogPermission(true);
+                    }
+                    if (userData.name) {
+                        setbloggerName(userData.name);
+                        console.log(userData.name);
+                    }
+                    // sdfdsf
+                    if (userData.whoIs == "isAdmin") {
+                        setIsAdmin(true);
+                    } else {
+                        setIsAdmin(false);
+                    }
+                });
+            } else {
+                console.log("No user found with uid");
+            }
+        } catch (e) {
+            console.log(e);
         }
-      } catch (e) {
-        console.log(e);
-      }
     };
 
 
@@ -152,19 +152,24 @@ const ProfilePage = () => {
 
                         {/* Conditional Blog-related links */}
                         {!blogPermission ? (
-                          
-                                <div className="flex items-center text-gray-700 cursor-pointer font-play hover:text-blue-600">
-                                    <FaBlog className="mr-3" />
-                                    <span>Create Blogs</span>
-                                </div>
-                       
+
+                            <div className="flex items-center text-gray-700 cursor-pointer font-play hover:text-blue-600">
+                                <FaBlog className="mr-3" />
+                                <span>Create Blogs</span>
+                            </div>
+
                         ) : (
-                           
-                                <div className="flex items-center text-gray-700 cursor-pointer font-play hover:text-blue-600">
-                                    <FaBlog className="mr-3" />
-                                    <span onClick={() => navigate('/all-blogs')}>Your Blogs</span>
+
+                            <div className="flex items-center text-gray-700 cursor-pointer font-play hover:text-blue-600">
+                                <FaBlog className="mr-3" />
+                                <div><span onClick={() => navigate('/all-blogs')}>Your Blogs</span></div>
+                                <FaBlog className="mr-3" />
+
+                                <div className='p-4'>
+                                    <span onClick={() => navigate('/all-course')}>Create Courses</span>
                                 </div>
-                
+                            </div>
+
                         )}
                     </div>
                 )}
