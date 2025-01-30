@@ -75,16 +75,15 @@ const ShowCourseDetails = () => {
   }
 
   return (
-    <div className="max-w-4xl mx-auto p-6">
+    <div className="max-w-5xl mx-auto p-6">
       {/* Header */}
 
 
       {/* Course Form */}
-      <div className="bg-white shadow-lg rounded-lg p-6 space-y-6">
+      <div className="bg-white rounded-lg p-6 space-y-6">
 
         {/* Title Input */}
         <div>
-          <label className="text-lg font-medium text-gray-700">Course Title:</label>
           {isEditMode ? (
             <input
               type="text"
@@ -93,13 +92,12 @@ const ShowCourseDetails = () => {
               className="mt-2 w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
             />
           ) : (
-            <h3 className="text-2xl font-semibold text-gray-800 mt-2">{course.title}</h3>
+            <h3 className="text-5xl font-semibold text-primary mt-2">{course.title}</h3>
           )}
         </div>
 
         {/* Content Area */}
         <div>
-          <label className="text-lg font-medium text-gray-700">Course Content:</label>
           {isEditMode ? (
             <ReactQuill
               value={content}
@@ -122,9 +120,19 @@ const ShowCourseDetails = () => {
             />
           ) : (
             <div
-              className="mt-4 prose max-w-none text-gray-700"
-              dangerouslySetInnerHTML={{ __html: course.content }}
-            />
+            className="mt-4 prose max-w-none  text-gray-500 text-xl"
+            dangerouslySetInnerHTML={{
+              __html: course.content
+                .replace(/<h1>/g, '<h1 style="color: red;">')
+                .replace(/<h2>/g, '<h2 style="color: red;">')
+                .replace(/<h3>/g, '<h3 style="color: red;">')
+                .replace(/<h4>/g, '<h4 style="color: red;">')
+                .replace(/<\/h1>/g, '</h1>')
+                .replace(/<\/h2>/g, '</h2>')
+            }}
+          />
+          
+          
           )}
         </div>
 
@@ -132,9 +140,9 @@ const ShowCourseDetails = () => {
   
             <button
               onClick={handleAddTopic}
-              className="mt-4 px-6 py-2 rounded-md text-white bg-green-600 hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-500"
+              className="mt-4 px-6 py-2 rounded-md text-white bg-primary hover:bg-secondary focus:outline-none focus:ring-2 focus:ring-green-500"
             >
-              Enroll Free
+              Read More
             </button>
  
         {/* Buttons */}
