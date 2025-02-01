@@ -8,6 +8,7 @@ import Features from "./WhatWeOffer";
 import FAQ from "./Faq";
 import AdComponent from "./GoogleAdd";
 import TimerButton from "../components/TimerButton";
+import Pricing from "./Pricing";
 
 
 const HomeScreen = () => {
@@ -24,6 +25,7 @@ const HomeScreen = () => {
       */}
       <Banner2 />
       <Features />
+      <Pricing/>
       <FAQ />
     </div>
   );
