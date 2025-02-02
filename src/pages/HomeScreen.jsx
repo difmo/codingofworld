@@ -9,6 +9,9 @@ import FAQ from "./Faq";
 import AdComponent from "./GoogleAdd";
 import TimerButton from "../components/TimerButton";
 import Pricing from "./Pricing";
+import Video from "./VideoPage/Video";
+import Testimonials from "./Testimonials/Testimonials";
+import Brands from "./OurPartnears/OurPartnears";
 
 
 const HomeScreen = () => {
@@ -26,7 +29,10 @@ const HomeScreen = () => {
       <Banner2 />
       <Features />
       <Pricing/>
+      {/* <Video/> */}
+      <Testimonials/>
       <FAQ />
+      <Brands/>
     </div>
   );
 };

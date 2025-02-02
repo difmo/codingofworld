@@ -21,7 +21,7 @@ const OfferList = ({ text, status }) => {
       <span className="mr-3 flex h-[18px] w-full max-w-[18px] items-center justify-center rounded-full bg-primary bg-opacity-10 text-primary">
         {status === "active" ? <CheckIcon /> : <CrossIcon />}
       </span>
-      <p className="m-0 text-base font-medium text-body-color">{text}</p>
+      <p className="m-0 text-base font-medium text-sm text-body-color">{text}</p>
     </div>
   );
 };

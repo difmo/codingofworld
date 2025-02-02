@@ -7,11 +7,12 @@ const bgStyle = {
   backgroundRepeat: "no-repeat",
   backgroundSize: "cover",
   backgroundPosition: "center",
+  backgroundColor: "transparent", 
 };
 
 const Subscribe = () => {
   return (
-    <section className="bg-[#f7f7f7]">
+    <section >
       <motion.div
         initial={{ opacity: 0 }}
         whileInView={{ opacity: 1 }}
@@ -24,7 +25,7 @@ const Subscribe = () => {
           transition={{ duration: 0.6, ease: "easeInOut" }}
           className="flex flex-col justify-center"
         >
-          <div className="text-center space-y-4 lg:max-w-[530px] mx-auto">
+          <div className="text-center space-y-4 lg:max-w-8xl mx-auto">
             <h1 className="text-4xl font-bold text-secondaryblue !leading-snug">
             Join Thousands of <span className="text-primary"> Students Learning</span> with Us
             </h1>
