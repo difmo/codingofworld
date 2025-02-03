@@ -69,25 +69,27 @@ const CreateNewCourse = () => {
         <div className="form-group">
           <label htmlFor="content">Content</label>
           <ReactQuill
-            id="content"
-            value={content}
-            onChange={setContent}
-            className="w-full"
-            placeholder="Write the content of your course"
-            modules={{
-              toolbar: [
-                [{ 'header': '1' }, { 'header': '2' }, { 'header': '3' }, { 'header': '4' }, { 'header': '5' }, { 'header': '6' }],
-                [{ 'font': [] }],
-                [{ 'size': ['small', 'normal', 'large', 'huge'] }],
-                ['bold', 'italic', 'underline'],
-                ['link'],
-                [{ 'list': 'ordered' }, { 'list': 'bullet' }],
-                ['blockquote', 'code-block'],
-                ['image'],
-                ['clean']
-              ]
-            }}
-          />
+           id="content"
+value={content}
+onChange={setContent}
+className="w-full"
+placeholder="Write the content of your course"
+modules={{
+  toolbar: [
+    [{ 'header': '1' }, { 'header': '2' }, { 'header': '3' }, { 'header': '4' }, { 'header': '5' }, { 'header': '6' }],
+    [{ 'font': [] }],
+    [{ 'size': ['small', 'normal', 'large', 'huge'] }],
+    ['bold', 'italic', 'underline'],
+    ['link'],
+    [{ 'list': 'ordered' }, { 'list': 'bullet' }],
+    ['blockquote', 'code-block'],
+    ['image'],
+    ['clean'],
+    [{ 'align': [] }]  // Specifying left, center, right alignment options
+  ]
+}}
+/>
+
         </div>
 
         <div className="form-group">

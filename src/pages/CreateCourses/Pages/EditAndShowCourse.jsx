@@ -122,6 +122,8 @@ const EditAndShowCourse = () => {
                   ['blockquote', 'code-block'],
                   ['image'],
                   ['clean']
+                  [{ 'align': [] }]  // Specifying left, center, right alignment options
+
                 ]
               }}
             />

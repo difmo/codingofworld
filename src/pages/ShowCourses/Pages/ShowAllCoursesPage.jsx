@@ -32,18 +32,16 @@ const ShowAllCoursesPage = () => {
     <div className="max-w-screen-xl mx-auto p-6 ">
       <div className="py-16 heading">
         <h1 className="text-3xl font-semibold text-black md:text-4xl">
-          Discover the Perfect Online Course <br />
-          with Certificates from{" "}
-          <span className="text-primary">Difmo Technologies</span>
+          Some others courses
+          {/* <span className="text-primary">Difmo Technologies</span> */}
         </h1>
         <span className="block mt-2 text-sm md:text-base">
-          With our expert guidance, you don't have to navigate your learning
-          journey alone. Get the support you need to succeed.
+          Learn from the best instructors and get certified
         </span>
       </div>
 
       {/* Filters */}
-      <div className="flex flex-col items-center justify-between mb-6 md:flex-row">
+      {/* <div className="flex flex-col items-center justify-between mb-6 md:flex-row">
         <input
           type="text"
           className="w-full p-2 mb-4 border border-gray-300 rounded md:w-1/3 md:mb-0"
@@ -54,7 +52,7 @@ const ShowAllCoursesPage = () => {
           <option>Newest</option>
           <option>Highest Rated</option>
         </select>
-      </div>
+      </div> */}
 
       {/* Courses grid layout */}
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">

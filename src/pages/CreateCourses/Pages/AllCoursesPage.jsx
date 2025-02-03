@@ -1,7 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import { db } from '../../../firebase';
-import { collection, getDocs } from 'firebase/firestore';
+import { collection, getDocs, doc, deleteDoc } from 'firebase/firestore';
 import { useNavigate } from 'react-router-dom';
+
+// Importing icons from react-icons
+import { MdDelete } from 'react-icons/md';
+import { AiOutlinePlus } from 'react-icons/ai';
 
 const AllCoursesPage = () => {
   const [courses, setCourses] = useState([]);
@@ -28,6 +32,25 @@ const AllCoursesPage = () => {
     navigate(`/usercourse/${courseId}`);
   };
 
+  const handleDeleteCourse = async (courseId) => {
+    const isConfirmed = window.confirm("Are you sure you want to delete this course?");
+    if (isConfirmed) {
+      try {
+        const courseDocRef = doc(db, 'courses', courseId);
+        await deleteDoc(courseDocRef);
+        setCourses((prevCourses) => prevCourses.filter((course) => course.id !== courseId));
+        alert('Course deleted successfully!');
+      } catch (error) {
+        console.error('Error deleting course:', error);
+        alert('Failed to delete course.');
+      }
+    }
+  };
+
+  const handleAddCourse = () => {
+    navigate('/create-course'); // Assuming you have an "addcourse" route
+  };
+
   return (
     <div className="container mx-auto p-6">
       <h2 className="text-4xl font-semibold mb-8 text-center text-gray-800">All Courses</h2>
@@ -40,14 +63,28 @@ const AllCoursesPage = () => {
             className="bg-white border border-gray-200 rounded-lg shadow-lg transform transition-all duration-300 hover:scale-105 hover:shadow-xl cursor-pointer"
             onClick={() => handleCourseClick(course.id)}
           >
-            <div className="p-6">
-              {/* Course Title */}
-              <h3 className="text-xl font-semibold text-gray-900 mb-4">{course.title}</h3>
+            <div className="p-6 relative">
+              {/* Delete Button with React Icon */}
+              <button
+                onClick={(e) => {
+                  e.stopPropagation(); // Prevent triggering course click
+                  handleDeleteCourse(course.id);
+                }}
+                className="absolute top-2 right-2 text-red-500 hover:text-red-700 z-10"
+              >
+                <MdDelete size={24} /> {/* Trash icon */}
+              </button>
 
-              {/* Course Content Preview */}
-              <p className="text-gray-700 text-base mb-4">
-                {course.content.length > 100 ? `${course.content.slice(0, 100)}...` : course.content}
-              </p>
+              {/* Course Title with dangerouslySetInnerHTML */}
+              <h3
+                className="text-xl font-semibold text-gray-900 mb-4"
+                dangerouslySetInnerHTML={{ __html: course.title }} // Use dangerouslySetInnerHTML for title
+              />
+
+              {/* Course Content Preview with dangerouslySetInnerHTML */}
+              <p className="text-gray-700 text-base mb-4"
+                dangerouslySetInnerHTML={{ __html: course.content.length > 100 ? `${course.content.slice(0, 100)}...` : course.content }} // Use dangerouslySetInnerHTML for content
+              />
 
               {/* Hover Effects */}
               <div className="mt-4 text-center">
@@ -57,6 +94,14 @@ const AllCoursesPage = () => {
           </div>
         ))}
       </div>
+
+      {/* Floating Add Course Button with React Icon */}
+      <button
+        onClick={handleAddCourse}
+        className="fixed bottom-6 right-6 bg-blue-600 text-white p-4 rounded-full shadow-lg hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500"
+      >
+        <AiOutlinePlus size={30} /> {/* Plus icon */}
+      </button>
     </div>
   );
 };

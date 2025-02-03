@@ -2,6 +2,8 @@
 @tailwind components;
 @tailwind utilities;
 
+
+
 @layer components {
   .primary-btn {
     @apply inline-block bg-primary text-white font-semibold rounded-lg hover:bg-secondary duration-200 shadow-[0px_10px_8px_-7px_#ffd978] hover:shadow-[0px_10px_8px_-7px_#69a79c] py-2 px-6;
@@ -104,3 +106,28 @@ div {
   font-family: "Anek Telugu", sans-serif;
   font-weight: 700; /* Bold */
 }
+
+.prose h1, .prose h2 .prose h3 .prose h4 {
+  color: red;
+}
+
+/* Style for <pre> blocks (the container for code blocks) */
+.prose pre {
+  background-color: #282c34; /* Dark background like code editors */
+  color: white;
+  padding: 16px;
+  border-radius: 4px;
+  font-family: "Courier New", Courier, monospace; /* Monospace font for code */
+  overflow-x: auto; /* Allow horizontal scrolling for long lines of code */
+  white-space: pre-wrap; /* Ensure code wraps correctly */
+}
+
+/* Style for inline <code> elements */
+.prose code {
+  background-color: #f5f5f5; /* Light background */
+  padding: 2px 4px;
+  border-radius: 4px;
+  font-size: 1.1em;
+  color: #d63384; /* Color for inline code */
+}
+

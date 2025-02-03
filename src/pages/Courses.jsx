@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { collection, getDocs } from "firebase/firestore";
 import { db } from "../firebase";
 import Loader from "../components/Loader";
+import ShowAllCoursesPage from "./ShowCourses/Pages/ShowAllCoursesPage";
 
 export const Courses = () => {
   const navigate = useNavigate();
@@ -121,7 +122,8 @@ export const Courses = () => {
             </div>
           ))}
         </div>
-        <h1 className="mt-8">Want to contribut to make courses</h1>
+        {/* <h1 className="mt-8">Want to contribut to make courses</h1> */}
+        <ShowAllCoursesPage/>
       </div>
     </section>
   );
