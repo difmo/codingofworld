@@ -15,7 +15,7 @@ const Pricing = () => {
           center
           width="665px"
         />
-        
+
         <div className="w-full">
           <div
             className="wow fadeInUp mb-8 flex justify-center md:mb-12 lg:mb-16"
@@ -60,66 +60,115 @@ const Pricing = () => {
         </div>
 
         <div className="grid grid-cols-1 gap-x-8 gap-y-10 md:grid-cols-2 lg:grid-cols-3">
-  <PricingBox
-    packageName="Beginner"
-    price={isMonthly ? "2,000" : "20,000"}
-    duration={isMonthly ? "mo" : "yr"}
-    subtitle="Perfect for those just starting out with IT skills."
-  >
-    <OfferList text="Introduction to Computer Science" status="active" />
-    <OfferList text="Basic Programming Concepts" status="active" />
-    <OfferList text="Computer Hardware Basics" status="active" />
-    <OfferList text="Email & Communication Tools" status="active" />
-    <OfferList text="Introduction to Internet Technologies" status="active" />
-    <OfferList text="Basic Networking Concepts" status="active" />
-    <OfferList text="Data Entry & Office Tools" status="active" />
-    <OfferList text="Introductory Web Development" status="inactive" />
-    <OfferList text="One-on-One Tutoring" status="inactive" />
-    <OfferList text="Access to Premium Labs" status="inactive" />
-    <OfferList text="Basic Digital Marketing Concepts" status="inactive" />
-    <OfferList text="Basic Cloud Computing Concepts" status="inactive" />
-  </PricingBox>
-  <PricingBox
-    packageName="Intermediate"
-    price={isMonthly ? "5,000" : "50,000"}
-    duration={isMonthly ? "mo" : "yr"}
-    subtitle="For those looking to expand their IT knowledge and skills."
-  >
-    <OfferList text="Advanced Programming (Python, Java)" status="active" />
-    <OfferList text="Networking Essentials" status="active" />
-    <OfferList text="Database Management" status="active" />
-    <OfferList text="Cybersecurity Fundamentals" status="active" />
-    <OfferList text="Personalized Course Feedback" status="active" />
-    <OfferList text="Lifetime Access to Course Materials" status="active" />
-    <OfferList text="Introduction to Data Science" status="inactive" />
-    <OfferList text="Web Development with HTML & CSS" status="inactive" />
-    <OfferList text="Cloud Services (AWS, Azure)" status="inactive" />
-    <OfferList text="Advanced Networking & Protocols" status="inactive" />
-    <OfferList text="Project Management for IT" status="inactive" />
-    <OfferList text="Business IT Strategies" status="inactive" />
-  </PricingBox>
-  <PricingBox
-    packageName="Professional"
-    price={isMonthly ? "15,000" : "150,000"}
-    duration={isMonthly ? "mo" : "yr"}
-    subtitle="For professionals ready to master IT and advance their careers."
-  >
-    <OfferList text="Master Courses in Cloud Computing" status="active" />
-    <OfferList text="Advanced Cybersecurity Techniques" status="active" />
-    <OfferList text="IT Project Management" status="active" />
-    <OfferList text="Data Science and AI" status="active" />
-    <OfferList text="One-on-One Mentoring with Experts" status="active" />
-    <OfferList text="Access to Industry Events & Webinars" status="active" />
-    <OfferList text="Machine Learning for Professionals" status="active" />
-    <OfferList text="DevOps Fundamentals and Tools" status="active" />
-    <OfferList text="Blockchain Development and Application" status="active" />
-    <OfferList text="Advanced Cloud Architecture & Design" status="inactive" />
-    <OfferList text="AI & ML Certification Exam Preparation" status="inactive" />
-    <OfferList text="Exclusive Networking Opportunities" status="inactive" />
-  </PricingBox>
-</div>
-
-
+          <PricingBox
+            packageName="Beginner"
+            price={isMonthly ? "2,000" : "20,000"}
+            duration={isMonthly ? "mo" : "yr"}
+            subtitle="Perfect for those just starting out with IT skills."
+          >
+            <OfferList
+              text="Introduction to Computer Science"
+              status="active"
+            />
+            <OfferList text="Basic Programming Concepts" status="active" />
+            <OfferList text="Computer Hardware Basics" status="active" />
+            <OfferList text="Email & Communication Tools" status="active" />
+            <OfferList
+              text="Introduction to Internet Technologies"
+              status="active"
+            />
+            <OfferList text="Basic Networking Concepts" status="active" />
+            <OfferList text="Data Entry & Office Tools" status="active" />
+            <OfferList text="Introductory Web Development" status="inactive" />
+            <OfferList text="One-on-One Tutoring" status="inactive" />
+            <OfferList text="Access to Premium Labs" status="inactive" />
+            <OfferList
+              text="Basic Digital Marketing Concepts"
+              status="inactive"
+            />
+            <OfferList
+              text="Basic Cloud Computing Concepts"
+              status="inactive"
+            />
+          </PricingBox>
+          <PricingBox
+            packageName="Intermediate"
+            price={isMonthly ? "2,500" : "27,000"}
+            duration={isMonthly ? "mo" : "yr"}
+            subtitle="For those looking to expand their IT knowledge and skills."
+          >
+            <OfferList
+              text="Advanced Programming (Python, Java)"
+              status="active"
+            />
+            <OfferList text="Networking Essentials" status="active" />
+            <OfferList text="Database Management" status="active" />
+            <OfferList text="Cybersecurity Fundamentals" status="active" />
+            <OfferList text="Personalized Course Feedback" status="active" />
+            <OfferList
+              text="Lifetime Access to Course Materials"
+              status="active"
+            />
+            <OfferList text="Introduction to Data Science" status="inactive" />
+            <OfferList
+              text="Web Development with HTML & CSS"
+              status="inactive"
+            />
+            <OfferList text="Cloud Services (AWS, Azure)" status="inactive" />
+            <OfferList
+              text="Advanced Networking & Protocols"
+              status="inactive"
+            />
+            <OfferList text="Project Management for IT" status="inactive" />
+            <OfferList text="Business IT Strategies" status="inactive" />
+          </PricingBox>
+          <PricingBox
+            packageName="Professional"
+            price={isMonthly ? "3,500" : "35,000"}
+            duration={isMonthly ? "mo" : "yr"}
+            subtitle="For professionals ready to master IT and advance their careers."
+          >
+            <OfferList
+              text="Master Courses in Cloud Computing"
+              status="active"
+            />
+            <OfferList
+              text="Advanced Cybersecurity Techniques"
+              status="active"
+            />
+            <OfferList text="IT Project Management" status="active" />
+            <OfferList text="Data Science and AI" status="active" />
+            <OfferList
+              text="One-on-One Mentoring with Experts"
+              status="active"
+            />
+            <OfferList
+              text="Access to Industry Events & Webinars"
+              status="active"
+            />
+            <OfferList
+              text="Machine Learning for Professionals"
+              status="active"
+            />
+            <OfferList text="DevOps Fundamentals and Tools" status="active" />
+            <OfferList
+              text="Blockchain Development and Application"
+              status="active"
+            />
+            <OfferList
+              text="Advanced Cloud Architecture & Design"
+              status="inactive"
+            />
+            <OfferList
+              text="AI & ML Certification Exam Preparation"
+              status="inactive"
+            />
+            <OfferList
+              text="Exclusive Networking Opportunities"
+              status="inactive"
+            />
+          </PricingBox>
+        </div>
       </div>
 
       <div className="absolute bottom-0 left-0 z-[-1]">

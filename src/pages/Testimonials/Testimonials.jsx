@@ -1,87 +1,91 @@
-import React from 'react';
-import SectionTitle from '../Pricing/SectionTitle';
-import SingleTestimonial from './SingleTestimonial';
+import React from "react";
+import SectionTitle from "../Pricing/SectionTitle";
+import SingleTestimonial from "./SingleTestimonial";
 
 const testimonialData = [
   {
     id: 1,
-    name: "Ravi Kumar",
+    name: "Ankesh Yadav",
     designation: "Student @TechAcademy",
     content:
-      "The CS training program at this coaching institute has been a game-changer for me. The instructors are highly knowledgeable and the curriculum is well-structured, making complex topics easy to understand.",
-    image: "/images/testimonials/auth-01.png",
+      "The creative environment and collaborative approach at Difmo Technologies are unmatched. The team goes above and beyond to design user-centric products. It's inspiring to work with such a dedicated group of professionals.",
+    image:
+      "https://lh3.googleusercontent.com/a-/ALV-UjVzuIUMUvjOUUi2XZGAvl73ydd12j8syOKSTAqW5T9hSTK-bciU=w83-h83-p-rp-mo-ba2-br100",
     star: 5,
   },
   {
     id: 2,
-    name: "Priya Sharma",
+    name: "Harsh Preetam panday",
     designation: "Student @InnovateInstitute",
     content:
-      "I’ve gained so much confidence in my programming skills since joining the coaching sessions. The hands-on practice and real-world projects helped me solidify my understanding of key CS concepts.",
-    image: "/images/testimonials/auth-02.png",
+      "I am grateful for the incredible  and grow in web and mobile app development. The supportive and collaborative team environment has enhanced my skills and fostered a deeper understanding of the technologies. ",
+    image:
+      "https://lh3.googleusercontent.com/a-/ALV-UjWlbcTYgyHBZBsh0NlJpoSyxWlekNVbWtHgCA0ypPfa-uVpfvYv=w83-h83-p-rp-mo-br100",
     star: 5,
   },
   {
     id: 3,
-    name: "Arjun Singh",
+    name: "Ravi Verma",
     designation: "Student @NextGenTech",
     content:
-      "This coaching institute offers the best CS training I could have asked for. The mentors are patient, approachable, and always available to clarify doubts. Highly recommend it to anyone looking to break into the tech industry.",
-    image: "/images/testimonials/auth-03.png",
+      "An incredible workspace with a dynamic environment, offering top-notch web and app development services. Dedication to excellence, innovation, and seamless execution fosters learning, growth, and outstanding solutions.",
+    image:
+      "https://lh3.googleusercontent.com/a-/ALV-UjWHqn9OZtbWThISRuxveIXnY5kvWP-bkbMgFhE0H2MoJxDaY-Mn=w83-h83-p-rp-mo-br100",
     star: 5,
   },
   {
     id: 4,
-    name: "Neha Gupta",
+    name: "Agni Patel",
     designation: "Student @DigitalAcademy",
     content:
-      "I never thought I’d be able to master algorithms and data structures so quickly. The coaching here focuses on building strong fundamentals, which helped me in interviews and competitive exams.",
-    image: "/images/testimonials/auth-04.png",
+      " A fantastic opportunity to learn and excel in web and mobile app development, supported by a highly collaborative, innovative, and encouraging team.",
+    image:
+      "https://lh3.googleusercontent.com/a/ACg8ocKFuSUqzGYzM7k_uxc_RVGUJV7_x10-Mk8P0M_Oz1mBnPuJZg=w83-h83-p-rp-mo-br100",
     star: 5,
   },
   {
     id: 5,
-    name: "Vikas Patel",
+    name: "Keke Yadav",
     designation: "Student @SmartCode Institute",
     content:
-      "The quality of teaching at this institute is unmatched. The CS training has given me the skills I need to land a job at top tech companies. I feel well-prepared to tackle any coding challenge.",
-    image: "/images/testimonials/auth-05.png",
+      "Difmo Technologies fosters an unparalleled creative environment and collaborative spirit. The team's dedication to crafting user-centric designs is truly inspiring.",
+    image:
+      "https://lh3.googleusercontent.com/a/ACg8ocIw0cgjpDBsFci7G64xeuJr0BEA5wYhvcIxJW_16j2Yv1NffQ=w83-h83-p-rp-mo-br100",
     star: 5,
   },
   {
     id: 6,
-    name: "Aarti Desai",
+    name: "Satya Kumar",
     designation: "Student @TechBliss Academy",
     content:
-      "What I appreciate most about this coaching is the personalized attention. The trainers make sure no student gets left behind, and the resources provided are excellent for self-study and practice.",
-    image: "/images/testimonials/auth-06.png",
+      " A fantastic opportunity to gain hands-on experience and enhance coding skills. Real-world projects and a supportive team provided valuable industry insights. ",
+    image:
+      "https://lh3.googleusercontent.com/a-/ALV-UjUWinmB_CrkpTD9H5BOdPnTMmqHDx8H8DJeit3i7fwGSfomDR8=w83-h83-p-rp-mo-br100",
     star: 5,
   },
 ];
-
-
 
 const Testimonials = () => {
   return (
     <section className="dark:bg-bg-color-dark bg-gray-light relative z-10 py-16 md:py-20 lg:py-28">
       <div className="container">
         <SectionTitle
-          title="What Our Users Say"
-          paragraph="There are many variations of passages of Lorem Ipsum available but the majority have suffered alteration in some form."
+          title="Our Student Reviews"
+          // paragraph="There are many variations of passages of Lorem Ipsum available but the majority have suffered alteration in some form."
           center
         />
 
         <div className="overflow-x-auto py-4">
-          <div className="grid grid-cols-3 gap-x-8">
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
             {testimonialData.map((testimonial) => (
-              <SingleTestimonial key={testimonial.id} testimonial={testimonial} />
+              <SingleTestimonial
+                key={testimonial.id}
+                testimonial={testimonial}
+              />
             ))}
           </div>
         </div>
-
-
       </div>
-
 
       <div className="absolute right-0 top-5 z-[-1]">
         <svg

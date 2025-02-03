@@ -12,13 +12,13 @@ import Pricing from "./Pricing";
 import Video from "./VideoPage/Video";
 import Testimonials from "./Testimonials/Testimonials";
 import Brands from "./OurPartnears/OurPartnears";
-
+import Hero from "../components/Hero/Hero";
 
 const HomeScreen = () => {
   return (
     <div>
       {/* <Hero /> */}
-      <Hero/>
+      <Hero />
       {/* <AdComponent /> */}
       <Services />
       <Banner />
@@ -28,11 +28,11 @@ const HomeScreen = () => {
       */}
       <Banner2 />
       <Features />
-      <Pricing/>
+      <Pricing />
       {/* <Video/> */}
-      <Testimonials/>
+      <Testimonials />
       <FAQ />
-      <Brands/>
+      <Brands />
     </div>
   );
 };
