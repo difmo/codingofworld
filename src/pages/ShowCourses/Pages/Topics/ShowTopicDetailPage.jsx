@@ -137,7 +137,7 @@ const ShowTopicDetailPage = () => {
             className="w-full p-2 border border-gray-300 rounded-lg"
           />
         ) : (
-          <h3 className="text-2xl md:text-4xl text-secondaryblue font-semibold">{topic.title}</h3>
+          <h3 className="text-xl md:text-4xl text-secondaryblue font-semibold">{topic.title}</h3>
         )}
       </div>
 
