@@ -75,7 +75,7 @@ const ShowCourseDetails = () => {
   }
 
   return (
-    <div className="max-w-5xl mx-auto p-6">
+    <div className="max-w-5xl mx-auto p-0 md:p-6">
       {/* Header */}
 
 
@@ -92,7 +92,7 @@ const ShowCourseDetails = () => {
               className="mt-2 w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
             />
           ) : (
-            <h3 className="text-5xl font-semibold text-primary mt-2">{course.title}</h3>
+            <h3 className="md:text-5xl text-2xl  font-semibold text-primary mt-2">{course.title}</h3>
           )}
         </div>
 
@@ -120,7 +120,7 @@ const ShowCourseDetails = () => {
             />
           ) : (
             <div
-            className="mt-4 prose max-w-none  text-gray-500 text-xl"
+            className="mt-4 prose max-w-none  text-gray-500 text-sm md:text-xl"
             dangerouslySetInnerHTML={{
               __html: course.content
                 .replace(/<h1>/g, '<h1 style="color: red;">')
