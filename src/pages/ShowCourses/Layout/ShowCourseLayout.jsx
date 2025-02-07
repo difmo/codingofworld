@@ -39,7 +39,7 @@ const ShowCourseLayout = ({ children }) => {
         <div className="w-full">
           <ShowCourseNavbar toggleSidebar={toggleSidebar} />
         </div>
-        <div className="flex-1 p-8 overflow-y-auto bg-white">
+        <div className="flex-1 p-0 md:p-8 overflow-y-auto bg-white">
           {children}
           <Outlet />
         </div>
