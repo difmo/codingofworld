@@ -29,7 +29,7 @@ const ShowCourseSidebar = ({ toggleSidebar }) => {
   }, [courseId]);
 
   return (
-    <div className=" h-screen w-[340px] p-4 space-y-6 text-primary bg-secondaryblue m-1 rounded-xl border ">
+    <div className=" h-screen  w-[340px] p-4 space-y-6 text-primary bg-secondaryblue m-1 rounded-xl border ">
 
       <ul className="space-y-4">
         <li className="">

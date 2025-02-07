@@ -10,15 +10,15 @@ import Prism from "prismjs";
 
 const ShowTopicDetailPage = () => {
   const [topic, setTopic] = useState(null);
-  const [isEditMode, setIsEditMode] = useState(false); 
+  const [isEditMode, setIsEditMode] = useState(false);
   const [newTitle, setNewTitle] = useState('');
   const [newContent, setNewContent] = useState('');
   const { courseId, topicId } = useParams();
-  const [admin, setIsAdmin] = useState(false); 
+  const [admin, setIsAdmin] = useState(false);
   const [blogPermission, setBlogPermission] = useState(false);
   const [userLogin, setIsUserLogin] = useState(false);
   const [bloggerName, setBloggerName] = useState();
-  
+
 
   useEffect(() => {
     const unsubscribe = auth.onAuthStateChanged((user) => {
@@ -127,7 +127,7 @@ const ShowTopicDetailPage = () => {
   };
 
   return (
-    <div className="max-w-4xl mx-auto p-6">
+    <div className="max-w-4xl mx-auto p-0 md:p-6">
       <div className="mt-4">
         {isEditMode ? (
           <input
@@ -137,7 +137,7 @@ const ShowTopicDetailPage = () => {
             className="w-full p-2 border border-gray-300 rounded-lg"
           />
         ) : (
-          <h3 className="text-4xl text-secondaryblue font-semibold">{topic.title}</h3>
+          <h3 className="text-2xl md:text-4xl text-secondaryblue font-semibold">{topic.title}</h3>
         )}
       </div>
 
@@ -152,7 +152,7 @@ const ShowTopicDetailPage = () => {
             modules={{
               toolbar: [
                 [{ 'header': '1' }, { 'header': '2' }, 'bold', 'italic', 'link'], // Adding 'header' for h1, h2 etc.
-                [{ 'list': 'ordered'}, { 'list': 'bullet' }],
+                [{ 'list': 'ordered' }, { 'list': 'bullet' }],
                 ['blockquote', 'code-block'],
                 ['link', 'image'],
                 ['clean']
@@ -161,40 +161,32 @@ const ShowTopicDetailPage = () => {
           />
         ) : (
           <div
-          className="prose  max-w-none"
-          dangerouslySetInnerHTML={{
-            __html: replaceCodeWithLanguageClass(topic?.content)
-            .replace(/<h1>/g, '<h1 style="color: red;">')
-                  .replace(/<h2>/g, '<h2 style="color: red;">')
-                  .replace(/<h3>/g, '<h3 style="color: red;">')
-                  .replace(/<h4>/g, '<h4 style="color: red;">')
-                  .replace(/<\/h1>/g, '</h1>')
-                  .replace(/<\/h2>/g, '</h2>')
-                  .replace(/<pre><code>/g, '<pre class="language-js"><code>') 
-                  .replace(/<\/code><\/pre>/g, '</code></pre>'),
-          }}
-        />
+            className="prose  max-w-none"
+            dangerouslySetInnerHTML={{
+              __html: replaceCodeWithLanguageClass(topic?.content)
+                .replace(/<h1>/g, '<h1 style="color: red;">')
+                .replace(/<h2>/g, '<h2 style="color: red;">')
+                .replace(/<h3>/g, '<h3 style="color: red;">')
+                .replace(/<h4>/g, '<h4 style="color: red;">')
+                .replace(/<\/h1>/g, '</h1>')
+                .replace(/<\/h2>/g, '</h2>')
+                .replace(/<pre><code>/g, '<pre class="language-js  style="color: black;""><code>')
+                .replace(/<\/code><\/pre>/g, '</code></pre>')
+                .replace(/<p>/g, '<p style="color: black;">')
+                .replace(/<strong>/g, '<strong style="color: red;">')
+            }}
+          />
 
 
-        // <div>{topic.content}</div>
-          // <div
-          //   className="prose max-w-none"
-          //   dangerouslySetInnerHTML={{
-          //     __html: topic.content
-          //       .replace(/<h1>/g, '<h1 style="color: red;">')
-          //       .replace(/<h2>/g, '<h2 style="color: red;">')
-          //       .replace(/<h3>/g, '<h3 style="color: red;">')
-          //       .replace(/<h4>/g, '<h4 style="color: red;">')
-          //       .replace(/<\/h1>/g, '</h1>')
-          //       .replace(/<\/h2>/g, '</h2>')
-          //       .replace(/<pre><code>/g, '<pre class="language-js"><code>') 
-          //       .replace(/<\/code><\/pre>/g, '</code></pre>'),
-          //   }}
-          // />
-          
+
+
         )}
       </div>
-   
+
+
+      {/* <p>This is some normal content.</p>
+<pre class="language-js"><code>const x = 10;</code></pre>
+<p>More content here...</p> */}
 
       <div className="flex justify-between items-center mt-6">
         {blogPermission && (
@@ -214,6 +206,7 @@ const ShowTopicDetailPage = () => {
           </button>
         )}
       </div>
+      {/* <div>{bloggerName}</div> */}
     </div>
   );
 };

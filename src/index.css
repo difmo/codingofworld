@@ -131,7 +131,12 @@ div {
   color: #d63384; /* Color for inline code */
 }
 
+
+
+
 /* Custom styles for syntax highlighting */
+
+
 .ql-syntax {
   font-family: 'Courier New', monospace;
   font-size: 14px;
