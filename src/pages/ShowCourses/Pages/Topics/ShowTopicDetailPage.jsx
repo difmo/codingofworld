@@ -6,66 +6,63 @@ import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css"; // Import Quill CSS for styling
 import 'prismjs';
 import 'prismjs/themes/prism-tomorrow.css'; // Dark theme for code blocks
+import Prism from "prismjs";
 
 const ShowTopicDetailPage = () => {
   const [topic, setTopic] = useState(null);
-  const [isEditMode, setIsEditMode] = useState(false); 
+  const [isEditMode, setIsEditMode] = useState(false);
   const [newTitle, setNewTitle] = useState('');
   const [newContent, setNewContent] = useState('');
   const { courseId, topicId } = useParams();
-  const  [admin, setIsAdmin] = useState(false); 
+  const [admin, setIsAdmin] = useState(false);
   const [blogPermission, setBlogPermission] = useState(false);
   const [userLogin, setIsUserLogin] = useState(false);
-  const [bloggerName, setbloggerName] = useState();
-  
-  useEffect(() => {
-    // Prism.js will automatically highlight code when content is rendered
-    window.Prism && window.Prism.highlightAll();
-  }, [topic?.content]); // Ensure topic is not null before this effect
+  const [bloggerName, setBloggerName] = useState();
+
 
   useEffect(() => {
-      const unsubscribe = auth.onAuthStateChanged((user) => {
-          if (user) {
-              if (user.emailVerified) {
-                  setIsUserLogin(user);
-                  fetchUserRole(user.uid);
-              } else {
-                  console.log("Email is not verified yet");
-              }
-          } else {
-              setIsAdmin(false);
-              setIsUserLogin(false);
-              console.log("user is not login yet");
-          }
-      });
-      return () => unsubscribe();
+    const unsubscribe = auth.onAuthStateChanged((user) => {
+      if (user) {
+        if (user.emailVerified) {
+          setIsUserLogin(user);
+          fetchUserRole(user.uid);
+        } else {
+          console.log("Email is not verified yet");
+        }
+      } else {
+        setIsAdmin(false);
+        setIsUserLogin(false);
+        console.log("User is not logged in yet");
+      }
+    });
+    return () => unsubscribe();
   });
 
   const fetchUserRole = async (uid) => {
-      try {
-          const userQuery = query(collection(db, "users"), where("uid", "==", uid));
-          const querySnapshot = await getDocs(userQuery);
-          if (!querySnapshot.empty) {
-              querySnapshot.forEach((doc) => {
-                  const userData = doc.data();
-                  if (userData.isCreatePermission === true) {
-                      setBlogPermission(true);
-                  }
-                  if (userData.name) {
-                      setbloggerName(userData.name);
-                  }
-                  if (userData.whoIs === "isAdmin") {
-                      setIsAdmin(true);
-                  } else {
-                      setIsAdmin(false);
-                  }
-              });
-          } else {
-              console.log("No user found with uid");
+    try {
+      const userQuery = query(collection(db, "users"), where("uid", "==", uid));
+      const querySnapshot = await getDocs(userQuery);
+      if (!querySnapshot.empty) {
+        querySnapshot.forEach((doc) => {
+          const userData = doc.data();
+          if (userData.isCreatePermission === true) {
+            setBlogPermission(true);
           }
-      } catch (e) {
-          console.log(e);
+          if (userData.name) {
+            setBloggerName(userData.name);
+          }
+          if (userData.whoIs === "isAdmin") {
+            setIsAdmin(true);
+          } else {
+            setIsAdmin(false);
+          }
+        });
+      } else {
+        console.log("No user found with uid");
       }
+    } catch (e) {
+      console.log(e);
+    }
   };
 
   useEffect(() => {
@@ -89,6 +86,11 @@ const ShowTopicDetailPage = () => {
 
     fetchTopic();
   }, [courseId, topicId]);
+  useEffect(() => {
+    // Highlight code after the component mounts (for Prism)
+    Prism.highlightAll();
+  }, [topic?.content]); // Only trigger when topic content changes
+
 
   const toggleEditMode = () => {
     setIsEditMode((prev) => !prev);
@@ -113,8 +115,19 @@ const ShowTopicDetailPage = () => {
     return <div className="text-center text-xl text-gray-600">Loading...</div>;
   }
 
+  const replaceCodeWithLanguageClass = (content) => {
+    return content.replace(/<pre><code>([\s\S]*?)<\/code><\/pre>/g, (match, code) => {
+      let language = 'js'; // Default to JavaScript
+      if (code.includes('def') && code.includes('print')) language = 'python';
+      if (code.includes('<html') && code.includes('</html>')) language = 'html';
+      if (code.includes('function') && code.includes('console.log')) language = 'javascript';
+      if (code.includes('class') && code.includes('public')) language = 'java';
+      return `<pre class="language-${language}"><code>${code}</code></pre>`;
+    });
+  };
+
   return (
-    <div className="max-w-4xl mx-auto p-6">
+    <div className="max-w-4xl mx-auto p-0 md:p-6">
       <div className="mt-4">
         {isEditMode ? (
           <input
@@ -124,7 +137,7 @@ const ShowTopicDetailPage = () => {
             className="w-full p-2 border border-gray-300 rounded-lg"
           />
         ) : (
-          <h3 className="text-4xl text-secondaryblue font-semibold">{topic.title}</h3>
+          <h3 className="text-xl md:text-4xl text-secondaryblue font-semibold">{topic.title}</h3>
         )}
       </div>
 
@@ -135,21 +148,45 @@ const ShowTopicDetailPage = () => {
             onChange={setNewContent}
             className="w-full h-96"
             placeholder="Write the content of the topic here"
+            formats={['bold', 'italic', 'underline', 'link', 'blockquote', 'code-block']} // Allow code-block
+            modules={{
+              toolbar: [
+                [{ 'header': '1' }, { 'header': '2' }, 'bold', 'italic', 'link'], // Adding 'header' for h1, h2 etc.
+                [{ 'list': 'ordered' }, { 'list': 'bullet' }],
+                ['blockquote', 'code-block'],
+                ['link', 'image'],
+                ['clean']
+              ],
+            }}
           />
         ) : (
           <div
-            className="prose max-w-none"
-            dangerouslySetInnerHTML={{ __html: topic.content   
-              .replace(/<h1>/g, '<h1 style="color: red;">')
-              .replace(/<h2>/g, '<h2 style="color: red;">')
-              .replace(/<h3>/g, '<h3 style="color: red;">')
-              .replace(/<h4>/g, '<h4 style="color: red;">')
-              .replace(/<\/h1>/g, '</h1>')
-              .replace(/<\/h2>/g, '</h2>')
+            className="prose  max-w-none"
+            dangerouslySetInnerHTML={{
+              __html: replaceCodeWithLanguageClass(topic?.content)
+                .replace(/<h1>/g, '<h1 style="color: red;">')
+                .replace(/<h2>/g, '<h2 style="color: red;">')
+                .replace(/<h3>/g, '<h3 style="color: red;">')
+                .replace(/<h4>/g, '<h4 style="color: red;">')
+                .replace(/<\/h1>/g, '</h1>')
+                .replace(/<\/h2>/g, '</h2>')
+                .replace(/<pre><code>/g, '<pre class="language-js  style="color: black;""><code>')
+                .replace(/<\/code><\/pre>/g, '</code></pre>')
+                .replace(/<p>/g, '<p style="color: black;">')
+                .replace(/<strong>/g, '<strong style="color: red;">')
             }}
           />
+
+
+
+
         )}
       </div>
+
+
+      {/* <p>This is some normal content.</p>
+<pre class="language-js"><code>const x = 10;</code></pre>
+<p>More content here...</p> */}
 
       <div className="flex justify-between items-center mt-6">
         {blogPermission && (
@@ -169,6 +206,7 @@ const ShowTopicDetailPage = () => {
           </button>
         )}
       </div>
+      {/* <div>{bloggerName}</div> */}
     </div>
   );
 };
