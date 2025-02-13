@@ -6,7 +6,7 @@ const testimonialData = [
   {
     id: 1,
     name: "Ankesh Yadav",
-    designation: "Student @TechAcademy",
+    // designation: "Student @TechAcademy",
     content:
       "The creative environment and collaborative approach at Difmo Technologies are unmatched. The team goes above and beyond to design user-centric products. It's inspiring to work with such a dedicated group of professionals.",
     image:
@@ -16,7 +16,7 @@ const testimonialData = [
   {
     id: 2,
     name: "Harsh Preetam panday",
-    designation: "Student @InnovateInstitute",
+    // designation: "Student @InnovateInstitute",
     content:
       "I am grateful for the incredible  and grow in web and mobile app development. The supportive and collaborative team environment has enhanced my skills and fostered a deeper understanding of the technologies. ",
     image:
@@ -26,7 +26,7 @@ const testimonialData = [
   {
     id: 3,
     name: "Ravi Verma",
-    designation: "Student @NextGenTech",
+    // designation: "Student @NextGenTech",
     content:
       "An incredible workspace with a dynamic environment, offering top-notch web and app development services. Dedication to excellence, innovation, and seamless execution fosters learning, growth, and outstanding solutions.",
     image:
@@ -36,7 +36,7 @@ const testimonialData = [
   {
     id: 4,
     name: "Agni Patel",
-    designation: "Student @DigitalAcademy",
+    // designation: "Student @DigitalAcademy",
     content:
       " A fantastic opportunity to learn and excel in web and mobile app development, supported by a highly collaborative, innovative, and encouraging team.",
     image:
@@ -46,7 +46,7 @@ const testimonialData = [
   {
     id: 5,
     name: "Keke Yadav",
-    designation: "Student @SmartCode Institute",
+    // designation: "Student @SmartCode Institute",
     content:
       "Difmo Technologies fosters an unparalleled creative environment and collaborative spirit. The team's dedication to crafting user-centric designs is truly inspiring.",
     image:
@@ -56,7 +56,7 @@ const testimonialData = [
   {
     id: 6,
     name: "Satya Kumar",
-    designation: "Student @TechBliss Academy",
+    // designation: "Student @TechBliss Academy",
     content:
       " A fantastic opportunity to gain hands-on experience and enhance coding skills. Real-world projects and a supportive team provided valuable industry insights. ",
     image:
@@ -67,7 +67,7 @@ const testimonialData = [
 
 const Testimonials = () => {
   return (
-    <section className="dark:bg-bg-color-dark bg-gray-light relative z-10 py-16 md:py-20 lg:py-28">
+    <section className="dark:bg-bg-color-dark bg-gray-light relative -z-10 py-16 md:py-20 lg:py-28">
       <div className="container">
         <SectionTitle
           title="Our Student Reviews"

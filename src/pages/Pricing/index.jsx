@@ -7,7 +7,7 @@ const Pricing = () => {
   const [isMonthly, setIsMonthly] = useState(true);
 
   return (
-    <section id="pricing" className="relative  z-10  md:py-20 lg:py-28">
+    <section id="pricing" className="relative  -z-50  md:py-20 lg:py-28">
       <div className="container">
         <SectionTitle
           title="Simple and Affordable Pricing"

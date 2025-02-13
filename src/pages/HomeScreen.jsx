@@ -32,7 +32,7 @@ const HomeScreen = () => {
       {/* <Video/> */}
       <Testimonials />
       <FAQ />
-      {/* <Brands /> */}
+      <Brands />
     </div>
   );
 };
