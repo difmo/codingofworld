@@ -32,7 +32,7 @@ export const About = () => {
             <AboutCard
               color="bg-red-500"
               icon={<FaPen size={50} />}
-              title="400+ Online Courses"
+              title="Online Mode Courses"
               desc="Gain access to a wide range of courses across multiple domains."
             />
             <AboutCard
