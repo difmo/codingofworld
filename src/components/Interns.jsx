@@ -49,17 +49,14 @@ const Internships = () => {
   return (
     <>
       <section className="bg-[#FFF] py-8">
-        <div className="md:py-16 py-10 heading  md:px-24 px-3 ">
+        <div className="w-full max-w-screen-xl py-6  m-auto">
           <h1 className="text-3xl font-semibold text-black md:text-4xl">
-            Unlock Your Potential with Industry- Leading Courses Empower your
-            <br /> career with hands-on training and certifications from
+            Courses Master in-demand skills with
+            <br /> hands-on training and certifications from
             <span className="text-primary">Difmo Technologies</span>
           </h1>
           <span className="block mt-2 text-sm md:text-base">
-            {" "}
-            Whether you're a beginner or an experienced professional, our
-            expert-led courses help you gain in-demand skills and advance in
-            your field.
+            Difmo Technologies. Learn, grow, and succeed with industry experts!
           </span>
         </div>
         {/* Display internships in a responsive grid */}
