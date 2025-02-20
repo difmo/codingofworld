@@ -148,7 +148,7 @@ const ShowTopicDetailPage = () => {
             onChange={setNewContent}
             className="w-full h-96"
             placeholder="Write the content of the topic here"
-            formats={['bold', 'italic', 'underline', 'link', 'blockquote', 'code-block']} // Allow code-block
+            formats={['bold', 'italic', 'underline', 'link', 'blockquote', 'code-block']} 
             modules={{
               toolbar: [
                 [{ 'header': '1' }, { 'header': '2' }, 'bold', 'italic', 'link'], // Adding 'header' for h1, h2 etc.
