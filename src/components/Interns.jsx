@@ -49,15 +49,19 @@ const Internships = () => {
   return (
     <>
       <section className="bg-[#FFF] py-8">
-        <h2 className="text-4xl font-bold text-left text-black">
-          Explore Our Internships
-        </h2>
-        <p className="px-12 py-3 mb-6 text-xl te  xt-center text-gray-700">
-          The internships below offer a glimpse into the opportunities available
-          at Coding of World. Gain hands-on experience in web development,
-          mobile app development, AI/ML, and more.
-        </p>
-
+        <div className="md:py-16 py-10 heading  md:px-24 px-3 ">
+          <h1 className="text-3xl font-semibold text-black md:text-4xl">
+            Unlock Your Potential with Industry- Leading Courses Empower your
+            <br /> career with hands-on training and certifications from
+            <span className="text-primary">Difmo Technologies</span>
+          </h1>
+          <span className="block mt-2 text-sm md:text-base">
+            {" "}
+            Whether you're a beginner or an experienced professional, our
+            expert-led courses help you gain in-demand skills and advance in
+            your field.
+          </span>
+        </div>
         {/* Display internships in a responsive grid */}
         <ul className="container grid grid-cols-1 gap-12 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3">
           {internships.map((internship) => (
