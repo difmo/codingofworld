@@ -90,6 +90,7 @@ const Pricing = () => {
               text="Basic Cloud Computing Concepts"
               status="inactive"
             />
+          {/* oihibo */}
           </PricingBox>
           <PricingBox
             packageName="Intermediate"

@@ -45,30 +45,44 @@ const InternshipDetails = () => {
   }
 
   return (
-    <div className="px-4 py-10 sm:px-8 lg:px-16 xl:px-32">
-      <h2 className="mb-6 text-3xl font-bold text-center text-gray-800 font-play md:text-5xl lg:text-6xl">
+    <div className="px-4 top-0 relative z-10 ">
+      {/* <h2 className="mb-6 text-3xl font-bold text-center text-gray-800 font-play md:text-5xl lg:text-6xl">
         {internship.title}
-      </h2>
+      </h2> */}
 
-      <div className="flex flex-col items-center md:flex-row md:justify-between">
-        {/* Thumbnail Section */}
-        <div className="w-full mb-6 md:w-1/2 md:mb-0">
-          <img
-            src={internship.thumbnailUrl}
-            alt={internship.title}
-            className="object-cover w-full rounded-lg shadow-lg h-72 md:h-96"
+      {/* <div className="flex flex-col items-center md:flex-row md:justify-between"> */}
+      {/* Thumbnail Section */}
+      <div className="w-full">
+        <img
+          src={internship.thumbnailUrl}
+          alt={internship.title}
+          className="bg-cover w-full  "
+        />
+      </div>
+
+      {/* Bio and Enroll Button Section */}
+
+      {/* </div> */}
+
+      {/* Description Section */}
+      <div className="mt-12 content-container flex justify-between sm:px-8 lg:px-12 xl:px-12">
+        <div className="w-4\/5">
+          <h3 className="mb-4 text-2xl font-semibold text-gray-800">
+            Internship Details
+          </h3>
+          <p
+            className="text-lg leading-relaxed text-gray-700 font-anek_telugu"
+            dangerouslySetInnerHTML={{ __html: internship.description }}
           />
         </div>
-
-        {/* Bio and Enroll Button Section */}
-        <div className="w-full p-6 md:w-1/2 md:p-8">
-          <div className="mb-6 content-container">
+        <div className="w-full p-6  ">
+          <div className="mb-6 content-containermd:px-18  lg:px-24">
             <p
-              className="text-lg leading-relaxed text-gray-700 font-anek_telugu"
+              className="text-lg leading-relaxed text-gray-700 font-anek_telugu "
               dangerouslySetInnerHTML={{ __html: internship.bio }}
             />
           </div>
-          <div className="text-center">
+          <div className="text-center md:px-18 lg:px-24">
             <button
               onClick={() => navigate("/internshipform")}
               className="px-6 py-3 text-white transition-all duration-300 transform rounded-lg shadow-md bg-primary hover:bg-primary/80 hover:scale-105"
@@ -77,17 +91,6 @@ const InternshipDetails = () => {
             </button>
           </div>
         </div>
-      </div>
-
-      {/* Description Section */}
-      <div className="mt-12 content-container">
-        <h3 className="mb-4 text-2xl font-semibold text-gray-800">
-          Internship Details
-        </h3>
-        <p
-          className="text-lg leading-relaxed text-gray-700 font-anek_telugu"
-          dangerouslySetInnerHTML={{ __html: internship.description }}
-        />
       </div>
     </div>
   );

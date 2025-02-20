@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { collection, getDocs } from "firebase/firestore";
 import { db } from "../firebase";
 import Loader from "./Loader";
@@ -63,7 +63,7 @@ const Internships = () => {
           {internships.map((internship) => (
             <li
               key={internship.id}
-              className="relative flex flex-col justify-between overflow-hidden transition-all transform bg-white border border-gray-300 shadow-lg cursor-pointer rounded-xl hover:scale-105 hover:shadow-xl hover:bg-[#f7f7f7] hover:border-primary"
+              className="relative flex flex-col justify-between overflow-hidden transition-all transform bg-white border border-gray-300  cursor-pointer rounded-xl hover:scale-105  hover:bg-[#f7f7f7]"
               onClick={() => navigate(`/internship/${internship.id}`)}
             >
               <div className="transition-opacity duration-300 ">
@@ -73,6 +73,13 @@ const Internships = () => {
                   alt={internship.title}
                   loading="lazy"
                 />
+                <div className="flex justify-between px-4 py-2 ">
+                  <p className="bg-red-100 p-2 rounded text-red-600">
+                    {" "}
+                    {internship.Internship}
+                  </p>
+                  <p className="p-2"> {internship.months}</p>
+                </div>
                 <h3 className="px-4 py-4 text-2xl font-semibold text-black">
                   {internship.title}
                 </h3>
@@ -86,12 +93,12 @@ const Internships = () => {
               />
 
               {/* Internship details (Duration and Level) */}
-              <div className="flex items-center justify-between p-4 text-xs text-gray-500 md:text-sm">
+              <div className="flex items-center justify-between px-4 text-xs text-gray-500 md:text-sm">
                 <span className="font-medium">{internship.duration}</span>
                 <span className="font-medium">{internship.level}</span>
               </div>
-              {/* Action Button */}
-              <div className="left-0 w-full p-4 bottom-10 bg-gradient-to-t from-black/60 to-transparent rounded-b-xl">
+              {/* Action Button bg-gradient-to-t from-black/60 to-transparent rounded-b-xl*/}
+              <div className="left-0 w-full p-4 bottom-10 ">
                 <button
                   className="w-full px-4 py-2 text-lg text-white transition-all bg-primary rounded-xl hover:bg-primary/90"
                   onClick={() => navigate(`/internship/${internship.id}`)}

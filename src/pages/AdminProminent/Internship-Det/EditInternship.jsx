@@ -11,6 +11,8 @@ const EditInternship = () => {
   const navigate = useNavigate();
 
   const [title, setTitle] = useState(""); // Store the title of the internship
+  const [Internship, setInternship] = useState("");
+  const [months, setmonths] = useState("");
   const [description, setDescription] = useState(""); // Store the description of the internship
   const [bio, setBio] = useState(""); // Store the bio of the internship
   const [shortDescription, setShortDescription] = useState(""); // Store the short description
@@ -28,6 +30,8 @@ const EditInternship = () => {
         if (docSnap.exists()) {
           const data = docSnap.data();
           setTitle(data.title);
+          setInternship(data.Internship);
+          setmonths(data.months);
           setDescription(data.description);
           setBio(data.bio); // Set the bio from Firestore
           setShortDescription(data.shortDescription || ""); // Set the short description from Firestore
@@ -61,6 +65,8 @@ const EditInternship = () => {
     try {
       let updatedInternship = {
         title,
+        Internship,
+        months,
         description,
         bio, // Add bio to the updated internship object
         shortDescription, // Add short description to the updated internship object
@@ -125,7 +131,43 @@ const EditInternship = () => {
             placeholder="Enter internship title"
           />
         </div>
-
+        {/* Internship */}
+        <div className="flex justify-between">
+          <div>
+            <label
+              htmlFor="Internship"
+              className="block text-sm font-medium text-gray-700"
+            >
+              Internship
+            </label>
+            <input
+              type="text"
+              id="Internship"
+              value={Internship}
+              onChange={(e) => setInternship(e.target.value)}
+              required
+              className="mt-2 p-2 w-full border border-gray-300 rounded"
+              placeholder="Enter internship Internship"
+            />
+          </div>
+          <div>
+            <label
+              htmlFor=" months"
+              className="block text-sm font-medium text-gray-700"
+            >
+              Months
+            </label>
+            <input
+              type="text"
+              id=" months"
+              value={months}
+              onChange={(e) => setmonths(e.target.value)}
+              required
+              className="mt-2 p-2 w-full border border-gray-300 rounded"
+              placeholder="Enter internship  months"
+            />
+          </div>
+        </div>
         {/* Short Description input */}
         <div>
           <label
