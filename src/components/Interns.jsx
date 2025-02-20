@@ -49,7 +49,7 @@ const Internships = () => {
   return (
     <>
       <section className="bg-[#FFF] py-8">
-        <h2 className="text-4xl font-bold text-center text-black">
+        <h2 className="text-4xl font-bold text-left text-black">
           Explore Our Internships
         </h2>
         <p className="px-12 py-3 mb-6 text-xl te  xt-center text-gray-700">
@@ -68,7 +68,7 @@ const Internships = () => {
             >
               <div className="transition-opacity duration-300 ">
                 <img
-                  className="object-cover w-full h-60 rounded-t-xl" // Only top corners rounded
+                  className="bg-cover w-full h-60 rounded-t-xl" // Only top corners rounded
                   src={internship.thumbnailUrl}
                   alt={internship.title}
                   loading="lazy"
