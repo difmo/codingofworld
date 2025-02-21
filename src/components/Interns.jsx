@@ -50,12 +50,12 @@ const Internships = () => {
     <>
       <section className="bg-[#FFF] py-8">
         <div className="w-full max-w-screen-xl py-6  m-auto">
-          <h1 className="text-3xl font-semibold text-black md:text-4xl">
-            Courses Master in-demand skills with
-            <br /> hands-on training and certifications from{" "}
+          <h1 className="text-3xl font-semibold text-black md:text-4xl px-2 ">
+            Courses Master in-demand skills with hands-on training and
+            certifications from{" "}
             <span className="text-primary">Difmo Technologies</span>
           </h1>
-          <span className="block mt-2 text-sm md:text-base">
+          <span className="block mt-2 px-2 text-sm md:text-base">
             Difmo Technologies. Learn, grow, and succeed with industry experts!
           </span>
         </div>
