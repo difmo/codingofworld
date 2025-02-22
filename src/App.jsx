@@ -209,7 +209,7 @@ const App = () => {
             <Route path="/courses" element={<Courses />} />
             <Route path="/about" element={<About />} />
             <Route path="/trainingteam" element={<TrainingTeam />} />
-            <Route path="/internship" element={<InternshipsSection />} />
+            <Route path="/programs" element={<InternshipsSection />} />
             <Route path="/internshipform" element={<InternshipForm />} />
             <Route path="/tcsnqtcourse" element={<TcsNqtCourse />} />
             <Route path="/signupscreen" element={<SingUpScreen />} />

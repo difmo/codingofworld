@@ -20,7 +20,7 @@ const NavbarMenu = [
   { id: 1, title: "Home", path: "/" },
   { id: 2, title: "Our Courses", path: "/courses" },
   // { id: 2, title: "Our Courses2", path: "/show-coursee" },
-  { id: 3, title: "Programs", path: "/internship" },
+  { id: 3, title: "Programs", path: "/programs" },
   { id: 4, title: "About Us", path: "/about" },
   { id: 5, title: "Contact Us", path: "/contactus" },
   { id: 6, title: "Blogs", path: "/show-blogs" },
