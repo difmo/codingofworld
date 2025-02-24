@@ -1,7 +1,7 @@
-import React, { useEffect, useState } from 'react';
-import { db } from '../../../firebase';
-import { collection, getDocs } from 'firebase/firestore';
-import { useNavigate } from 'react-router-dom';
+import React, { useEffect, useState } from "react";
+import { db } from "../../../firebase";
+import { collection, getDocs } from "firebase/firestore";
+import { useNavigate } from "react-router-dom";
 
 const ShowAllCoursesPage = () => {
   const [courses, setCourses] = useState([]);
@@ -10,14 +10,14 @@ const ShowAllCoursesPage = () => {
   useEffect(() => {
     const fetchCourses = async () => {
       try {
-        const querySnapshot = await getDocs(collection(db, 'courses'));
-        const coursesList = querySnapshot.docs.map(doc => ({
+        const querySnapshot = await getDocs(collection(db, "courses"));
+        const coursesList = querySnapshot.docs.map((doc) => ({
           id: doc.id,
-          ...doc.data()
+          ...doc.data(),
         }));
         setCourses(coursesList);
       } catch (error) {
-        console.error('Error fetching courses:', error);
+        console.error("Error fetching courses:", error);
       }
     };
 
@@ -55,8 +55,8 @@ const ShowAllCoursesPage = () => {
       </div> */}
 
       {/* Courses grid layout */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
-        {courses.map(course => (
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-8">
+        {courses.map((course) => (
           <div
             key={course.id}
             className="bg-secondaryblue border border-gray-200 rounded-lg shadow-lg transform transition-all duration-300 hover:scale-105 hover:shadow-xl cursor-pointer"
@@ -64,23 +64,30 @@ const ShowAllCoursesPage = () => {
           >
             <div className="p-6">
               {/* Course Title */}
-              <div className="bg-gradient-to-r from-primary via-primary to-secondaryblue p-6 rounded-lg shadow-lg">
-                <h3 className="text-2xl font-semibold text-white "> Learn {course.title}</h3>
+              <div className="bg-gradient-to-r from-primary via-primary to-secondaryblue px-6  py-3 rounded-lg shadow-lg">
+                <h3 className="text-2xl font-semibold text-white">
+                  {course.title
+                    ? course.title.split(" ").slice(0, 5).join(" ") + "..."
+                    : ""}
+                </h3>
               </div>
 
-
               {/* Course Content Preview */}
-              <p className="text-white text-base mb-4"
+              <p
+                className="text-white text-base my-4"
                 dangerouslySetInnerHTML={{
-                  __html: course.content.length > 100
-                    ? `${course.content.slice(0, 100)}...`
-                    : course.content
+                  __html:
+                    course.content.length > 100
+                      ? `${course.content.slice(0, 100)}...`
+                      : course.content,
                 }}
               />
 
               {/* Hover Effects */}
               <div className="mt-4 text-center">
-                <button className="text-primary hover:text-blue-700 font-medium">Start Reading Free</button>
+                <button className="text-primary hover:text-blue-700 font-medium">
+                  Start Reading Free
+                </button>
               </div>
             </div>
           </div>

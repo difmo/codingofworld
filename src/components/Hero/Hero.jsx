@@ -32,11 +32,10 @@ export const FadeUp = (delay) => {
 };
 
 const Hero = () => {
-  
   const navigate = useNavigate();
- 
+
   const [currentImage, setCurrentImage] = useState(0);
-  const [isModalOpen, setIsModalOpen] = useState(true);
+  const [isModalOpen, setIsModalOpen] = useState(false);
   const [currentTextIndex, setCurrentTextIndex] = useState(0);
   const images = [HeroPng1, HeroPng2, HeroPng3];
   const textOptions = [
@@ -74,48 +73,49 @@ const Hero = () => {
   const closeModal = () => {
     setIsModalOpen(false);
   };
-const handleSubmit = async () => {
+  const handleSubmit = async () => {
     if (!isUserLogin) {
-        alert("Please login to submit the test.");
-        return;
+      alert("Please login to submit the test.");
+      return;
     }
 
     const studentRef = doc(db, "students", userUid);
     const studentDoc = await getDoc(studentRef);
 
     if (studentDoc.exists()) {
-        const studentData = studentDoc.data();
+      const studentData = studentDoc.data();
 
-        // Check if the student has already completed the test
-        if (studentData.completed) {
-            alert("You have already submitted the test.");
-            return;
-        }
-    } else {
-        // Handle case where the student document does not exist
-        alert("Student data not found.");
+      // Check if the student has already completed the test
+      if (studentData.completed) {
+        alert("You have already submitted the test.");
         return;
+      }
+    } else {
+      // Handle case where the student document does not exist
+      alert("Student data not found.");
+      return;
     }
 
     const { name, email, mobnum, stream, answers } = userData;
 
     const marks = answers.reduce((total, answer, index) => {
-        if (answer === questions[index].answer) {
-            return total + 1;
-        }
-        return total;
+      if (answer === questions[index].answer) {
+        return total + 1;
+      }
+      return total;
     }, 0);
 
     try {
-        // Do not set the completed status, just get and check
-        console.log("Marks calculated:", marks);
-        alert(`Test submitted! Your score is ${marks} out of ${questions.length}`);
-        setCompleted(true); // Update UI or state after submission
+      // Do not set the completed status, just get and check
+      console.log("Marks calculated:", marks);
+      alert(
+        `Test submitted! Your score is ${marks} out of ${questions.length}`
+      );
+      setCompleted(true); // Update UI or state after submission
     } catch (error) {
-        console.error("Error submitting test:", error);
+      console.error("Error submitting test:", error);
     }
-};
-
+  };
 
   return (
     <section className="relative overflow-hidden bg-white">
@@ -172,24 +172,25 @@ const handleSubmit = async () => {
               animate="animate"
               className="flex flex-col items-center md:items-start justify-center md:justify-start"
             >
-              <div className="w-[312px]">   <TimerButton /> </div>
+              <div className="w-[312px]">
+                {" "}
+                <TimerButton />{" "}
+              </div>
 
               <div className="flex items-center gap-4">
-
                 <div className="flex items-center">
-
-
                   <button
                     onClick={() => navigate("/loginscreen")}
-
-                    className="flex items-center gap-2 text-[16px] px-4 h-12 rounded-md bg-red-500 text-white hover:bg-red-600 focus:outline-none focus:ring-2 focus:ring-red-500">
+                    className="flex items-center gap-2 text-[16px] px-4 h-12 rounded-md bg-red-500 text-white hover:bg-red-600 focus:outline-none focus:ring-2 focus:ring-red-500"
+                  >
                     Register for free
                   </button>
                 </div>
                 <div className="flex items-center ">
                   <button
                     onClick={() => navigate("/courses")}
-                    className=" border-2 border-red-600 flex items-center gap-2 text-[16px] px-4 h-12 rounded-md bg-white text-red-500 hover:bg-red-500 hover:text-white focus:outline-none focus:ring-2 focus:ring-red-500 ">
+                    className=" border-2 border-red-600 flex items-center gap-2 text-[16px] px-4 h-12 rounded-md bg-white text-red-500 hover:bg-red-500 hover:text-white focus:outline-none focus:ring-2 focus:ring-red-500 "
+                  >
                     Explore courses
                   </button>
                 </div>

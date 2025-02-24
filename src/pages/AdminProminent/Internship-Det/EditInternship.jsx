@@ -176,11 +176,11 @@ const EditInternship = () => {
           >
             Short Description
           </label>
-          <input
+          <ReactQuill
             type="text"
             id="shortDescription"
             value={shortDescription}
-            onChange={(e) => setShortDescription(e.target.value)}
+            onChange={setShortDescription}
             required
             className="mt-2 p-2 w-full border border-gray-300 rounded"
             placeholder="Enter a short description"

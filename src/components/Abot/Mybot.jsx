@@ -8,7 +8,7 @@ const MyBot = () => {
   const [chatHistory, setChatHistory] = useState([]);
   const [loading, setLoading] = useState(false);
   const [defaultQuestions, setDefaultQuestions] = useState([]);
-  const [isOpen, setIsOpen] = useState(window.innerWidth >= 768); // Open by default on desktop
+  const [isOpen, setIsOpen] = useState(false); // Open by default on desktop
   const chatContainerRef = useRef(null);
 
   useEffect(() => {
