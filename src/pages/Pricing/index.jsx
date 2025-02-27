@@ -11,7 +11,7 @@ const Pricing = () => {
       <div className="container">
         <SectionTitle
           title="Simple and Affordable Pricing"
-          paragraph="There are many variations of passages of Lorem Ipsum available but the majority have suffered alteration in some form."
+          paragraph="The tech industry is constantly evolving, with new innovations shaping the future. Staying updated with the latest trends and continuously developing skills is essential for success in today's fast-paced world."
           center
           width="665px"
         />
@@ -47,7 +47,7 @@ const Pricing = () => {
               </div>
             </div>
             <span
-              onClick={() => setIsMonthly(false)}
+              onClick={() => setIsMonthly(true)}
               className={`${
                 isMonthly
                   ? "text-dark dark:text-white"
@@ -90,7 +90,7 @@ const Pricing = () => {
               text="Basic Cloud Computing Concepts"
               status="inactive"
             />
-          {/* oihibo */}
+            {/* oihibo */}
           </PricingBox>
           <PricingBox
             packageName="Intermediate"

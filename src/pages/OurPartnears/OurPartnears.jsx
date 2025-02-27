@@ -1,7 +1,7 @@
 import React from "react";
 import SectionTitle from "../Pricing/SectionTitle";
 import { motion } from "framer-motion";
-// import sap from "../../assets/saptrishi.jpg";
+import sap from "../../assets/saptrishi.jpg";
 const brandsData = [
   {
     id: 1,
@@ -13,7 +13,7 @@ const brandsData = [
     id: 2,
     name: "Brand 2",
     href: "https://saptrishi.net/",
-    image: "src/assets/saptrishi.jpg", // Dummy image URL
+    image: sap, // Dummy image URL
   },
   {
     id: 3,
@@ -39,11 +39,11 @@ const Brands = () => {
         // paragraph="There are many variations of passages of Lorem Ipsum available but the majority have suffered alteration in some form."
         center
       />
-      <div className="container  ">
-        <div className="mx-4 flex flex-wrap">
-          <div className="w-full px-4 ">
+      <div className="container mx-auto px-4">
+        <div className="mx-auto flex flex-wrap py-4">
+          <div className="w-full px-4">
             <motion.div
-              className="   dark:bg-gray-dark flex flex-wrap items-center justify-center rounded-sm px-8 py-8 sm:px-10 md:px-[50px] md:py-[40px] xl:p-[50px] 2xl:px-[70px] 2xl:py-[60px]"
+              className="my-3 gap-7 dark:bg-gray-dark flex flex-wrap items-center justify-center rounded-sm px-8 py-8 sm:px-10 md:px-[50px] md:py-[40px] xl:p-[50px] 2xl:px-[70px] 2xl:py-[60px]"
               data-wow-delay=".1s"
               initial={{ x: -100, opacity: 0 }}
               animate={{ x: 0, opacity: 1 }}
