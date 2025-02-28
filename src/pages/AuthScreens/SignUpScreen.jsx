@@ -1,4 +1,4 @@
-import  { useState } from "react";
+import { useState } from "react";
 import signup from "../../assets/images/signup.svg";
 import { useNavigate } from "react-router-dom";
 import CustomInput from "../../components/InputAndButton/CustomInput";
@@ -12,7 +12,9 @@ import * as Yup from "yup";
 import { useFormik } from "formik";
 import { collection, addDoc } from "firebase/firestore";
 
+// Updated validation schema
 const validationSchema = Yup.object().shape({
+  name: Yup.string().required("Name is required"), // Added validation for name
   email: Yup.string()
     .email("Invalid email format")
     .required("Email is required"),
@@ -48,6 +50,7 @@ export default function SignUpScreen() {
 
   const formik = useFormik({
     initialValues: {
+      name: "", // Added name field
       email: "",
       password: "",
     },
@@ -68,8 +71,10 @@ export default function SignUpScreen() {
         console.log("User:", user);
 
         if (user) {
+          // Save name, email, and other data to Firestore
           await addDoc(collection(db, "users"), {
             uid: user.uid,
+            name: values.name, // Added name to Firestore data
             email: user.email,
             whoIs: "isUser",
             isCreatePermission: false,
@@ -104,7 +109,7 @@ export default function SignUpScreen() {
   return (
     <section className="h-full bg-gray-100 md:h-screen">
       <div className="flex flex-col items-center justify-center sm:flex-row ">
-        <div className=" md:flex md:w-6/12 lg:w-6/12">
+        <div className="md:flex md:w-6/12 lg:w-6/12">
           <img src={signup} className="w-full p-20" alt="Sample" />
         </div>
 
@@ -112,7 +117,7 @@ export default function SignUpScreen() {
           <form onSubmit={formik.handleSubmit}>
             <div
               onClick={() => {
-                // alert("Sorry! Not available at this moment")
+                alert("Sorry! Not available at this moment")
               }}
               className="flex items-center justify-center lg:justify-start"
             >
@@ -126,6 +131,18 @@ export default function SignUpScreen() {
               <div className="flex-1 border-t border-neutral-300" />
             </div>
 
+            {/* Name Input */}
+            <CustomInput
+              placeholder={"Enter your name"}
+              value={formik.values.name}
+              onChange={formik.handleChange("name")}
+              onBlur={formik.handleBlur("name")}
+            />
+            {formik.touched.name && formik.errors.name && (
+              <p className="text-red-500">{formik.errors.name}</p>
+            )}
+
+            {/* Email Input */}
             <CustomInput
               placeholder={"Enter your email"}
               value={formik.values.email}
@@ -136,6 +153,7 @@ export default function SignUpScreen() {
               <p className="text-red-500">{formik.errors.email}</p>
             )}
 
+            {/* Password Input */}
             <CustomInput
               placeholder={"Enter your password"}
               type="password"
@@ -151,13 +169,6 @@ export default function SignUpScreen() {
             {successMessage && (
               <p className="text-green-500">{successMessage}</p>
             )}
-
-            <div className="flex items-center justify-between mb-6">
-              {/* <CustomCheckbox /> */}
-              {/* <a href="#!" className="text-sm">
-                Terms and conditions
-              </a> */}
-            </div>
 
             <div className="text-center lg:text-left">
               <CustomButton

@@ -2,7 +2,7 @@ import  { useState, useEffect } from 'react';
 import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
 import { db, auth } from '../../../firebase';
-import { doc, setDoc, collection } from 'firebase/firestore';
+import { doc, setDoc, collection,getDoc, } from 'firebase/firestore';
 import { v4 as uuidv4 } from 'uuid';
 import { useNavigate } from 'react-router-dom'; 
 
@@ -11,6 +11,45 @@ const CreateNewCourse = () => {
   const [content, setContent] = useState('');
   const [user, setUser] = useState(null);
   const navigate = useNavigate();
+
+  const [courses, setCourses] = useState([]);
+  const [userData, setUserData] = useState(null);
+  const [email, setEmail] = useState('');
+  const [name, setName] = useState('');
+  const [errorMessage, setErrorMessage] = useState("");
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchUserData = async () => {
+      try {
+        const user = auth.currentUser;
+        console.log("user uid pritam" + user.uid);
+        if (user) {
+          const userDoc = await getDoc(doc(db, "users", user.uid));
+          if (userDoc.exists()) {
+            setUserData(userDoc.data());
+            setEmail(userDoc.data().
+              email);
+            setName(userDoc.data().name);
+          } else {
+            console.error("No such user document!");
+            setErrorMessage("User data not found.");
+          }
+        } else {
+          console.error("No user is signed in.");
+          setErrorMessage("No user is signed in.");
+        }
+      } catch (error) {
+        console.error("Error fetching user data:", error);
+        setErrorMessage("Failed to fetch user data.");
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchUserData();
+  }, []);
+
 
   useEffect(() => {
     
@@ -32,6 +71,8 @@ const CreateNewCourse = () => {
         title,
         content,
         userId: user.uid,
+        userName: name,
+        userEmail: email,
         createdAt: new Date(),
         isPublished: false,
       };
