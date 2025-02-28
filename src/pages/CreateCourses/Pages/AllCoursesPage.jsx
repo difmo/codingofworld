@@ -1,20 +1,25 @@
 import React, { useEffect, useState } from 'react';
-import { db } from '../../../firebase';
-import { collection, getDocs, doc, deleteDoc } from 'firebase/firestore';
+import { db, auth } from '../../../firebase';
+import { collection, getDocs, doc, deleteDoc, where, query } from 'firebase/firestore';
 import { useNavigate } from 'react-router-dom';
 
-// Importing icons from react-icons
 import { MdDelete } from 'react-icons/md';
 import { AiOutlinePlus } from 'react-icons/ai';
 
 const AllCoursesPage = () => {
   const [courses, setCourses] = useState([]);
   const navigate = useNavigate();
+  const user = auth.currentUser;
+  const currentUser = user.uid;
 
   useEffect(() => {
     const fetchCourses = async () => {
       try {
-        const querySnapshot = await getDocs(collection(db, 'courses'));
+        const q = query(
+          collection(db, 'courses'),
+          where('userId', '==', currentUser) 
+        );
+        const querySnapshot = await getDocs(q); 
         const coursesList = querySnapshot.docs.map(doc => ({
           id: doc.id,
           ...doc.data()
@@ -48,7 +53,7 @@ const AllCoursesPage = () => {
   };
 
   const handleAddCourse = () => {
-    navigate('/create-course'); // Assuming you have an "addcourse" route
+    navigate('/create-course'); 
   };
 
   return (

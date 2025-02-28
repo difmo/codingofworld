@@ -23,6 +23,7 @@ const AddTopicPage = () => {
       await addDoc(topicsCollectionRef, {
         title: topicTitle,
         content: topicContent,
+        createdAt: new Date(),
       });
 
       // Redirect back to the course page
