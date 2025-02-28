@@ -52,7 +52,7 @@ const AddTopicPage = () => {
         <ReactQuill
           value={topicContent}
           onChange={setTopicContent}
-          className="mt-2 w-full h-96"
+          className="mt-2 w-full"
           placeholder="Write the content of your topic"
         />
       </div>

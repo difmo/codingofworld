@@ -29,7 +29,7 @@ const HomeScreen = () => {
       <Banner2 />
       <Features />
       <Pricing />
-      {/* <Video/> */}
+      {/* <Video /> */}
       <Testimonials />
       <FAQ />
       <Brands />

@@ -27,16 +27,15 @@ const CreateNewCourse = () => {
     }
 
     try {
-      // Create a unique course ID
       const courseId = uuidv4();
       const courseData = {
         title,
         content,
         userId: user.uid,
         createdAt: new Date(),
+        isPublished: false,
       };
 
-      // Save the course to Firestore
       const courseRef = doc(collection(db, 'courses'), courseId);
       await setDoc(courseRef, courseData);
 

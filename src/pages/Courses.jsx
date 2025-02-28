@@ -56,7 +56,7 @@ export const Courses = () => {
       </div>
     );
   }
-
+  //kjcnevdshv8y dvhdiv w9
   return (
     <section className="courses bg-[#F3F4F8] pt-4 pb-40">
       <div className="w-full max-w-screen-xl px-4 m-auto">
@@ -105,10 +105,8 @@ export const Courses = () => {
                 className="px-2 py-2 font-serif text-xl text-gray-600"
                 dangerouslySetInnerHTML={{
                   __html: item.shortDescription
-                    ? item.shortDescription
-                      .split(" ")
-                      .slice(0, 12)
-                      .join(" ") + "..."
+                    ? item.shortDescription.split(" ").slice(0, 12).join(" ") +
+                      "..."
                     : "",
                 }}
               />
@@ -123,7 +121,7 @@ export const Courses = () => {
           ))}
         </div>
         {/* <h1 className="mt-8">Want to contribut to make courses</h1> */}
-        <ShowAllCoursesPage/>
+        <ShowAllCoursesPage />
       </div>
     </section>
   );

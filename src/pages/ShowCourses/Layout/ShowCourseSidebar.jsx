@@ -42,11 +42,11 @@ const ShowCourseSidebar = ({ toggleSidebar }) => {
 
 
   return (
-    <div className=" h-screen  w-[340px] p-4 space-y-6 text-primary bg-secondaryblue m-1 rounded-xl border ">
+    <div className=" h-screen  w-[340px] p-4 space-y-6 text-primary bg-secondaryblue overflow-y-auto scrollbar-hide">
 
       <ul className="space-y-4">
         <li className="">
-          <h3 className="text-lg bg-white  rounded-xl text-white text-center font-semibold">Course Topics</h3>
+          <h3 className="text-lg bg-primary  rounded-xl text-white text-center font-semibold">Course Topics</h3>
           <div className="p-4">
             {topics.length > 0 ? (
               topics.map((topic) => (
@@ -67,6 +67,7 @@ const ShowCourseSidebar = ({ toggleSidebar }) => {
                       ))}
                     </span>
                   </Link>
+                 
                 </div>
               ))
             ) : (

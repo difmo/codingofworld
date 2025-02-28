@@ -19,7 +19,9 @@ import First from "./pages/Sidebarpages/First";
 import Second from "./pages/Sidebarpages/Second";
 import FindSmallestElement from "./pages/AllCourses/TcsNqtCourse/Questions/OnArray/FindSmallestElement";
 
-{/* /////////////////////////////////////////// Blog ///////////////////////////////////////////// */ }
+{
+  /* /////////////////////////////////////////// Blog ///////////////////////////////////////////// */
+}
 import Addblogs from "./pages/AddBlogs/Addblogs";
 import AllBlogs from "./pages/AddBlogs/AllBlogs";
 import EditBlog from "./pages/AddBlogs/EditBlog";
@@ -30,11 +32,11 @@ import AdminBlogPage from "./pages/AdminProminent/AdminblogPage";
 import CreateBlogLayout from "./pages/Layout/CreateBlogLayout";
 import Popupbloge from "./pages/Popupbloge";
 
-
 import StudentData from "./pages/AdminProminent/student/StudentData";
 
-
-{/* /////////////////////////////////////////// Admin ///////////////////////////////////////////// */ }
+{
+  /* /////////////////////////////////////////// Admin ///////////////////////////////////////////// */
+}
 import AdminLayout from "./pages/Layout/AdminLayout";
 import AdminDashboard from "./pages/AdminProminent/MenuPages/AdminDashboard";
 import ClientContactPage from "./pages/AdminProminent/ClientContactPage";
@@ -57,7 +59,9 @@ import Allcourse from "./pages/AdminProminent/CourseAdmin/Allcourse";
 import EditCourse from "./pages/AdminProminent/CourseAdmin/EditCourse";
 import Codowo from "./pages/Codowo/Codowo";
 import { Helmet, HelmetProvider } from "react-helmet-async";
-{/* /////////////////////////////////////////// Create Courses ///////////////////////////////////////////// */ }
+{
+  /* /////////////////////////////////////////// Create Courses ///////////////////////////////////////////// */
+}
 
 import CreateCourseLayout from "./pages/CreateCourses/Layout/CreateCourseLayout";
 import AllCoursesPage from "./pages/CreateCourses/Pages/AllCoursesPage";
@@ -75,14 +79,10 @@ import StudentTestDetails from "./pages/TestPages/TestDetails";
 import StillWeWorkingPage from "./pages/StillWeWorkingPage";
 import ProfilePage from "./pages/ProfilePage/ProfilePage";
 import CertificatesGeneratorComponent from "./components/CertificatesGen/CertificatesGenerator";
-
-
-
-
+import Plan from "./pages/AdminProminent/CoursePlan/Pricing";
+import Pricing from "./pages/AdminProminent/CoursePlan/Pricing";
 
 const App = () => {
-
-
   const [isAdmin, setIsAdmin] = useState(false);
   const [isUserLogin, setIsUserLogin] = useState(null);
   const [blogPermission, setBlogPermission] = useState(false);
@@ -137,9 +137,6 @@ const App = () => {
       console.log(e);
     }
   };
-
-
-
 
   return (
     <HelmetProvider>
@@ -198,7 +195,7 @@ const App = () => {
 
       <Router future={{ v7_startTransition: true, v7_relativeSplatPath: true }}>
         <ScrollToTop />
-        <Routes  >
+        <Routes>
           {/* //////////////////////////////////////////// Codowo ///////////////////////////////////////////// */}
           <Route>
             <Route path="/codowo" element={<Codowo />} />
@@ -212,7 +209,7 @@ const App = () => {
             <Route path="/courses" element={<Courses />} />
             <Route path="/about" element={<About />} />
             <Route path="/trainingteam" element={<TrainingTeam />} />
-            <Route path="/internship" element={<InternshipsSection />} />
+            <Route path="/programs" element={<InternshipsSection />} />
             <Route path="/internshipform" element={<InternshipForm />} />
             <Route path="/tcsnqtcourse" element={<TcsNqtCourse />} />
             <Route path="/signupscreen" element={<SingUpScreen />} />
@@ -226,14 +223,23 @@ const App = () => {
             <Route path="/students-test" element={<TestPage />} />
             {/* /////////////////////////////////////////// Show Courses ///////////////////////////////////////////// */}
             <Route path="/show-coursee" element={<ShowAllCoursesPage />} />
-            <Route path="/showcoursee/:courseId" element={<ShowCourseDetails />} />
-            <Route path="/user-profile" element={<ProfilePage/>} />
-            <Route path="/hello" element={<CertificatesGeneratorComponent/>} />
+            <Route
+              path="/showcoursee/:courseId"
+              element={<ShowCourseDetails />}
+            />
+            <Route path="/user-profile" element={<ProfilePage />} />
+            <Route path="/hello" element={<CertificatesGeneratorComponent />} />
 
             <Route element={<ShowCourseLayout />}>
-              <Route path="/showcourse/:courseId" element={<ShowCourseDetails />} />
+              <Route
+                path="/showcourse/:courseId"
+                element={<ShowCourseDetails />}
+              />
               {/* Add Topic */}
-              <Route path="/showcourse/:courseId/topic/:topicId" element={<ShowTopicDetailPage />} />
+              <Route
+                path="/showcourse/:courseId/topic/:topicId"
+                element={<ShowTopicDetailPage />}
+              />
             </Route>
 
             {/* /////////////////////////////////////////// Show Blog ///////////////////////////////////////////// */}
@@ -247,14 +253,21 @@ const App = () => {
 
           {isUserLogin ? (
             <Route element={<CreateCourseLayout />}>
-
               <Route path="/all-course" element={<AllCoursesPage />} />
-              <Route path="/usercourse/:courseId" element={<UserCoursePage />} />
+              <Route
+                path="/usercourse/:courseId"
+                element={<UserCoursePage />}
+              />
               <Route path="/create-course" element={<CreateNewCourse />} />
               {/* Add Topic */}
-              <Route path="/usercourse/:courseId/add-topic" element={<AddTopicPage />} />
-              <Route path="/usercourse/:courseId/topic/:topicId" element={<TopicDetailPage />} />
-
+              <Route
+                path="/usercourse/:courseId/add-topic"
+                element={<AddTopicPage />}
+              />
+              <Route
+                path="/usercourse/:courseId/topic/:topicId"
+                element={<TopicDetailPage />}
+              />
             </Route>
           ) : (
             <Route path="*" element={<NotFound />} />
@@ -267,7 +280,6 @@ const App = () => {
           {/* Add Topic */}
           {/* <Route path="/showcourse/:courseId/topic/:topicId" element={<ShowTopicDetailPage/>} /> */}
           {/* </Route> */}
-
 
           {/* /////////////////////////////////////////// Create Blog ///////////////////////////////////////////// */}
           {isUserLogin ? (
@@ -290,7 +302,6 @@ const App = () => {
             <Route path="/starttcsnqt" element={<TCSNQT />} />
             <Route path="/findsmallest" element={<FindSmallestElement />} />
           </Route>
-
 
           {/* /////////////////////////////////////////// Admin ////////////////////////////////////////// */}
           {isAdmin ? (
@@ -316,18 +327,27 @@ const App = () => {
               />
               <Route path="/admin/allcoures" element={<Allcourse />} />
               <Route path="/edit-course/:id" element={<EditCourse />} />
-              <Route path="/admin/admin-student-test" element={<AdminStudentTestPage />} />
-              <Route path="/admin/admin-student-test" element={<AdminStudentTestPage />} />
-              <Route path="/admin/student/:studentId" element={<StudentTestDetails />} />
+              <Route
+                path="/admin/admin-student-test"
+                element={<AdminStudentTestPage />}
+              />
+              <Route
+                path="/admin/admin-student-test"
+                element={<AdminStudentTestPage />}
+              />
+              <Route
+                path="/admin/student/:studentId"
+                element={<StudentTestDetails />}
+              />
+              <Route path="/admin/student/pricing" element={<Pricing />} />
             </Route>
           ) : (
             <Route path="*" element={<NotFound />} />
           )}
 
-
           {/* ///////////////////////////////////////////// Other /////////////////////////////////////// */}
           <Route path="*" element={<NotFound />} />
-          <Route path="/stillweworking" element={<StillWeWorkingPage/>} />
+          <Route path="/stillweworking" element={<StillWeWorkingPage />} />
         </Routes>
       </Router>
     </HelmetProvider>

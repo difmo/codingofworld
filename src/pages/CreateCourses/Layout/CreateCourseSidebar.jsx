@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import  { useState, useEffect } from "react";
 import { Link, useParams } from "react-router-dom"; 
 import { db } from "../../../firebase"; 
 import { collection, getDocs } from "firebase/firestore";
@@ -29,7 +29,7 @@ const CreateCourseSidebar = ({ toggleSidebar }) => {
   }, [courseId]);
 
   return (
-    <div className=" w-[400px] h-screen p-4 space-y-2 text-white bg-[#212529]">
+    <div className=" w-[400px] h-screen p-4 space-y-2 text-white bg-[#212529] overflow-y-auto scrollbar-hide">
       <div className="flex flex-col w-full p-2 border border-gray-500 rounded-lg">
         <p className="mt-2 text-xl font-bold text-center">Coding Of World</p>
       </div>

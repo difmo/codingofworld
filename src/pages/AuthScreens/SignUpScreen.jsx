@@ -1,20 +1,16 @@
-import React, { useState } from "react";
-import { FaFacebookF, FaTwitter, FaLinkedinIn } from "react-icons/fa";
+import  { useState } from "react";
 import signup from "../../assets/images/signup.svg";
 import { useNavigate } from "react-router-dom";
 import CustomInput from "../../components/InputAndButton/CustomInput";
-import CustomCheckbox from "../../components/InputAndButton/CustomCheckbox";
 import CustomButton from "../../components/InputAndButton/CustomButton";
-import IconsComponent from "../../components/Icons/Icons";
 import {
   createUserWithEmailAndPassword,
-  getAuth,
   sendEmailVerification,
 } from "firebase/auth";
 import { auth, db } from "../../firebase";
 import * as Yup from "yup";
 import { useFormik } from "formik";
-import { getFirestore, collection, addDoc } from "firebase/firestore";
+import { collection, addDoc } from "firebase/firestore";
 
 const validationSchema = Yup.object().shape({
   email: Yup.string()
@@ -76,7 +72,10 @@ export default function SignUpScreen() {
             uid: user.uid,
             email: user.email,
             whoIs: "isUser",
-            isCreatePermission: true,
+            isCreatePermission: false,
+            isVlogCreatePermission: false,
+            isCourseContentCreatePermission: false,
+            isCourseWithVideoCreatePermission: false,
             createdAt: new Date(),
           });
 

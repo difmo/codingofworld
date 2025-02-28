@@ -32,7 +32,7 @@ const CourseDetails = () => {
   }, [id]);
 
   if (loading) {
-    return <Loader />; // Loading state
+    return <Loader />; // Loading 
   }
 
   if (error) {
