@@ -81,6 +81,7 @@ import ProfilePage from "./pages/ProfilePage/ProfilePage";
 import CertificatesGeneratorComponent from "./components/CertificatesGen/CertificatesGenerator";
 import Plan from "./pages/AdminProminent/CoursePlan/Pricing";
 import Pricing from "./pages/AdminProminent/CoursePlan/Pricing";
+import PremiumCourses from "./pages/PremiumCourses";
 
 const App = () => {
   const [isAdmin, setIsAdmin] = useState(false);
@@ -201,6 +202,7 @@ const App = () => {
             <Route path="/codowo" element={<Codowo />} />
           </Route>
 
+          <Route path="/premium-courses" element={<PremiumCourses />} />
           {/* ///////////////////////////////////////////// Main //////////////////////////////////////////// */}
           <Route element={<Layout />}>
             <Route path="/" element={<HomeScreen />} />

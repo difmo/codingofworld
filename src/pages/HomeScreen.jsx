@@ -17,19 +17,24 @@ import Hero from "../components/Hero/Hero";
 const HomeScreen = () => {
   return (
     <div>
-      {/* <Hero /> */}
       <Hero />
-      {/* <AdComponent /> */}
       <Services />
       <Banner />
+{/* 
+      <div>
+        <iframe
+          src="http://localhost:3001"  // URL of the Course Project
+          width="100%"
+          height="600px"
+          title="Course Component"
+          style={{ border: "none" }}
+        />
+      </div> */}
+
       <Subscribe />
-      {/* 
-      Completed trainig students show here 
-      */}
       <Banner2 />
       <Features />
       <Pricing />
-      {/* <Video /> */}
       <Testimonials />
       <FAQ />
       <Brands />
