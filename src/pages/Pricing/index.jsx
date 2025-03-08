@@ -60,116 +60,68 @@ const Pricing = () => {
         </div>
 
         <div className="grid grid-cols-1 gap-x-8 gap-y-10 md:grid-cols-2 lg:grid-cols-3">
-          <PricingBox
-            packageName="Beginner"
-            price={isMonthly ? "2,000" : "20,000"}
-            duration={isMonthly ? "mo" : "yr"}
-            subtitle="Perfect for those just starting out with IT skills."
-          >
-            <OfferList
-              text="Introduction to Computer Science"
-              status="active"
-            />
-            <OfferList text="Basic Programming Concepts" status="active" />
-            <OfferList text="Computer Hardware Basics" status="active" />
-            <OfferList text="Email & Communication Tools" status="active" />
-            <OfferList
-              text="Introduction to Internet Technologies"
-              status="active"
-            />
-            <OfferList text="Basic Networking Concepts" status="active" />
-            <OfferList text="Data Entry & Office Tools" status="active" />
-            <OfferList text="Introductory Web Development" status="inactive" />
-            <OfferList text="One-on-One Tutoring" status="inactive" />
-            <OfferList text="Access to Premium Labs" status="inactive" />
-            <OfferList
-              text="Basic Digital Marketing Concepts"
-              status="inactive"
-            />
-            <OfferList
-              text="Basic Cloud Computing Concepts"
-              status="inactive"
-            />
-            {/* oihibo */}
-          </PricingBox>
-          <PricingBox
-            packageName="Intermediate"
-            price={isMonthly ? "2,500" : "27,000"}
-            duration={isMonthly ? "mo" : "yr"}
-            subtitle="For those looking to expand their IT knowledge and skills."
-          >
-            <OfferList
-              text="Advanced Programming (Python, Java)"
-              status="active"
-            />
-            <OfferList text="Networking Essentials" status="active" />
-            <OfferList text="Database Management" status="active" />
-            <OfferList text="Cybersecurity Fundamentals" status="active" />
-            <OfferList text="Personalized Course Feedback" status="active" />
-            <OfferList
-              text="Lifetime Access to Course Materials"
-              status="active"
-            />
-            <OfferList text="Introduction to Data Science" status="inactive" />
-            <OfferList
-              text="Web Development with HTML & CSS"
-              status="inactive"
-            />
-            <OfferList text="Cloud Services (AWS, Azure)" status="inactive" />
-            <OfferList
-              text="Advanced Networking & Protocols"
-              status="inactive"
-            />
-            <OfferList text="Project Management for IT" status="inactive" />
-            <OfferList text="Business IT Strategies" status="inactive" />
-          </PricingBox>
-          <PricingBox
-            packageName="Professional"
-            price={isMonthly ? "3,500" : "35,000"}
-            duration={isMonthly ? "mo" : "yr"}
-            subtitle="For professionals ready to master IT and advance their careers."
-          >
-            <OfferList
-              text="Master Courses in Cloud Computing"
-              status="active"
-            />
-            <OfferList
-              text="Advanced Cybersecurity Techniques"
-              status="active"
-            />
-            <OfferList text="IT Project Management" status="active" />
-            <OfferList text="Data Science and AI" status="active" />
-            <OfferList
-              text="One-on-One Mentoring with Experts"
-              status="active"
-            />
-            <OfferList
-              text="Access to Industry Events & Webinars"
-              status="active"
-            />
-            <OfferList
-              text="Machine Learning for Professionals"
-              status="active"
-            />
-            <OfferList text="DevOps Fundamentals and Tools" status="active" />
-            <OfferList
-              text="Blockchain Development and Application"
-              status="active"
-            />
-            <OfferList
-              text="Advanced Cloud Architecture & Design"
-              status="inactive"
-            />
-            <OfferList
-              text="AI & ML Certification Exam Preparation"
-              status="inactive"
-            />
-            <OfferList
-              text="Exclusive Networking Opportunities"
-              status="inactive"
-            />
-          </PricingBox>
-        </div>
+  {/* Web Development + DSA Package */}
+  <PricingBox
+    packageName="Web Dev + DSA"
+    price={isMonthly ? "1799" : "12999"}
+    duration={isMonthly ? "mo" : "yr"}
+    subtitle="Web Development + Data Structure And Algorithm."
+  >
+    <OfferList text="HTML, CSS, JavaScript Fundamentals" status="active" />
+    <OfferList text="Responsive Web Design" status="active" />
+    <OfferList text="Frontend Frameworks (React, Vue)" status="active" />
+    <OfferList text="Backend Development Basics" status="active" />
+    <OfferList text="Data Structures & Algorithms (DSA)" status="active" />
+    <OfferList text="Problem Solving with DSA" status="active" />
+    <OfferList text="Project-based Learning (Frontend)" status="active" />
+    <OfferList text="Version Control with Git" status="active" />
+    <OfferList text="Basic Backend (Node.js)" status="inactive" />
+    <OfferList text="SQL & Database Management" status="inactive" />
+    <OfferList text="API Development & Integration" status="inactive" />
+  </PricingBox>
+
+  {/* Android Development + Basic DSA Package */}
+  <PricingBox
+    packageName="Android Development + Basic DSA"
+    price={isMonthly ? "1899" : "15999"}
+    duration={isMonthly ? "mo" : "yr"}
+    subtitle="Android Development + Basic DSA"
+  >
+    <OfferList text="Android App Development (Java/Kotlin)" status="active" />
+    <OfferList text="Android UI/UX Design" status="active" />
+    <OfferList text="SQLite for Mobile Data Storage" status="active" />
+    <OfferList text="Basic Data Structures (Arrays, Lists, Stacks)" status="active" />
+    <OfferList text="Introduction to Algorithms" status="active" />
+    <OfferList text="Android Networking Basics (API calls)" status="active" />
+    <OfferList text="Version Control with Git" status="active" />
+    <OfferList text="Intermediate Android (RecyclerView, Fragments)" status="inactive" />
+    <OfferList text="Android Jetpack Components" status="inactive" />
+    <OfferList text="Advanced Data Structures" status="inactive" />
+    <OfferList text="Cloud Integration for Android Apps" status="inactive" />
+  </PricingBox>
+
+  {/* Android + Web Dev + Backend Package */}
+  <PricingBox
+    packageName="Full Stack Web Development"
+    price={isMonthly ? "1799" : "12999"}
+    duration={isMonthly ? "mo" : "yr"}
+    subtitle="Full Stack Web Development"
+  >
+    <OfferList text="HTML, CSS, JavaScript Fundamentals" status="active" />
+    <OfferList text="Frontend Frameworks (React, Vue)" status="active" />
+    <OfferList text="Backend Development with Node.js" status="active" />
+    <OfferList text="Laravel for Web Development" status="active" />
+    <OfferList text="Django Basics" status="active" />
+    <OfferList text="Database Management (SQL, NoSQL)" status="active" />
+    <OfferList text="RESTful APIs & API Development" status="active" />
+    <OfferList text="Android App Development (Java/Kotlin)" status="active" />
+    <OfferList text="Firebase & Cloud Integration" status="active" />
+    <OfferList text="Advanced Web Development Techniques" status="active" />
+    <OfferList text="Deployment with Docker & Kubernetes" status="inactive" />
+    <OfferList text="CI/CD Pipeline Setup" status="inactive" />
+  </PricingBox>
+</div>
+
       </div>
 
       <div className="absolute bottom-0 left-0 z-[-1]">
