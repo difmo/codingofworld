@@ -57,7 +57,7 @@ import EditInternship from "./pages/AdminProminent/Internship-Det/EditInternship
 import CreatenewCourse from "./pages/AdminProminent/CourseAdmin/CreatenewCourse";
 import Allcourse from "./pages/AdminProminent/CourseAdmin/Allcourse";
 import EditCourse from "./pages/AdminProminent/CourseAdmin/EditCourse";
-import Codowo from "./pages/Codowo/Codowo";
+// import Codowo from "./pages/Codowo/Codowo";
 import { Helmet, HelmetProvider } from "react-helmet-async";
 {
   /* /////////////////////////////////////////// Create Courses ///////////////////////////////////////////// */
@@ -199,7 +199,7 @@ const App = () => {
         <Routes>
           {/* //////////////////////////////////////////// Codowo ///////////////////////////////////////////// */}
           <Route>
-            <Route path="/codowo" element={<Codowo />} />
+            {/* <Route path="/codowo" element={<Codowo />} /> */}
           </Route>
 
           <Route path="/premium-courses" element={<PremiumCourses />} />

@@ -6,9 +6,9 @@ const PremiumCourses = () => {
 
         <div>
             <iframe
-                src="http://localhost:3001"  // URL of the Course Project
+                src="https://codingofworld-v2-coursemodule-frontend.vercel.app/"  // URL of the Course Project
+                className='h-screen'
                 width="100%"
-                height="600px"
                 title="Course Component"
                 style={{ border: "none" }}
             />
