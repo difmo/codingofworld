@@ -9,6 +9,8 @@ import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage"; //
 const CreateNewInternship = () => {
   const navigate = useNavigate();
   const [title, setTitle] = useState(""); // To store title input
+  const [Internship, setInternship] = useState("");
+  const [months, setmonths] = useState("");
   const [shortDescription, setShortDescription] = useState(""); // To store short description
   const [description, setDescription] = useState(""); // To store description (ReactQuill)
   const [bio, setBio] = useState(""); // To store bio
@@ -52,6 +54,8 @@ const CreateNewInternship = () => {
             // Now store internship data in Firestore
             const internshipData = {
               title,
+              Internship,
+              months,
               shortDescription, // Save the short description
               description,
               bio,
@@ -101,7 +105,43 @@ const CreateNewInternship = () => {
               placeholder="Enter internship title"
             />
           </div>
-
+          {/* Internship */}
+          <div className="flex justify-between">
+            <div>
+              <label
+                htmlFor="Internship"
+                className="block text-sm font-medium text-gray-700"
+              >
+                Internship
+              </label>
+              <input
+                type="text"
+                id="Internship"
+                value={Internship}
+                onChange={(e) => setInternship(e.target.value)}
+                required
+                className="mt-2 p-2 w-full border border-gray-300 rounded"
+                placeholder="Enter internship Internship"
+              />
+            </div>
+            <div>
+              <label
+                htmlFor=" months"
+                className="block text-sm font-medium text-gray-700"
+              >
+                Months
+              </label>
+              <input
+                type="text"
+                id=" months"
+                value={months}
+                onChange={(e) => setmonths(e.target.value)}
+                required
+                className="mt-2 p-2 w-full border border-gray-300 rounded"
+                placeholder="Enter internship  months"
+              />
+            </div>
+          </div>
           {/* Short Description input */}
           <div>
             <label
@@ -110,11 +150,11 @@ const CreateNewInternship = () => {
             >
               Short Description
             </label>
-            <input
+            <ReactQuill
               type="text"
               id="shortDescription"
               value={shortDescription}
-              onChange={(e) => setShortDescription(e.target.value)}
+              onChange={setShortDescription}
               required
               className="mt-2 p-2 w-full border border-gray-300 rounded"
               placeholder="Enter a short description"
@@ -207,7 +247,14 @@ const CreateNewInternship = () => {
           <button
             type="submit"
             className="bg-blue-500 text-white p-2 rounded"
-            disabled={loading || !title || !shortDescription || !description || !bio || !thumbnail}
+            disabled={
+              loading ||
+              !title ||
+              !shortDescription ||
+              !description ||
+              !bio ||
+              !thumbnail
+            }
           >
             {loading ? "Saving..." : "Save"}
           </button>

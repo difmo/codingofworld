@@ -1,23 +1,57 @@
-import React, { useEffect, useState } from 'react';
-import { db } from '../../../firebase';
-import { collection, getDocs } from 'firebase/firestore';
-import { useNavigate } from 'react-router-dom';
+import React, { useEffect, useState } from "react";
+import { db } from "../../../firebase";
+import { collection, getDocs, getDoc, doc } from "firebase/firestore";
+import { useNavigate } from "react-router-dom";
 
 const ShowAllCoursesPage = () => {
   const [courses, setCourses] = useState([]);
+  const [errorMessage, setErrorMessage] = useState("");
+  const [loading, setLoading] = useState(true);
+
   const navigate = useNavigate();
 
   useEffect(() => {
     const fetchCourses = async () => {
       try {
-        const querySnapshot = await getDocs(collection(db, 'courses'));
-        const coursesList = querySnapshot.docs.map(doc => ({
-          id: doc.id,
-          ...doc.data()
-        }));
+        // Fetch all courses from the courses collection
+        const querySnapshot = await getDocs(collection(db, "courses"));
+        const coursesList = [];
+
+        // Loop through each course document
+        for (const docSnap of querySnapshot.docs) {
+          // Get the course data
+          const courseData = {
+            id: docSnap.id,
+            ...docSnap.data(),
+          };
+
+          // Fetch the user data based on userId from the course
+          const userId = courseData.userId; // Assuming `userId` is a field in the course data
+          // console.log("userId", userId);
+          // Get a reference to the user document
+          const userDocRef = doc(db, "users", userId); // Create a reference to the user's document
+          const userDocSnap = await getDoc(userDocRef); // Fetch the user document using getDoc
+          console.log("userDocSnap", userDocSnap);
+          if (!userDocSnap.exists()) {
+            console.log("User document does not exist for userId:", userId);
+          }
+          const userEmail = userDocSnap.exists() ? userDocSnap.data().email : null; // Extract email if user exists
+          // console.log("userEmail", userEmail);
+
+          // Add user email to the course data
+          coursesList.push({
+            ...courseData,
+            userEmail,
+          });
+        }
+             
+        // Set the courses state with the updated courses list
         setCourses(coursesList);
       } catch (error) {
-        console.error('Error fetching courses:', error);
+        console.error("Error fetching courses:", error);
+        setErrorMessage("Error fetching courses");
+      } finally {
+        setLoading(false);
       }
     };
 
@@ -32,31 +66,16 @@ const ShowAllCoursesPage = () => {
     <div className="max-w-screen-xl mx-auto p-6 ">
       <div className="py-16 heading">
         <h1 className="text-3xl font-semibold text-black md:text-4xl">
-          Some others courses
-          {/* <span className="text-primary">Difmo Technologies</span> */}
+          Some other courses
         </h1>
         <span className="block mt-2 text-sm md:text-base">
           Learn from the best instructors and get certified
         </span>
       </div>
 
-      {/* Filters */}
-      {/* <div className="flex flex-col items-center justify-between mb-6 md:flex-row">
-        <input
-          type="text"
-          className="w-full p-2 mb-4 border border-gray-300 rounded md:w-1/3 md:mb-0"
-          placeholder="Search for courses..."
-        />
-        <select className="w-full p-2 border border-gray-300 rounded md:w-1/3">
-          <option>Sort by: Popularity</option>
-          <option>Newest</option>
-          <option>Highest Rated</option>
-        </select>
-      </div> */}
-
       {/* Courses grid layout */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
-        {courses.map(course => (
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-8">
+        {courses.map((course) => (
           <div
             key={course.id}
             className="bg-secondaryblue border border-gray-200 rounded-lg shadow-lg transform transition-all duration-300 hover:scale-105 hover:shadow-xl cursor-pointer"
@@ -64,23 +83,30 @@ const ShowAllCoursesPage = () => {
           >
             <div className="p-6">
               {/* Course Title */}
-              <div className="bg-gradient-to-r from-primary via-primary to-secondaryblue p-6 rounded-lg shadow-lg">
-                <h3 className="text-2xl font-semibold text-white "> Learn {course.title}</h3>
+              <div className="bg-gradient-to-r from-primary via-primary to-secondaryblue px-6 py-3 rounded-lg shadow-lg">
+                <h3 className="text-2xl font-semibold text-white">
+                  {course.title
+                    ? course.title.split(" ").slice(0, 5).join(" ") + "..."
+                    : ""}
+                </h3>
               </div>
 
-
               {/* Course Content Preview */}
-              <p className="text-white text-base mb-4"
+              <p
+                className="text-white text-base my-4"
                 dangerouslySetInnerHTML={{
-                  __html: course.content.length > 100
-                    ? `${course.content.slice(0, 100)}...`
-                    : course.content
+                  __html:
+                    course.content.length > 100
+                      ? `${course.content.slice(0, 100)}...`
+                      : course.content,
                 }}
               />
 
               {/* Hover Effects */}
               <div className="mt-4 text-center">
-                <button className="text-primary hover:text-blue-700 font-medium">Start Reading Free</button>
+                <button className="text-primary hover:text-blue-700 font-medium">
+                  Start Reading Free {course.userEmail}
+                </button>
               </div>
             </div>
           </div>

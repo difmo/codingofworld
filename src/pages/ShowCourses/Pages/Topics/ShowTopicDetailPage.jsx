@@ -137,7 +137,7 @@ const ShowTopicDetailPage = () => {
             className="w-full p-2 border border-gray-300 rounded-lg"
           />
         ) : (
-          <h3 className="text-2xl md:text-4xl text-secondaryblue font-semibold">{topic.title}</h3>
+          <h3 className="text-xl md:text-4xl text-secondaryblue font-semibold">{topic.title}</h3>
         )}
       </div>
 
@@ -148,7 +148,7 @@ const ShowTopicDetailPage = () => {
             onChange={setNewContent}
             className="w-full h-96"
             placeholder="Write the content of the topic here"
-            formats={['bold', 'italic', 'underline', 'link', 'blockquote', 'code-block']} // Allow code-block
+            formats={['bold', 'italic', 'underline', 'link', 'blockquote', 'code-block']} 
             modules={{
               toolbar: [
                 [{ 'header': '1' }, { 'header': '2' }, 'bold', 'italic', 'link'], // Adding 'header' for h1, h2 etc.

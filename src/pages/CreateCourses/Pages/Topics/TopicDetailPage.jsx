@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { db,auth} from "../../../../firebase";
-import { doc, getDocs,getDoc, updateDoc,where,collection,query } from "firebase/firestore";
+import { doc, getDocs,getDoc, updateDoc,where,collection,query,serverTimestamp } from "firebase/firestore";
 import { useParams } from "react-router-dom";
 import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css"; // Import Quill CSS for styling
@@ -100,6 +100,8 @@ const TopicDetailPage = () => {
       await updateDoc(topicDocRef, {
         title: newTitle,
         content: newContent,
+        createdAt: serverTimestamp(),  // Add createdAt field with server timestamp
+
       });
       alert('Topic updated successfully!');
       setIsEditMode(false); // Switch back to show mode after saving
@@ -115,7 +117,7 @@ const TopicDetailPage = () => {
 
   return (
     <div className="max-w-4xl mx-auto p-6">
-      <h2 className="text-3xl font-semibold">{isEditMode ? "Ediwwt Topic" : topic.title}</h2>
+      {/* <h2 className="text-3xl font-semibold">{isEditMode ? "Edit Topic" : topic.title}</h2> */}
       
       <div className="mt-4">
         {/* Title Input */}
@@ -137,7 +139,7 @@ const TopicDetailPage = () => {
           <ReactQuill
             value={newContent}
             onChange={setNewContent}
-            className="w-full h-96"
+            className="w-full"
             placeholder="Write the content of the topic here"
           />
         ) : (

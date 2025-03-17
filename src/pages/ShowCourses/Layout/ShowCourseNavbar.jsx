@@ -1,4 +1,3 @@
-import React, { useState } from "react";
 import PropTypes from 'prop-types';
 import { useEffect } from 'react';
 
@@ -23,7 +22,7 @@ const ShowCourseNavbar = ({ toggleSidebar }) => {
       <div className="items-center justify-between hidden p-4 md:flex">
         <div className="text-lg font-semibold text-white">Create Courses</div>
       </div>
-
+{/* ,jhkf */}
       <div className="flex items-center justify-between p-4 md:hidden">
         {/* <div className="text-lg font-semibold text-white">StudentNavbar</div> */}
         <button

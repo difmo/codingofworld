@@ -64,9 +64,10 @@ const FAQ = () => {
   };
 
   return (
-    <div ref={ref} className="px-4 py-16 mx-auto max-w-8xl sm:px-6 bg-gray-50">
+    <div ref={ref} className="px-4 py-16 mx-auto max-w-6xl sm:px-6 bg-white">
       <h2 className="mb-10 text-4xl font-bold text-center text-secondaryblue">
-        Frequently <span className="text-primary">Asked Questions</span>  - Coding of World
+        Frequently <span className="text-primary">Asked Questions</span> -
+        Coding of World
       </h2>
       <div className="container space-y-4">
         {faqs.map((faq, index) => (
@@ -78,10 +79,12 @@ const FAQ = () => {
             transition={{ duration: 0.5, delay: index * 0.1 }}
           >
             <div
-              className="flex items-center justify-between p-5 transition duration-300 cursor-pointer hover:bg-gray-100"
+              className="flex items-center justify-between px-5 transition duration-300 cursor-pointer hover:bg-gray-100"
               onClick={() => toggleFAQ(index)}
             >
-              <h3 className="text-lg font-semibold text-gray-800">{faq.question}</h3>
+              <h3 className="text-md font-semibold text-gray-800">
+                {faq.question}
+              </h3>
               <span className="p-2 text-5xl text-red-500 ">
                 {openIndex === index ? "-" : "+"}
               </span>

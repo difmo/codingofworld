@@ -176,3 +176,12 @@ code[class*="language-"] {
 .language-python .token.keyword {
   color: #3572a5; /* Python keywords */
 }
+/* Add this to your global stylesheet */
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}

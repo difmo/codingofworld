@@ -10,12 +10,11 @@ import {
   FaPen,
 } from "react-icons/fa";
 import { AiOutlineCheck } from "react-icons/ai";
-import { useNavigate } from "react-router-dom";
-import InternshipForm from "./IntershipForm";
+import { Navigate, useNavigate } from "react-router-dom";
+// import InternshipForm from "./IntershipForm";
 import TrainingTeam from "./OurTrainingTeam";
 
 export const About = () => {
-  const navigate = useNavigate();
   return (
     <>
       <section className="py-4 about">
@@ -25,14 +24,15 @@ export const About = () => {
               Why Choose Coding of World: A Unique Learning Experience
             </h1>
             <span className="block mt-2 text-sm">
-              We believe in empowering students with knowledge and practical experience. With us, you're never alone in your learning journey!
+              We believe in empowering students with knowledge and practical
+              experience. With us, you're never alone in your learning journey!
             </span>
           </div>
           <div className="grid grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-4">
             <AboutCard
               color="bg-red-500"
               icon={<FaPen size={50} />}
-              title="400+ Online Courses"
+              title="Online Mode Courses"
               desc="Gain access to a wide range of courses across multiple domains."
             />
             <AboutCard
@@ -76,6 +76,7 @@ export const AboutCard = (props) => {
 };
 
 export const AboutContent = () => {
+  const navigate = useNavigate();
   return (
     <section className="mb-16">
       <div className="container flex flex-col md:flex-row md:gap-8">
@@ -88,11 +89,19 @@ export const AboutContent = () => {
               Empowering Future Tech Leaders with Hands-on Training
             </h1>
             <span className="block mt-2 text-sm leading-6">
-              At Coding of World, we are committed to shaping the next generation of tech innovators. We offer immersive internship, training, and apprenticeship programs tailored for the ever-evolving fields of web development, mobile app development, AI, ML, and robotics. Our mission is to provide students with not just theoretical knowledge, but with the practical, industry-relevant skills required to excel in a competitive job market.
+              At Coding of World, we are committed to shaping the next
+              generation of tech innovators. We offer immersive internship,
+              training, and apprenticeship programs tailored for the
+              ever-evolving fields of web development, mobile app development,
+              AI, ML, and robotics. Our mission is to provide students with not
+              just theoretical knowledge, but with the practical,
+              industry-relevant skills required to excel in a competitive job
+              market.
             </span>
             <ul className="my-5">
               <li className="flex items-center gap-5 text-sm">
-                <AiOutlineCheck className="text-green-500" /> Upskill your workforce with cutting-edge technologies.
+                <AiOutlineCheck className="text-green-500" /> Upskill your
+                workforce with cutting-edge technologies.
               </li>
               <li className="flex items-center gap-5 my-2 text-sm">
                 <AiOutlineCheck className="text-green-500" />
@@ -103,12 +112,12 @@ export const AboutContent = () => {
                 Learn from seasoned professionals and industry experts.
               </li>
             </ul>
-            <button
+            <div
               onClick={() => navigate("/internshipform")}
-              className="px-5 py-2 text-sm border border-gray-300 rounded-md"
+              className="px-5 py-2 text-sm border border-gray-300 rounded-md w-32"
             >
               Apply Now
-            </button>
+            </div>
           </div>
         </div>
       </div>
@@ -116,4 +125,3 @@ export const AboutContent = () => {
     </section>
   );
 };
-
