@@ -342,6 +342,7 @@ const App = () => {
                 element={<StudentTestDetails />}
               />
               <Route path="/admin/student/pricing" element={<Pricing />} />
+              {/* <Route path="/admin/student/plan" element={<Pricing />} /> */}
             </Route>
           ) : (
             <Route path="*" element={<NotFound />} />

@@ -13,6 +13,9 @@ import Video from "./VideoPage/Video";
 import Testimonials from "./Testimonials/Testimonials";
 import Brands from "./OurPartnears/OurPartnears";
 import Hero from "../components/Hero/Hero";
+import TrainingSection from "../components/Training Programs/TrainingSection";
+import TrainingPrograms from "../components/Training Programs/TrainingPrograms";
+import FactsSection from "../components/Statistics/FactsSection";
 
 const HomeScreen = () => {
   return (
@@ -35,9 +38,12 @@ const HomeScreen = () => {
       <Banner2 />
       <Features />
       <Pricing />
+      <TrainingSection/>
+      <TrainingPrograms/>
       <Testimonials />
       <FAQ />
       <Brands />
+      <FactsSection/>
     </div>
   );
 };
