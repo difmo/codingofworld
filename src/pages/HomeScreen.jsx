@@ -20,7 +20,7 @@ const HomeScreen = () => {
       <Banner />
       <Subscribe />
       {/* 
-      Completed trainig students show here 
+      Completed trainig students show here  ewfrew
       */}
       <Banner2 />
       <Features />
