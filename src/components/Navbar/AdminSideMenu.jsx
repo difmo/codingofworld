@@ -6,18 +6,18 @@ const AdminSidebar = ({ toggleSidebar }) => {
   const navigate = useNavigate();
 
   return (
-    <div className="w-64 h-screen p-4 space-y-6 text-white border-r bg-[#ffffff]">
+    <div className="w-64 h-screen p-4 space-y-6 text-black border-r bg-[#ffffff]">
       <div className="flex flex-col w-full p-2 border rounded-lg">
         <img src={logo} className="h-20" alt="logo" />
       </div>
 
-      <ul className="space-y-4">
+      <ul className="space-y-0">
         <li
           onClick={() => {
             navigate("/admin-dashboard");
             // toggleSidebar();
           }}
-          className="flex items-center px-4 py-3 mb-2 text-white transition duration-200 rounded-lg cursor-pointer bg-primary hover:bg-blue-600"
+          className="flex items-center px-4 py-1 text-black transition duration-200 rounded-lg cursor-pointer hover:text-white hover:bg-primary"
         >
           Dashboard
         </li>
@@ -26,16 +26,25 @@ const AdminSidebar = ({ toggleSidebar }) => {
             navigate("/admin/internship");
             // toggleSidebar();
           }}
-          className="flex items-center px-4 py-3 mb-2 text-white transition duration-200 rounded-lg cursor-pointer bg-primary hover:bg-blue-600"
+          className="flex items-center px-4 py-1 mb-2 text-black transition duration-200 rounded-lg cursor-pointer hover:text-white hover:bg-primary"
         >
           Interns
+        </li>
+        <li
+          onClick={() => {
+            navigate("/admin/internship");
+            // toggleSidebar();
+          }}
+          className="flex items-center px-4 py-1 mb-2 text-black transition duration-200 rounded-lg cursor-pointer hover:text-white hover:bg-primary"
+        >
+          Placement Stats
         </li>
         <li
           onClick={() => {
             navigate("/admin/client-contact");
             // toggleSidebar();
           }}
-          className="flex items-center px-4 py-3 mb-2 text-white transition duration-200 rounded-lg cursor-pointer bg-primary hover:bg-blue-600"
+          className="flex items-center px-4 py-1 mb-2 text-black transition duration-200 rounded-lg cursor-pointer hover:text-white hover:bg-primary"
         >
           Contact
         </li>
@@ -44,7 +53,7 @@ const AdminSidebar = ({ toggleSidebar }) => {
             navigate("/admin/login-users");
             // toggleSidebar();
           }}
-          className="flex items-center px-4 py-3 mb-2 text-white transition duration-200 rounded-lg cursor-pointer bg-primary hover:bg-blue-600"
+          className="flex items-center px-4 py-1 mb-2 text-black transition duration-200 rounded-lg cursor-pointer hover:text-white hover:bg-primary"
         >
           Login Users
         </li>
@@ -53,7 +62,7 @@ const AdminSidebar = ({ toggleSidebar }) => {
             navigate("/admin/blog");
             // toggleSidebar();
           }}
-          className="flex items-center px-4 py-3 mb-2 text-white transition duration-200 rounded-lg cursor-pointer bg-primary hover:bg-blue-600"
+          className="flex items-center px-4 py-1 mb-2 text-black transition duration-200 rounded-lg cursor-pointer hover:text-white hover:bg-primary"
         >
           Blogs
         </li>
@@ -62,7 +71,7 @@ const AdminSidebar = ({ toggleSidebar }) => {
             navigate("./admin/createNewInternship");
             // toggleSidebar();
           }}
-          className="flex items-center px-4 py-3 mb-2 text-white transition duration-200 rounded-lg cursor-pointer bg-primary hover:bg-blue-600"
+          className="flex items-center px-4 py-1 mb-2 text-black transition duration-200 rounded-lg cursor-pointer hover:text-white hover:bg-primary"
         >
           Create New Internship
         </li>
@@ -71,7 +80,7 @@ const AdminSidebar = ({ toggleSidebar }) => {
             navigate("./admin/allInternship");
             // toggleSidebar();
           }}
-          className="flex items-center px-4 py-3 mb-2 text-white transition duration-200 rounded-lg cursor-pointer bg-primary hover:bg-blue-600"
+          className="flex items-center px-4 py-1 mb-2 text-black transition duration-200 rounded-lg cursor-pointer hover:text-white hover:bg-primary"
         >
           All Internship
         </li>
@@ -80,7 +89,7 @@ const AdminSidebar = ({ toggleSidebar }) => {
             navigate("/admin/createnewcourse");
             // toggleSidebar();
           }}
-          className="flex items-center px-4 py-3 mb-2 text-white transition duration-200 rounded-lg cursor-pointer bg-primary hover:bg-blue-600"
+          className="flex items-center px-4 py-1 mb-2 text-black transition duration-200 rounded-lg cursor-pointer hover:text-white hover:bg-primary"
         >
           Create New Course
         </li>
@@ -89,7 +98,7 @@ const AdminSidebar = ({ toggleSidebar }) => {
             navigate("/admin/allcoures ");
             // toggleSidebar();
           }}
-          className="flex items-center px-4 py-3 mb-2 text-white transition duration-200 rounded-lg cursor-pointer bg-primary hover:bg-blue-600"
+          className="flex items-center px-4 py-1 mb-2 text-black transition duration-200 rounded-lg cursor-pointer hover:text-white hover:bg-primary"
         >
           All Course
         </li>
@@ -98,7 +107,7 @@ const AdminSidebar = ({ toggleSidebar }) => {
             navigate("/admin/admin-student-test");
             // toggleSidebar();
           }}
-          className="flex items-center px-4 py-3 mb-2 text-white transition duration-200 rounded-lg cursor-pointer bg-primary hover:bg-blue-600"
+          className="flex items-center px-4 py-1 mb-2 text-black transition duration-200 rounded-lg cursor-pointer hover:text-white hover:bg-primary"
         >
           Student Test
         </li>
@@ -107,7 +116,7 @@ const AdminSidebar = ({ toggleSidebar }) => {
             navigate("/admin/student/plan");
             // toggleSidebar();
           }}
-          className="flex items-center px-4 py-3 mb-2 text-white transition duration-200 rounded-lg cursor-pointer bg-primary hover:bg-blue-600"
+          className="flex items-center px-4 py-1 mb-2 text-black transition duration-200 rounded-lg cursor-pointer hover:text-white hover:bg-primary"
         >
           Plan
         </li>
