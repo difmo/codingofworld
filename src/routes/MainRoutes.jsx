@@ -10,22 +10,20 @@ import TrainingTeam from "../pages/OurTrainingTeam";
 import InternshipsSection from "../pages/Internship";
 import InternshipForm from "../pages/IntershipForm";
 import NotFound from "../pages/NotFound";
-// import Layout from "../pages/AdminProminent/AdLayout";
+import CourseRoutes from "./CourseRoutes";
 
 const MainRoutes = () => (
-    <Routes>
-        {/* <Route element={<Layout />}> */}
+    <Routes>      
             <Route path="/" element={<HomeScreen />} />
             <Route path="/contactus" element={<ContactUs />} />
             <Route path="/services" element={<Services />} />
-            <Route path="/courses" element={<Courses />} />
+            {/* <Route path="/courses" element={<Courses />} /> */}
+       
             <Route path="/about" element={<About />} />
             <Route path="/trainingteam" element={<TrainingTeam />} />
             <Route path="/programs" element={<InternshipsSection />} />
             <Route path="/internshipform" element={<InternshipForm />} />
             <Route path="*" element={<NotFound />} />
-        {/* </Route> */}
-
     </Routes>
 );
 

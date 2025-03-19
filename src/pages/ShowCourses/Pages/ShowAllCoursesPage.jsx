@@ -59,7 +59,7 @@ const ShowAllCoursesPage = () => {
   }, []);
 
   const handleCourseClick = (courseId) => {
-    navigate(`/showcoursee/${courseId}`);
+    navigate(`showcoursee/${courseId}`);
   };
 
   return (

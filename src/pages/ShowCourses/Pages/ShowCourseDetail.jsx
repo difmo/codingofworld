@@ -66,7 +66,7 @@ const ShowCourseDetails = () => {
   };
 
   const handleAddTopic = async () => {
-    navigate(`/showcourse/${courseId}`);
+    navigate(`showcourse/${courseId}`);
   };
 
  

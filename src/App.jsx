@@ -14,6 +14,8 @@ import CourseRoutes from "./routes/CourseRoutes";
 import NotFound from "./pages/NotFound";
 import MainLayout from "./pages/Layout/layout";
 import JobsOfferRoute from "./routes/JobOffersRoutes";
+import ScrollToTop from "./components/ScrollTop";
+import PremiumCourses from "./pages/PremiumCourses";
 
 const App = () => {
   const [isAdmin, setIsAdmin] = useState(false);
@@ -44,14 +46,17 @@ const App = () => {
         {/* Meta tags here */}
       </Helmet>
       <Router>
+      <ScrollToTop />
         <Routes>
+        <Route path="/premium-courses" element={<PremiumCourses />} />
           <Route element={<MainLayout />}>
-            <Route path="/" element={<MainRoutes />} />
+            <Route path="/*" element={<MainRoutes />} />
             <Route path="/auth/*" element={<AuthRoutes />} />
             <Route path="/carrer/*" element={<JobsOfferRoute />} />
+            <Route path="/courses/*" element={<CourseRoutes />} />
+
           </Route>
           <Route path="/blog/*" element={<BlogRoutes />} />
-          <Route path="/courses/*" element={<CourseRoutes />} />
           {isAdmin && <Route path="/admin/*" element={<AdminRoutes />} />}
           <Route path="*" element={<NotFound />} />
         </Routes>
