@@ -19,3 +19,4 @@ const auth = getAuth(app);
 const storage = getStorage(app);
 
 export { auth, db, storage };
+  

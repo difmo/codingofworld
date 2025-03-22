@@ -14,7 +14,7 @@ import { Navigate, useNavigate } from "react-router-dom";
 // import InternshipForm from "./IntershipForm";
 import TrainingTeam from "./OurTrainingTeam";
 
-export const About = () => {
+const About = () => {
   return (
     <>
       <section className="py-4 about">
@@ -125,3 +125,4 @@ export const AboutContent = () => {
     </section>
   );
 };
+export default About;

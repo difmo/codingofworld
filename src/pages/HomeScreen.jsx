@@ -13,6 +13,10 @@ import Video from "./VideoPage/Video";
 import Testimonials from "./Testimonials/Testimonials";
 import Brands from "./OurPartnears/OurPartnears";
 import Hero from "../components/Hero/Hero";
+import TrainingSection from "../components/Training Programs/TrainingTypeSection";
+import TrainingPrograms from "../components/Training Programs/TrainingPrograms";
+import FactsSection from "../components/Statistics/FactsSection";
+import ShowLatestBanner from "../popupfeature/ShowPopupBanner";
 
 const HomeScreen = () => {
   return (
@@ -20,24 +24,17 @@ const HomeScreen = () => {
       <Hero />
       <Services />
       <Banner />
-{/* 
-      <div>
-        <iframe
-          src="http://localhost:3001"  // URL of the Course Project
-          width="100%"
-          height="600px"
-          title="Course Component"
-          style={{ border: "none" }}
-        />
-      </div> */}
-
       <Subscribe />
       <Banner2 />
       <Features />
       <Pricing />
+      <TrainingSection/>
+      <TrainingPrograms/>
       <Testimonials />
       <FAQ />
       <Brands />
+      <FactsSection/>
+      <ShowLatestBanner />
     </div>
   );
 };

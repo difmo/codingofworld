@@ -133,7 +133,7 @@ export default function LoginScreen() {
                 <a
                   href="#!"
                   className="transition duration-150 ease-in-out text-danger hover:text-danger-600"
-                  onClick={() => navigate("/signupscreen")}
+                  onClick={() => navigate("/auth/signup")}
                 >
                   Register
                 </a>

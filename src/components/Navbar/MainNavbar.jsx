@@ -24,7 +24,7 @@ const NavbarMenu = [
   // { id: 3, title: "premium-courses", path: "/premium-courses" },
   { id: 4, title: "About Us", path: "/about" },
   { id: 5, title: "Contact Us", path: "/contactus" },
-  { id: 6, title: "Blogs", path: "/show-blogs" },
+  { id: 6, title: "Blogs", path: "blogs/show-blogs" },
 ];
 
 const MainNavbar = () => {
@@ -106,7 +106,7 @@ const MainNavbar = () => {
 
             {!isUserLogin ? (
               <button
-                onClick={() => navigate("/loginscreen")}
+                onClick={() => navigate("/auth/signin")}
                 className="h-8 text-[16px] px-8 py-1 rounded-md bg-red-100 text-red-500 hover:bg-red-600 focus:outline-none focus:ring-2 focus:ring-red-500 hover:text-white"
               >
                 Sign In
@@ -226,7 +226,7 @@ const MainNavbar = () => {
               {!isUserLogin ? (
                 <button
                   onClick={() => {
-                    navigate("/signupscreen");
+                    navigate("/auth/signup");
                     setMobileMenuOpen(false);
                   }}
                   className="primary-btn"
