@@ -35,7 +35,7 @@ const Brands = () => {
   return (
     <section className="py-16 pb-24">
       <SectionTitle
-        title="where for placement"
+  title="Where For Opportunity"
         // paragraph="There are many variations of passages of Lorem Ipsum available but the majority have suffered alteration in some form."
         center
       />

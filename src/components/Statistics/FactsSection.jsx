@@ -63,7 +63,7 @@ const FactsSection = () => {
           <div className="col-12 text-center">
             <div className="section-title">
               <h2 className="text-4xl font-bold text-gray-800">
-                Some <span className="text-primary">Facts</span>
+              Some <span className="text-primary">Insights</span>
               </h2>
               <p className="text-lg text-gray-600 mt-4">
                 Techpile excels in Placements with its dedicated Mentors. Trainees get a blend of mentorship,

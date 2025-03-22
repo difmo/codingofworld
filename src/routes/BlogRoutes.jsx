@@ -65,17 +65,10 @@ const BlogRoutes = () => {
 
   return (
     <Routes>
-      {isUserLogin ? (
-        <>
-          <Route path="/addblogs" element={<Addblogs />} />
-          <Route path="/all-blogs" element={<AllBlogs />} />
-          <Route path="/edit-blog/:blogId" element={<EditBlog />} />
+
           <Route path="/show-blogs" element={<ShowBlogs />} />
           <Route path="/blog/:blogId" element={<BlogPage />} />
-        </>
-      ) : (
-        <Route path="*" element={<NotFound />} />
-      )}
+     
     </Routes>
   );
 };
