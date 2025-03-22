@@ -67,45 +67,36 @@ const ShowLatestBanner = () => {
     latestBanner && (
       <>
         {isPopupVisible && (
-          <div className="fixed inset-0 flex justify-center items-center bg-black pr-4 bg-opacity-50 z-50 transition-all duration-300 ease-in-out">
+          <div className="fixed inset-0 flex justify-center items-center bg-black bg-opacity-50 z-50">
             <div
               ref={popupRef}
-              className="bg-white rounded-xl w-full max-w-3xl mx-4  sm:mx-6 shadow-lg transform transition-all duration-300 ease-in-out scale-95 hover:scale-100"
+              className="bg-secondaryblue relative rounded-xl max-w-xl w-full"
             >
               <button
                 onClick={handleClosePopup}
-                className="absolute top-4 right-4 bg-secondaryblue text-white rounded-full w-8 h-8 flex items-center justify-center text-lg focus:outline-none"
+                className="absolute top-1 bg-secondaryblue rounded-full px-3 py-1 right-2 text-white text-lg"
               >
                 x
               </button>
-              {/* <div className="relative overflow-hidden rounded-t-xl">
-                <img
-                  src={latestBanner.imageUrl}
-                  alt="Banner"
-                  className="w-full h-56 sm:h-72 lg:h-96 object-cover transition-all duration-500 ease-in-out transform hover:scale-105"
-                />
-              </div> */}
-              <div className="p-4 sm:p-6 lg:p-8">
-                <p className="text-lg sm:text-2xl lg:text-3xl font-semibold text-primary mb-4">
+              <img
+                src={latestBanner.imageUrl}
+                alt="Banner"
+                className="w-full object-cover rounded-t-xl mb-4"
+              />
+              <div className="p-6">
+                <p className="text-lg font-medium mb-4 text-primary">
                   {latestBanner.description}
                 </p>
-                <ul className="list-none pl-0 mb-6 space-y-2 text-gray-700 text-sm sm:text-lg">
+                <ul className="list-disc text-white pl-5 mb-4">
                   {latestBanner.bulletPoints.map((point, index) => (
-                    <li
-                      key={index}
-                      className="relative pl-6 text-base sm:text-lg"
-                    >
-                      {/* Custom circle bullet */}
-                      <span className="absolute left-0 top-1/2 transform -translate-y-1/2 w-2.5 h-2.5 bg-secondaryblue rounded-full"></span>
-                      {point}
-                    </li>
+                    <li key={index}>{point}</li>
                   ))}
                 </ul>
                 <a
                   href={latestBanner.buttonLink}
-                  className="inline-block px-4 py-1 sm:px-6 sm:py-3 bg-secondaryblue text-white rounded-full text-base sm:text-lg hover:bg-green-600 transition-all duration-300 ease-in-out"
+                  className="inline-block py-2 px-4 bg-green-500 text-white rounded-lg hover:bg-indigo-700"
                 >
-                  Register Now
+                  Go to Contact Form
                 </a>
               </div>
             </div>
