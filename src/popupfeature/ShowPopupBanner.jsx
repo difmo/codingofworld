@@ -74,7 +74,7 @@ const ShowLatestBanner = () => {
             >
               <button
                 onClick={handleClosePopup}
-                className="absolute top-4 right-4 bg-secondaryblue text-white rounded-full w-8 h-8 flex items-center justify-center text-lg focus:outline-none"
+                className="absolute top-1 right-2 bg-secondaryblue text-white rounded-full w-8 h-8 flex items-center justify-center text-lg focus:outline-none"
               >
                 x
               </button>
@@ -85,7 +85,7 @@ const ShowLatestBanner = () => {
                   className="w-full h-56 sm:h-72 lg:h-96 object-cover transition-all duration-500 ease-in-out transform hover:scale-105"
                 />
               </div> */}
-              <div className="p-4 sm:p-6 lg:p-8">
+              <div className="p-4 sm:p-6 lg:p-8  ml-4 mr-5">
                 <p className="text-lg sm:text-2xl lg:text-3xl font-semibold text-primary mb-4">
                   {latestBanner.description}
                 </p>
