@@ -82,7 +82,7 @@ const MainNavbar = () => {
         className="container flex items-center justify-between px-4 py-4 mx-auto"
       >
         <div className="flex items-center justify-center">
-          <img src={logo} className="h-10 " />
+          <img src={logo} alt="coding of world" className="h-10 " />
           <div>
             <h1 className="pl-2 text-xl font-bold text-secondaryblue font-play ">
               Coding of <span className="text-primary">World</span>
