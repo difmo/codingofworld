@@ -10,42 +10,55 @@ const ShowAllCoursesPage = () => {
 
   const navigate = useNavigate();
 
+
+  const fetchUserEmail = async (userId) => {
+    console.log("user id from passed" + userId);
+    try {
+      const userDocRef = doc(db, "users", userId);
+      const userDocSnap = await getDoc(userDocRef);
+  
+      if (!userDocSnap.exists()) {
+        console.log("User document does not exist for userId:", userId);
+        return null; // Return null if user document doesn't exist
+      }
+  
+      return userDocSnap.data().email; // Return the email if user document exists
+    } catch (error) {
+      console.error("Error fetching user data:", error);
+      return null; // Return null in case of error
+    }
+  };
+  
+
+
+
   useEffect(() => {
     const fetchCourses = async () => {
       try {
-        // Fetch all courses from the courses collection
         const querySnapshot = await getDocs(collection(db, "courses"));
         const coursesList = [];
-
-        // Loop through each course document
+  
         for (const docSnap of querySnapshot.docs) {
-          // Get the course data
           const courseData = {
             id: docSnap.id,
             ...docSnap.data(),
           };
-
-          // Fetch the user data based on userId from the course
-          const userId = courseData.userId; // Assuming `userId` is a field in the course data
-          // console.log("userId", userId);
-          // Get a reference to the user document
-          const userDocRef = doc(db, "users", userId); // Create a reference to the user's document
-          const userDocSnap = await getDoc(userDocRef); // Fetch the user document using getDoc
-          console.log("userDocSnap", userDocSnap);
-          if (!userDocSnap.exists()) {
-            console.log("User document does not exist for userId:", userId);
-          }
-          const userEmail = userDocSnap.exists() ? userDocSnap.data().email : null; // Extract email if user exists
-          // console.log("userEmail", userEmail);
-
-          // Add user email to the course data
+  
+          const userId = courseData.userId;
+  
+          // Fetch the user email using the new function
+        console.log("user id pritam" + userId);
+          const userEmail = await fetchUserEmail(userId);
+          
+  
+          // Add the user email to the course data
           coursesList.push({
             ...courseData,
             userEmail,
           });
         }
-             
-        // Set the courses state with the updated courses list
+  
+        // Update state with the courses list
         setCourses(coursesList);
       } catch (error) {
         console.error("Error fetching courses:", error);
@@ -54,9 +67,10 @@ const ShowAllCoursesPage = () => {
         setLoading(false);
       }
     };
-
+  
     fetchCourses();
   }, []);
+  
 
   const handleCourseClick = (courseId) => {
     navigate(`/showcoursee/${courseId}`);
