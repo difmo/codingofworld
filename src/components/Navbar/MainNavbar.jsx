@@ -105,7 +105,7 @@ const MainNavbar = () => {
 
             {!isUserLogin ? (
               <button
-                onClick={() => navigate("/loginscreen")}
+                onClick={() => navigate("/login")}
                 className="h-8 text-[16px] px-8 py-1 rounded-md bg-red-100 text-red-500 hover:bg-red-600 focus:outline-none focus:ring-2 focus:ring-red-500 hover:text-white"
               >
                 Sign In

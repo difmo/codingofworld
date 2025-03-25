@@ -213,7 +213,7 @@ const App = () => {
             <Route path="/internshipform" element={<InternshipForm />} />
             <Route path="/tcsnqtcourse" element={<TcsNqtCourse />} />
             <Route path="/signupscreen" element={<SingUpScreen />} />
-            <Route path="/loginscreen" element={<LoginScreen />} />
+            <Route path="/login" element={<LoginScreen />} />
             <Route path="/alldeatilcourese" element={<AlldetailCourese />} />
             <Route path="/popupbloge" element={<Popupbloge />} />
             <Route path="/coursepagex" element={<CoursePage />} />
