@@ -35,6 +35,10 @@ const MainNavbar = () => {
   const navigate = useNavigate();
 
   const { isAdmin, isUserLogin, blogPermission } = useProfile();
+  console.log(isAdmin)
+  console.log(isUserLogin)
+  console.log(blogPermission)
+
 
   const toggleMobileMenu = () => {
     setMobileMenuOpen((prev) => !prev);

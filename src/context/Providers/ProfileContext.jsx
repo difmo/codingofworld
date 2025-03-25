@@ -1,5 +1,5 @@
-import  { createContext, useState, useEffect, useContext } from "react";
-import { db,auth } from "../../firebase"; // Import Firebase firestore
+import { createContext, useState, useEffect, useContext } from "react";
+import { db, auth } from "../../firebase"; // Import Firebase firestore
 import { doc, getDoc, collection, query, where, getDocs } from "firebase/firestore";
 
 const ProfileContext = createContext();
@@ -16,13 +16,18 @@ export const ProfileProvider = ({ children }) => {
   const [studentData, setStudentData] = useState(null);
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(true);
+  const [isUserLogin, setIsLoggedIn] = useState(false); // Track login status
 
   const userUid = auth.currentUser ? auth.currentUser.uid : null;
 
   useEffect(() => {
     if (userUid) {
+      setIsLoggedIn(true); // Set login status to true if user is logged in
       fetchUserRole(userUid);
       fetchStudentData(userUid);
+    } else {
+      setIsLoggedIn(false); // Set login status to false if no user is logged in
+      setLoading(false); // Stop loading if no user is logged in
     }
   }, [userUid]);
 
@@ -70,6 +75,7 @@ export const ProfileProvider = ({ children }) => {
         studentData,
         error,
         loading,
+        isUserLogin, // Provide login status in context
       }}
     >
       {children}
