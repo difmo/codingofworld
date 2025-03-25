@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { Helmet, HelmetProvider } from "react-helmet-async";
 import { auth, db } from "./firebase";
@@ -18,7 +18,7 @@ import CreateCourseRoutes from "./routes/CreateCourseRoutes";
 import CreateBlogRoutes from "./routes/CreateBlogRoutes";
 import AdminLayout from "./pages/Layout/AdminLayout";
 import Providers from "./context/Providers";
-import { MAINROUTES } from "./constants/routeConstants/RouteConstants";
+import RouteConstants from "./constants/routeConstants/RouteConstants";
 
 const App = () => {
   const [isAdmin, setIsAdmin] = useState(false);
@@ -105,16 +105,16 @@ const App = () => {
         <Routes>
           <Route path="/premium-courses" element={<PremiumCourses />} />
           <Route element={<MainLayout />}>
-            <Route path={MAINROUTES.HOME} element={<MainRoutes />} />
-            <Route path="/auth/*" element={<AuthRoutes />} />
-            <Route path="/carrer/*" element={<JobsOfferRoute />} />
-            <Route path="/courses/*" element={<CourseRoutes />} />
-            <Route path="/blogs/*" element={<BlogRoutes />} />
+            <Route path={RouteConstants.ROOTROUTE.HOME} element={<MainRoutes />} />
+            <Route path={RouteConstants.ROOTROUTE.AUTH} element={<AuthRoutes />} />
+            <Route path={RouteConstants.ROOTROUTE.CAREER} element={<JobsOfferRoute />} />
+            <Route path={RouteConstants.ROOTROUTE.COURSES} element={<CourseRoutes />} />
+            <Route path={RouteConstants.ROOTROUTE.BLOGS} element={<BlogRoutes />} />
           </Route>
-          <Route path="/create-courses/*" element={<CreateCourseRoutes />} />
-          <Route path="/create-blogs/*" element={<CreateBlogRoutes />} />
+          <Route path={RouteConstants.ROOTROUTE.CREATECOURSES} element={<CreateCourseRoutes />} />
+          <Route path={RouteConstants.ROOTROUTE.CREATEBLOGS} element={<CreateBlogRoutes />} />
           <Route element={<AdminLayout />}>
-            {isAdmin && <Route path="/admin/*" element={<AdminRoutes />} />}
+            {isAdmin && <Route path={RouteConstants.ROOTROUTE.ADMIN} element={<AdminRoutes />} />}
           </Route>
           <Route path="*" element={<NotFound />} />
         </Routes>

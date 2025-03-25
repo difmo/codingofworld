@@ -118,7 +118,7 @@ const Hero = () => {
   };
 
   return (
-    <section className="relative overflow-hidden bg-white">
+    <section className="relative overflow-hidden bg-white dark:bg-dark transition-all duration-700 ease-in-out">
       <ScrollToTop />
       <div className="container grid grid-cols-1 md:px-32 md:grid-cols-2">
         <div className="relative flex flex-col justify-center py-14 md:py-0 ">
@@ -129,7 +129,7 @@ const Hero = () => {
               animate="animate"
               className="text-2xl lg:text-3xl  font-bold !leading-snug"
             >
-              <span className="text-secondaryblue font-anek_telugu">
+              <span className="text-secondaryblue dark:text-gray-300 font-anek_telugu">
                 {textOptions[currentTextIndex][0]}
               </span>
               <span className="text-red-500 font-anek_telugu">
@@ -144,7 +144,7 @@ const Hero = () => {
               {/* First sentence: Learning and AI-powered skills */}
               <div className="flex items-center gap-2">
                 <FaLightbulb className="text-yellow-500" />
-                <span className="font-medium text-gray-800">
+                <span className="font-medium text-gray-800 dark:text-gray-500">
                   Master cutting-edge tech and AI skills
                 </span>
               </div>
@@ -152,7 +152,7 @@ const Hero = () => {
               {/* Second sentence: Industry experts */}
               <div className="flex items-center gap-2">
                 <FaUserTie className="text-blue-500" />
-                <span className="font-medium text-gray-800">
+                <span className="font-medium text-gray-800 dark:text-gray-500 ">
                   Learn directly from top industry leaders
                 </span>
               </div>
@@ -160,7 +160,7 @@ const Hero = () => {
               {/* Third sentence: Partnered startups */}
               <div className="flex items-center gap-2">
                 <FaHandshake className="text-green-500" />
-                <span className="font-medium text-gray-800">
+                <span className="font-medium text-gray-800  dark:text-gray-500">
                   Partnered with 10+ startups and companies
                 </span>
               </div>
@@ -215,8 +215,9 @@ const Hero = () => {
             animate={{ x: 0, opacity: 1 }}
             transition={{ duration: 0.6, delay: 0.2, ease: "easeInOut" }}
             src={Blob}
+            
             alt="Blob"
-            className="absolute -bottom-32 w-[800px] md:w-[1500px] -z-[0] hidden md:block"
+            className="absolute  -bottom-32 w-[800px] md:w-[1500px] -z-[0] hidden md:block"
           />
         </div>
       </div>
