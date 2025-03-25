@@ -14,7 +14,7 @@ import logo from "../../assets/images/logo.svg";
 import "firebase/auth";
 import { db, auth } from "../../firebase";
 import Popupbloge from "../../pages/Popupbloge";
-import AdminController from "../../controller/AdminController";
+import { useProfile } from "../../context/Providers/ProfileContext";
 
 const NavbarMenu = [
   { id: 1, title: "Home", path: "/" },
@@ -29,12 +29,12 @@ const NavbarMenu = [
 
 const MainNavbar = () => {
   const [isMobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const [showPopup, setShowPopup] = useState(false); // State to control the modal visibility
+  const [showPopup, setShowPopup] = useState(false); 
   const [isOpen, setIsOpen] = useState(false);
   const popupRef = useRef(null);
   const navigate = useNavigate();
 
-  const { isAdmin, isUserLogin, blogPermission } = AdminController();
+  const { isAdmin, isUserLogin, blogPermission } = useProfile();
 
   const toggleMobileMenu = () => {
     setMobileMenuOpen((prev) => !prev);
