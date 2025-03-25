@@ -16,7 +16,7 @@ const BlogSidebar = ({ toggleSidebar }) => {
       <ul className="space-y-4">
         <li>
           <Link
-            to="/addblogs"
+            to="/create-blogs/addblogs"
             onClick={() => {
               toggleSidebar(); 
             }}
@@ -27,7 +27,7 @@ const BlogSidebar = ({ toggleSidebar }) => {
         </li>
         <li>
           <Link
-            to="/all-blogs"
+            to="/create-blogs/all-blogs"
             onClick={() => {
               toggleSidebar(); 
             }}

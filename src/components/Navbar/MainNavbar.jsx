@@ -14,16 +14,17 @@ import logo from "../../assets/images/logo.svg";
 import "firebase/auth";
 import { db, auth } from "../../firebase";
 import Popupbloge from "../../pages/Popupbloge";
-import AdminController from "../../Controller/AdminController";
+import AdminController from "../../controller/AdminController";
 
 const NavbarMenu = [
   { id: 1, title: "Home", path: "/" },
   { id: 2, title: "Our Courses", path: "/courses" },
   // { id: 2, title: "Our Courses2", path: "/show-coursee" },
   { id: 3, title: "Programs", path: "/programs" },
+  // { id: 3, title: "premium-courses", path: "/premium-courses" },
   { id: 4, title: "About Us", path: "/about" },
   { id: 5, title: "Contact Us", path: "/contactus" },
-  { id: 6, title: "Blogs", path: "/show-blogs" },
+  { id: 6, title: "Blogs", path: "blogs/show-blogs" },
 ];
 
 const MainNavbar = () => {
@@ -81,7 +82,7 @@ const MainNavbar = () => {
         className="container flex items-center justify-between px-4 py-4 mx-auto"
       >
         <div className="flex items-center justify-center">
-          <img src={logo} className="h-10 " />
+          <img src={logo} alt="coding of world" className="h-10 " />
           <div>
             <h1 className="pl-2 text-xl font-bold text-secondaryblue font-play ">
               Coding of <span className="text-primary">World</span>
@@ -105,7 +106,7 @@ const MainNavbar = () => {
 
             {!isUserLogin ? (
               <button
-                onClick={() => navigate("/loginscreen")}
+                onClick={() => navigate("/auth/signin")}
                 className="h-8 text-[16px] px-8 py-1 rounded-md bg-red-100 text-red-500 hover:bg-red-600 focus:outline-none focus:ring-2 focus:ring-red-500 hover:text-white"
               >
                 Sign In
@@ -225,7 +226,7 @@ const MainNavbar = () => {
               {!isUserLogin ? (
                 <button
                   onClick={() => {
-                    navigate("/signupscreen");
+                    navigate("/auth/signup");
                     setMobileMenuOpen(false);
                   }}
                   className="primary-btn"

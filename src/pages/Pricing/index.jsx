@@ -1,13 +1,35 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { db } from "../../firebase"; // Import the Firestore instance
+import { collection, getDocs } from "firebase/firestore";
 import OfferList from "./OfferList";
 import PricingBox from "./PricingBox";
 import SectionTitle from "./SectionTitle";
 
 const Pricing = () => {
-  const [isMonthly, setIsMonthly] = useState(true);
+  const [isMonthly, setIsMonthly] = useState(true); // State for monthly/yearly toggle
+  const [pricingPlans, setPricingPlans] = useState([]); // State to store pricing plans
+
+  // Fetch pricing data from Firestore
+  useEffect(() => {
+    const fetchPricingPlans = async () => {
+      try {
+        const pricingPlansRef = collection(db, "pricingPlans");
+        const snapshot = await getDocs(pricingPlansRef);
+        const plans = snapshot.docs.map((doc) => ({
+          id: doc.id,
+          ...doc.data(),
+        }));
+        setPricingPlans(plans); // Store the fetched plans in state
+      } catch (error) {
+        console.error("Error fetching pricing plans:", error);
+      }
+    };
+
+    fetchPricingPlans();
+  }, []);
 
   return (
-    <section id="pricing" className="relative  -z-50  md:py-20 lg:py-28">
+    <section id="pricing" className="relative -z-50 md:py-20 lg:py-28">
       <div className="container">
         <SectionTitle
           title="Simple and Affordable Pricing"
@@ -16,159 +38,27 @@ const Pricing = () => {
           width="665px"
         />
 
-        <div className="w-full">
-          <div
-            className="wow fadeInUp mb-8 flex justify-center md:mb-12 lg:mb-16"
-            data-wow-delay=".1s"
-          >
-            <span
-              onClick={() => setIsMonthly(true)}
-              className={`${
-                isMonthly
-                  ? "pointer-events-none text-primary"
-                  : "text-dark dark:text-white"
-              } mr-4 cursor-pointer text-base font-semibold`}
-            >
-              Monthly
-            </span>
-            <div
-              onClick={() => setIsMonthly(!isMonthly)}
-              className="flex cursor-pointer items-center"
-            >
-              <div className="relative">
-                <div className="h-5 w-14 rounded-full bg-[#1D2144] shadow-inner"></div>
-                <div
-                  className={`${
-                    isMonthly ? "" : "translate-x-full"
-                  } shadow-switch-1 absolute left-0 top-[-4px] flex h-7 w-7 items-center justify-center rounded-full bg-primary transition`}
-                >
-                  <span className="active h-4 w-4 rounded-full bg-white"></span>
-                </div>
-              </div>
-            </div>
-            <span
-              onClick={() => setIsMonthly(true)}
-              className={`${
-                isMonthly
-                  ? "text-dark dark:text-white"
-                  : "pointer-events-none text-primary"
-              } ml-4 cursor-pointer text-base font-semibold`}
-            >
-              Yearly
-            </span>
-          </div>
-        </div>
+       
 
-        <div className="grid grid-cols-1 gap-x-8 gap-y-10 md:grid-cols-2 lg:grid-cols-3">
-          <PricingBox
-            packageName="Beginner"
-            price={isMonthly ? "2,000" : "20,000"}
-            duration={isMonthly ? "mo" : "yr"}
-            subtitle="Perfect for those just starting out with IT skills."
-          >
-            <OfferList
-              text="Introduction to Computer Science"
-              status="active"
-            />
-            <OfferList text="Basic Programming Concepts" status="active" />
-            <OfferList text="Computer Hardware Basics" status="active" />
-            <OfferList text="Email & Communication Tools" status="active" />
-            <OfferList
-              text="Introduction to Internet Technologies"
-              status="active"
-            />
-            <OfferList text="Basic Networking Concepts" status="active" />
-            <OfferList text="Data Entry & Office Tools" status="active" />
-            <OfferList text="Introductory Web Development" status="inactive" />
-            <OfferList text="One-on-One Tutoring" status="inactive" />
-            <OfferList text="Access to Premium Labs" status="inactive" />
-            <OfferList
-              text="Basic Digital Marketing Concepts"
-              status="inactive"
-            />
-            <OfferList
-              text="Basic Cloud Computing Concepts"
-              status="inactive"
-            />
-            {/* oihibo */}
-          </PricingBox>
-          <PricingBox
-            packageName="Intermediate"
-            price={isMonthly ? "2,500" : "27,000"}
-            duration={isMonthly ? "mo" : "yr"}
-            subtitle="For those looking to expand their IT knowledge and skills."
-          >
-            <OfferList
-              text="Advanced Programming (Python, Java)"
-              status="active"
-            />
-            <OfferList text="Networking Essentials" status="active" />
-            <OfferList text="Database Management" status="active" />
-            <OfferList text="Cybersecurity Fundamentals" status="active" />
-            <OfferList text="Personalized Course Feedback" status="active" />
-            <OfferList
-              text="Lifetime Access to Course Materials"
-              status="active"
-            />
-            <OfferList text="Introduction to Data Science" status="inactive" />
-            <OfferList
-              text="Web Development with HTML & CSS"
-              status="inactive"
-            />
-            <OfferList text="Cloud Services (AWS, Azure)" status="inactive" />
-            <OfferList
-              text="Advanced Networking & Protocols"
-              status="inactive"
-            />
-            <OfferList text="Project Management for IT" status="inactive" />
-            <OfferList text="Business IT Strategies" status="inactive" />
-          </PricingBox>
-          <PricingBox
-            packageName="Professional"
-            price={isMonthly ? "3,500" : "35,000"}
-            duration={isMonthly ? "mo" : "yr"}
-            subtitle="For professionals ready to master IT and advance their careers."
-          >
-            <OfferList
-              text="Master Courses in Cloud Computing"
-              status="active"
-            />
-            <OfferList
-              text="Advanced Cybersecurity Techniques"
-              status="active"
-            />
-            <OfferList text="IT Project Management" status="active" />
-            <OfferList text="Data Science and AI" status="active" />
-            <OfferList
-              text="One-on-One Mentoring with Experts"
-              status="active"
-            />
-            <OfferList
-              text="Access to Industry Events & Webinars"
-              status="active"
-            />
-            <OfferList
-              text="Machine Learning for Professionals"
-              status="active"
-            />
-            <OfferList text="DevOps Fundamentals and Tools" status="active" />
-            <OfferList
-              text="Blockchain Development and Application"
-              status="active"
-            />
-            <OfferList
-              text="Advanced Cloud Architecture & Design"
-              status="inactive"
-            />
-            <OfferList
-              text="AI & ML Certification Exam Preparation"
-              status="inactive"
-            />
-            <OfferList
-              text="Exclusive Networking Opportunities"
-              status="inactive"
-            />
-          </PricingBox>
+        <div className="grid pt-10 grid-cols-1 gap-x-8 gap-y-10 md:grid-cols-2 lg:grid-cols-3">
+          {pricingPlans.map((plan) => (
+            <PricingBox
+              key={plan.id}
+              packageName={plan.name}
+             price={ plan.priceYearly}
+              offerprice={ plan.priceMonthly}
+              duration={isMonthly ? "mo" : "yr"}
+              subtitle={plan.subtitle}
+            >
+              {plan.offers.map((offer, index) => (
+                <OfferList
+                  key={index}
+                  text={offer.text}
+                  status={offer.status}
+                />
+              ))}
+            </PricingBox>
+          ))}
         </div>
       </div>
 

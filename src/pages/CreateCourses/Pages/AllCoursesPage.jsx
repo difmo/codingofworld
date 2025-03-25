@@ -34,7 +34,7 @@ const AllCoursesPage = () => {
   }, []);
 
   const handleCourseClick = (courseId) => {
-    navigate(`/usercourse/${courseId}`);
+    navigate(`/create-courses/edit-and-show/${courseId}`);
   };
 
   const handleDeleteCourse = async (courseId) => {
@@ -53,7 +53,7 @@ const AllCoursesPage = () => {
   };
 
   const handleAddCourse = () => {
-    navigate('/create-course'); 
+    navigate('/create-courses/create-course'); 
   };
 
   return (

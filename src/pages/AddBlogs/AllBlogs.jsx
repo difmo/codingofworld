@@ -10,17 +10,14 @@ const AllBlogs = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    const fetchBlogs = async () => {
+    const fetchBlogs = async (userId) => {
       try {
-        const currentUser = auth.currentUser;
-
-        if (!currentUser) {
+        if (!userId) {
           console.error("User is not logged in");
           setError("User is not logged in");
           return;
         }
 
-        const userId = currentUser.uid;
         console.log("User ID:", userId); // Debug: Check if the user ID is correct.
 
         const blogsCollection = collection(db, "blogs");
@@ -48,7 +45,20 @@ const AllBlogs = () => {
       }
     };
 
-    fetchBlogs();
+    // Wait for the authentication state to be fully initialized
+    const unsubscribe = auth.onAuthStateChanged((user) => {
+      if (user) {
+        console.log("User is logged in:", user);
+        fetchBlogs(user.uid);
+      } else {
+        console.log("No user is logged in");
+        setError("No user is logged in");
+        setLoading(false); // Set loading false if no user is logged in
+      }
+    });
+
+    // Cleanup the listener when the component is unmounted
+    return () => unsubscribe();
   }, []); // Empty dependency array means this will only run once when the component mounts
 
   const handleDelete = async (id) => {

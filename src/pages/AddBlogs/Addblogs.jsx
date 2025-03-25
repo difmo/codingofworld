@@ -8,7 +8,7 @@ import { doc, setDoc, getDoc, updateDoc } from "firebase/firestore";
 import { v4 as uuidv4 } from "uuid";
 import { db, auth } from '../../firebase';
 import { getStorage, ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
-import AdminController from "../../Controller/AdminController";
+import AdminController from "../../controller/AdminController";
 
 const AddBlogs = () => {
   const navigate = useNavigate();
