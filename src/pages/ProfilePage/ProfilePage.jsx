@@ -7,7 +7,7 @@ import CertificatesGeneratorComponent from "../../components/CertificatesGen/Cer
 
 const ProfilePage = () => {
   const { user, signOut } = useAuth(); // Access auth state
-  const { isAdmin, blogPermission, bloggerName, studentData, error, loading } = useProfile(); // Access profile state
+  const { isAdmin, blogPermission, bloggerName, studentData, error, loading } = useProfile(); // Access profile stdfdsfate
 
   const [isCertificateVisible, setIsCertificateVisible] = useState(false);
   const navigate = useNavigate();
