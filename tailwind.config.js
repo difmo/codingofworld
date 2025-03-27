@@ -10,6 +10,7 @@ export default {
       translate: {
         full: "100%",
       },
+      // dfdf
       fontFamily: {
         poppins: ["Poppins", "sans-serif"],
         play: ["Play", "sans-serif"],
