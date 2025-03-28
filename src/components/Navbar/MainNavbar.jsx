@@ -8,8 +8,8 @@ import logo from "../../assets/images/logo.svg";
 import "firebase/auth";
 import { auth } from "../../firebase";
 import Popupbloge from "../../pages/Popupbloge";
-import AdminController from "../../controller/AdminController";
 import RouteConstants from "../../constants/routeConstants/RouteConstants";
+import { useProfile } from "../../context/Providers/ProfileContext";
 
 const NavbarMenu = [
   { id: 1, title: "Home", path: "/" },
@@ -28,7 +28,7 @@ const MainNavbar = () => {
   const popupRef = useRef(null);
   const navigate = useNavigate();
 
-  const { isUserLogin } = AdminController();
+  const { isUserLogin } = useProfile();
 
   const toggleMobileMenu = () => {
     setMobileMenuOpen((prev) => !prev);
