@@ -1,10 +1,10 @@
-import React, { useEffect, useState, useRef } from "react";
+import  { useEffect, useState, useRef } from "react";
 import {
   FaTimes,
   FaUser,
-  FaBlog,
-  FaSignOutAlt,
-  FaPersonBooth,
+
+  FaMoon,
+  FaSun,
 } from "react-icons/fa";
 import { IoMdMenu } from "react-icons/io";
 import { motion, AnimatePresence } from "framer-motion";
@@ -12,16 +12,15 @@ import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import logo from "../../assets/images/logo.svg";
 import "firebase/auth";
-import { db, auth } from "../../firebase";
+import { auth } from "../../firebase";
 import Popupbloge from "../../pages/Popupbloge";
-import { useProfile } from "../../context/Providers/ProfileContext";
+import AdminController from "../../controller/AdminController";
+import RouteConstants from "../../constants/routeConstants/RouteConstants";
 
 const NavbarMenu = [
   { id: 1, title: "Home", path: "/" },
   { id: 2, title: "Our Courses", path: "/courses" },
-  // { id: 2, title: "Our Courses2", path: "/show-coursee" },
   { id: 3, title: "Programs", path: "/programs" },
-  // { id: 3, title: "premium-courses", path: "/premium-courses" },
   { id: 4, title: "About Us", path: "/about" },
   { id: 5, title: "Contact Us", path: "/contactus" },
   { id: 6, title: "Blogs", path: "blogs/show-blogs" },
@@ -29,16 +28,13 @@ const NavbarMenu = [
 
 const MainNavbar = () => {
   const [isMobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const [showPopup, setShowPopup] = useState(false); 
+  const [showPopup, setShowPopup] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
+  const [darkMode, setDarkMode] = useState(false);
   const popupRef = useRef(null);
   const navigate = useNavigate();
 
-  const { isAdmin, isUserLogin, blogPermission } = useProfile();
-  console.log(isAdmin)
-  console.log(isUserLogin)
-  console.log(blogPermission)
-
+  const { isUserLogin } = AdminController();
 
   const toggleMobileMenu = () => {
     setMobileMenuOpen((prev) => !prev);
@@ -53,17 +49,28 @@ const MainNavbar = () => {
     }
   };
 
-  const openPopup = () => setShowPopup(true); // Open the modal
-  const closePopup = () => setShowPopup(false); // Close the modal
+  const closePopup = () => setShowPopup(false);
 
   const toggleSidebar = () => {
     setIsOpen(!isOpen);
   };
-  // dsfsfsfddsfdff
+
+  // Dark mode toggle handler
+  const toggleDarkMode = () => {
+    setDarkMode((prevMode) => !prevMode);
+  };
+
+  useEffect(() => {
+    // Apply dark mode class to body element
+    if (darkMode) {
+      document.body.classList.add("dark");
+    } else {
+      document.body.classList.remove("dark");
+    }
+  }, [darkMode]);
 
   const handleClickOutside = (event) => {
-    if (popupRef.current && !popupRef.current.contains(event.target)) {
-    }
+    if (popupRef.current && !popupRef.current.contains(event.target)) {}
   };
 
   useEffect(() => {
@@ -79,16 +86,16 @@ const MainNavbar = () => {
   }, [showPopup]);
 
   return (
-    <nav className="sticky top-0 z-20 w-full bg-white shadow-sm">
+    <nav className="sticky top-0 z-20 w-full bg-white dark:bg-dark transition-all duration-700 ease-in-out">
       <motion.div
         initial={{ opacity: 0, y: -50 }}
         animate={{ opacity: 1, y: 0 }}
         className="container flex items-center justify-between px-4 py-4 mx-auto"
       >
         <div className="flex items-center justify-center">
-          <img src={logo} alt="coding of world" className="h-10 " />
+          <img src={logo} alt="coding of world" className="h-10" />
           <div>
-            <h1 className="pl-2 text-xl font-bold text-secondaryblue font-play ">
+            <h1 className="pl-2 text-xl font-bold text-secondaryblue font-play dark:text-white">
               Coding of <span className="text-primary">World</span>
             </h1>
           </div>
@@ -100,7 +107,7 @@ const MainNavbar = () => {
               <li key={menu.id}>
                 <Link
                   to={menu.path}
-                  className="relative text-secondaryblue inline-block px-3 py-2 font-play hover:text-secondary group"
+                  className="relative text-secondaryblue inline-block px-3 py-2 font-play hover:text-secondary group dark:text-white"
                 >
                   <div className="absolute bottom-0  hidden w-2 h-2 mt-4 -translate-x-1/2 rounded-full bg-secondary font-play left-1/2 top-1/2 group-hover:block"></div>
                   {menu.title}
@@ -110,7 +117,7 @@ const MainNavbar = () => {
 
             {!isUserLogin ? (
               <button
-                onClick={() => navigate("/auth/signin")}
+                onClick={() => navigate(RouteConstants.NAVIGATING_ROUTE.GOTO_SIGNIN)}
                 className="h-8 text-[16px] px-8 py-1 rounded-md bg-red-100 text-red-500 hover:bg-red-600 focus:outline-none focus:ring-2 focus:ring-red-500 hover:text-white"
               >
                 Sign In
@@ -124,84 +131,19 @@ const MainNavbar = () => {
               </button>
             )}
 
-            <a href="tel:+9194455791624" className="flex items-center">
-              <button className="flex items-center gap-2 text-[16px] px-4 h-8 rounded-md bg-red-500 text-white hover:bg-red-600 focus:outline-none focus:ring-2 focus:ring-red-500">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="currentColor"
-                  viewBox="0 0 24 24"
-                  className="w-4 h-4"
-                >
-                  <path d="M22 16.92v3.34a2.25 2.25 0 01-2.45 2.24A20.31 20.31 0 012.54 5.46 2.25 2.25 0 014.78 3H8.2a2.25 2.25 0 012.25 2.03 14.91 14.91 0 001.07 4.42 2.25 2.25 0 01-.51 2.35l-1.33 1.33a16.82 16.82 0 006.29 6.29l1.33-1.33a2.25 2.25 0 012.35-.51 14.91 14.91 0 004.42 1.07A2.25 2.25 0 0122 16.92z" />
-                </svg>
-                Call now
+            <div className="flex items-center gap-4">
+              <button
+                onClick={toggleDarkMode}
+                className="p-2 text-white rounded-full bg-gray-600 hover:bg-gray-700 dark:bg-gray-200 dark:text-gray-800 dark:hover:bg-gray-300"
+              >
+                {darkMode ? <FaSun /> : <FaMoon />}
               </button>
-            </a>
-
-            <div>
-              {isOpen && (
-                <div className="absolute w-64 bg-white border-2 rounded-lg shadow-md top-16 right-5">
-                  <button
-                    onClick={toggleSidebar}
-                    className="absolute p-2 text-gray-600 top-2 right-2 hover:text-gray-800"
-                  >
-                    <FaTimes />
-                  </button>
-                  <ul className="p-4 space-y-4 font-play">
-                    {isAdmin && (
-                      <li>
-                        <div className="flex items-center text-gray-700 cursor-pointer hover:text-blue-600">
-                          <FaPersonBooth className="mr-3 font-play" />
-                          <span onClick={() => navigate("/admin-dashboard")}>
-                            Admin
-                          </span>
-                        </div>
-                      </li>
-                    )}
-
-                    {/* Show Create Blogs if blogPermission is false */}
-                    {!blogPermission ? (
-                      <li>
-                        <div
-                          onClick={openPopup}
-                          className="flex items-center text-gray-700 cursor-pointer font-play hover:text-blue-600"
-                        >
-                          <FaBlog className="mr-3" />
-                          <span>Create Blogs</span>
-                        </div>
-                      </li>
-                    ) : (
-                      <li>
-                        <div className="flex items-center text-gray-700 cursor-pointer font-play hover:text-blue-600">
-                          <FaBlog className="mr-3" />
-                          <span onClick={() => navigate("/all-blogs")}>
-                            Your Blogs
-                          </span>
-                        </div>
-                      </li>
-                    )}
-
-                    <li>
-                      <a
-                        href="#"
-                        className="flex items-center text-gray-700 font-play hover:text-blue-600"
-                      >
-                        <FaSignOutAlt className="mr-3" />
-                        <span onClick={handleLogout}>Logout</span>
-                      </a>
-                    </li>
-                  </ul>
-                </div>
-              )}
             </div>
           </ul>
         </div>
 
         <div className="lg:hidden">
-          <IoMdMenu
-            className="text-4xl cursor-pointer"
-            onClick={toggleMobileMenu}
-          />
+          <IoMdMenu className="text-4xl cursor-pointer" onClick={toggleMobileMenu} />
         </div>
       </motion.div>
 
@@ -209,7 +151,7 @@ const MainNavbar = () => {
       <AnimatePresence>
         {isMobileMenuOpen && (
           <motion.div
-            className="absolute left-0 right-0 z-40 w-full p-4 bg-white shadow-lg lg:hidden top-full"
+            className="absolute left-0 right-0 z-40 w-full p-4 bg-white shadow-lg lg:hidden top-full dark:bg-gray-900"
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: "auto" }}
             exit={{ opacity: 0, height: 0 }}
@@ -220,7 +162,7 @@ const MainNavbar = () => {
                 <li key={menu.id}>
                   <Link
                     to={menu.path}
-                    className="block py-2 font-play hover:text-secondary"
+                    className="block py-2 font-play hover:text-secondary dark:text-white"
                     onClick={() => setMobileMenuOpen(false)}
                   >
                     {menu.title}
@@ -246,60 +188,6 @@ const MainNavbar = () => {
                 </button>
               )}
             </ul>
-            {isOpen && (
-              <div className="absolute w-64 bg-white border-2 rounded-lg shadow-md top-16 right-5">
-                <button
-                  onClick={toggleSidebar}
-                  className="absolute p-2 text-gray-600 top-2 right-2 hover:text-gray-800"
-                >
-                  <FaTimes />
-                </button>
-                <ul className="p-4 space-y-4">
-                  {isAdmin && (
-                    <li>
-                      <div className="flex items-center text-gray-700 cursor-pointer font-play hover:text-blue-600">
-                        <FaPersonBooth className="mr-3" />
-                        <span onClick={() => navigate("/admin-dashboard")}>
-                          Admin
-                        </span>
-                      </div>
-                    </li>
-                  )}
-
-                  {/* Show Create Blogs if blogPermission is false */}
-                  {!blogPermission ? (
-                    <li>
-                      <div
-                        onClick={openPopup}
-                        className="flex items-center text-gray-700 cursor-pointer font-play hover:text-blue-600"
-                      >
-                        <FaBlog className="mr-3" />
-                        <span>Create Blogs</span>
-                      </div>
-                    </li>
-                  ) : (
-                    <li>
-                      <div className="flex items-center text-gray-700 cursor-pointer font-play hover:text-blue-600">
-                        <FaBlog className="mr-3" />
-                        <span onClick={() => navigate("/all-blogs")}>
-                          Your Blogs
-                        </span>
-                      </div>
-                    </li>
-                  )}
-
-                  <li>
-                    <a
-                      href="#"
-                      className="flex items-center text-gray-700 font-play hover:text-blue-600"
-                    >
-                      <FaSignOutAlt className="mr-3" />
-                      <span onClick={handleLogout}>Logout</span>
-                    </a>
-                  </li>
-                </ul>
-              </div>
-            )}
           </motion.div>
         )}
       </AnimatePresence>

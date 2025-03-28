@@ -6,8 +6,8 @@ import { useProfile } from "../../context/Providers/ProfileContext"; // Import P
 import CertificatesGeneratorComponent from "../../components/CertificatesGen/CertificatesGenerator";
 
 const ProfilePage = () => {
-  const { user, signOut } = useAuth(); // Access auth state
-  const { isAdmin, blogPermission, bloggerName, studentData, error, loading } = useProfile(); // Access profile stdfdsfate
+  const { user, signOut } = useAuth(); 
+  const { isAdmin, blogPermission, bloggerName, studentData, error, loading } = useProfile(); // 
 
   const [isCertificateVisible, setIsCertificateVisible] = useState(false);
   const navigate = useNavigate();
@@ -19,7 +19,7 @@ const ProfilePage = () => {
   const handleLogout = async () => {
     try {
       await signOut(); 
-      window.location.href = "/login"; // Redirect to login page
+      window.location.href = "/auth/signin"; 
     } catch (error) {
       console.error("Error logging out:", error);
     }
