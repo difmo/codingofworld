@@ -104,7 +104,7 @@ const EventForm = ({ onClose }) => {
 
           {loading && <Loader />}
 
-          {/* Success Message */}
+          {/* Success  */}
           {success && !loading && (
             <div>
               <div className="flex items-center justify-center px-4 py-4 mb-6 space-x-4 text-center text-white">
