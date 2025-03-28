@@ -6,7 +6,7 @@ import { db } from "../firebase";
 import Loader from "../components/Loader";
 import ShowAllCoursesPage from "./ShowCourses/Pages/ShowAllCoursesPage";
 
-export const Courses = () => {
+const Courses = () => {
   const navigate = useNavigate();
   const [course, setCourse] = useState([]);
   const [error, setError] = useState(null);
@@ -126,3 +126,5 @@ export const Courses = () => {
     </section>
   );
 };
+
+export default Courses;

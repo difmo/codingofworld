@@ -66,7 +66,7 @@ const EditAndShowCourse = () => {
   };
 
   const handleAddTopic = async () => {
-    navigate(`/usercourse/${courseId}/add-topic`);
+    navigate(`/create-courses/edit-and-show/${courseId}/add-topic`);
   };
 
  

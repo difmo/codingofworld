@@ -3,7 +3,7 @@ import MainNavbar from "../../components/Navbar/MainNavbar";
 import Footer from "../../components/Footer/Footer";
 import { Outlet } from "react-router-dom";
 
-const Layout = ({ children }) => {
+const MainLayout = ({ children }) => {
   return (
     <div>
       <MainNavbar />
@@ -16,4 +16,4 @@ const Layout = ({ children }) => {
   );
 };
 
-export default Layout;
+export default MainLayout;

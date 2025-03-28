@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { Link, useParams } from "react-router-dom";
 import { db } from "../../../firebase";
 import { collection, getDocs } from "firebase/firestore";
@@ -17,9 +17,7 @@ const ShowCourseSidebar = ({ toggleSidebar }) => {
           ...doc.data(),
         }));
 
-        // Sort the topics by the day number extracted from the title in descending order
         const sortedTopics = topicsList.sort((a, b) => {
-          // Extract day numbers from the titles using regex
           const extractDayNumber = (title) => {
             const match = title.match(/Day (\d+)/);
             return match ? parseInt(match[1]) : -Infinity; // If no day is found, place at the end
@@ -44,7 +42,7 @@ const ShowCourseSidebar = ({ toggleSidebar }) => {
 
 
   return (
-    <div className=" h-screen  w-[340px] p-4 space-y-6 text-primary bg-secondaryblue m-1 rounded-xl border ">
+    <div className=" h-screen  w-[340px] p-4 space-y-6 text-primary bg-secondaryblue overflow-y-auto scrollbar-hide">
 
       <ul className="space-y-4">
         <li className="">
@@ -54,7 +52,7 @@ const ShowCourseSidebar = ({ toggleSidebar }) => {
               topics.map((topic) => (
                 <div key={topic.id}>
                   <Link
-                    to={`/showcourse/${courseId}/topic/${topic.id}`}
+                    to={`showcoursee/${courseId}/topic/${topic.id}`}
                     onClick={() => toggleSidebar()}
                     className="block hover:bg-primary/30 px-1 text-white rounded-md"
                   >
@@ -69,6 +67,7 @@ const ShowCourseSidebar = ({ toggleSidebar }) => {
                       ))}
                     </span>
                   </Link>
+                 
                 </div>
               ))
             ) : (

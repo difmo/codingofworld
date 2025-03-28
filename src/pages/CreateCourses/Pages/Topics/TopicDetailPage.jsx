@@ -117,7 +117,7 @@ const TopicDetailPage = () => {
 
   return (
     <div className="max-w-4xl mx-auto p-6">
-      <h2 className="text-3xl font-semibold">{isEditMode ? "Ediwwt Topic" : topic.title}</h2>
+      {/* <h2 className="text-3xl font-semibold">{isEditMode ? "Edit Topic" : topic.title}</h2> */}
       
       <div className="mt-4">
         {/* Title Input */}
@@ -139,7 +139,7 @@ const TopicDetailPage = () => {
           <ReactQuill
             value={newContent}
             onChange={setNewContent}
-            className="w-full h-96"
+            className="w-full"
             placeholder="Write the content of the topic here"
           />
         ) : (

@@ -13,26 +13,28 @@ import Video from "./VideoPage/Video";
 import Testimonials from "./Testimonials/Testimonials";
 import Brands from "./OurPartnears/OurPartnears";
 import Hero from "../components/Hero/Hero";
+import TrainingSection from "../components/Training Programs/TrainingTypeSection";
+import TrainingPrograms from "../components/Training Programs/TrainingPrograms";
+import FactsSection from "../components/Statistics/FactsSection";
+import ShowLatestBanner from "../popupfeature/ShowPopupBanner";
 
 const HomeScreen = () => {
   return (
     <div>
-      {/* <Hero /> */}
       <Hero />
-      {/* <AdComponent /> */}
       <Services />
       <Banner />
       <Subscribe />
-      {/* 
-      Completed trainig students show here 
-      */}
       <Banner2 />
       <Features />
       <Pricing />
-      {/* <Video /> */}
+      <TrainingSection/>
+      <TrainingPrograms/>
       <Testimonials />
       <FAQ />
       <Brands />
+      <FactsSection/>
+      <ShowLatestBanner />
     </div>
   );
 };
