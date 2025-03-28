@@ -9,6 +9,7 @@ import img3 from "../assets/image/e.jpg";
 import img4 from "../assets/image/f.jpg";
 import img5 from "../assets/image/p2.png";
 import img6 from "../assets/image/r.jpg";
+import img0 from "../assets//image/3.png";
 import { FaArrowLeft, FaArrowRight } from "react-icons/fa";
 const PhotoGallery = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -84,10 +85,7 @@ const PhotoGallery = () => {
           </h1>
 
           <div className="flex justify-center">
-            <img
-              src="src/assets/image/3.png"
-              className="h-1/2 w-1/2  bg-cover"
-            />
+            <img src={0} className="h-1/2 w-1/2  bg-cover" />
           </div>
         </div>
 
