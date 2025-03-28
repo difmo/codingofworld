@@ -14,7 +14,7 @@ import logo from "../../assets/images/logo.svg";
 import "firebase/auth";
 import { auth } from "../../firebase";
 import Popupbloge from "../../pages/Popupbloge";
-import AdminController from "../../controller/AdminController";
+// import AdminController from "../../controller/AdminController";
 import RouteConstants from "../../constants/routeConstants/RouteConstants";
 
 const NavbarMenu = [
