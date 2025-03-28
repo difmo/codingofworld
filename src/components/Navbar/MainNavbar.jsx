@@ -1,11 +1,5 @@
-import  { useEffect, useState, useRef } from "react";
-import {
-  FaTimes,
-  FaUser,
-
-  FaMoon,
-  FaSun,
-} from "react-icons/fa";
+import { useEffect, useState, useRef } from "react";
+import { FaTimes, FaUser, FaMoon, FaSun } from "react-icons/fa";
 import { IoMdMenu } from "react-icons/io";
 import { motion, AnimatePresence } from "framer-motion";
 import { Link } from "react-router-dom";
@@ -61,7 +55,6 @@ const MainNavbar = () => {
   };
 
   useEffect(() => {
-    // Apply dark mode class to body element
     if (darkMode) {
       document.body.classList.add("dark");
     } else {
@@ -70,7 +63,8 @@ const MainNavbar = () => {
   }, [darkMode]);
 
   const handleClickOutside = (event) => {
-    if (popupRef.current && !popupRef.current.contains(event.target)) {}
+    if (popupRef.current && !popupRef.current.contains(event.target)) {
+    }
   };
 
   useEffect(() => {
@@ -117,7 +111,9 @@ const MainNavbar = () => {
 
             {!isUserLogin ? (
               <button
-                onClick={() => navigate(RouteConstants.NAVIGATING_ROUTE.GOTO_SIGNIN)}
+                onClick={() =>
+                  navigate(RouteConstants.NAVIGATING_ROUTE.GOTO_SIGNIN)
+                }
                 className="h-8 text-[16px] px-8 py-1 rounded-md bg-red-100 text-red-500 hover:bg-red-600 focus:outline-none focus:ring-2 focus:ring-red-500 hover:text-white"
               >
                 Sign In
@@ -143,7 +139,10 @@ const MainNavbar = () => {
         </div>
 
         <div className="lg:hidden">
-          <IoMdMenu className="text-4xl cursor-pointer" onClick={toggleMobileMenu} />
+          <IoMdMenu
+            className="text-4xl cursor-pointer"
+            onClick={toggleMobileMenu}
+          />
         </div>
       </motion.div>
 
