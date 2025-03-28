@@ -85,7 +85,7 @@ const PhotoGallery = () => {
           </h1>
 
           <div className="flex justify-center">
-            <img src={0} className="h-1/2 w-1/2  bg-cover" />
+            <img src={img0} className="h-1/2 w-1/2  bg-cover" />
           </div>
         </div>
 
