@@ -36,7 +36,7 @@ const Courses = () => {
   const handleNavigation = (id) => {
     setNavigating(true);
     setTimeout(() => {
-      navigate(`/details/${id}`);
+      navigate(`/courses/details/${id}`);
       setNavigating(false);
     }, 500);
   };

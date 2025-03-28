@@ -65,7 +65,7 @@ const Internships = () => {
             <li
               key={internship.id}
               className="relative flex flex-col justify-between overflow-hidden transition-all transform bg-white border border-gray-100  cursor-pointer rounded-xl hover:scale-105  hover:bg-[#f7f7f7]"
-              onClick={() => navigate(`/internship/${internship.id}`)}
+              onClick={() => navigate(`/courses/internship/${internship.id}`)}
             >
               <div className="transition-opacity duration-300 ">
                 <img

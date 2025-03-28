@@ -32,7 +32,7 @@ const CourseDetails = () => {
   }, [id]);
 
   if (loading) {
-    return <Loader />; // Loading 
+    return <Loader />; // Loading
   }
 
   if (error) {
@@ -68,7 +68,7 @@ const CourseDetails = () => {
           </div>
           <div className="py-7">
             <button
-              onClick={() => navigate("/stillweworking")}
+              onClick={() => navigate("/contactus")}
               className="px-4 py-2 text-white transition-all duration-300 bg-primary hover:bg-primary/60 rounded-xl w-full md:w-auto"
             >
               ENROLL NOW
