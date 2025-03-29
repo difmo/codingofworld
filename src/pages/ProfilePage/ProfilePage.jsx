@@ -37,7 +37,7 @@ const ProfilePage = () => {
   }
 
   return (
-    <div className="h-screen w-full bg-gray-50 p-6">
+    <div className="h-full w-full bg-gray-50 p-6">
       <div className="w-full h-full mx-auto bg-white p-8 rounded-lg shadow-lg">
         <div className="text-center">
           <h1 className="text-3xl font-bold text-gray-800">Student Profile</h1>

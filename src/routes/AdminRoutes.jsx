@@ -17,6 +17,8 @@ import Allcourse from "../pages/AdminProminent/CourseAdmin/Allcourse";
 import CreateStatistics from "../pages/AdminProminent/CreateStatistics";
 import CreateAdminTrainingPrograms from "../pages/AdminProminent/CreateAdminTrainingProgramsShort";
 import AdminBlogPage from "../pages/AdminProminent/AdminblogPage";
+import Admincourse from "../pages/AdminProminent/Admincourse";
+import EditAndShowCourse from "../pages/CreateCourses/Pages/EditAndShowCourse";
 
 const AdminRoutes = () => (
   <>
@@ -29,16 +31,20 @@ const AdminRoutes = () => (
       <Route path="/allInternship" element={<AllInternship />} />
       <Route path="/edit-internship/:id" element={<EditInternship />} />
       <Route path="/student/plan" element={<AdminPricing />} />
-      <Route path="/create-banner" element={<CreatePopUpBanner/>} />
-      <Route path="/admin-student-test" element={<StudentTestDetails/>} />
-      <Route path="/all-courses" element={<Allcourse/>} />
-      <Route path="/create-stats" element={<CreateStatistics/>} />
-      <Route path="/create-home-programs" element={<CreateAdminTrainingPrograms/>} />
-      <Route path="/blogs" element={<AdminBlogPage/>} />
+      <Route path="/create-banner" element={<CreatePopUpBanner />} />
+      <Route path="/admin-student-test" element={<StudentTestDetails />} />
+      <Route path="/edit-and-show/:courseId" element={<EditAndShowCourse />} />
+      <Route path="/all-courses" element={<Allcourse />} />
+      <Route path="/create-stats" element={<CreateStatistics />} />
+      <Route
+        path="/create-home-programs"
+        element={<CreateAdminTrainingPrograms />}
+      />
+      <Route path="/blogs" element={<AdminBlogPage />} />
       {/* <Route path="/blogs" element={<CreateStatistics/>} /> */}
-      <Route path="*" element={<NotFound />} /> 
+      <Route path="/admin-course" element={<Admincourse />} />
+      <Route path="*" element={<NotFound />} />
     </Routes>
-
   </>
 );
 

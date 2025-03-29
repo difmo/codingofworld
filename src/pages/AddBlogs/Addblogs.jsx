@@ -6,8 +6,13 @@ import "react-quill/dist/quill.snow.css";
 import MonacoEditor from "@monaco-editor/react";
 import { doc, setDoc, getDoc, updateDoc } from "firebase/firestore";
 import { v4 as uuidv4 } from "uuid";
-import { db, auth } from '../../firebase';
-import { getStorage, ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
+import { db, auth } from "../../firebase";
+import {
+  getStorage,
+  ref,
+  uploadBytesResumable,
+  getDownloadURL,
+} from "firebase/storage";
 import { useProfile } from "../../context/Providers/ProfileContext";
 // import AdminController from "../../controller/AdminController";
 
@@ -18,10 +23,10 @@ const AddBlogs = () => {
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
   const [link, setLink] = useState("");
-  const [image, setImage] = useState(null); 
+  const [image, setImage] = useState(null);
   const [fields, setFields] = useState([]);
   const [loading, setLoading] = useState(false);
-  const {bloggerName} = useProfile();
+  const { bloggerName } = useProfile();
   useEffect(() => {
     if (blogId) {
       setLoading(true);
@@ -32,7 +37,7 @@ const AddBlogs = () => {
           setTitle(blogData.title);
           setContent(blogData.content);
           setLink(blogData.link);
-          setImage(blogData.image); 
+          setImage(blogData.image);
           setFields(blogData.fields || []);
         }
         setLoading(false);
@@ -84,11 +89,9 @@ const AddBlogs = () => {
     return new Promise((resolve, reject) => {
       uploadTask.on(
         "state_changed",
-        (snapshot) => {
-        },
+        (snapshot) => {},
         (error) => reject(error),
         () => {
-      
           getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
             resolve(downloadURL);
           });
@@ -116,6 +119,7 @@ const AddBlogs = () => {
         fields,
         userId,
         bloggerName,
+        isPublished: false,
         createdAt: new Date(),
       };
 
@@ -182,20 +186,27 @@ const AddBlogs = () => {
           value={content}
           onChange={setContent}
           className="w-full"
-          placeholder="Write the content of your blog"    
+          placeholder="Write the content of your blog"
           modules={{
             toolbar: [
-              [{ 'header': '1' }, { 'header': '2' }, { 'header': '3' }, { 'header': '4' }, { 'header': '5' }, { 'header': '6' }],
-              [{ 'font': [] }], 
-              [{ 'size': ['small', 'normal', 'large', 'huge'] }],  //
-                
-              ['bold', 'italic', 'underline'],
-              ['link'],
-              [{ 'list': 'ordered' }, { 'list': 'bullet' }],
-              ['blockquote', 'code-block'],
-              ['image'],
-              ['clean']
-            ]
+              [
+                { header: "1" },
+                { header: "2" },
+                { header: "3" },
+                { header: "4" },
+                { header: "5" },
+                { header: "6" },
+              ],
+              [{ font: [] }],
+              [{ size: ["small", "normal", "large", "huge"] }], //
+
+              ["bold", "italic", "underline"],
+              ["link"],
+              [{ list: "ordered" }, { list: "bullet" }],
+              ["blockquote", "code-block"],
+              ["image"],
+              ["clean"],
+            ],
           }}
         />
       </div>
@@ -233,7 +244,9 @@ const AddBlogs = () => {
                           </label>
                           <ReactQuill
                             value={field.value}
-                            onChange={(value) => handleFieldChange(index, value)}
+                            onChange={(value) =>
+                              handleFieldChange(index, value)
+                            }
                             className="w-full"
                             placeholder="Enter heading"
                           />
@@ -248,7 +261,9 @@ const AddBlogs = () => {
                           </label>
                           <ReactQuill
                             value={field.value}
-                            onChange={(value) => handleFieldChange(index, value)}
+                            onChange={(value) =>
+                              handleFieldChange(index, value)
+                            }
                             className="w-full"
                             placeholder="Enter description"
                           />
@@ -264,7 +279,9 @@ const AddBlogs = () => {
                           <input
                             type="url"
                             value={field.value}
-                            onChange={(e) => handleFieldChange(index, e.target.value)}
+                            onChange={(e) =>
+                              handleFieldChange(index, e.target.value)
+                            }
                             className="w-full px-4 py-2 mt-2 bg-black border border-gray-300 rounded-lg"
                             placeholder="Enter link"
                           />
@@ -281,7 +298,9 @@ const AddBlogs = () => {
                             type="file"
                             onChange={async (e) => {
                               const uploadedImage = e.target.files[0];
-                              const imageUrl = await handleImageUpload(uploadedImage);
+                              const imageUrl = await handleImageUpload(
+                                uploadedImage
+                              );
                               handleFieldChange(index, imageUrl);
                             }}
                             className="w-full px-4 py-2 mt-2 border border-gray-300 rounded-lg"
@@ -308,7 +327,9 @@ const AddBlogs = () => {
                           {/* Language Selector */}
                           <select
                             value={field.language}
-                            onChange={(e) => handleLanguageChange(index, e.target.value)}
+                            onChange={(e) =>
+                              handleLanguageChange(index, e.target.value)
+                            }
                             className="w-full px-4 py-2 mt-2 bg-black border border-gray-300 rounded-lg"
                           >
                             <option value="javascript">JavaScript</option>
@@ -323,7 +344,9 @@ const AddBlogs = () => {
                             height="200px"
                             language={field.language}
                             value={field.value}
-                            onChange={(value) => handleFieldChange(index, value)}
+                            onChange={(value) =>
+                              handleFieldChange(index, value)
+                            }
                             theme="vs-dark"
                             options={{
                               selectOnLineNumbers: true,
