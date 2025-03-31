@@ -9,6 +9,7 @@ const AdminSidebar = ({ toggleSidebar }) => {
   const sidebarData = [
     { label: "Dashboard", path: "/admin" },
     { label: "Interns", path: "/admin/internship" },
+    { label: "CreateNewInternship", path: "/admin/create-new-intership" },
     { label: "Placement Stats", path: "/admin/create-stats" },
     { label: "Contact", path: "/admin/client-contact" },
     { label: "Login Users", path: "/admin/login-users" },
