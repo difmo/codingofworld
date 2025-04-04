@@ -25,8 +25,8 @@ const ProfilePage = () => {
 
   const handleLogout = async () => {
     try {
-      await signOut();
-      window.location.href = "/auth/signin";
+      await signOut(); 
+      window.location.href = "/"; // Redirect to login page
     } catch (error) {
       console.error("Error logging out:", error);
     }
