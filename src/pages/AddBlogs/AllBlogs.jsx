@@ -1,6 +1,13 @@
 import React, { useState, useEffect } from "react";
-import { db, auth } from "../../firebase"; 
-import { collection, getDocs, deleteDoc, doc, query, where } from "firebase/firestore";
+import { db, auth } from "../../firebase";
+import {
+  collection,
+  getDocs,
+  deleteDoc,
+  doc,
+  query,
+  where,
+} from "firebase/firestore";
 import { useNavigate } from "react-router-dom";
 
 const AllBlogs = () => {
@@ -22,7 +29,10 @@ const AllBlogs = () => {
 
         const blogsCollection = collection(db, "blogs");
 
-        const blogsQuery = query(blogsCollection, where("userId", "==", userId));
+        const blogsQuery = query(
+          blogsCollection,
+          where("userId", "==", userId)
+        );
         const querySnapshot = await getDocs(blogsQuery);
 
         // Debugging: Check the number of docs returned
@@ -31,7 +41,7 @@ const AllBlogs = () => {
         if (querySnapshot.empty) {
           setError("No blogs found for this user.");
         } else {
-          const blogsData = querySnapshot.docs.map(doc => ({
+          const blogsData = querySnapshot.docs.map((doc) => ({
             id: doc.id,
             ...doc.data(),
           }));
@@ -64,14 +74,14 @@ const AllBlogs = () => {
   const handleDelete = async (id) => {
     try {
       await deleteDoc(doc(db, "blogs", id));
-      setBlogs(blogs.filter(blog => blog.id !== id)); 
+      setBlogs(blogs.filter((blog) => blog.id !== id));
     } catch (error) {
       console.error("Error deleting blog: ", error);
     }
   };
 
   const handleEdit = (id) => {
-    navigate(`/edit-blog/${id}`);  
+    navigate(`/create-blogs/edit-blog/${id}`);
   };
 
   return (
@@ -92,7 +102,12 @@ const AllBlogs = () => {
                 className="p-4 bg-gray-800 rounded-lg shadow-md cursor-pointer"
               >
                 <h2 className="text-xl font-semibold">{blog.title}</h2>
-                <p className="mt-2" dangerouslySetInnerHTML={{ __html: blog.content.substring(0, 100) }} />
+                <p
+                  className="mt-2"
+                  dangerouslySetInnerHTML={{
+                    __html: blog.content.substring(0, 100),
+                  }}
+                />
                 <div className="flex justify-between mt-4">
                   <button
                     onClick={() => handleEdit(blog.id)}

@@ -180,7 +180,7 @@ const Hero = () => {
               <div className="flex items-center gap-4">
                 <div className="flex items-center">
                   <button
-                    onClick={() => navigate("/loginscreen")}
+                    onClick={() => navigate("/signup")}
                     className="flex items-center gap-2 text-[16px] px-4 h-12 rounded-md bg-red-500 text-white hover:bg-red-600 focus:outline-none focus:ring-2 focus:ring-red-500"
                   >
                     Register for free
@@ -215,7 +215,6 @@ const Hero = () => {
             animate={{ x: 0, opacity: 1 }}
             transition={{ duration: 0.6, delay: 0.2, ease: "easeInOut" }}
             src={Blob}
-            
             alt="Blob"
             className="absolute  -bottom-32 w-[800px] md:w-[1500px] -z-[0] hidden md:block"
           />

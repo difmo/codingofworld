@@ -17,6 +17,7 @@ import TrainingSection from "../components/Training Programs/TrainingTypeSection
 import TrainingPrograms from "../components/Training Programs/TrainingPrograms";
 import FactsSection from "../components/Statistics/FactsSection";
 import ShowLatestBanner from "../popupfeature/ShowPopupBanner";
+import PhotoGallery from "../components/PhotoGallery";
 
 const HomeScreen = () => {
   return (
@@ -28,12 +29,13 @@ const HomeScreen = () => {
       <Banner2 />
       <Features />
       <Pricing />
-      <TrainingSection/>
-      <TrainingPrograms/>
+      <TrainingSection />
+      <TrainingPrograms />
+      <PhotoGallery />
       <Testimonials />
       <FAQ />
       <Brands />
-      <FactsSection/>
+      <FactsSection />
       <ShowLatestBanner />
     </div>
   );

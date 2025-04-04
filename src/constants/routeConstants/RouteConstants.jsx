@@ -1,6 +1,4 @@
 class RouteConstants {
-  
-
   static ROOTROUTE = {
     HOME: "/*",
     AUTH: "/auth/*",
@@ -25,7 +23,6 @@ class RouteConstants {
     TRAININGTEAM: "/trainingteam",
     PROGRAMS: "/programs",
     INTERNSHIPFORM: "/internshipform",
-
   };
 
   static AUTHROUTE = {
@@ -44,7 +41,7 @@ class RouteConstants {
 
   static BLOGROUTE = {
     BLOG: "/blog",
-    SHOWBLOG:"/show-blogs",
+    SHOWBLOG: "/show-blogs",
     BLOGPAGE: "/blog/:blogId",
     BLOGDETAILS: "/blog-details",
     BLOGEDIT: "/blog-edit",
@@ -78,26 +75,20 @@ class RouteConstants {
   static NAVIGATING_ROUTE = {
     GOTO_SIGNIN: this.ROOTROUTE.AUTH + this.AUTHROUTE.LOGIN, // /auth/login
     GOTO_SIGNUP: this.ROOTROUTE.AUTH + this.AUTHROUTE.REGISTER, // /auth/register
-    GOTO_FORGOTPASSWORD: this.ROOTROUTE.AUTH + this.AUTHROUTE.FORGOTPASSWORD,   // /auth/forgot-password
+    GOTO_FORGOTPASSWORD: this.ROOTROUTE.AUTH + this.AUTHROUTE.FORGOTPASSWORD, // /auth/forgot-password
     GOTO_HOME: this.ROOTROUTE.HOME, // /
     GOTO_COURSES: this.ROOTROUTE.COURSES, // /courses
     // blogs route
     GOTO_BLOGS: this.ROOTROUTE.BLOGS + this.BLOGROUTE.SHOWBLOG,
-    
 
-
-    // carrer 
+    // carrer
     GOTO_CAREER: this.ROOTROUTE.CAREER,
     GOTO_ADMIN: this.ROOTROUTE.ADMIN,
     GOTO_USERPROFILE: this.ROOTROUTE.USERPROFILE,
     GOTO_CREATECOURSES: this.ROOTROUTE.CREATECOURSES,
     GOTO_CREATEBLOGS: this.ROOTROUTE.CREATEBLOGS,
     GOTO_PREMIUMCOURSES: this.PREMIUMCOURSES,
-
- 
-  }
-
-
+  };
 }
 
 export default RouteConstants;

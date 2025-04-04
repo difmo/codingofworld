@@ -1,47 +1,108 @@
-import { useState } from 'react';
-import { motion } from 'framer-motion';
-import { FaUser, FaEnvelope, FaMobileAlt, FaMapMarkerAlt, FaFileUpload } from 'react-icons/fa';
+import { useState } from "react";
+import { motion } from "framer-motion";
+import {
+  FaUser,
+  FaEnvelope,
+  FaMobileAlt,
+  FaMapMarkerAlt,
+  FaFileUpload,
+} from "react-icons/fa";
 
-import { getFirestore, collection, addDoc } from 'firebase/firestore'; // Firestore SDK
-import { getStorage, ref, uploadBytes, getDownloadURL } from 'firebase/storage'; // Firebase Storage SDK
+import {
+  getFirestore,
+  collection,
+  addDoc,
+  getDocs,
+  query,
+  orderBy,
+  limit,
+} from "firebase/firestore"; // Firestore SDK
+import { getStorage, ref, uploadBytes, getDownloadURL } from "firebase/storage"; // Firebase Storage SDK
 
-import { db } from '../firebase';
-import Loader from '../components/Loader';
+import { db } from "../firebase";
+import Loader from "../components/Loader";
 
 const internshipPrograms = [
-  "Mobile App Development", "Web App Development", "Apprenticeship Training", "Summer Training",
-  "Winter Training", "Digital Marketing", "ASP.Net Development", "PHP Development", "Python Development",
-  "Java Development", "Frontend Development", "WordPress Development", "Search Engine Optimization",
-  "C# Programming", "C++ Programming", "Java Programming", "PHP Programming", "Python Programming", "Graphics Design",
+  "Mobile App Development",
+  "Web App Development",
+  "Apprenticeship Training",
+  "Summer Training",
+  "Winter Training",
+  "Digital Marketing",
+  "ASP.Net Development",
+  "PHP Development",
+  "Python Development",
+  "Java Development",
+  "Frontend Development",
+  "WordPress Development",
+  "Search Engine Optimization",
+  "C# Programming",
+  "C++ Programming",
+  "Java Programming",
+  "PHP Programming",
+  "Python Programming",
+  "Graphics Design",
 ];
 
 const InternshipForm = () => {
   const [formData, setFormData] = useState({
-    name: '', email: '', mobile: '', college: '', qualification: '', internshipType: '', resume: null,
-    resumeURL: '',
+    name: "",
+    email: "",
+    mobile: "",
+    college: "",
+    qualification: "",
+    internshipType: "",
+    resume: null,
+    resumeURL: "",
   });
   const [errors, setErrors] = useState({});
   const [isLoading, setIsLoading] = useState(false);
   const [showPopup, setShowPopup] = useState(false);
+  const [internships, setInternships] = useState([]);
 
   const handleChange = (e) => {
     const { name, value, files } = e.target;
     setFormData((prev) => ({
-      ...prev, [name]: files ? files[0] : value
+      ...prev,
+      [name]: files ? files[0] : value,
     }));
   };
 
   const validateForm = () => {
-    const { name, email, mobile, college, qualification, internshipType } = formData;
+    const { name, email, mobile, college, qualification, internshipType } =
+      formData;
     const newErrors = {};
-    if (!name) newErrors.name = 'Please enter your name';
-    if (!email) newErrors.email = 'Please enter your email';
-    if (!mobile) newErrors.mobile = 'Please enter your phone number';
-    if (!college) newErrors.college = 'Please enter your college or university name ';
-    if (!qualification) newErrors.qualification = 'Please select your qualification';
-    if (!internshipType) newErrors.internshipType = 'Please select your internship program';
+    if (!name) newErrors.name = "Please enter your name";
+    if (!email) newErrors.email = "Please enter your email";
+    if (!mobile) newErrors.mobile = "Please enter your phone number";
+    if (!college)
+      newErrors.college = "Please enter your college or university name ";
+    if (!qualification)
+      newErrors.qualification = "Please select your qualification";
+    if (!internshipType)
+      newErrors.internshipType = "Please select your internship program";
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
+  };
+
+  const fetchLatestInternship = async () => {
+    const q = query(
+      collection(db, "admin"),
+      orderBy("timestamp", "desc"),
+      limit(1)
+    );
+    const querySnapshot = await getDocs(q);
+
+    if (!querySnapshot.empty) {
+      const latestDoc = {
+        id: querySnapshot.docs[0].id,
+        ...querySnapshot.docs[0].data(),
+      };
+      setInternships([latestDoc]);
+      console.log(internships);
+    } else {
+      console.log("No documents found");
+    }
   };
 
   const handleSubmit = async (e) => {
@@ -50,7 +111,7 @@ const InternshipForm = () => {
     setIsLoading(true);
 
     try {
-      let resumeURL = '';
+      let resumeURL = "";
       if (formData.resume) {
         const storage = getStorage();
         const storageRef = ref(storage, `resumes/${formData.resume.name}`);
@@ -59,34 +120,44 @@ const InternshipForm = () => {
       }
 
       // Destructure only necessary fields from formData, excluding resume
-      const { name, email, mobile, college, qualification, internshipType } = formData;
+      const { name, email, mobile, college, qualification, internshipType } =
+        formData;
 
       // Create a new document in Firestore "internships" collection
-      const docRef = await addDoc(collection(db, 'internships'), {
-        name,
-        email,
-        mobile,
-        college,
-        qualification,
-        internshipType,
-        resumeURL,
-        createdAt: new Date(),
-      });
+      await fetchLatestInternship();
+      const docRef = await addDoc(
+        collection(db, "allinternships", internships[0].title, "internships"),
+        {
+          name,
+          email,
+          mobile,
+          college,
+          qualification,
+          internshipType,
+          resumeURL,
+          createdAt: new Date(),
+        }
+      );
 
-      console.log('Document written with ID: ', docRef.id);
+      console.log("Document written with ID: ", docRef.id);
 
       setShowPopup(true);
       setFormData({
-        name: '', email: '', mobile: '', college: '', qualification: '', internshipType: '', resume: null
+        name: "",
+        email: "",
+        mobile: "",
+        college: "",
+        qualification: "",
+        internshipType: "",
+        resume: null,
       });
       setErrors({});
     } catch (error) {
-      console.error('Error adding document:', error);
+      console.error("Error adding document:", error);
     } finally {
       setIsLoading(false);
     }
   };
-
 
   return (
     <section className="pt-8 mx-auto md:w-2/3 lg:w-1/2">
@@ -100,7 +171,7 @@ const InternshipForm = () => {
       </motion.h2>
 
       {isLoading ? (
-      <Loader/>
+        <Loader />
       ) : (
         <>
           {showPopup && (
@@ -158,7 +229,6 @@ const InternshipForm = () => {
             </div>
           )}
 
-
           <motion.form
             onSubmit={handleSubmit}
             className="p-8 space-y-6 bg-white rounded-lg shadow-md"
@@ -167,14 +237,35 @@ const InternshipForm = () => {
             transition={{ duration: 0.5 }}
           >
             {[
-              { label: "Full Name", name: "name", type: "text", error: errors.name },
-              { label: "Email", name: "email", type: "email", error: errors.email },
-              { label: "Phone", name: "mobile", type: "text", error: errors.mobile },
-              { label: "College / University", name: "college", type: "text", error: errors.college },
+              {
+                label: "Full Name",
+                name: "name",
+                type: "text",
+                error: errors.name,
+              },
+              {
+                label: "Email",
+                name: "email",
+                type: "email",
+                error: errors.email,
+              },
+              {
+                label: "Phone",
+                name: "mobile",
+                type: "text",
+                error: errors.mobile,
+              },
+              {
+                label: "College / University",
+                name: "college",
+                type: "text",
+                error: errors.college,
+              },
             ].map(({ label, name, type, error }, idx) => (
               <div key={idx} className="space-y-1">
                 <label className="font-medium">
-                  {label}<span className="text-red-500">*</span>
+                  {label}
+                  <span className="text-red-500">*</span>
                 </label>
                 <input
                   type={type}
@@ -203,7 +294,9 @@ const InternshipForm = () => {
                 <option value="B.Tech">B.Tech</option>
                 <option value="Others">Others</option>
               </select>
-              {errors.qualification && <p className="text-sm text-red-500">{errors.qualification}</p>}
+              {errors.qualification && (
+                <p className="text-sm text-red-500">{errors.qualification}</p>
+              )}
             </div>
 
             <div className="space-y-1">
@@ -218,10 +311,14 @@ const InternshipForm = () => {
               >
                 <option value="">Select</option>
                 {internshipPrograms.map((prog, idx) => (
-                  <option key={idx} value={prog}>{prog}</option>
+                  <option key={idx} value={prog}>
+                    {prog}
+                  </option>
                 ))}
               </select>
-              {errors.internshipType && <p className="text-sm text-red-500">{errors.internshipType}</p>}
+              {errors.internshipType && (
+                <p className="text-sm text-red-500">{errors.internshipType}</p>
+              )}
             </div>
 
             <div className="space-y-1">

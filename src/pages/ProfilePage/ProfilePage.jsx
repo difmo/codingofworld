@@ -1,13 +1,20 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { FaBlog, FaCertificate, FaDiscourse, FaFilePdf, FaPersonBooth } from "react-icons/fa";
+import {
+  FaBlog,
+  FaCertificate,
+  FaDiscourse,
+  FaFilePdf,
+  FaPersonBooth,
+} from "react-icons/fa";
 import { useAuth } from "../../context/Providers/AuthContext"; // Import Auth context
 import { useProfile } from "../../context/Providers/ProfileContext"; // Import Profile context
 import CertificatesGeneratorComponent from "../../components/CertificatesGen/CertificatesGenerator";
 
 const ProfilePage = () => {
-  const { user, signOut } = useAuth(); // Access auth state
-  const { isAdmin, blogPermission, bloggerName, studentData, error, loading } = useProfile(); // Access profile stdfdsfate
+  const { user, signOut } = useAuth();
+  const { isAdmin, blogPermission, bloggerName, studentData, error, loading } =
+    useProfile(); //
 
   const [isCertificateVisible, setIsCertificateVisible] = useState(false);
   const navigate = useNavigate();
@@ -18,8 +25,8 @@ const ProfilePage = () => {
 
   const handleLogout = async () => {
     try {
-      await signOut(); 
-      window.location.href = "/"; // Redirect to login page
+      await signOut();
+      window.location.href = "/auth/signin";
     } catch (error) {
       console.error("Error logging out:", error);
     }
@@ -29,12 +36,8 @@ const ProfilePage = () => {
     return <div>Loading...</div>;
   }
 
-  if (error) {
-    return <div className="text-red-500">{error}</div>;
-  }
-
   return (
-    <div className="h-screen w-full bg-gray-50 p-6">
+    <div className="h-full w-full bg-gray-50 p-6">
       <div className="w-full h-full mx-auto bg-white p-8 rounded-lg shadow-lg">
         <div className="text-center">
           <h1 className="text-3xl font-bold text-gray-800">Student Profile</h1>
@@ -94,7 +97,9 @@ const ProfilePage = () => {
         {studentData && (
           <div className="mt-8 space-y-6">
             <div>
-              <h2 className="text-xl font-semibold text-gray-700">Personal Information</h2>
+              <h2 className="text-xl font-semibold text-gray-700">
+                Personal Information
+              </h2>
               <div className="mt-4">
                 <p className="text-lg text-gray-600">
                   <strong>Name:</strong> {studentData.name}
@@ -124,7 +129,9 @@ const ProfilePage = () => {
                 <FaFilePdf /> <span>Hide Certificate</span>
               </button>
             )}
-            {isCertificateVisible && <CertificatesGeneratorComponent name={studentData.name} />}
+            {isCertificateVisible && (
+              <CertificatesGeneratorComponent name={studentData.name} />
+            )}
           </div>
         )}
       </div>

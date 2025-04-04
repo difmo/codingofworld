@@ -16,7 +16,7 @@ const ShowLatestBanner = () => {
         const q = query(
           bannerRef,
           where("isActive", "==", true), // Fetch only active banners
-          limit(1) // Limit to the most recent banner
+          limit(1)
         );
 
         const querySnapshot = await getDocs(q);

@@ -1,21 +1,21 @@
-import  { useState, useEffect } from 'react';
-import ReactQuill from 'react-quill';
-import 'react-quill/dist/quill.snow.css';
-import { db, auth } from '../../../firebase';
-import { doc, setDoc, collection,getDoc, } from 'firebase/firestore';
-import { v4 as uuidv4 } from 'uuid';
-import { useNavigate } from 'react-router-dom'; 
+import { useState, useEffect } from "react";
+import ReactQuill from "react-quill";
+import "react-quill/dist/quill.snow.css";
+import { db, auth } from "../../../firebase";
+import { doc, setDoc, collection, getDoc } from "firebase/firestore";
+import { v4 as uuidv4 } from "uuid";
+import { useNavigate } from "react-router-dom";
 
 const CreateNewCourse = () => {
-  const [title, setTitle] = useState('');
-  const [content, setContent] = useState('');
+  const [title, setTitle] = useState("");
+  const [content, setContent] = useState("");
   const [user, setUser] = useState(null);
   const navigate = useNavigate();
 
   const [courses, setCourses] = useState([]);
   const [userData, setUserData] = useState(null);
-  const [email, setEmail] = useState('');
-  const [name, setName] = useState('');
+  const [email, setEmail] = useState("");
+  const [name, setName] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
   const [loading, setLoading] = useState(true);
 
@@ -28,8 +28,7 @@ const CreateNewCourse = () => {
           const userDoc = await getDoc(doc(db, "users", user.uid));
           if (userDoc.exists()) {
             setUserData(userDoc.data());
-            setEmail(userDoc.data().
-              email);
+            setEmail(userDoc.data().email);
             setName(userDoc.data().name);
           } else {
             console.error("No such user document!");
@@ -50,18 +49,16 @@ const CreateNewCourse = () => {
     fetchUserData();
   }, []);
 
-
   useEffect(() => {
-    
     const unsubscribe = auth.onAuthStateChanged(setUser);
-    return () => unsubscribe(); 
+    return () => unsubscribe();
   }, []);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
     if (!user) {
-      alert('You must be logged in to create a course!');
+      alert("You must be logged in to create a course!");
       return;
     }
 
@@ -77,14 +74,14 @@ const CreateNewCourse = () => {
         isPublished: false,
       };
 
-      const courseRef = doc(collection(db, 'courses'), courseId);
+      const courseRef = doc(collection(db, "courses"), courseId);
       await setDoc(courseRef, courseData);
 
-      alert('Course created successfully!');
-      navigate('/dashboard');
+      alert("Course created successfully!");
+      navigate("/dashboard");
     } catch (error) {
-      console.error('Error creating course:', error);
-      alert('Error creating course!');
+      console.error("Error creating course:", error);
+      alert("Error creating course!");
     }
   };
 
@@ -109,27 +106,33 @@ const CreateNewCourse = () => {
         <div className="form-group">
           <label htmlFor="content">Content</label>
           <ReactQuill
-           id="content"
-value={content}
-onChange={setContent}
-className="w-full"
-placeholder="Write the content of your course"
-modules={{
-  toolbar: [
-    [{ 'header': '1' }, { 'header': '2' }, { 'header': '3' }, { 'header': '4' }, { 'header': '5' }, { 'header': '6' }],
-    [{ 'font': [] }],
-    [{ 'size': ['small', 'normal', 'large', 'huge'] }],
-    ['bold', 'italic', 'underline'],
-    ['link'],
-    [{ 'list': 'ordered' }, { 'list': 'bullet' }],
-    ['blockquote', 'code-block'],
-    ['image'],
-    ['clean'],
-    [{ 'align': [] }]  // Specifying left, center, right alignment options
-  ]
-}}
-/>
+            id="content"
+            value={content}
+            onChange={setContent}
+            className="w-full"
+            placeholder="Write the content of your course"
+            modules={{
+              toolbar: [
+                [
+                  { header: "1" },
+                  { header: "2" },
+                  { header: "3" },
+                  { header: "4" },
+                  { header: "5" },
+                  { header: "6" },
+                ],
+                [{ font: [] }],
+                [{ size: ["small", "normal", "large", "huge"] }], //
 
+                ["bold", "italic", "underline"],
+                ["link"],
+                [{ list: "ordered" }, { list: "bullet" }],
+                ["blockquote", "code-block"],
+                ["image"],
+                ["clean"],
+              ],
+            }}
+          />
         </div>
 
         <div className="form-group">

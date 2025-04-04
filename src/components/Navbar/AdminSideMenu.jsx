@@ -9,18 +9,19 @@ const AdminSidebar = ({ toggleSidebar }) => {
   const sidebarData = [
     { label: "Dashboard", path: "/admin" },
     { label: "Interns", path: "/admin/internship" },
+    { label: "CreateNewInternship", path: "/admin/create-new-intership" },
     { label: "Placement Stats", path: "/admin/create-stats" },
     { label: "Contact", path: "/admin/client-contact" },
     { label: "Login Users", path: "/admin/login-users" },
     { label: "Blogs", path: "/admin/blogs" },
-    // { label: "Create New Internship", path: "/admin/createNewInternship" },
+    { label: "Course", path: "/admin/admin-course" },
     { label: "All Internship", path: "/admin/allInternship" },
     // { label: "Create New Course", path: "/admin/createnewcourse" },
     { label: "All Course", path: "/admin/all-courses" },
     { label: "Student Test", path: "admin/admin-student-test" },
     { label: "Plan", path: "/admin/student/plan" },
     { label: "Create Banners", path: "/admin/create-banner" },
-    { label: "Create Programs", path: "/admin/create-home-programs" }
+    { label: "Create Programs", path: "/admin/create-home-programs" },
   ];
 
   return (

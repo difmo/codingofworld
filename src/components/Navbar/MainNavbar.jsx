@@ -1,11 +1,5 @@
-import  { useEffect, useState, useRef } from "react";
-import {
-  FaTimes,
-  FaUser,
-
-  FaMoon,
-  FaSun,
-} from "react-icons/fa";
+import { useEffect, useState, useRef } from "react";
+import { FaTimes, FaUser, FaMoon, FaSun } from "react-icons/fa";
 import { IoMdMenu } from "react-icons/io";
 import { motion, AnimatePresence } from "framer-motion";
 import { Link } from "react-router-dom";
@@ -14,8 +8,8 @@ import logo from "../../assets/images/logo.svg";
 import "firebase/auth";
 import { auth } from "../../firebase";
 import Popupbloge from "../../pages/Popupbloge";
-import AdminController from "../../controller/AdminController";
 import RouteConstants from "../../constants/routeConstants/RouteConstants";
+import { useProfile } from "../../context/Providers/ProfileContext";
 
 const NavbarMenu = [
   { id: 1, title: "Home", path: "/" },
@@ -34,7 +28,7 @@ const MainNavbar = () => {
   const popupRef = useRef(null);
   const navigate = useNavigate();
 
-  const { isUserLogin } = AdminController();
+  const { isUserLogin } = useProfile();
 
   const toggleMobileMenu = () => {
     setMobileMenuOpen((prev) => !prev);
@@ -61,7 +55,6 @@ const MainNavbar = () => {
   };
 
   useEffect(() => {
-    // Apply dark mode class to body element
     if (darkMode) {
       document.body.classList.add("dark");
     } else {
@@ -70,7 +63,8 @@ const MainNavbar = () => {
   }, [darkMode]);
 
   const handleClickOutside = (event) => {
-    if (popupRef.current && !popupRef.current.contains(event.target)) {}
+    if (popupRef.current && !popupRef.current.contains(event.target)) {
+    }
   };
 
   useEffect(() => {
@@ -117,7 +111,7 @@ const MainNavbar = () => {
 
             {!isUserLogin ? (
               <button
-                onClick={() => navigate(RouteConstants.NAVIGATING_ROUTE.GOTO_SIGNIN)}
+                onClick={() => navigate("/auth/signin")}
                 className="h-8 text-[16px] px-8 py-1 rounded-md bg-red-100 text-red-500 hover:bg-red-600 focus:outline-none focus:ring-2 focus:ring-red-500 hover:text-white"
               >
                 Sign In
@@ -143,7 +137,10 @@ const MainNavbar = () => {
         </div>
 
         <div className="lg:hidden">
-          <IoMdMenu className="text-4xl cursor-pointer" onClick={toggleMobileMenu} />
+          <IoMdMenu
+            className="text-4xl cursor-pointer"
+            onClick={toggleMobileMenu}
+          />
         </div>
       </motion.div>
 
@@ -172,7 +169,7 @@ const MainNavbar = () => {
               {!isUserLogin ? (
                 <button
                   onClick={() => {
-                    navigate("/auth/signup");
+                    navigate("/auth/signin");
                     setMobileMenuOpen(false);
                   }}
                   className="primary-btn"

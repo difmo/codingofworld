@@ -67,26 +67,27 @@ const ShowLatestBanner = () => {
     latestBanner && (
       <>
         {isPopupVisible && (
-          <div className="fixed inset-0 flex justify-center items-center bg-black pr-4 bg-opacity-50 z-50 transition-all duration-300 ease-in-out">
+          <div className="fixed  inset-0 flex  bg-black pr-4 bg-opacity-70 z-50 transition-all duration-300 ease-in-out">
             <div
               ref={popupRef}
-              className="bg-white rounded-xl w-full max-w-3xl mx-4  sm:mx-6 shadow-lg transform transition-all duration-300 ease-in-out scale-95 hover:scale-100"
+              className=" relative top-36
+              md:top-0 md:left-80 rounded-xl w-[800px] h-[400px] mx-4  sm:mx-6 shadow-lg transform transition-all duration-300 ease-in-out scale-95 "
             >
               <button
                 onClick={handleClosePopup}
-                className="absolute top-1 right-2 bg-secondaryblue text-white rounded-full w-8 h-8 flex items-center justify-center text-lg focus:outline-none"
+                className="absolute top-1 right-2 z-50   bg-secondaryblue  text-white rounded-full w-8 h-8 flex items-center justify-center text-lg focus:outline-none"
               >
                 x
               </button>
-              {/* <div className="relative overflow-hidden rounded-t-xl">
+              <div className="relative overflow-hidden rounded-xl ">
                 <img
                   src={latestBanner.imageUrl}
                   alt="Banner"
-                  className="w-full h-56 sm:h-72 lg:h-96 object-cover transition-all duration-500 ease-in-out transform hover:scale-105"
+                  className=" bg-cover transition-all duration-500 ease-in-out transform hover:scale-105"
                 />
-              </div> */}
-              <div className="p-4 sm:p-6 lg:p-8  ml-4 mr-5">
-                <p className="text-lg sm:text-2xl lg:text-3xl font-semibold text-primary mb-4">
+              </div>
+              {/* <div className="p-4 sm:p-6 lg:p-8  ml-4 mr-5">
+                <p className="text-lg sm:text-md lg:text-xl font-semibold text-primary mb-4">
                   {latestBanner.description}
                 </p>
                 <ul className="list-none pl-0 mb-6 space-y-2 text-gray-700 text-sm sm:text-lg">
@@ -95,8 +96,6 @@ const ShowLatestBanner = () => {
                       key={index}
                       className="relative pl-6 text-base sm:text-lg"
                     >
-                      {/* Custom circle bullet */}
-                      <span className="absolute left-0 top-1/2 transform -translate-y-1/2 w-2.5 h-2.5 bg-secondaryblue rounded-full"></span>
                       {point}
                     </li>
                   ))}
@@ -107,7 +106,7 @@ const ShowLatestBanner = () => {
                 >
                   Register Now
                 </a>
-              </div>
+              </div> */}
             </div>
           </div>
         )}

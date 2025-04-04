@@ -14,7 +14,7 @@ const AdminBlogPage = () => {
       try {
         const blogsCollection = collection(db, "blogs");
         const querySnapshot = await getDocs(blogsCollection);
-        const blogsData = querySnapshot.docs.map(doc => ({
+        const blogsData = querySnapshot.docs.map((doc) => ({
           id: doc.id,
           ...doc.data(),
         }));
@@ -33,7 +33,7 @@ const AdminBlogPage = () => {
   const handleDelete = async (id) => {
     try {
       await deleteDoc(doc(db, "blogs", id)); // Delete blog document
-      setBlogs(blogs.filter(blog => blog.id !== id)); // Remove deleted blog from state
+      setBlogs(blogs.filter((blog) => blog.id !== id)); // Remove deleted blog from state
     } catch (error) {
       console.error("Error deleting blog: ", error);
     }
@@ -60,7 +60,12 @@ const AdminBlogPage = () => {
                 className="p-4 border rounded-lg shadow-md cursor-pointer"
               >
                 <h2 className="text-xl font-semibold">{blog.title}</h2>
-                <p className="mt-2" dangerouslySetInnerHTML={{ __html: blog.content.substring(0, 100) }} />
+                <p
+                  className="mt-2"
+                  dangerouslySetInnerHTML={{
+                    __html: blog.content.substring(0, 100),
+                  }}
+                />
                 <div className="flex justify-between mt-4">
                   <button
                     onClick={() => handleEdit(blog.id)}
