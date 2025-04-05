@@ -19,6 +19,7 @@ import CreateBlogRoutes from "./routes/CreateBlogRoutes";
 import AdminLayout from "./pages/Layout/AdminLayout";
 import Providers from "./context/Providers";
 import RouteConstants from "./constants/routeConstants/RouteConstants";
+import Loader from "./components/Loader";
 
 const App = () => {
   const [isAdmin, setIsAdmin] = useState(false);
@@ -45,7 +46,9 @@ const App = () => {
   }, []);
 
   if (loading) {
-    return <div>Loading...</div>; // Show a loading screen while the auth state is being checked
+    return <div className="flex items-center justify-center h-screen">
+      <Loader />
+    </div>
   }
 
   return (
@@ -107,48 +110,21 @@ const App = () => {
         <link rel="canonical" href="https://www.codingofworld.com" />
       </Helmet>
       <Providers>
-        {" "}
         <Router>
           <ScrollToTop />
           <Routes>
             <Route path="/premium-courses" element={<PremiumCourses />} />
             <Route element={<MainLayout />}>
-              <Route
-                path={RouteConstants.ROOTROUTE.HOME}
-                element={<MainRoutes />}
-              />
-              <Route
-                path={RouteConstants.ROOTROUTE.AUTH}
-                element={<AuthRoutes />}
-              />
-              <Route
-                path={RouteConstants.ROOTROUTE.CAREER}
-                element={<JobsOfferRoute />}
-              />
-              <Route
-                path={RouteConstants.ROOTROUTE.COURSES}
-                element={<CourseRoutes />}
-              />
-              <Route
-                path={RouteConstants.ROOTROUTE.BLOGS}
-                element={<BlogRoutes />}
-              />
+              <Route path={RouteConstants.ROOTROUTE.HOME} element={<MainRoutes />} />
+              <Route path={RouteConstants.ROOTROUTE.AUTH} element={<AuthRoutes />} />
+              <Route path={RouteConstants.ROOTROUTE.CAREER} element={<JobsOfferRoute />} />
+              <Route path={RouteConstants.ROOTROUTE.COURSES} element={<CourseRoutes />} />
+              <Route path={RouteConstants.ROOTROUTE.BLOGS} element={<BlogRoutes />} />
             </Route>
-            <Route
-              path={RouteConstants.ROOTROUTE.CREATECOURSES}
-              element={<CreateCourseRoutes />}
-            />
-            <Route
-              path={RouteConstants.ROOTROUTE.CREATEBLOGS}
-              element={<CreateBlogRoutes />}
-            />
+            <Route path={RouteConstants.ROOTROUTE.CREATECOURSES} element={<CreateCourseRoutes />} />
+            <Route path={RouteConstants.ROOTROUTE.CREATEBLOGS} element={<CreateBlogRoutes />} />
             <Route element={<AdminLayout />}>
-              {isAdmin && (
-                <Route
-                  path={RouteConstants.ROOTROUTE.ADMIN}
-                  element={<AdminRoutes />}
-                />
-              )}
+              {isAdmin && <Route path={RouteConstants.ROOTROUTE.ADMIN} element={<AdminRoutes />} />}
             </Route>
             <Route path="*" element={<NotFound />} />
           </Routes>

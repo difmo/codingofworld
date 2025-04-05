@@ -26,8 +26,12 @@ const StudentTestDetails = () => {
       fetchStudentDetails();
     }, [studentId]);
   
-    if (!studentDetails) return <div>Loading...</div>;
-  
+    // if (!studentDetails) return <div>Loading...</div>;
+    if (!studentDetails) {
+      return <div className="flex items-center justify-center h-screen">
+        <Loader />
+      </div>
+    }
     // Destructure data and add fallback in case 'questions' or 'answers' are undefined
     const { name, email, stream, answers = [], marks, questions = [] } = studentDetails;
   

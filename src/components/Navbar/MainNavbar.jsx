@@ -9,7 +9,7 @@ import "firebase/auth";
 import { auth } from "../../firebase";
 import Popupbloge from "../../pages/Popupbloge";
 import RouteConstants from "../../constants/routeConstants/RouteConstants";
-import { useProfile } from "../../context/Providers/ProfileContext";
+import AdminController from "../../Controller/AdminController";
 
 const NavbarMenu = [
   { id: 1, title: "Home", path: "/" },
@@ -49,7 +49,6 @@ const MainNavbar = () => {
     setIsOpen(!isOpen);
   };
 
-  // Dark mode toggle handler
   const toggleDarkMode = () => {
     setDarkMode((prevMode) => !prevMode);
   };
