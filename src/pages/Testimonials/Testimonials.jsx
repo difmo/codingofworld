@@ -67,7 +67,7 @@ const testimonialData = [
 
 const Testimonials = () => {
   return (
-    <section className="dark:bg-bg-color-dark bg-gray-light relative -z-10 py-16 md:py-20 lg:py-28">
+    <section className="dark:bg-bg-color-dark bg-gray-light relative -z-10 py-16 md:py-20 lg:py-28 bg-white dark:bg-dark transition-all duration-700 ease-in-out">
       <div className="container">
         <SectionTitle
           title="Our Student Reviews"

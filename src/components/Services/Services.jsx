@@ -73,7 +73,7 @@ const Services = () => {
   return (
     <section className="bg-white dark:bg-dark transition-all duration-700 ease-in-out">
       <div className="container pt-16 pb-14">
-        <h1 className="pb-10 text-4xl text-secondaryblue dark:text-secondaryblue-dark font-bold text-left">
+        <h1 className="pb-10 text-4xl text-secondaryblue dark:text-white font-bold text-left">
           Skill-Boosting <span className="text-primary dark:text-primary-dark">Training</span> for Your Success
         </h1>
         <div className="grid grid-cols-2 gap-8 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6">

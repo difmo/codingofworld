@@ -1,12 +1,16 @@
-import { useState } from "react";
+import React, { useState } from "react";
 
 import { Outlet } from "react-router-dom";
-import CourseSidebar from "../../components/Navbar/CourseSidebar";
+import AdminSideMenu from "../../components/Navbar/AdminSideMenu";
+import AdminNavbar from "../../components/Navbar/AdminNavbar";
 
-const CourseLayout = ({ children }) => {
+const AdminLayout = ({ children }) => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 
-
+  const toggleSidebar = () => {
+    setIsSidebarOpen(!isSidebarOpen);
+    console.log(isSidebarOpen);
+  };
   return (
     <div className="flex h-screen">
       <div
@@ -14,12 +18,12 @@ const CourseLayout = ({ children }) => {
           !isSidebarOpen ? "hidden " : "flex    "
         } fixed md:relative transition-all duration-300 ease-in-out  md:flex`}
       >
-        <CourseSidebar />
+        <AdminSideMenu isSidebarOpen={isSidebarOpen} />
       </div>
 
       <div className="flex flex-col flex-1">
         <div className="w-full">
-          {/* <AdminNavbar toggleSidebar={toggleSidebar} /> */}
+          <AdminNavbar toggleSidebar={toggleSidebar} />
         </div>
         <div className="flex-1 overflow-y-auto bg-white">
           {children}
@@ -30,4 +34,4 @@ const CourseLayout = ({ children }) => {
   );
 };
 
-export default CourseLayout;
+export default AdminLayout;

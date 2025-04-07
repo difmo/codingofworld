@@ -11,6 +11,7 @@ import {
 } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
 import CertificatesGeneratorComponent from "../../components/CertificatesGen/CertificatesGenerator";
+import Loader from "../../components/Loader";
 
 const ProfilePage = () => {
   const [isAdmin, setIsAdmin] = useState(false);
@@ -117,7 +118,7 @@ const ProfilePage = () => {
 
   // Show loading state while fetching data
   if (loading) {
-    return <div>Loading...</div>;
+    return <div><Loader/></div>;
   }
 
   // Show error state if there is any

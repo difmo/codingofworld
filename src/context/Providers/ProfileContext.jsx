@@ -75,7 +75,7 @@ export const ProfileProvider = ({ children }) => {
         studentData,
         error,
         loading,
-        isUserLogin, // Provide login status in context
+        isUserLogin, 
       }}
     >
       {children}

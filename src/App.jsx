@@ -17,44 +17,20 @@ import PremiumCourses from "./pages/PremiumCourses";
 import CreateCourseRoutes from "./routes/CreateCourseRoutes";
 import CreateBlogRoutes from "./routes/CreateBlogRoutes";
 import AdminLayout from "./pages/Layout/AdminLayout";
-import Providers from "./context/Providers";
 import RouteConstants from "./constants/routeConstants/RouteConstants";
 import Loader from "./components/Loader";
+import { useProfile } from "./context/Providers/ProfileContext";
 
 const App = () => {
-  const [isAdmin, setIsAdmin] = useState(false);
-  const [isUserLogin, setIsUserLogin] = useState(null);
-  const [loading, setLoading] = useState(true); // Add a loading state
-
-  useEffect(() => {
-    const unsubscribe = auth.onAuthStateChanged(async (user) => {
-      if (user) {
-        setIsUserLogin(user);
-        const q = query(collection(db, "users"), where("uid", "==", user.uid));
-        const querySnapshot = await getDocs(q);
-        if (!querySnapshot.empty) {
-          const userData = querySnapshot.docs[0].data();
-          setIsAdmin(userData.whoIs === "isAdmin");
-        }
-      } else {
-        setIsUserLogin(false);
-      }
-      setLoading(false); // Set loading to false after the authentication check
-    });
-
-    return () => unsubscribe();
-  }, []);
+  const {isAdmin,loading} = useProfile();
 
   if (loading) {
-    return <div className="flex items-center justify-center h-screen">
-      <Loader />
-    </div>
+    return <Loader/>
   }
 
   return (
     <HelmetProvider>
       <Helmet>
-        {/* Primary Meta Tags */}
         <title>
           Coding of World - Internships, Training, and Career Guidance
         </title>
@@ -109,7 +85,8 @@ const App = () => {
         {/* Canonical URL */}
         <link rel="canonical" href="https://www.codingofworld.com" />
       </Helmet>
-      <Providers>
+   
+        {" "}
         <Router>
           <ScrollToTop />
           <Routes>
@@ -129,7 +106,7 @@ const App = () => {
             <Route path="*" element={<NotFound />} />
           </Routes>
         </Router>
-      </Providers>
+     
     </HelmetProvider>
   );
 };

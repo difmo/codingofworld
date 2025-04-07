@@ -9,7 +9,8 @@ import "firebase/auth";
 import { auth } from "../../firebase";
 import Popupbloge from "../../pages/Popupbloge";
 import RouteConstants from "../../constants/routeConstants/RouteConstants";
-import AdminController from "../../Controller/AdminController";
+import { useProfile } from "../../context/Providers/ProfileContext";
+import LoginScreen from "../../pages/AuthScreens/LoginScreen";
 
 const NavbarMenu = [
   { id: 1, title: "Home", path: "/" },
@@ -24,8 +25,10 @@ const MainNavbar = () => {
   const [isMobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [showPopup, setShowPopup] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
-  const [darkMode, setDarkMode] = useState(false);
+  const [darkMode, setDarkMode] = useState(true);
   const popupRef = useRef(null);
+  const [showLoginModal, setShowLoginModal] = useState(false); // State for showing login modal
+
   const navigate = useNavigate();
 
   const { isUserLogin } = useProfile();
@@ -34,14 +37,6 @@ const MainNavbar = () => {
     setMobileMenuOpen((prev) => !prev);
   };
 
-  const handleLogout = async () => {
-    try {
-      await auth.signOut();
-      console.log("User has logged out");
-    } catch (error) {
-      console.error("Error logging out:", error);
-    }
-  };
 
   const closePopup = () => setShowPopup(false);
 
@@ -110,7 +105,8 @@ const MainNavbar = () => {
 
             {!isUserLogin ? (
               <button
-                onClick={() => navigate("/auth/signin")}
+                onClick={() => { setShowLoginModal(!showLoginModal); // Open modal on click
+                  setMobileMenuOpen(false);}}
                 className="h-8 text-[16px] px-8 py-1 rounded-md bg-red-100 text-red-500 hover:bg-red-600 focus:outline-none focus:ring-2 focus:ring-red-500 hover:text-white"
               >
                 Sign In
@@ -168,7 +164,7 @@ const MainNavbar = () => {
               {!isUserLogin ? (
                 <button
                   onClick={() => {
-                    navigate("/auth/signin");
+                    setShowLoginModal(true); // Open modal on click
                     setMobileMenuOpen(false);
                   }}
                   className="primary-btn"
@@ -187,6 +183,10 @@ const MainNavbar = () => {
           </motion.div>
         )}
       </AnimatePresence>
+
+      {showLoginModal && (
+        <LoginScreen />
+      )}
 
       {/* Modal Popup */}
       {showPopup && (

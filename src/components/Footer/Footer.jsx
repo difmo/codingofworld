@@ -60,7 +60,7 @@ const Footer = () => {
     }
   };
   return (
-    <footer className="pt-28 bg-[#f7f7f7]">
+    <footer className="pt-28 bg-white dark:bg-dark transition-all duration-700 ease-in-out border-t">
       <motion.div
         initial={{ opacity: 0, y: 50 }}
         whileInView={{ opacity: 1, y: 0 }}

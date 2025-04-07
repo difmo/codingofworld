@@ -15,9 +15,9 @@ const TrainingPrograms = () => {
   }, []);
 
   return (
-    <section className="container-fluid newSection py-16 bg-gray-100">
+    <section className="container-fluid newSection py-16 bg-white dark:bg-dark transition-all duration-700 ease-in-out">
       <div className="text-center mb-8">
-        <h3 className="sectionTitle text-4xl font-semibold text-gray-800">
+        <h3 className="sectionTitle text-4xl font-semibold text-gray-800 dark:text-white">
           Comprehensive Training Solutions
         </h3>
         <p className="sectionContent text-lg text-gray-600 max-w-3xl mx-auto">
@@ -27,8 +27,8 @@ const TrainingPrograms = () => {
       <div className="container mx-auto">
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-8">
           {programs.map((program) => (
-            <div key={program.id} className="shadow-lg bg-white rounded-lg p-6 flex flex-col items-center">
-              <i className={`fa ${program.icon} text-4xl text-primary mb-4`}></i>
+            <div key={program.id} className="shadow-lg bg-white dark:bg-dark dark:border rounded-lg p-6 flex flex-col items-center">
+              <i className={`fa ${program.icon} text-4xl text-primary dark:text-white mb-4`}></i>
               <h4 className="text-xl font-semibold text-gray-800">
                 <a href={program.link} className="hover:text-primary">{program.title}</a>
               </h4>

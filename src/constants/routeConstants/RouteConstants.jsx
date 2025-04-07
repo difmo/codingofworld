@@ -18,7 +18,7 @@ class RouteConstants {
     HOME: "/",
     CONTACTUS: "/contactus",
     SERVICES: "/services",
-    USERPROFILE: "/user-profile",
+    USERPROFILE: "/user-profile/*",
     ABOUT: "/about",
     TRAININGTEAM: "/trainingteam",
     PROGRAMS: "/programs",

@@ -129,7 +129,7 @@ const Hero = () => {
               animate="animate"
               className="text-2xl lg:text-3xl  font-bold !leading-snug"
             >
-              <span className="text-secondaryblue dark:text-gray-300 font-anek_telugu">
+              <span className="text-secondaryblue dark:text-white font-anek_telugu">
                 {textOptions[currentTextIndex][0]}
               </span>
               <span className="text-red-500 font-anek_telugu">
