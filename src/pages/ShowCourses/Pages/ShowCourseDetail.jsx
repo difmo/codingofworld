@@ -11,6 +11,7 @@ import {
 import { useNavigate, useParams } from "react-router-dom";
 import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
+import Loader from "../../../components/Loader";
 
 const ShowCourseDetails = () => {
   const [course, setCourse] = useState(null);
@@ -85,7 +86,7 @@ const ShowCourseDetails = () => {
   };
 
   if (!course) {
-    return <div className="text-center text-xl text-gray-600">Loading...</div>;
+    return <div className="text-center text-xl text-gray-600"><Loader/></div>;
   }
 
   return (

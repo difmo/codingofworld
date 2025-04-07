@@ -26,7 +26,7 @@ const StudentTestDetails = () => {
       fetchStudentDetails();
     }, [studentId]);
   
-    // if (!studentDetails) return <div>Loading...</div>;
+    // if (!studentDetails) return <div><Loader/></div>;
     if (!studentDetails) {
       return <div className="flex items-center justify-center h-screen">
         <Loader />

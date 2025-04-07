@@ -66,11 +66,11 @@ const SubtopicDetailPage = () => {
   };
 
   if (loading) {
-    return <div>Loading...</div>;
+    return <div><Loader/></div>;
   }
 
   if (!subtopic) {
-    return <div>Loading...</div>;
+    return <div><Loader/></div>;
   }
 
   return (

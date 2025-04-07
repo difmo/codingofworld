@@ -152,7 +152,7 @@ const TopicDetailPage = () => {
   };
 
   if (!topic) {
-    return <div>Loading...</div>;
+    return <div><Loader/></div>;
   }
 
   return (

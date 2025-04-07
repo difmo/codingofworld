@@ -149,7 +149,7 @@ const Footer = () => {
                 className="px-6 py-4 font-semibold text-white bg-primary rounded-e-xl"
                 disabled={isLoading}
               >
-                {isLoading ? "Loading..." : "Subscribe"}
+                {isLoading ? "<Loader/>" : "Subscribe"}
               </button>
             </form>
             {errors.email && (

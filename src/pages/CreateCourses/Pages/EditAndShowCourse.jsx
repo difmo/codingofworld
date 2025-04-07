@@ -71,7 +71,7 @@ const EditAndShowCourse = () => {
 
  
   if (!course) {
-    return <div className="text-center text-xl text-gray-600">Loading...</div>;
+    return <div className="text-center text-xl text-gray-600"><Loader/></div>;
   }
 
   return (
