@@ -208,7 +208,7 @@ const Hero = () => {
             transition={{ duration: 0.6, ease: "easeInOut" }}
             src={images[currentImage]}
             alt="Hero Image"
-            className="relative z-10"
+            className="relative z-10 "
           />
           <motion.img
             initial={{ x: -50, opacity: 0 }}

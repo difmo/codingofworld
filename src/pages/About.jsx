@@ -17,7 +17,7 @@ import TrainingTeam from "./OurTrainingTeam";
 const About = () => {
   return (
     <>
-      <section className="py-4 about dark:bg-dark">
+      <section className="py-4 about dark:bg-dark transition-all duration-700 ease-in-out">
         <div className="container">
           <div className="py-12 text-center heading">
             <h1 className="text-3xl font-semibold dark:text-gray-50 text-black">
@@ -78,14 +78,14 @@ export const AboutCard = (props) => {
 export const AboutContent = () => {
   const navigate = useNavigate();
   return (
-    <section className="mb-16">
+    <section className="pb-16 dark:bg-dark dark:text-white transition-all duration-700 ease-in-out">
       <div className="container flex flex-col md:flex-row md:gap-8">
         <div className="relative w-full left md:w-1/3">
           <img src={aboutImg} alt="About" className="rounded-xl" />
         </div>
         <div className="w-full right md:w-2/3 md:mt-16">
           <div className="heading">
-            <h1 className="text-3xl font-semibold text-black">
+            <h1 className="text-3xl font-semibold  dark:text-white text-black">
               Empowering Future Tech Leaders with Hands-on Training
             </h1>
             <span className="block mt-2 text-sm leading-6">
@@ -98,7 +98,7 @@ export const AboutContent = () => {
               industry-relevant skills required to excel in a competitive job
               market.
             </span>
-            <ul className="my-5">
+            <ul className="py-5">
               <li className="flex items-center gap-5 text-sm">
                 <AiOutlineCheck className="text-green-500" /> Upskill your
                 workforce with cutting-edge technologies.
