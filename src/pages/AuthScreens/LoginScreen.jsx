@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { FaFacebookF, FaTwitter, FaLinkedinIn } from "react-icons/fa";
+import login from "../../assets/images/login.svg";
 import { useNavigate } from "react-router-dom";
 import IconsComponent from "../../components/Icons/Icons";
 import CustomInput from "../../components/InputAndButton/CustomInput";
@@ -8,7 +9,6 @@ import { signInWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../../firebase";
 import { useFormik } from "formik";
 import * as Yup from "yup";
-import { motion } from "framer-motion";
 
 const validationSchema = Yup.object({
   email: Yup.string()
@@ -23,7 +23,6 @@ export default function LoginScreen() {
   const navigate = useNavigate();
   const [loading, setLoading] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
-  const [showModal, setShowModal] = useState(true); // New state for modal visibility
 
   const formik = useFormik({
     initialValues: {
@@ -57,123 +56,92 @@ export default function LoginScreen() {
     },
   });
 
-  // Sign in with Apple (placeholder for future implementation)
-  const handleAppleSignIn = () => {
-    alert("Apple sign-in integration is not implemented yet.");
-  };
-
-  // Close modal
-  const handleCloseModal = () => {
-    setShowModal(false);
-  };
-
-  // Animation for modal open
-  const modalAnimation = {
-    hidden: { opacity: 0, scale: 0.9 },
-    visible: { opacity: 1, scale: 1, transition: { type: "spring", stiffness: 200 } },
-  };
-
   return (
-    <motion.section
-      className="fixed inset-0 flex items-center justify-center bg-gray-900 bg-opacity-50 z-50"
-      initial="hidden"
-      animate={showModal ? "visible" : "hidden"}
-      variants={modalAnimation}
-      onClick={handleCloseModal} // Close modal when clicked outside
-    >
-      <motion.div
-        className="w-full max-w-md p-6 bg-white rounded-lg shadow-lg"
-        onClick={(e) => e.stopPropagation()} // Prevent click propagation to close modal when clicking inside
-      >
-        <form onSubmit={formik.handleSubmit}>
-          <div className="flex items-center justify-center mb-4 lg:justify-start">
-            <p className="mb-0 mr-4 text-lg">Sign in with</p>
-          </div>
+    <section className="md:h-screen">
+      <div className="container flex flex-wrap items-center justify-center h-full lg:justify-between">
+        <div className="mb-12 md:w-9/12 lg:w-6/12">
+          <img src={login} className="w-full" alt="Sample" />
+        </div>
 
-          {/* Separator */}
-          <div className="my-4 flex items-center before:mt-0.5 before:flex-1 before:border-t before:border-neutral-300 after:mt-0.5 after:flex-1 after:border-t after:border-neutral-300">
-            <p className="mx-4 mb-0 font-semibold text-center dark:text-white">
-              Or
-            </p>
-          </div>
-
-          {/* Email Input */}
-          <CustomInput
-            placeholder={"Enter your email"}
-            name="email"
-            type="email"
-            value={formik.values.email}
-            onChange={formik.handleChange}
-            onBlur={formik.handleBlur}
-          />
-          {formik.touched.email && formik.errors.email && (
-            <p className="text-red-500">{formik.errors.email}</p>
-          )}
-
-          {/* Password Input */}
-          <CustomInput
-            placeholder={"Enter your password"}
-            name="password"
-            type="password"
-            value={formik.values.password}
-            onChange={formik.handleChange}
-            onBlur={formik.handleBlur}
-          />
-          {formik.touched.password && formik.errors.password && (
-            <p className="text-red-500">{formik.errors.password}</p>
-          )}
-
-          {/* Display error message */}
-          {errorMessage && <p className="text-red-500">{errorMessage}</p>}
-
-          <div className="flex items-center justify-between mb-6">
-            <div className="flex items-center">
-              <input
-                className="w-4 h-4 mr-2"
-                type="checkbox"
-                id="rememberMe"
-              />
-              <label htmlFor="rememberMe" className="cursor-pointer">
-                Remember me
-              </label>
+        <div className="mb-12 md:mb-0 md:w-8/12 lg:w-5/12">
+          <form onSubmit={formik.handleSubmit}>
+            <div className="flex items-center justify-center mb-4 lg:justify-start">
+              <p className="mb-0 mr-4 text-lg">Sign in with your</p>
             </div>
-            <a href="#!">Forgot password?</a>
-          </div>
 
-          {/* Login Button */}
-          <div className="text-center lg:text-left">
-            <CustomButton
-              type="submit"
-              text={loading ? "Logging in..." : "Login"}
-              disabled={loading}
+            {/* Separator */}
+            <div className="my-4 flex items-center before:mt-0.5 before:flex-1 before:border-t before:border-neutral-300 after:mt-0.5 after:flex-1 after:border-t after:border-neutral-300">
+              <p className="mx-4 mb-0 font-semibold text-center dark:text-white">
+                Or
+              </p>
+            </div>
+
+            {/* Email Input */}
+            <CustomInput
+              placeholder={"Enter your email"}
+              name="email"
+              type="email"
+              value={formik.values.email}
+              onChange={formik.handleChange}
+              onBlur={formik.handleBlur}
             />
+            {formik.touched.email && formik.errors.email && (
+              <p className="text-red-500">{formik.errors.email}</p>
+            )}
 
-            {/* Apple Sign-in Button */}
-            <div className="my-4 text-center">
-              <CustomButton
-                type="button"
-                text="Sign in with Apple"
-                onClick={handleAppleSignIn}
-              />
+            {/* Password Input */}
+            <CustomInput
+              placeholder={"Enter your password"}
+              name="password"
+              type="password"
+              value={formik.values.password}
+              onChange={formik.handleChange}
+              onBlur={formik.handleBlur}
+            />
+            {formik.touched.password && formik.errors.password && (
+              <p className="text-red-500">{formik.errors.password}</p>
+            )}
+
+            {/* Display error message */}
+            {errorMessage && <p className="text-red-500">{errorMessage}</p>}
+
+            <div className="flex items-center justify-between mb-6">
+              <div className="flex items-center">
+                <input
+                  className="w-4 h-4 mr-2"
+                  type="checkbox"
+                  id="rememberMe"
+                />
+                <label htmlFor="rememberMe" className="cursor-pointer">
+                  Remember me
+                </label>
+              </div>
+              <a href="#!">Forgot password?</a>
             </div>
 
-            {/* Register Link */}
-            <p className="mt-2 text-sm font-semibold">
-              Don't have an account?{" "}
-              <a
-                href="#!"
-                className="transition duration-150 ease-in-out text-danger hover:text-danger-600"
-                onClick={() => navigate("/auth/signup")}
-              >
-                Register
-              </a>
-            </p>
+            {/* Login Button */}
+            <div className="text-center lg:text-left">
+              <CustomButton
+                type="submit"
+                text={loading ? "Logging in..." : "Login"}
+                disabled={loading}
+              />
 
-            {/* Cancel Button */}
-            
-          </div>
-        </form>
-      </motion.div>
-    </motion.section>
+              {/* Register Link */}
+              <p className="mt-2 text-sm font-semibold">
+                Don't have an account?{" "}
+                <a
+                  href="#!"
+                  className="transition duration-150 ease-in-out text-danger hover:text-danger-600"
+                  onClick={() => navigate("/auth/signup")}
+                >
+                  Register
+                </a>
+              </p>
+            </div>
+          </form>
+        </div>
+      </div>
+    </section>
   );
 }

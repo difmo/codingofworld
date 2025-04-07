@@ -91,9 +91,9 @@ const App = () => {
           <ScrollToTop />
           <Routes>
             <Route path="/premium-courses" element={<PremiumCourses />} />
+              <Route path={RouteConstants.ROOTROUTE.AUTH} element={<AuthRoutes />} />
             <Route element={<MainLayout />}>
               <Route path={RouteConstants.ROOTROUTE.HOME} element={<MainRoutes />} />
-              <Route path={RouteConstants.ROOTROUTE.AUTH} element={<AuthRoutes />} />
               <Route path={RouteConstants.ROOTROUTE.CAREER} element={<JobsOfferRoute />} />
               <Route path={RouteConstants.ROOTROUTE.COURSES} element={<CourseRoutes />} />
               <Route path={RouteConstants.ROOTROUTE.BLOGS} element={<BlogRoutes />} />
