@@ -82,12 +82,12 @@ const MainNavbar = () => {
       <motion.div
         initial={{ opacity: 0, y: -50 }}
         animate={{ opacity: 1, y: 0 }}
-        className="container flex items-center justify-between px-4 py-4 mx-auto"
+        className="container flex items-center justify-between px-4 py-2 mx-auto"
       >
-        <div className="flex items-center justify-center">
-          <img src={logo} alt="coding of world" className="h-10" />
+        <div onClick={()=>navigate("/")}  className="flex  items-center justify-center   ">
+          <img  src={logo} alt="coding of world" className="h-10 cursor-pointer" />
           <div>
-            <h1 className="pl-2 text-xl font-bold text-secondaryblue font-play dark:text-white">
+            <h1 className="pl-2 cursor-pointer text-xl font-bold text-secondaryblue font-play dark:text-white">
               Coding of <span className="text-primary">World</span>
             </h1>
           </div>
