@@ -14,7 +14,7 @@ class RouteConstants {
   static PREMIUMCOURSES = "/premium-courses";
   static NOTFOUND = "*";
 
-  static MAINROUTE = {
+  static MAINROUTE = { 
     HOME: "/",
     CONTACTUS: "/contactus",
     SERVICES: "/services",
