@@ -58,15 +58,15 @@ const Courses = () => {
   }
   //kjcnevdshv8y dvhdiv w9
   return (
-    <section className="courses bg-[#F3F4F8] pt-4 pb-40">
+    <section className="courses bg-[#F3F4F8] pt-4 pb-40 dark:bg-dark ">
       <div className="w-full max-w-screen-xl px-4 m-auto">
         <div className="py-16 heading">
-          <h1 className="text-3xl font-semibold text-black md:text-4xl">
+          <h1 className="text-3xl font-semibold text-black dark:text-gray-200 md:text-4xl">
             Discover the Perfect Online Course <br />
             with Certificates from{" "}
             <span className="text-primary">Difmo Technologies</span>
           </h1>
-          <span className="block mt-2 text-sm md:text-base">
+          <span className="block mt-2 text-sm dark:text-gray-200 md:text-base">
             With our expert guidance, you don't have to navigate your learning
             journey alone. Get the support you need to succeed.
           </span>
@@ -102,7 +102,7 @@ const Courses = () => {
                 />
               </div>
               <p
-                className="px-2 py-2 font-serif text-xl text-gray-600"
+                className="px-2 py-2 font-serif text-xl  text-gray-600"
                 dangerouslySetInnerHTML={{
                   __html: item.shortDescription
                     ? item.shortDescription.split(" ").slice(0, 12).join(" ") +

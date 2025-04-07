@@ -17,10 +17,10 @@ const TrainingPrograms = () => {
   return (
     <section className="container-fluid newSection py-16 bg-white dark:bg-dark transition-all duration-700 ease-in-out">
       <div className="text-center mb-8">
-        <h3 className="sectionTitle text-4xl font-semibold text-gray-800 dark:text-white">
+        <h3 className="sectionTitle text-4xl font-semibold text-gray-800 dark:text-primary">
           Comprehensive Training Solutions
         </h3>
-        <p className="sectionContent text-lg text-gray-600 max-w-3xl mx-auto">
+        <p className="sectionContent text-lg text-gray-600 dark:text-gray-200 max-w-3xl mx-auto">
           We are much appreciated in the field of Training as well. Coding of World offers you the best development training via experienced consultants.
         </p>
       </div>
@@ -30,12 +30,12 @@ const TrainingPrograms = () => {
             <div key={program.id} className="shadow-lg bg-white dark:bg-dark dark:border rounded-lg p-6 flex flex-col items-center">
               <i className={`fa ${program.icon} text-4xl text-primary dark:text-white mb-4`}></i>
               <h4 className="text-xl font-semibold text-gray-800">
-                <a href={program.link} className="hover:text-primary">{program.title}</a>
+                <a href={program.link} className="hover:text-primary dark:text-white">{program.title}</a>
               </h4>
-              <p className="text-gray-600 mb-4">
+              <p className="text-gray-600 dark:text-gray-200 mb-4">
                 {program.description}
               </p>
-              <p className="text-gray-800 font-bold mb-4">Course Price: ₹{program.price}</p>
+              <p className="text-gray-800 dark:text-blue-300 font-bold mb-4">Course Price: ₹{program.price}</p>
               <a href={program.link} className="knowMoreBtn divBtn text-white bg-primary px-6 py-2 rounded-full text-sm">
                 Know More
               </a>

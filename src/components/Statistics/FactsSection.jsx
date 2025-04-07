@@ -65,8 +65,8 @@ const FactsSection = () => {
               <h2 className="text-4xl font-bold text-gray-800 dark:text-white">
               Some <span className="text-primary">Insights</span>
               </h2>
-              <p className="text-lg text-gray-600 mt-4">
-                Techpile excels in Placements with its dedicated Mentors. Trainees get a blend of mentorship,
+              <p className="text-lg text-gray-600 dark:text-gray-200 mt-4">
+               Coding of world  excels in Placements with its dedicated Mentors. Trainees get a blend of mentorship,
                 <br /> real-world exposure, and networking opportunities, equipping them for a successful career transition.
               </p>
             </div>
@@ -79,7 +79,7 @@ const FactsSection = () => {
             <h2 className="count text-3xl  dark:text-white font-semibold text-gray-800" id="studentsCounter">
               0
             </h2>
-            <p className="text-gray-600">Students taught so far</p>
+            <p className="text-gray-600 dark:text-gray-200">Students taught so far</p>
           </div>
 
           {/* Total Placements */}
@@ -88,7 +88,7 @@ const FactsSection = () => {
             <h2 className="count text-3xl  dark:text-white font-semibold text-gray-800" id="placementCounter">
               0
             </h2>
-            <p className="text-gray-600">Total Placements</p>
+            <p className="text-gray-600 dark:text-gray-200">Total Placements</p>
           </div>
 
           {/* Students in IT Companies */}
@@ -97,7 +97,7 @@ const FactsSection = () => {
             <h2 className="count text-3xl  dark:text-white font-semibold text-gray-800" id="studentCounter">
               0
             </h2>
-            <p className="text-gray-600">Students placed in Top IT Companies</p>
+            <p className="text-gray-600 dark:text-gray-200">Students placed in Top IT Companies</p>
           </div>
 
           {/* Placement Assistance */}
@@ -106,7 +106,7 @@ const FactsSection = () => {
             <h2 className="count text-3xl  dark:text-white font-semibold text-gray-800" id="assistanceCounter">
               0
             </h2>
-            <p className="text-gray-600">Placement Assistance</p>
+            <p className="text-gray-600 dark:text-gray-200">Placement Assistance</p>
           </div>
         </div>
       </div>

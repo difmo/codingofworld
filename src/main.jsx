@@ -6,7 +6,9 @@ import Providers from './context/Providers.jsx'
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
-    <Providers> <App /></Providers>
+    <Providers>
+       <App />
+       </Providers>
 
   </React.StrictMode>,
 )

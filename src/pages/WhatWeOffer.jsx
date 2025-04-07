@@ -132,7 +132,7 @@ const Features = () => {
                   </div>
                   <div>
                     <p className="text-xl font-semibold text-gray-800 dark:text-white">{feature.title}</p>
-                    <p className="mt-2 text-sm text-gray-600">{feature.description}</p>
+                    <p className="mt-2 text-sm text-gray-600 dark:text-gray-200">{feature.description}</p>
                   </div>
                 </div>
               </motion.div>

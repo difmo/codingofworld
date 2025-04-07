@@ -48,14 +48,14 @@ const Internships = () => {
 
   return (
     <>
-      <section className="bg-[#FFF] py-8">
+      <section className="bg-[#FFF] dark:bg-dark py-8">
         <div className="w-full max-w-screen-xl py-6  m-auto">
-          <h1 className="text-3xl font-semibold text-black md:text-4xl px-2 ">
+          <h1 className="text-3xl font-semibold text-black dark:text-white md:text-4xl px-2 ">
             Courses Master in-demand skills with hands-on training and
             certifications from{" "}
             <span className="text-primary">Difmo Technologies</span>
           </h1>
-          <span className="block mt-2 px-2 text-sm md:text-base">
+          <span className="block dark:text-white mt-2 px-2 text-sm md:text-base">
             Difmo Technologies. Learn, grow, and succeed with industry experts!
           </span>
         </div>
@@ -64,7 +64,7 @@ const Internships = () => {
           {internships.map((internship) => (
             <li
               key={internship.id}
-              className="relative flex flex-col justify-between overflow-hidden transition-all transform bg-white border border-gray-100  cursor-pointer rounded-xl hover:scale-105  hover:bg-[#f7f7f7]"
+              className="relative flex flex-col justify-between overflow-hidden transition-all transform dark:bg-dark bg-white border border-gray-100  cursor-pointer rounded-xl  hover:scale-105 dark:text-white hover:bg-[#f7f7f7]"
               onClick={() => navigate(`/courses/internship/${internship.id}`)}
             >
               <div className="transition-opacity duration-300 ">
@@ -81,13 +81,13 @@ const Internships = () => {
                   </p>
                   <p className="p-2"> {internship.months}</p>
                 </div>
-                <h3 className="px-4 py-2 text-2xl font-semibold text-black">
+                <h3 className="px-4 py-2 dark:text-gray-50 text-2xl font-semibold text-black">
                   {internship.title}
                 </h3>
               </div>
 
               <p
-                className="px-4 py-2 font-serif text-base text-gray-600"
+                className="px-4 py-2 font-serif text-base dark:text-gray-200 text-gray-600"
                 dangerouslySetInnerHTML={{
                   __html: internship.shortDescription,
                 }}

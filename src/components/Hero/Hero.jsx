@@ -144,7 +144,7 @@ const Hero = () => {
               {/* First sentence: Learning and AI-powered skills */}
               <div className="flex items-center gap-2">
                 <FaLightbulb className="text-yellow-500" />
-                <span className="font-medium text-gray-800 dark:text-gray-500">
+                <span className="font-medium text-gray-800 dark:text-gray-200">
                   Master cutting-edge tech and AI skills
                 </span>
               </div>
@@ -152,7 +152,7 @@ const Hero = () => {
               {/* Second sentence: Industry experts */}
               <div className="flex items-center gap-2">
                 <FaUserTie className="text-blue-500" />
-                <span className="font-medium text-gray-800 dark:text-gray-500 ">
+                <span className="font-medium text-gray-800 dark:text-gray-200 ">
                   Learn directly from top industry leaders
                 </span>
               </div>
@@ -160,7 +160,7 @@ const Hero = () => {
               {/* Third sentence: Partnered startups */}
               <div className="flex items-center gap-2">
                 <FaHandshake className="text-green-500" />
-                <span className="font-medium text-gray-800  dark:text-gray-500">
+                <span className="font-medium text-gray-800  dark:text-gray-200">
                   Partnered with 10+ startups and companies
                 </span>
               </div>

@@ -17,13 +17,13 @@ import TrainingTeam from "./OurTrainingTeam";
 const About = () => {
   return (
     <>
-      <section className="py-4 about">
+      <section className="py-4 about dark:bg-dark">
         <div className="container">
           <div className="py-12 text-center heading">
-            <h1 className="text-3xl font-semibold text-black">
+            <h1 className="text-3xl font-semibold dark:text-gray-50 text-black">
               Why Choose Coding of World: A Unique Learning Experience
             </h1>
-            <span className="block mt-2 text-sm">
+            <span className="block mt-2  dark:text-gray-100 text-sm">
               We believe in empowering students with knowledge and practical
               experience. With us, you're never alone in your learning journey!
             </span>
