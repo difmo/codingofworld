@@ -7,8 +7,8 @@ import {
   FaFilePdf,
   FaPersonBooth,
 } from "react-icons/fa";
-import { useAuth } from "../../context/Providers/AuthContext"; // Import Auth context
-import { useProfile } from "../../context/Providers/ProfileContext"; // Import Profile context
+import { useAuth } from "../../context/Providers/AuthContext"; 
+import { useProfile } from "../../context/Providers/ProfileContext";
 import CertificatesGeneratorComponent from "../../components/CertificatesGen/CertificatesGenerator";
 
 const ProfilePage = () => {
@@ -26,7 +26,7 @@ const ProfilePage = () => {
   const handleLogout = async () => {
     try {
       await signOut(); 
-      window.location.href = "/"; // Redirect to login page
+      window.location.href = "/"; 
     } catch (error) {
       console.error("Error logging out:", error);
     }
