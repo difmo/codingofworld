@@ -9,6 +9,7 @@ import "firebase/auth";
 import { auth } from "../../firebase";
 import Popupbloge from "../../pages/Popupbloge";
 import { useProfile } from "../../context/Providers/ProfileContext";
+import RouteConstants from "../../constants/routeConstants/RouteConstants";
 
 const NavbarMenu = [
   { id: 1, title: "Home", path: "/" },
@@ -84,7 +85,7 @@ const MainNavbar = () => {
         animate={{ opacity: 1, y: 0 }}
         className="container flex items-center justify-between px-4 py-2 mx-auto"
       >
-        <div onClick={()=>navigate("/")}  className="flex  items-center justify-center   ">
+        <div onClick={()=>navigate(RouteConstants.MAINROUTE.HOME)}  className="flex  items-center justify-center   ">
           <img  src={logo} alt="coding of world" className="h-10 cursor-pointer" />
           <div>
             <h1 className="pl-2 cursor-pointer text-xl font-bold text-secondaryblue font-play dark:text-white">
