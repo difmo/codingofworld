@@ -129,7 +129,7 @@ const Hero = () => {
               animate="animate"
               className="text-2xl lg:text-3xl  font-bold !leading-snug"
             >
-              <span className="text-secondaryblue dark:text-gray-300 font-anek_telugu">
+              <span className="text-secondaryblue dark:text-white font-anek_telugu">
                 {textOptions[currentTextIndex][0]}
               </span>
               <span className="text-red-500 font-anek_telugu">
@@ -144,7 +144,7 @@ const Hero = () => {
               {/* First sentence: Learning and AI-powered skills */}
               <div className="flex items-center gap-2">
                 <FaLightbulb className="text-yellow-500" />
-                <span className="font-medium text-gray-800 dark:text-gray-500">
+                <span className="font-medium text-gray-800 dark:text-gray-200">
                   Master cutting-edge tech and AI skills
                 </span>
               </div>
@@ -152,7 +152,7 @@ const Hero = () => {
               {/* Second sentence: Industry experts */}
               <div className="flex items-center gap-2">
                 <FaUserTie className="text-blue-500" />
-                <span className="font-medium text-gray-800 dark:text-gray-500 ">
+                <span className="font-medium text-gray-800 dark:text-gray-200 ">
                   Learn directly from top industry leaders
                 </span>
               </div>
@@ -160,7 +160,7 @@ const Hero = () => {
               {/* Third sentence: Partnered startups */}
               <div className="flex items-center gap-2">
                 <FaHandshake className="text-green-500" />
-                <span className="font-medium text-gray-800  dark:text-gray-500">
+                <span className="font-medium text-gray-800  dark:text-gray-200">
                   Partnered with 10+ startups and companies
                 </span>
               </div>
@@ -208,7 +208,7 @@ const Hero = () => {
             transition={{ duration: 0.6, ease: "easeInOut" }}
             src={images[currentImage]}
             alt="Hero Image"
-            className="relative z-10"
+            className="relative z-10 "
           />
           <motion.img
             initial={{ x: -50, opacity: 0 }}

@@ -52,6 +52,8 @@ const BlogPage = () => {
   }
 
   return (
+    <div className=" dark:bg-dark transition-all duration-700 ease-in-out">
+
     <div className="container  max-w-5xl mx-auto text-black pt-9 ">
       <h1 className="mb-6 text-3xl font-semibold text-primary">{blog.title}</h1>
       <div
@@ -105,11 +107,12 @@ const BlogPage = () => {
         <p>No additional content fields available.</p>
       )}
 
-      <div className="flex">
+      <div className="flex pb-8">
         <span className="ml-auto">
           --{blog.bloggerName ? blog.bloggerName : "UnKnown"}
         </span>
       </div>
+    </div>
     </div>
   );
 };

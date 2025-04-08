@@ -57,19 +57,19 @@ const fadeIn = {
 
 const TrainingTeam = () => {
   return (
-    <div className="px-4 pt-4 mx-auto max-w-8xl sm:px-6">
+    <div className="px-4 pt-4 mx-auto max-w-8xl  sm:px-6 ">
       <div className="px-4 py-16 mx-auto max-w-8xl sm:px-6">
         <div className="flex flex-col">
           <div className="flex flex-col justify-center">
-            <h6 className="mb-2 text-4xl text-center text-gray-800">
+            <h6 className="mb-2 text-4xl text-center  dark:text-white text-gray-800">
               Meet Our Expert Instructors
             </h6>
-            <h1 className="mb-4 text-3xl font-bold text-center">
+            <h1 className="mb-4 text-3xl  dark:text-white font-bold text-center">
               Learn from{" "}
               <span className="text-primary">Industry Experts</span> Who Are
               Passionate About Teaching
             </h1>
-            <p className="px-4 mb-6 text-lg text-center text-gray-700 md:px-64">
+            <p className="px-4 mb-6 text-lg text-center  dark:text-white text-gray-700 md:px-64">
               Our instructors at Coding of World bring real-world expertise,
               offering hands-on guidance to help you stay ahead in the rapidly
               evolving tech industry.
@@ -78,7 +78,7 @@ const TrainingTeam = () => {
         </div>
       </div>
 
-      <div className="container grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
+      <div className="container grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3 ">
         {teamMembers.map((member, index) => (
           <motion.div
             key={member.name}
@@ -86,7 +86,7 @@ const TrainingTeam = () => {
             initial="hidden"
             whileInView="visible"
             custom={index}
-            className="text-[#ff5757] hover:text-[#0a2c5d] transition-transform transform bg-white rounded-lg shadow hover:scale-105 border p-4"
+            className="text-[#ff5757] hover:text-[#0a2c5d]  transition-all duration-700 ease-in-out dark:bg-dark bg-white rounded-lg shadow hover:scale-105 border p-4   "
           >
             <div className="rounded-xl">
               <img
@@ -97,7 +97,7 @@ const TrainingTeam = () => {
             </div>
             <div className="p-4">
               <h3 className="text-xl font-semibold">{member.name}</h3>
-              <p className="text-gray-700 text-[17px]">{member.role}</p>
+              <p className="text-gray-700 dark:text-white text-[17px]">{member.role}</p>
             </div>
           </motion.div>
         ))}

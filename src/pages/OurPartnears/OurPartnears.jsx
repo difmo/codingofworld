@@ -34,7 +34,7 @@ const brandsData = [
 
 const Brands = () => {
   return (
-    <section className="py-16 pb-24">
+    <section className="py-16 pb-24 bg-white dark:bg-dark transition-all duration-700 ease-in-out">
       <SectionTitle
         title="Our Trusted Tie-Up Companies – Where Innovation Meets Opportunity!"
         // paragraph="There are many variations of passages of Lorem Ipsum available but the majority have suffered alteration in some form."

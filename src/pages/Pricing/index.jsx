@@ -29,7 +29,7 @@ const Pricing = () => {
   }, []);
 
   return (
-    <section id="pricing" className="relative -z-50 md:py-20 lg:py-28">
+    <section id="pricing" className="relative -z-50 md:py-20 lg:py-28 bg-white dark:bg-dark transition-all duration-700 ease-in-out">
       <div className="container">
         <SectionTitle
           title="Simple and Affordable Pricing"

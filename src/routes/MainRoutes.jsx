@@ -8,15 +8,15 @@ import TrainingTeam from "../pages/OurTrainingTeam";
 import InternshipsSection from "../pages/Internship";
 import InternshipForm from "../pages/IntershipForm";
 import NotFound from "../pages/NotFound";
-import ProfilePage from "../pages/ProfilePage/ProfilePage";
 import RouteConstants from "../constants/routeConstants/RouteConstants";
+import ProfileRoutes from "./ProfileRoutes";
 
 const MainRoutes = () => (
     <Routes>
         <Route path={RouteConstants.MAINROUTE.HOME} element={<HomeScreen />} />
         <Route path={RouteConstants.MAINROUTE.CONTACTUS} element={<ContactUs />} />
         <Route path={RouteConstants.MAINROUTE.SERVICES} element={<Services />} />
-        <Route path={RouteConstants.MAINROUTE.USERPROFILE} element={<ProfilePage />} />
+        <Route path={RouteConstants.MAINROUTE.USERPROFILE} element={<ProfileRoutes />} />
         <Route path={RouteConstants.MAINROUTE.ABOUT} element={<About />} />
         <Route path={RouteConstants.MAINROUTE.TRAININGTEAM} element={<TrainingTeam />} />
         <Route path={RouteConstants.MAINROUTE.PROGRAMS} element={<InternshipsSection />} />

@@ -17,6 +17,7 @@ import TopicDetailPage from "../pages/CreateCourses/Pages/Topics/TopicDetailPage
 import CreateNewCourse from "../pages/CreateCourses/Pages/CreateNewCourse";
 import AddTopicPage from "../pages/CreateCourses/Pages/Topics/AddTopicPage";
 import EditAndShowCourse from "../pages/CreateCourses/Pages/EditAndShowCourse";
+import { collection, getDocs, query, where } from "firebase/firestore";
 
 const CreateCourseRoutes = () => {
   const [isAdmin, setIsAdmin] = useState(false);

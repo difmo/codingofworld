@@ -16,6 +16,8 @@ import AllCoursesPage from "../pages/CreateCourses/Pages/AllCoursesPage";
 import TopicDetailPage from "../pages/CreateCourses/Pages/Topics/TopicDetailPage";
 import CreateNewCourse from "../pages/CreateCourses/Pages/CreateNewCourse";
 import AddTopicPage from "../pages/CreateCourses/Pages/Topics/AddTopicPage";
+import { collection, getDocs, query, where } from "firebase/firestore";
+import SubtopicDetailPage from "../pages/CreateCourses/Pages/Topics/SubtopicDetailPage";
 
 const CourseRoutes = () => {
   const [isAdmin, setIsAdmin] = useState(false);
@@ -110,6 +112,10 @@ const CourseRoutes = () => {
           <Route
             path="/usercourse/:courseId/topic/:topicId"
             element={<TopicDetailPage />}
+          />
+          <Route
+            path="/usercourse/:courseId/topic/:topicId/subtopic/:subtopicId/*"
+            element={<SubtopicDetailPage />}
           />
         </Route>
       ) : (
