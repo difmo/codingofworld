@@ -41,7 +41,7 @@ const CreateCourseSidebar = ({ toggleSidebar }) => {
             topics.map((topic) => (
               <div key={topic.id}>
                 <Link
-                  to={`/usercourse/${courseId}/topic/${topic.id}`}
+                  to={`/create-courses/edit-and-show/${courseId}/topic/${topic.id}`}
                   onClick={() => toggleSidebar()}
                   className="block px-4  text-white rounded-md hover:bg-gray-700"
                 >
