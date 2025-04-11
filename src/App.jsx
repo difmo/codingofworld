@@ -17,6 +17,7 @@ import AdminLayout from "./pages/Layout/AdminLayout";
 import RouteConstants from "./constants/routeConstants/RouteConstants";
 import Loader from "./components/Loader";
 import { useProfile } from "./context/Providers/ProfileContext";
+import UserProfileRoute from "./routes/ProfileRoutes";
 
 
 const App = () => {
@@ -95,6 +96,7 @@ const App = () => {
               <Route path={RouteConstants.ROOTROUTE.CAREER} element={<JobsOfferRoute />} />
               <Route path={RouteConstants.ROOTROUTE.COURSES} element={<CourseRoutes />} />
               <Route path={RouteConstants.ROOTROUTE.BLOGS} element={<BlogRoutes />} />
+              <Route path={"/profile/*"} element={<UserProfileRoute />} />
             </Route>
             <Route path={RouteConstants.ROOTROUTE.CREATECOURSES} element={<CreateCourseRoutes />} />
             <Route path={RouteConstants.ROOTROUTE.CREATEBLOGS} element={<CreateBlogRoutes />} />

@@ -1,20 +1,23 @@
+import ProfileLayout from "@/pages/ProfilePages/ProfileLayout";
+import CommunitySection from "@/pages/ProfilePages/ProfilePages/CummunityPages";
+import UserProfile from "@/pages/ProfilePages/UserProfile";
 import { Route, Routes } from "react-router-dom";
 
-import BlogPage from "../pages/AddBlogs/BlogPage";
-import ShowBlogs from "../pages/AddBlogs/ShowBlogs";
 
 
-const UserProfile = () => {
+const UserProfileRoute = () => {
 
 
   return (
     <Routes>
+      <Route element={<ProfileLayout/>}>
 
           <Route path="/" element={<UserProfile />} />
-          <Route path="/blog/:blogId" element={<BlogPage />} />
+          <Route path="/community-section" element={<CommunitySection />} />
+          </Route>
      
     </Routes>
   );
 };
 
-export default UserProfile;
+export default UserProfileRoute;

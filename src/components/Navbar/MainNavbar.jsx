@@ -108,7 +108,7 @@ const MainNavbar = () => {
               </button>
             ) : (
               <button
-                onClick={() => navigate("/user-profile")}
+                onClick={() => navigate("/profile")}
                 className="p-2 text-white rounded-full bg-primary hover:bg-primary/70"
               >
                 <FaUser />
@@ -171,7 +171,7 @@ const MainNavbar = () => {
                 ) : (
                   <button
                     onClick={() => {
-                      navigate("/user-profile"); toggleMobileMenu();
+                      navigate("/profile"); toggleMobileMenu();
                     }}
                     className="w-10 p-3 text-center text-white rounded-full bg-primary hover:bg-primary/70"
                   >
