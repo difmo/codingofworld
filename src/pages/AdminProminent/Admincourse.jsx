@@ -84,7 +84,7 @@ const Admincourse = () => {
   return (
     <div className="max-w-screen-xl mx-auto p-6 ">
       <div className="py-16 heading">
-        <h1 className="text-3xl font-semibold text-black md:text-4xl">
+        <h1 className="text-3xl font-semibold dark:text-white text-black md:text-4xl">
           Some other courses
         </h1>
         <span className="block mt-2 text-sm md:text-base">

@@ -1,126 +1,164 @@
 import React, { useState, useEffect } from "react";
-import { db,auth} from "../../../../firebase";
-import { doc, getDocs,getDoc, updateDoc,where,collection,query,serverTimestamp } from "firebase/firestore";
+import { db } from "../../../../firebase";
+import {
+  doc,
+  getDoc,
+  addDoc,
+  getDocs,
+  collection,
+  updateDoc,
+  serverTimestamp,
+} from "firebase/firestore";
 import { useParams } from "react-router-dom";
 import ReactQuill from "react-quill";
-import "react-quill/dist/quill.snow.css"; // Import Quill CSS for styling
+import "react-quill/dist/quill.snow.css";
+import Loader from "@/components/Loader";
 
 const TopicDetailPage = () => {
-  const [topic, setTopic] = useState(null);
-  const [isEditMode, setIsEditMode] = useState(false); // Toggle between edit and show mode
-  const [newTitle, setNewTitle] = useState('');
-  const [newContent, setNewContent] = useState('');
   const { courseId, topicId } = useParams();
-  const  [admin, setIsAdmin] = useState(false); 
-  const [blogPermission, setBlogPermission] = useState(false);
-  const [userLogin, setIsUserLogin] = useState(false);
-  const [bloggerName, setbloggerName] = useState();
+  const [topic, setTopic] = useState(null);
+  const [isEditMode, setIsEditMode] = useState(false);
+  const [newTitle, setNewTitle] = useState("");
+  const [newContent, setNewContent] = useState("");
+  const [subtopicTitle, setSubtopicTitle] = useState("");
+  const [subtopicContent, setSubtopicContent] = useState(""); // Added to capture content for subtopic
+  const [subtopics, setSubtopics] = useState([]);
+  const [isSubtopicOpen, setIsSubtopicOpen] = useState({}); // For toggling dropdown of subtopics
 
-  useEffect(() => {
-      const unsubscribe = auth.onAuthStateChanged((user) => {
-          if (user) {
-              if (user.emailVerified) {
-                  setIsUserLogin(user);
-                  fetchUserRole(user.uid);
-                  // setUserUid(user.uid);
-              } else {
-                  console.log("Email is not verified yet");
-              }
-          } else {
-              setIsAdmin(false);
-              setIsUserLogin(false);
-              console.log("user is not login yet");
-          }
-      });
-      return () => unsubscribe();
-  });
-
-  const fetchUserRole = async (uid) => {
-      try {
-          const userQuery = query(collection(db, "users"), where("uid", "==", uid));
-          const querySnapshot = await getDocs(userQuery);
-          if (!querySnapshot.empty) {
-              querySnapshot.forEach((doc) => {
-                  const userData = doc.data();
-                  if (userData.isCreatePermission == true) {
-                      setBlogPermission(true);
-                  }
-                  if (userData.name) {
-                      setbloggerName(userData.name);
-                      console.log(userData.name);
-                  }
-                  // sdfdsf
-                  if (userData.whoIs == "isAdmin") {
-                      setIsAdmin(true);
-                  } else {
-                      setIsAdmin(false);
-                  }
-              });
-          } else {
-              console.log("No user found with uid");
-          }
-      } catch (e) {
-          console.log(e);
-      }
-  };
-
-
-  // Fetch topic details from Firebase
+  // Fetch topic data
   useEffect(() => {
     const fetchTopic = async () => {
       try {
-        const topicDocRef = doc(db, 'courses', courseId, 'topics', topicId);
+        const topicDocRef = doc(db, "courses", courseId, "topics", topicId);
         const topicDoc = await getDoc(topicDocRef);
-
         if (topicDoc.exists()) {
           const topicData = topicDoc.data();
           setTopic(topicData);
           setNewTitle(topicData.title);
           setNewContent(topicData.content);
-        } else {
-          console.log('Topic not found');
         }
       } catch (error) {
-        console.error('Error fetching topic:', error);
+        console.error("Error fetching topic:", error);
       }
     };
-
     fetchTopic();
   }, [courseId, topicId]);
 
-  // Toggle between show mode and edit mode
-  const toggleEditMode = () => {
-    setIsEditMode((prev) => !prev);
+  // Fetch subtopics for the current topic
+  useEffect(() => {
+    const fetchSubtopics = async () => {
+      try {
+        const subtopicsCollectionRef = collection(
+          db,
+          "courses",
+          courseId,
+          "topics",
+          topicId,
+          "subtopics"
+        );
+        const subtopicsSnapshot = await getDocs(subtopicsCollectionRef);
+        const subtopicsList = subtopicsSnapshot.docs.map((doc) => ({
+          id: doc.id,
+          ...doc.data(),
+        }));
+        setSubtopics(subtopicsList);
+      } catch (error) {
+        console.error("Error fetching subtopics:", error);
+      }
+    };
+
+    if (topicId) {
+      fetchSubtopics();
+    }
+  }, [courseId, topicId]);
+
+  const toggleSubtopic = (subtopicId) => {
+    setIsSubtopicOpen((prevState) => ({
+      ...prevState,
+      [subtopicId]: !prevState[subtopicId],
+    }));
   };
 
-  // Handle saving the edited topic
+  // Toggle Edit Mode
+  const toggleEditMode = () => {
+    setIsEditMode(!isEditMode);
+  };
+
+  // Save topic updates
   const handleSave = async () => {
     try {
-      const topicDocRef = doc(db, 'courses', courseId, 'topics', topicId);
+      const topicDocRef = doc(db, "courses", courseId, "topics", topicId);
       await updateDoc(topicDocRef, {
         title: newTitle,
         content: newContent,
-        createdAt: serverTimestamp(),  // Add createdAt field with server timestamp
-
+        createdAt: serverTimestamp(),
       });
-      alert('Topic updated successfully!');
-      setIsEditMode(false); // Switch back to show mode after saving
+      alert("Topic updated successfully!");
+      setIsEditMode(false);
     } catch (error) {
-      console.error('Error updating topic:', error);
-      alert('Error updating topic!');
+      console.error("Error updating topic:", error);
+      alert("Error updating topic!");
     }
   };
 
+  // Handle adding a subtopic
+  const handleAddSubtopic = async () => {
+    if (subtopicTitle && subtopicContent) {
+      try {
+        const subtopicsCollectionRef = collection(
+          db,
+          "courses",
+          courseId,
+          "topics",
+          topicId,
+          "subtopics"
+        );
+
+        await addDoc(subtopicsCollectionRef, {
+          title: subtopicTitle,
+          content: subtopicContent,
+          createdAt: serverTimestamp(),
+        });
+
+        setSubtopicTitle("");
+        setSubtopicContent("");
+        alert("Subtopic added successfully!");
+      } catch (error) {
+        console.error("Error adding subtopic:", error);
+        alert("Error adding subtopic!");
+      }
+    } else {
+      alert("Please enter a title and content for the subtopic.");
+    }
+  };
+
+  // Render subtopics as a dropdown
+  const renderSubtopics = () => {
+    return subtopics.map((subtopic) => (
+      <div key={subtopic.id} className="mt-2">
+        <button
+          className="text-white hover:bg-gray-700 p-2 rounded"
+          onClick={() => toggleSubtopic(subtopic.id)}
+        >
+          {subtopic.title} {isSubtopicOpen[subtopic.id] ? "▲" : "▼"}
+        </button>
+
+        {isSubtopicOpen[subtopic.id] && (
+          <div className="pl-6 mt-2">
+            <div className="text-gray-300">{subtopic.content}</div>
+          </div>
+        )}
+      </div>
+    ));
+  };
+
   if (!topic) {
-    return <div className="text-center text-xl text-gray-600">Loading...</div>;
+    return <div><Loader/></div>;
   }
 
   return (
     <div className="max-w-4xl mx-auto p-6">
-      {/* <h2 className="text-3xl font-semibold">{isEditMode ? "Edit Topic" : topic.title}</h2> */}
-      
       <div className="mt-4">
-        {/* Title Input */}
         {isEditMode ? (
           <input
             type="text"
@@ -133,7 +171,6 @@ const TopicDetailPage = () => {
         )}
       </div>
 
-      {/* Content Area */}
       <div className="mt-4">
         {isEditMode ? (
           <ReactQuill
@@ -150,19 +187,44 @@ const TopicDetailPage = () => {
         )}
       </div>
 
-      {/* Buttons */}
-      <div className="flex justify-between items-center mt-6">
-       { blogPermission ? <button
-          onClick={toggleEditMode}
-          className="px-6 py-2 rounded-md text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500"
+      <div className="mt-6">
+        <input
+          type="text"
+          value={subtopicTitle}
+          onChange={(e) => setSubtopicTitle(e.target.value)}
+          placeholder="Enter subtopic title"
+          className="w-full p-2 border border-gray-300 rounded-lg"
+        />
+        <ReactQuill
+          value={subtopicContent}
+          onChange={setSubtopicContent}
+          className="w-full mt-4"
+          placeholder="Write subtopic content here"
+        />
+        <button
+          onClick={handleAddSubtopic}
+          className="mt-2 px-6 py-2 rounded-md text-white bg-blue-600 hover:bg-blue-700"
         >
-          {isEditMode ? "Cancel Edit" : "Eddffdit Topic"}
-        </button> : null}
+          Add Subtopic
+        </button>
+      </div>
+
+      <div className="mt-6">
+        <div>{renderSubtopics()}</div>
+      </div>
+
+      <div className="flex justify-between items-center mt-6">
+        <button
+          onClick={toggleEditMode}
+          className="px-6 py-2 rounded-md text-white bg-blue-600 hover:bg-blue-700"
+        >
+          {isEditMode ? "Cancel Edit" : "Edit Topic"}
+        </button>
 
         {isEditMode && (
           <button
             onClick={handleSave}
-            className="px-6 py-2 rounded-md text-white bg-green-600 hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-500"
+            className="px-6 py-2 rounded-md text-white bg-green-600 hover:bg-green-700"
           >
             Save Changes
           </button>

@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { db, auth } from '../../../../firebase';
+import { useState } from 'react';
+import { db } from '../../../../firebase';
 import { collection, addDoc } from 'firebase/firestore';
 import { useNavigate, useParams } from 'react-router-dom';
 import ReactQuill from 'react-quill';
@@ -10,7 +10,6 @@ const AddTopicPage = () => {
   const [topicContent, setTopicContent] = useState('');
   const { courseId } = useParams();
   const navigate = useNavigate();
-  const user = auth.currentUser;
 
   const handleSaveTopic = async () => {
     if (!topicTitle || !topicContent) {
@@ -27,7 +26,7 @@ const AddTopicPage = () => {
       });
 
       // Redirect back to the course page
-      navigate(`/usercourse/${courseId}`);
+      navigate(`/create-courses/edit-and-show/${courseId}`);
     } catch (error) {
       console.error('Error adding topic:', error);
       alert('Error adding topic!');

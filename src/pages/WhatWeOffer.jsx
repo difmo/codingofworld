@@ -108,11 +108,11 @@ const Features = () => {
   const isInView = useInView(ref, { once: true });
 
   return (
-    <div className="relative px-4 mx-auto bg-cover max-w-8xl font-dmSans sm:px-6">
+    <div className="relative px-4 mx-auto bg-cover max-w-8xl font-dmSans sm:px-6 bg-white dark:bg-dark transition-all duration-700 ease-in-out ">
       <div className="pt-10 pb-10 md:pb-16" ref={ref}>
         <div className="relative z-10 flex flex-col items-center justify-center w-full">
           <h5 className="text-xl font-semibold text-primary capitalize">FEATURES</h5>
-          <h1 className="md:text-4xl text-[26px] text-secondaryblue xs:text-[24px] text-center font-bold tracking-wide mt-2">
+          <h1 className="md:text-4xl text-[26px] text-secondaryblue dark:text-white xs:text-[24px] text-center font-bold tracking-wide mt-2">
             What We <span className="text-primary">Offer</span>?
           </h1>
         </div>
@@ -124,15 +124,15 @@ const Features = () => {
                 variants={FadeUp(0.2 * index)}
                 initial="initial"
                 animate={isInView ? "animate" : "initial"}
-                className="flex p-6 transition-all duration-300 transform bg-white border rounded-lg shadow-lg hover:scale-105 hover:shadow-xl"
+                className="flex p-6 transition-all duration-300 transform bg-white dark:bg-dark border rounded-lg shadow-lg hover:scale-105 hover:shadow-xl"
               >
                 <div className="flex items-start gap-x-6">
                   <div className="p-4 rounded-full bg-gradient-to-br from-red-500 to-red-600">
                     <span className="text-white">{feature.icon}</span>
                   </div>
                   <div>
-                    <p className="text-xl font-semibold text-gray-800">{feature.title}</p>
-                    <p className="mt-2 text-sm text-gray-600">{feature.description}</p>
+                    <p className="text-xl font-semibold text-gray-800 dark:text-white">{feature.title}</p>
+                    <p className="mt-2 text-sm text-gray-600 dark:text-gray-200">{feature.description}</p>
                   </div>
                 </div>
               </motion.div>

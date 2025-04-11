@@ -5,11 +5,9 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import logo from "../../assets/images/logo.svg";
-import "firebase/auth";
-import { auth } from "../../firebase";
 import Popupbloge from "../../pages/Popupbloge";
-import RouteConstants from "../../constants/routeConstants/RouteConstants";
 import { useProfile } from "../../context/Providers/ProfileContext";
+import RouteConstants from "../../constants/routeConstants/RouteConstants";
 
 const NavbarMenu = [
   { id: 1, title: "Home", path: "/" },
@@ -34,14 +32,7 @@ const MainNavbar = () => {
     setMobileMenuOpen((prev) => !prev);
   };
 
-  const handleLogout = async () => {
-    try {
-      await auth.signOut();
-      console.log("User has logged out");
-    } catch (error) {
-      console.error("Error logging out:", error);
-    }
-  };
+
 
   const closePopup = () => setShowPopup(false);
 
@@ -49,7 +40,6 @@ const MainNavbar = () => {
     setIsOpen(!isOpen);
   };
 
-  // Dark mode toggle handler
   const toggleDarkMode = () => {
     setDarkMode((prevMode) => !prevMode);
   };
@@ -84,12 +74,12 @@ const MainNavbar = () => {
       <motion.div
         initial={{ opacity: 0, y: -50 }}
         animate={{ opacity: 1, y: 0 }}
-        className="container flex items-center justify-between px-4 py-4 mx-auto"
+        className="container flex items-center justify-between px-4 py-2 mx-auto"
       >
-        <div className="flex items-center justify-center">
-          <img src={logo} alt="coding of world" className="h-10" />
+        <div onClick={() => navigate(RouteConstants.MAINROUTE.HOME)} className="flex  items-center justify-center   ">
+          <img src={logo} alt="coding of world" className="h-10 cursor-pointer" />
           <div>
-            <h1 className="pl-2 text-xl font-bold text-secondaryblue font-play dark:text-white">
+            <h1 className="pl-2 cursor-pointer text-xl font-bold text-secondaryblue font-play dark:text-white">
               Coding of <span className="text-primary">World</span>
             </h1>
           </div>
@@ -166,25 +156,39 @@ const MainNavbar = () => {
                   </Link>
                 </li>
               ))}
-              {!isUserLogin ? (
+
+              <div className="flex items-center justify-between">
+                {!isUserLogin ? (
+                  <button
+                    onClick={() => {
+                      navigate("/auth/signin");
+                      setMobileMenuOpen(false);
+                    }}
+                    className="primary-btn"
+                  >
+                    Sign In
+                  </button>
+                ) : (
+                  <button
+                    onClick={() => {
+                      navigate("/user-profile"); toggleMobileMenu();
+                    }}
+                    className="w-10 p-3 text-center text-white rounded-full bg-primary hover:bg-primary/70"
+                  >
+                    <FaUser />
+                  </button>
+                )}
+
+                {/* ✅ Add Dark Mode Toggle Here */}
                 <button
-                  onClick={() => {
-                    navigate("/auth/signin");
-                    setMobileMenuOpen(false);
-                  }}
-                  className="primary-btn"
+                  onClick={toggleDarkMode}
+                  className="ml-4 p-2 text-white rounded-full bg-gray-600 hover:bg-gray-700 dark:bg-gray-200 dark:text-gray-800 dark:hover:bg-gray-300"
                 >
-                  Sign In
+                  {darkMode ? <FaSun /> : <FaMoon />}
                 </button>
-              ) : (
-                <button
-                  onClick={toggleSidebar}
-                  className="w-10 p-3 text-center text-white rounded-full bg-primary hover:bg-primary/70"
-                >
-                  <FaUser />
-                </button>
-              )}
+              </div>
             </ul>
+
           </motion.div>
         )}
       </AnimatePresence>
@@ -212,3 +216,8 @@ const MainNavbar = () => {
 };
 
 export default MainNavbar;
+
+
+
+
+

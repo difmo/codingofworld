@@ -170,7 +170,7 @@ export default function SignUpScreen() {
               <p className="text-green-500">{successMessage}</p>
             )}
 
-            <div className="text-center lg:text-left">
+            <div className="text-center mt-5 lg:text-left">
               <CustomButton
                 type="submit"
                 disabled={loading}
@@ -182,7 +182,7 @@ export default function SignUpScreen() {
                 <a
                   href="#!"
                   className="transition duration-150 ease-in-out text-danger hover:text-danger-600"
-                  onClick={() => navigate("/loginscreen")}
+                  onClick={() => navigate("/auth/signin")}
                 >
                   Login
                 </a>

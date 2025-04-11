@@ -9,8 +9,8 @@ import service from "../../assets/headerimg/1.svg";
 
 const Banner = () => {
   return (
-    <section>
-      <div className="container grid grid-cols-1 gap-8 space-y-6 py-14 md:py-24 md:grid-cols-2 md:space-y-0">
+    <section className="bg-white dark:bg-dark transition-all duration-700 ease-in-out">
+      <div className="container  grid grid-cols-1 gap-8 space-y-6 py-14 md:py-24 md:grid-cols-2 md:space-y-0">
         {/* Banner Image */}
         <div className="flex items-center justify-center">
           <motion.img
@@ -31,7 +31,7 @@ const Banner = () => {
               whileInView={{ opacity: 1, scale: 1 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5 }}
-              className="text-3xl md:text-4xl font-bold text-secondaryblue !leading-snug"
+              className="text-3xl md:text-4xl font-bold text-secondaryblue dark:text-white !leading-snug"
             >
               The World's Leading <span className="text-primary">Online learning</span>  Platform
             </motion.h1>

@@ -10,6 +10,7 @@ import { db } from "../firebase";
 import { addDoc, collection } from "firebase/firestore";
 
 const fadeInUp = {
+  
   hidden: { opacity: 0, y: 20 },
   visible: { opacity: 1, y: 0 },
 };
@@ -114,7 +115,7 @@ const ContactUs = () => {
   };
 
   return (
-    <main className="flex flex-col bg-gray-100">
+    <main className="flex flex-col dark:bg-dark bg-gray-100">
       {/* Breadcrumb Area */}
       <motion.section
         className="relative pt-12 bg-center bg-no-repeat bg-cover"
@@ -126,8 +127,8 @@ const ContactUs = () => {
       >
         <div className="absolute inset-0 "></div>
         <div className="relative z-10 py-12 mx-auto text-center text-black">
-          <h2 className="text-4xl font-extrabold text-primary">Get In Touch</h2>
-          <p className="px-8 mt-4 text-lg">We are here to assist you. Feel free to reach out!</p>
+          <h2 className="text-4xl font-extrabold text-primary  transition-all duration-700 ease-in-out">Get In Touch</h2>
+          <p className="px-8 mt-4 text-lg dark:text-white  transition-all duration-700 ease-in-out">We are here to assist you. Feel free to reach out!</p>
         </div>
       </motion.section>
 
@@ -142,30 +143,30 @@ const ContactUs = () => {
         <div className="container flex flex-col gap-8 mx-auto lg:flex-row">
           {/* Left Contact Info */}
           <motion.div
-            className="p-8 bg-white rounded-lg shadow-md lg:w-1/3"
+            className="p-8 dark:bg-dark dark:text-white  dark:shadow-primary  transition-all duration-700 ease-in-out bg-white rounded-lg shadow-md lg:w-1/3"
             variants={fadeInUp}
             initial="hidden"
             animate="visible"
             transition={{ duration: 0.6, delay: 0.4 }}
           >
             <h4 className="mb-6 text-xl font-semibold">Our Contact Information</h4>
-            <ul className="space-y-6">
+            < ul className="space-y-6">
               <li className="flex items-start space-x-4">
                 <FaMapMarkedAlt size={24} className="text-primary" />
                 <div>
                   <h5 className="font-semibold">Address</h5>
-                  <p>4/37 Vibhav Khand Gomti Nagar, Lucknow, Uttar Pradesh, 226010</p>
+                  <p className="dark:text-primary ">4/37 Vibhav Khand Gomti Nagar, Lucknow, Uttar Pradesh, 226010</p>
                 </div>
               </li>
               <li className="flex items-start space-x-4">
                 <FaPhoneAlt size={24} className="text-primary" />
                 <div>
                   <h5 className="font-semibold">Phone</h5>
-                  <a href="tel:9455791624" className="text-blue-600">
+                  <a href="tel:9455791624" className="text-blue-600 dark:text-primary ">
                     +91 9455791624
                   </a>
                   <br />
-                  <a href="tel:6387800143" className="text-blue-600">
+                  <a href="tel:6387800143" className="text-blue-600 dark:text-primary">
                     +91 7800730968
                   </a>
                 </div>
@@ -174,7 +175,7 @@ const ContactUs = () => {
                 <FaEnvelope size={24} className="text-primary" />
                 <div>
                   <h5 className="font-semibold">Email</h5>
-                  <a href="mailto:codingofworld@gmail.com" className="text-blue-600">
+                  <a href="mailto:codingofworld@gmail.com" className="text-blue-600 dark:text-primary ">
                     codingofworld@gmail.com
                   </a>
                 </div>
@@ -184,19 +185,19 @@ const ContactUs = () => {
 
           {/* Contact Form */}
           <motion.div
-            className="p-8 bg-white rounded-lg shadow-md lg:w-2/3"
+            className="p-8 bg-white dark:shadow-primary  transition-all duration-700 ease-in-out  dark:bg-dark rounded-lg shadow-md lg:w-2/3"
             variants={fadeInUp}
             initial="hidden"
             animate="visible"
             transition={{ duration: 0.6, delay: 0.6 }}
           >
-            <h4 className="mb-4 text-xl font-semibold">Send Us A Message</h4>
+            <h4 className="mb-4 text-xl font-semibold dark:text-primary ">Send Us A Message</h4>
             <form onSubmit={handleSubmit} id="contact-form" method="POST">
               <div className="mb-4">
                 <textarea
                   name="message"
                   placeholder="Comment"
-                  className="w-full p-3 border border-gray-300 rounded"
+                  className="w-full p-3 border border-gray-300 dark:bg-dark transition-all duration-700 ease-in-out rounded"
                   value={formData.message}
                   onChange={handleChange}
                 />
@@ -212,7 +213,7 @@ const ContactUs = () => {
                     name="name"
                     type="text"
                     placeholder="Name *"
-                    className="w-full p-3 border border-gray-300 rounded"
+                    className="w-full p-3 border border-gray-300 dark:bg-dark transition-all duration-700 ease-in-out  rounded"
                     value={formData.name}
                     onChange={handleChange}
                   />
@@ -227,7 +228,7 @@ const ContactUs = () => {
                     name="email"
                     type="email"
                     placeholder="E-mail *"
-                    className="w-full p-3 border border-gray-300 rounded"
+                    className="w-full p-3 border border-gray-300 dark:bg-dark   transition-all duration-700 ease-in-out rounded"
                     value={formData.email}
                     onChange={handleChange}
                   />
@@ -242,7 +243,7 @@ const ContactUs = () => {
                     name="contact"
                     type="number"
                     placeholder="Contact Number*"
-                    className="w-full p-3 border border-gray-300 rounded"
+                    className="w-full p-3 border border-gray-300 dark:bg-dark transition-all duration-700 ease-in-out  rounded"
                     value={formData.contact}
                     onChange={handleChange}
                   />
@@ -255,12 +256,12 @@ const ContactUs = () => {
                 <div className="w-full px-2 mb-4 md:w-1/2">
                   <select
                     name="course"
-                    className="w-full p-3 border border-gray-300 rounded"
+                    className="w-full p-3 border dark:text-white text-gray-400 border-gray-300 dark:bg-dark  rounded transition-all duration-700 ease-in-out "
                     value={formData.course}
                     onChange={handleChange}
                   >
-                    <option value="" disabled>
-                      --Select a Course--
+                    <option value="" className="dark:text-white" disabled>
+                      <div className="text-white" >--Select a Course--</div>
                     </option>
                     <option value="Summer Training">Summer Training</option>
                     <option value="Winter Training">Winter Training</option>
@@ -300,7 +301,7 @@ const ContactUs = () => {
 
       {/* Contact Area */}
       <motion.section
-        className=""
+        className="mt-12 py-12 bg-gray-100 dark:bg-dark"  
         variants={fadeInUp}
         initial="hidden"
         animate="visible"

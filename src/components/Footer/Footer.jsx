@@ -12,6 +12,28 @@ import { motion } from "framer-motion";
 import { collection, addDoc } from "firebase/firestore";
 import { db } from "../../firebase";
 
+// JSON Data for courses, links, and social media
+const footerData = {
+  courses: [
+    { name: "App Development", path: "/courses" },
+    { name: "Web Development", path: "/courses" },
+    { name: "DSA (Logic Building)", path: "/courses" },
+  ],
+  links: [
+    { name: "Our Courses", path: "/courses" },
+    { name: "About", path: "/about" },
+    { name: "Contact", path: "/contactus" },
+  ],
+  socialLinks: [
+    { icon: <FaWhatsapp />, url: "https://chat.whatsapp.com/FwZdLFOAPIZDf5xCmvt7RO" },
+    { icon: <FaInstagram />, url: "https://www.instagram.com/codingofworld?igsh=Ymo0YWJ3cjRtaDF6" },
+    { icon: <FaLinkedin />, url: "https://www.linkedin.com/company/codingofworld/" },
+    { icon: <FaTwitter />, url: "https://x.com/difmotech" },
+    { icon: <FaYoutube />, url: "https://youtube.com/@codingofworld?feature=shared" },
+    { icon: <FaFacebook />, url: "https://www.facebook.com/share/1DSToV7PCF/" },
+  ],
+};
+
 const Footer = () => {
   const navigate = useNavigate();
   const [formData, setFormData] = useState({ email: "" });
@@ -59,8 +81,9 @@ const Footer = () => {
       setIsLoading(false);
     }
   };
+
   return (
-    <footer className="pt-28 bg-[#f7f7f7]">
+    <footer className="pt-28 bg-white dark:bg-dark transition-all duration-700 ease-in-out border-t">
       <motion.div
         initial={{ opacity: 0, y: 50 }}
         whileInView={{ opacity: 1, y: 0 }}
@@ -84,47 +107,29 @@ const Footer = () => {
             <div className="space-y-4">
               <h1 className="text-2xl text-secondaryblue font-bold">Courses</h1>
               <ul className="space-y-2 text-lg text-dark2">
-                <li
-                  className="duration-200 cursor-pointer hover:text-secondary"
-                  onClick={() => navigate("/courses")}
-                >
-                  App Development
-                </li>
-                <li
-                  className="duration-200 cursor-pointer hover:text-secondary"
-                  onClick={() => navigate("/courses")}
-                >
-                  Web Development
-                </li>
-                <li
-                  className="duration-200 cursor-pointer hover:text-secondary"
-                  onClick={() => navigate("/courses")}
-                >
-                  DSA(Logic Building)
-                </li>
+                {footerData.courses.map((course) => (
+                  <li
+                    key={course.name}
+                    className="duration-200 cursor-pointer hover:text-secondary"
+                    onClick={() => navigate(course.path)}
+                  >
+                    {course.name}
+                  </li>
+                ))}
               </ul>
             </div>
             <div className="space-y-4">
               <h1 className="text-2xl text-secondaryblue font-bold">Links</h1>
               <ul className="space-y-2 text-lg text-dark2">
-                <li
-                  className="duration-200 cursor-pointer hover:text-secondary"
-                  onClick={() => navigate("/courses")}
-                >
-                  Our Courses
-                </li>
-                <li
-                  className="duration-200 cursor-pointer hover:text-secondary"
-                  onClick={() => navigate("/about")}
-                >
-                  About
-                </li>
-                <li
-                  className="duration-200 cursor-pointer hover:text-secondary"
-                  onClick={() => navigate("/contactus")}
-                >
-                  Contact
-                </li>
+                {footerData.links.map((link) => (
+                  <li
+                    key={link.name}
+                    className="duration-200 cursor-pointer hover:text-secondary"
+                    onClick={() => navigate(link.path)}
+                  >
+                    {link.name}
+                  </li>
+                ))}
               </ul>
             </div>
           </div>
@@ -149,7 +154,7 @@ const Footer = () => {
                 className="px-6 py-4 font-semibold text-white bg-primary rounded-e-xl"
                 disabled={isLoading}
               >
-                {isLoading ? "Loading..." : "Subscribe"}
+                {isLoading ? "<Loader/>" : "Subscribe"}
               </button>
             </form>
             {errors.email && (
@@ -158,49 +163,16 @@ const Footer = () => {
 
             {/* Social Icons */}
             <div className="flex py-1 space-x-6">
-              <a
-                href="https://chat.whatsapp.com/FwZdLFOAPIZDf5xCmvt7RO"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <FaWhatsapp className="duration-200 cursor-pointer hover:text-primary hover:scale-105" />
-              </a>
-              <a
-                href="https://www.instagram.com/codingofworld?igsh=Ymo0YWJ3cjRtaDF6"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <FaInstagram className="duration-200 cursor-pointer hover:text-primary hover:scale-105" />
-              </a>
-
-              <a
-                href="https://www.linkedin.com/company/codingofworld/"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <FaLinkedin className="duration-200 cursor-pointer hover:text-primary hover:scale-105" />
-              </a>
-              <a
-                href="https://x.com/difmotech"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <FaTwitter className="duration-200 cursor-pointer hover:text-primary hover:scale-105" />
-              </a>
-              <a
-                href="https://youtube.com/@codingofworld?feature=shared"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <FaYoutube className="duration-200 cursor-pointer hover:text-primary hover:scale-105" />
-              </a>
-              <a
-                href="https://www.facebook.com/share/1DSToV7PCF/"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <FaFacebook className="duration-200 cursor-pointer hover:text-primary hover:scale-105" />
-              </a>
+              {footerData.socialLinks.map((social, index) => (
+                <a
+                  key={index}
+                  href={social.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  {social.icon}
+                </a>
+              ))}
             </div>
           </div>
         </div>

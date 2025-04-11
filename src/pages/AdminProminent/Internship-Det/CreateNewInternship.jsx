@@ -84,7 +84,7 @@ const CreateNewInternship = () => {
   return (
     <div className="p-4 max-w-xl mx-auto">
       {loading ? (
-        <p>Loading...</p>
+        <p><Loader/></p>
       ) : (
         <form onSubmit={handleSubmit} className="space-y-4">
           {/* Title input */}

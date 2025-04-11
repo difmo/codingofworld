@@ -145,7 +145,7 @@ const StudentData = () => {
     setDropdownOpen((prev) => !prev);
   };
 
-  if (loading) return <div>Loading...</div>;
+  if (loading) return <div><Loader/></div>;
   if (error) return <div>{error}</div>;
 
   return (

@@ -45,7 +45,7 @@ const ShowBlogs = () => {
   }, []);
 
   if (loading) {
-    return <div><MainLoader /></div>;
+    return <div><Loader/></div>
   }
 
   if (error) {
@@ -57,9 +57,9 @@ const ShowBlogs = () => {
   }
 
   return (
-    <div className="flex container ">
+    <div className=" dark:bg-dark transition-all duration-700 ease-in-out">    <div className="flex container ">
       <div className="p-6 text-black ">
-        <h1 class="text-5xl py-10 font-extrabold text-center text-gray-900 sm:text-6xl md:text-5xl bg-gradient-to-r from-primary via-secondary to-pink-500 text-transparent bg-clip-text">
+        <h1 class="text-5xl py-10 font-extrabold text-center  text-gray-900 sm:text-6xl md:text-5xl bg-gradient-to-r from-primary via-secondary to-pink-500 text-transparent bg-clip-text">
           Our Blogs
         </h1>
 
@@ -70,7 +70,7 @@ const ShowBlogs = () => {
               key={blog.id}
               className="p-4 border rounded-lg cursor-pointer"
             >
-              <h2 className="text-xl font-semibold ">
+              <h2 className="text-xl font-semibold  dark:text-white transition-all duration-700 ease-in-out ">
                 {blog.title}
               </h2>
               <p
@@ -89,7 +89,8 @@ const ShowBlogs = () => {
           ))}
         </div>
       </div>
-    </div>
+    </div></div>
+
   );
 };
 

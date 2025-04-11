@@ -1,8 +1,5 @@
-import { useState, useEffect } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { Helmet, HelmetProvider } from "react-helmet-async";
-import { auth, db } from "./firebase";
-import { getDocs, query, collection, where } from "firebase/firestore";
 
 import MainRoutes from "./routes/MainRoutes";
 import AuthRoutes from "./routes/AuthRoutes";
@@ -17,41 +14,21 @@ import PremiumCourses from "./pages/PremiumCourses";
 import CreateCourseRoutes from "./routes/CreateCourseRoutes";
 import CreateBlogRoutes from "./routes/CreateBlogRoutes";
 import AdminLayout from "./pages/Layout/AdminLayout";
-import Providers from "./context/Providers";
 import RouteConstants from "./constants/routeConstants/RouteConstants";
+import Loader from "./components/Loader";
+import { useProfile } from "./context/Providers/ProfileContext";
+
 
 const App = () => {
-  const [isAdmin, setIsAdmin] = useState(false);
-  const [isUserLogin, setIsUserLogin] = useState(null);
-  const [loading, setLoading] = useState(true); // Add a loading state
-
-  useEffect(() => {
-    const unsubscribe = auth.onAuthStateChanged(async (user) => {
-      if (user) {
-        setIsUserLogin(user);
-        const q = query(collection(db, "users"), where("uid", "==", user.uid));
-        const querySnapshot = await getDocs(q);
-        if (!querySnapshot.empty) {
-          const userData = querySnapshot.docs[0].data();
-          setIsAdmin(userData.whoIs === "isAdmin");
-        }
-      } else {
-        setIsUserLogin(false);
-      }
-      setLoading(false); // Set loading to false after the authentication check
-    });
-
-    return () => unsubscribe();
-  }, []);
+  const {isAdmin,loading} = useProfile();
 
   if (loading) {
-    return <div>Loading...</div>; // Show a loading screen while the auth state is being checked
+    return <Loader/>
   }
 
   return (
     <HelmetProvider>
       <Helmet>
-        {/* Primary Meta Tags */}
         <title>
           Coding of World - Internships, Training, and Career Guidance
         </title>
@@ -106,54 +83,28 @@ const App = () => {
         {/* Canonical URL */}
         <link rel="canonical" href="https://www.codingofworld.com" />
       </Helmet>
-      <Providers>
+   
         {" "}
         <Router>
           <ScrollToTop />
           <Routes>
             <Route path="/premium-courses" element={<PremiumCourses />} />
+              <Route path={RouteConstants.ROOTROUTE.AUTH} element={<AuthRoutes />} />
             <Route element={<MainLayout />}>
-              <Route
-                path={RouteConstants.ROOTROUTE.HOME}
-                element={<MainRoutes />}
-              />
-              <Route
-                path={RouteConstants.ROOTROUTE.AUTH}
-                element={<AuthRoutes />}
-              />
-              <Route
-                path={RouteConstants.ROOTROUTE.CAREER}
-                element={<JobsOfferRoute />}
-              />
-              <Route
-                path={RouteConstants.ROOTROUTE.COURSES}
-                element={<CourseRoutes />}
-              />
-              <Route
-                path={RouteConstants.ROOTROUTE.BLOGS}
-                element={<BlogRoutes />}
-              />
+              <Route path={RouteConstants.ROOTROUTE.HOME} element={<MainRoutes />} />
+              <Route path={RouteConstants.ROOTROUTE.CAREER} element={<JobsOfferRoute />} />
+              <Route path={RouteConstants.ROOTROUTE.COURSES} element={<CourseRoutes />} />
+              <Route path={RouteConstants.ROOTROUTE.BLOGS} element={<BlogRoutes />} />
             </Route>
-            <Route
-              path={RouteConstants.ROOTROUTE.CREATECOURSES}
-              element={<CreateCourseRoutes />}
-            />
-            <Route
-              path={RouteConstants.ROOTROUTE.CREATEBLOGS}
-              element={<CreateBlogRoutes />}
-            />
+            <Route path={RouteConstants.ROOTROUTE.CREATECOURSES} element={<CreateCourseRoutes />} />
+            <Route path={RouteConstants.ROOTROUTE.CREATEBLOGS} element={<CreateBlogRoutes />} />
             <Route element={<AdminLayout />}>
-              {isAdmin && (
-                <Route
-                  path={RouteConstants.ROOTROUTE.ADMIN}
-                  element={<AdminRoutes />}
-                />
-              )}
+              {isAdmin && <Route path={RouteConstants.ROOTROUTE.ADMIN} element={<AdminRoutes />} />}
             </Route>
             <Route path="*" element={<NotFound />} />
           </Routes>
         </Router>
-      </Providers>
+     
     </HelmetProvider>
   );
 };
