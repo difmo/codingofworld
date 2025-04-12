@@ -40,13 +40,13 @@ const CommunitySection = () => {
           />
           <h2 className="text-xl font-semibold mb-2">You hasn't posted any {activeTab.toLowerCase()} yet!</h2>
           <p className="mb-6 text-sm text-gray-400">
-            You may use <span className="font-semibold text-white">GeeksforGeeks Community</span> to help other geeks.
+            You may use <span className="font-semibold text-white">Coding of world Community</span> to help other cow.
           </p>
           <div className="flex justify-center gap-4">
-            <button className="border border-green-500 text-green-500 px-4 py-2 rounded hover:bg-green-500 hover:text-black transition">
+            <button className="border border-primary text-primary px-4 py-2 rounded hover:bg-primary hover:text-black transition">
               Share your thoughts
             </button>
-            <button className="border border-green-500 text-green-500 px-4 py-2 rounded hover:bg-green-500 hover:text-black transition">
+            <button className="border border-primary text-primary px-4 py-2 rounded hover:bg-primary hover:text-black transition">
               Share your experience
             </button>
           </div>
@@ -78,7 +78,7 @@ const CommunitySection = () => {
               onClick={() => setActiveTab(tab)}
               className={`py-2 px-4 transition ${
                 activeTab === tab
-                  ? "text-green-500 border-b-2 border-green-500"
+                  ? "text-primary border-b-2 border-primary"
                   : "text-gray-300 hover:text-green-400"
               }`}
             >

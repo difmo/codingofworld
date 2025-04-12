@@ -11,7 +11,7 @@ const ProfileSidebar = ({ toggleSidebar }) => {
   const sidebarLinks = [
     { name: "Profile", path: "/profile" },
     { name: "Contributions", path: "/profile/community-section" },
-    { name: "Edit Profile", path: "/edit-profile" },
+    { name: "Edit Profile", path: "/profile/edit-profile" },
   ];
 
   if (isAdmin) {
@@ -19,7 +19,7 @@ const ProfileSidebar = ({ toggleSidebar }) => {
   }
 
   if (blogPermission) {
-    sidebarLinks.push({ name: "Blog Permissions", path:RouteConstants.NAVIGATING_ROUTE.GOTO_CREATEBLOGS });
+    sidebarLinks.push({ name: "Blog Permissions", path: RouteConstants.NAVIGATING_ROUTE.GOTO_CREATEBLOGS });
   }
   if (blogPermission) {
     sidebarLinks.push({ name: "create-coureses", path: RouteConstants.NAVIGATING_ROUTE.GOTO_CREATECOURSES });
@@ -28,7 +28,7 @@ const ProfileSidebar = ({ toggleSidebar }) => {
   const handleLogout = async () => {
     try {
       await signOut(auth);
-      navigate("/auth/signin"); // Redirect to login after logout
+      navigate(RouteConstants.NAVIGATING_ROUTE.GOTO_SIGNIN);
     } catch (error) {
       console.error("Logout error:", error);
     }

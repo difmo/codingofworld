@@ -108,7 +108,7 @@ const MainNavbar = () => {
               </button>
             ) : (
               <button
-                onClick={() => navigate("/profile")}
+                onClick={() => navigate(RouteConstants.USERPROFILE.PROFILE)}
                 className="p-2 text-white rounded-full bg-primary hover:bg-primary/70"
               >
                 <FaUser />

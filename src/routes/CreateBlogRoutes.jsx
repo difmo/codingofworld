@@ -69,8 +69,8 @@ const CreateBlogRoutes = () => {
     <Routes>
       {isUserLogin ? (
         <Route element={<CreateBlogLayout />}>
+          <Route path="/" element={<AllBlogs />} />
           <Route path="/addblogs" element={<Addblogs />} />
-          <Route path="/all-blogs" element={<AllBlogs />} />
           <Route path="/edit-blog/:blogId" element={<EditBlog />} />
         </Route>
       ) : (
