@@ -11,13 +11,13 @@ const UserProfileRoute = () => {
 
   return (
     <Routes>
-      <Route element={<ProfileLayout/>}>
-          <Route path="/" element={<UserProfile />} />
-          <Route path="/community-section" element={<CommunitySection />} />
-          <Route path="/edit-profile" element={<EditProfileForm />} />
-          <Route path="/certificates" element={<CommunitySection />} />
-          </Route>
-     
+      <Route element={<ProfileLayout />}>
+        <Route path="/" element={<UserProfile />} />
+        <Route path="/community-section" element={<CommunitySection />} />
+        <Route path="/edit-profile" element={<EditProfileForm />} />
+        <Route path="/certificates" element={<CommunitySection />} />
+      </Route>
+
     </Routes>
   );
 };

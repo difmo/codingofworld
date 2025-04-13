@@ -175,7 +175,7 @@ const StudentData = () => {
                     onChange={() => toggleColumnVisibility(column)}
                     className="mr-2"
                   />
-                  {column.charAt(0).toUpperCase() + column.slice(1)}
+                  {column.charAt(0)?.toUpperCase() || "U" + column.slice(1)}
                 </label>
               ))}
             </div>
