@@ -20,9 +20,7 @@ const ProfileSidebar = ({ toggleSidebar }) => {
 
   if (blogPermission) {
     sidebarLinks.push({ name: "Blog Permissions", path: RouteConstants.NAVIGATING_ROUTE.GOTO_CREATEBLOGS });
-  }
-  if (blogPermission) {
-    sidebarLinks.push({ name: "create-coureses", path: RouteConstants.NAVIGATING_ROUTE.GOTO_CREATECOURSES });
+    sidebarLinks.push({ name: "Create Courses", path: RouteConstants.NAVIGATING_ROUTE.GOTO_CREATECOURSES });
   }
 
   const handleLogout = async () => {
@@ -35,30 +33,33 @@ const ProfileSidebar = ({ toggleSidebar }) => {
   };
 
   return (
-    <div className="w-64 h-screen p-4 space-y-6 text-white bg-[#212529]">
+    <div className="w-64 h-screen p-4 flex flex-col justify-between bg-white dark:bg-[#212529]">
+      {/* Top Section: Links */}
       <ul className="space-y-2">
         {sidebarLinks.map((link, idx) => (
           <li key={idx}>
             <Link
               to={link.path}
               onClick={toggleSidebar}
-              className="block px-4 py-2 text-white rounded-md hover:bg-gray-700 transition duration-200"
+              className="block px-4 py-2 text-primary font-bold border dark:text-white rounded-md hover:bg-gray-700 transition duration-200"
             >
               {link.name}
             </Link>
           </li>
         ))}
-        {isUserLogin && (
-          <li>
-            <button
-              onClick={handleLogout}
-              className="w-full text-left px-4 py-2 text-red-400 rounded-md hover:bg-gray-700 transition duration-200"
-            >
-              Logout
-            </button>
-          </li>
-        )}
       </ul>
+
+      {/* Bottom Section: Logout */}
+      {isUserLogin && (
+        <div className="mt-auto pt-6">
+          <button
+            onClick={handleLogout}
+            className="w-full px-4 py-2 border border-primary text-red-400 rounded-md hover:bg-gray-700 transition duration-200"
+          >
+            Logout
+          </button>
+        </div>
+      )}
     </div>
   );
 };
