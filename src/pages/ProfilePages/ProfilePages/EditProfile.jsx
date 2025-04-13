@@ -65,7 +65,13 @@ const EditProfileForm = () => {
     </div>
   );
 
-  if (loading || !user) return <Loader />;
+  if(!user) { 
+    return (
+      <div className="flex items-center justify-center min-h-screen bg-gray-200 dark:bg-dark dark:to-gray-900">
+        Please Login ....
+        </div>)}
+
+  if (loading) return <Loader />;
 
   return (
     <div className="flex items-center justify-center min-h-screen bg-gray-100 dark:bg-gray-800">

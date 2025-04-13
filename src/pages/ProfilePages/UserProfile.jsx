@@ -11,10 +11,16 @@ const UserProfile = () => {
     dispatch(fetchUser());
   }, [dispatch]);
 
-  if (loading || !user) return <Loader />;
+  if(!user) { 
+    return (
+      <div className="flex items-center justify-center min-h-screen bg-gray-200 dark:bg-dark dark:to-gray-900">
+        Please Login ....
+        </div>)}
+
+  if (loading) return <Loader />;
 
   return (
-    <div className="flex items-center justify-center min-h-screen bg-gradient-to-r from-blue-500 to-teal-500 dark:from-gray-800 dark:to-gray-900">
+    <div className="flex items-center justify-center min-h-screen bg-gray-200 dark:bg-dark dark:to-gray-900">
       <div className="max-w-lg w-full bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg transform transition-transform duration-300 hover:scale-105">
         <div className="flex items-center space-x-6">
           <div className="w-20 h-20 rounded-full bg-gradient-to-r from-purple-500 to-pink-500 flex items-center justify-center text-2xl font-bold text-white">

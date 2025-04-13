@@ -21,15 +21,20 @@ export const ProfileProvider = ({ children }) => {
   const userUid = auth.currentUser ? auth.currentUser.uid : null;
 
   useEffect(() => {
-    if (userUid) {
-      setIsLoggedIn(true); // Set login status to true if user is logged in
-      fetchUserRole(userUid);
-      fetchStudentData(userUid);
-    } else {
-      setIsLoggedIn(false); // Set login status to false if no user is logged in
-      setLoading(false); // Stop loading if no user is logged in
-    }
-  }, [userUid]);
+    const unsubscribe = auth.onAuthStateChanged((user) => {
+      if (user) {
+        setIsLoggedIn(true);
+        fetchUserRole(user.uid);
+        fetchStudentData(user.uid);
+      } else {
+        setIsLoggedIn(false);
+        setLoading(false);
+      }
+    });
+  
+    return () => unsubscribe();
+  }, []);
+  
 
   const fetchUserRole = async (uid) => {
     try {

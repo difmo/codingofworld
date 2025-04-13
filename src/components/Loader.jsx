@@ -2,7 +2,7 @@ import { motion } from "framer-motion";
 
 const Loader = () => {
   return (
-    <div className="flex h-screen w-full flex-col items-center justify-center p-8 space-y-4 text-center rounded-md    darktransition-all duration-700 ease-in-out dark:bg-dark">
+    <div className="flex h-screen w-full flex-col items-center justify-center p-8 space-y-4 text-center    darktransition-all duration-700 ease-in-out dark:bg-dark">
       <motion.div
         className="flex items-center justify-center w-16 h-16 border-t-4 border-red-500 border-opacity-75 rounded-full animate-spin"
         initial={{ scale: 0 }}
