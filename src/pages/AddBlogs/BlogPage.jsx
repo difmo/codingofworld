@@ -52,63 +52,67 @@ const BlogPage = () => {
   }
 
   return (
-    <div className="container  max-w-5xl mx-auto text-black pt-9 ">
-      <h1 className="mb-6 text-3xl font-semibold text-primary">{blog.title}</h1>
-      <div
-        className="  p-8 rounded border-primary/40 mb-6 content-container "
-        dangerouslySetInnerHTML={{ __html: blog.content }}
-      />
+    <div className=" dark:bg-dark transition-all duration-700 ease-in-out dark:text-white ">
+      <div className="container  max-w-5xl mx-auto text-black pt-9 ">
+        <h1 className="mb-6 text-3xl font-semibold text-primary">
+          {blog.title}
+        </h1>
+        <div
+          className="  p-8 rounded border-primary/40 mb-6 content-container "
+          dangerouslySetInnerHTML={{ __html: blog.content }}
+        />
 
-      {Array.isArray(blog.fields) && blog.fields.length > 0 ? (
-        blog.fields.map((field, index) => (
-          <div key={index} className="mb-4">
-            {field.type === "heading" && (
-              <h2 className="text-2xl font-semibold text-primary">
-                {field.value}
-              </h2>
-            )}
+        {Array.isArray(blog.fields) && blog.fields.length > 0 ? (
+          blog.fields.map((field, index) => (
+            <div key={index} className="mb-4">
+              {field.type === "heading" && (
+                <h2 className="text-2xl font-semibold text-primary">
+                  {field.value}
+                </h2>
+              )}
 
-            <div className="max-w-5xl mx-auto text-black pt-9 content-container">
-              {field.type === "description" && (
-                <p
-                  className="text-lg"
-                  dangerouslySetInnerHTML={{ __html: field.value }}
+              <div className="max-w-5xl mx-auto text-black dark:text-white pt-9 content-container">
+                {field.type === "description" && (
+                  <p
+                    className="text-lg"
+                    dangerouslySetInnerHTML={{ __html: field.value }}
+                  />
+                )}
+              </div>
+
+              {field.type === "link" && (
+                <a href={field.value} className="text-blue-400">
+                  {field.value}
+                </a>
+              )}
+
+              {field.type === "image" && field.value && (
+                <img
+                  src={field.value}
+                  alt="Blog Image"
+                  className="h-auto max-w-full mx-auto my-6 rounded-lg" // Centering and resizing styles
                 />
               )}
+              {field.type === "code" && field.value && (
+                <SyntaxHighlighter
+                  language="cpp"
+                  style={dracula}
+                  className="p-2 overflow-x-auto bg-black dark:text-white rounded"
+                >
+                  {field.value}
+                </SyntaxHighlighter>
+              )}
             </div>
+          ))
+        ) : (
+          <p>No additional content fields available.</p>
+        )}
 
-            {field.type === "link" && (
-              <a href={field.value} className="text-blue-400">
-                {field.value}
-              </a>
-            )}
-
-            {field.type === "image" && field.value && (
-              <img
-                src={field.value}
-                alt="Blog Image"
-                className="h-auto max-w-full mx-auto my-6 rounded-lg" // Centering and resizing styles
-              />
-            )}
-            {field.type === "code" && field.value && (
-              <SyntaxHighlighter
-                language="cpp"
-                style={dracula}
-                className="p-2 overflow-x-auto bg-black rounded"
-              >
-                {field.value}
-              </SyntaxHighlighter>
-            )}
-          </div>
-        ))
-      ) : (
-        <p>No additional content fields available.</p>
-      )}
-
-      <div className="flex">
-        <span className="ml-auto">
-          --{blog.bloggerName ? blog.bloggerName : "UnKnown"}
-        </span>
+        <div className="flex pb-8">
+          <span className="ml-auto">
+            --{blog.bloggerName ? blog.bloggerName : "UnKnown"}
+          </span>
+        </div>
       </div>
     </div>
   );

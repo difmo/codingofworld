@@ -39,7 +39,7 @@ const Admincontacts = () => {
   return (
     <div className="container p-4 mx-auto">
       {loading ? (
-        <p className="text-center text-gray-500">Loading...</p>
+        <p className="text-center text-gray-500"><Loader/></p>
       ) : (
         <table className="min-w-full overflow-hidden bg-white border border-gray-200 rounded-lg shadow-md">
           <thead>

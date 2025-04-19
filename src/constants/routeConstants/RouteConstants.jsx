@@ -18,7 +18,7 @@ class RouteConstants {
     HOME: "/",
     CONTACTUS: "/contactus",
     SERVICES: "/services",
-    USERPROFILE: "/user-profile",
+    USERPROFILE: "/user-profile/*",
     ABOUT: "/about",
     TRAININGTEAM: "/trainingteam",
     PROGRAMS: "/programs",
@@ -26,10 +26,11 @@ class RouteConstants {
   };
 
   static AUTHROUTE = {
-    LOGIN: "/login",
-    REGISTER: "/register",
+    LOGIN: "/signin",
+    REGISTER: "/signup",
     FORGOTPASSWORD: "/forgot-password",
     RESET: "/reset",
+    
   };
 
   static COURSEROUTE = {
@@ -73,21 +74,21 @@ class RouteConstants {
   };
 
   static NAVIGATING_ROUTE = {
-    GOTO_SIGNIN: this.ROOTROUTE.AUTH + this.AUTHROUTE.LOGIN, // /auth/login
-    GOTO_SIGNUP: this.ROOTROUTE.AUTH + this.AUTHROUTE.REGISTER, // /auth/register
-    GOTO_FORGOTPASSWORD: this.ROOTROUTE.AUTH + this.AUTHROUTE.FORGOTPASSWORD, // /auth/forgot-password
-    GOTO_HOME: this.ROOTROUTE.HOME, // /
-    GOTO_COURSES: this.ROOTROUTE.COURSES, // /courses
-    // blogs route
-    GOTO_BLOGS: this.ROOTROUTE.BLOGS + this.BLOGROUTE.SHOWBLOG,
+    GOTO_SIGNIN: RouteConstants.ROOTROUTE.AUTH.replace("/*", "") + RouteConstants.AUTHROUTE.LOGIN,
+    GOTO_SIGNUP: RouteConstants.ROOTROUTE.AUTH.replace("/*", "") + RouteConstants.AUTHROUTE.REGISTER,
+    GOTO_FORGOTPASSWORD: RouteConstants.ROOTROUTE.AUTH.replace("/*", "") + RouteConstants.AUTHROUTE.FORGOTPASSWORD,
+    GOTO_HOME: RouteConstants.MAINROUTE.HOME,
+    GOTO_COURSES: RouteConstants.ROOTROUTE.COURSES.replace("/*", ""),
+    GOTO_BLOGS: RouteConstants.ROOTROUTE.BLOGS.replace("/*", "") + RouteConstants.BLOGROUTE.SHOWBLOG,
+    GOTO_CAREER: RouteConstants.ROOTROUTE.CAREER.replace("/*", ""),
+    GOTO_ADMIN: RouteConstants.ROOTROUTE.ADMIN.replace("/*", ""),
 
-    // carrer
-    GOTO_CAREER: this.ROOTROUTE.CAREER,
-    GOTO_ADMIN: this.ROOTROUTE.ADMIN,
-    GOTO_USERPROFILE: this.ROOTROUTE.USERPROFILE,
-    GOTO_CREATECOURSES: this.ROOTROUTE.CREATECOURSES,
-    GOTO_CREATEBLOGS: this.ROOTROUTE.CREATEBLOGS,
-    GOTO_PREMIUMCOURSES: this.PREMIUMCOURSES,
+    // Profile realted 
+    GOTO_USERPROFILE: RouteConstants.MAINROUTE.USERPROFILE.replace("/*", ""),
+    GOTO_CREATECOURSES: RouteConstants.ROOTROUTE.CREATECOURSES.replace("/*", ""),
+    GOTO_CREATEBLOGS: RouteConstants.ROOTROUTE.CREATEBLOGS.replace("/*", ""),
+    GOTO_PREMIUMCOURSES: RouteConstants.PREMIUMCOURSES,
+
   };
 }
 

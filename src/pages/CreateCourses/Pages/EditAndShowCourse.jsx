@@ -4,6 +4,7 @@ import { doc, getDoc, updateDoc, collection, addDoc, getDocs } from 'firebase/fi
 import { useNavigate, useParams } from 'react-router-dom';
 import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
+import Loader from '@/components/Loader';
 
 const EditAndShowCourse = () => {
   const [course, setCourse] = useState(null);
@@ -71,7 +72,7 @@ const EditAndShowCourse = () => {
 
  
   if (!course) {
-    return <div className="text-center text-xl text-gray-600">Loading...</div>;
+    return <div className="text-center text-xl text-gray-600"><Loader/></div>;
   }
 
   return (
@@ -106,27 +107,34 @@ const EditAndShowCourse = () => {
         <div>
           <label className="text-lg font-medium text-gray-700">Course Content:</label>
           {isEditMode ? (
-            <ReactQuill
-              value={content}
-              onChange={setContent}
-              className="mt-2 w-full h-96"
-              placeholder="Write the content of your course"
-              modules={{
-                toolbar: [
-                  [{ 'header': '1' }, { 'header': '2' }, { 'header': '3' }],
-                  [{ 'font': [] }],
-                  [{ 'size': ['small', 'normal', 'large', 'huge'] }],
-                  ['bold', 'italic', 'underline'],
-                  ['link'],
-                  [{ 'list': 'ordered' }, { 'list': 'bullet' }],
-                  ['blockquote', 'code-block'],
-                  ['image'],
-                  ['clean']
-                  [{ 'align': [] }]  // Specifying left, center, right alignment options
-
-                ]
-              }}
-            />
+             <ReactQuill
+                       id="content"
+                       value={content}
+                       onChange={setContent}
+                       className="w-full"
+                       placeholder="Write the content of your course"
+                       modules={{
+                         toolbar: [
+                           [
+                             { header: "1" },
+                             { header: "2" },
+                             { header: "3" },
+                             { header: "4" },
+                             { header: "5" },
+                             { header: "6" },
+                           ],
+                           [{ font: [] }],
+                           [{ size: ["small", "normal", "large", "huge"] }], //
+           
+                           ["bold", "italic", "underline"],
+                           ["link"],
+                           [{ list: "ordered" }, { list: "bullet" }],
+                           ["blockquote", "code-block"],
+                           ["image"],
+                           ["clean"],
+                         ],
+                       }}
+                     />
           ) : (
             <div
               className="mt-4 prose max-w-none text-gray-700"

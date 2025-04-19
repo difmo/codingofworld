@@ -70,7 +70,8 @@ const ShowLatestBanner = () => {
           <div className="fixed  inset-0 flex  bg-black pr-4 bg-opacity-70 z-50 transition-all duration-300 ease-in-out">
             <div
               ref={popupRef}
-              className=" relative top-20  md:left-80 rounded-xl w-[800px] h-[400px] mx-4  sm:mx-6 shadow-lg transform transition-all duration-300 ease-in-out scale-95 "
+              className=" relative top-36
+              md:top-0 md:left-80 rounded-xl w-[800px] h-[400px] mx-4  sm:mx-6 shadow-lg transform transition-all duration-300 ease-in-out scale-95 "
             >
               <button
                 onClick={handleClosePopup}

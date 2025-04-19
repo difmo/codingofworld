@@ -145,7 +145,7 @@ const StudentData = () => {
     setDropdownOpen((prev) => !prev);
   };
 
-  if (loading) return <div>Loading...</div>;
+  if (loading) return <div><Loader/></div>;
   if (error) return <div>{error}</div>;
 
   return (
@@ -175,7 +175,7 @@ const StudentData = () => {
                     onChange={() => toggleColumnVisibility(column)}
                     className="mr-2"
                   />
-                  {column.charAt(0).toUpperCase() + column.slice(1)}
+                  {column.charAt(0)?.toUpperCase() || "U" + column.slice(1)}
                 </label>
               ))}
             </div>

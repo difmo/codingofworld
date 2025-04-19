@@ -168,7 +168,7 @@ const AdditemForm = ({ closeForm, itemToEdit, fetchItems }) => {
           >
             {isUploading ? (
               <>
-                <AiOutlineCheckCircle className="animate-spin" /> <span>Uploading...</span>
+                <AiOutlineCheckCircle className="animate-spin" /> <span>Up<Loader/></span>
               </>
             ) : (
               <>

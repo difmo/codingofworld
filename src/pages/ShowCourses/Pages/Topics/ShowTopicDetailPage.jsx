@@ -7,6 +7,7 @@ import "react-quill/dist/quill.snow.css"; // Import Quill CSS for styling
 import 'prismjs';
 import 'prismjs/themes/prism-tomorrow.css'; // Dark theme for code blocks
 import Prism from "prismjs";
+import Loader from "../../../../components/Loader";
 
 const ShowTopicDetailPage = () => {
   const [topic, setTopic] = useState(null);
@@ -112,7 +113,7 @@ const ShowTopicDetailPage = () => {
   };
 
   if (!topic) {
-    return <div className="text-center text-xl text-gray-600">Loading...</div>;
+    return <div className="text-center text-xl text-gray-600"><Loader/></div>;
   }
 
   const replaceCodeWithLanguageClass = (content) => {

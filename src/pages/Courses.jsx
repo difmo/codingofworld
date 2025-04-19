@@ -58,22 +58,22 @@ const Courses = () => {
   }
   //kjcnevdshv8y dvhdiv w9
   return (
-    <section className="courses bg-[#F3F4F8] pt-4 pb-40">
+    <section className="courses bg-[#F3F4F8] pt-4 pb-40 dark:bg-dark transition-all duration-700 ease-in-out ">
       <div className="w-full max-w-screen-xl px-4 m-auto">
         <div className="py-16 heading">
-          <h1 className="text-3xl font-semibold text-black md:text-4xl">
+          <h1 className="text-3xl font-semibold text-black dark:text-gray-200 md:text-4xl">
             Discover the Perfect Online Course <br />
             with Certificates from{" "}
             <span className="text-primary">Difmo Technologies</span>
           </h1>
-          <span className="block mt-2 text-sm md:text-base">
+          <span className="block mt-2 text-sm dark:text-gray-200 md:text-base">
             With our expert guidance, you don't have to navigate your learning
             journey alone. Get the support you need to succeed.
           </span>
         </div>
 
         {/* Filters */}
-        <div className="flex flex-col items-center justify-between mb-6 md:flex-row">
+        {/* <div className="flex flex-col items-center justify-between mb-6 md:flex-row">
           <input
             type="text"
             className="w-full p-2 mb-4 border border-gray-300 rounded md:w-1/3 md:mb-0"
@@ -84,7 +84,7 @@ const Courses = () => {
             <option>Newest</option>
             <option>Highest Rated</option>
           </select>
-        </div>
+        </div> */}
 
         {/* Courses grid */}
         <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
@@ -102,7 +102,7 @@ const Courses = () => {
                 />
               </div>
               <p
-                className="px-2 py-2 font-serif text-xl text-gray-600"
+                className="px-2 py-2 font-serif text-xl  text-gray-600"
                 dangerouslySetInnerHTML={{
                   __html: item.shortDescription
                     ? item.shortDescription.split(" ").slice(0, 12).join(" ") +

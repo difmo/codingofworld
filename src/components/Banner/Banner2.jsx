@@ -4,7 +4,7 @@ import img from "../../assets/images/ourt.png";
 
 const Banner2 = () => {
   return (
-    <section>
+    <section className="bg-white dark:bg-dark transition-all duration-700 ease-in-out">
       <div className="container grid grid-cols-1 gap-8 overflow-hidden py-14 md:py-24 md:grid-cols-2 md:space-y-0">
         {/* Banner Text */}
         <motion.div
@@ -13,11 +13,11 @@ const Banner2 = () => {
           className="flex flex-col justify-center"
         >
           <div className="space-y-4 text-center md:text-left ">
-            <h1 className="text-4xl font-bold text-secondaryblue !leading-snug">
+            <h1 className="text-4xl font-bold text-secondaryblue dark:text-white !leading-snug">
               Join <span className="text-primary"> Our Community</span> to Start your Journey
             </h1>
             {/* Fixed issue: Replaced the outer <p> with a <div> */}
-            <div className="text-dark">
+            <div className="text-dark dark:text-white">
               <p>
               Learn & Grow: Master web development, mobile apps, AI/ML, and robotics with expert-led training.
               </p>

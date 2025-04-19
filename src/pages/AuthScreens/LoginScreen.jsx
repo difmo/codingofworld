@@ -57,7 +57,7 @@ export default function LoginScreen() {
   });
 
   return (
-    <section className="md:h-screen">
+    <section className="md:h-screen  dark:bg-dark dark:text-white transition-all duration-700 ease-in-out">
       <div className="container flex flex-wrap items-center justify-center h-full lg:justify-between">
         <div className="mb-12 md:w-9/12 lg:w-6/12">
           <img src={login} className="w-full" alt="Sample" />

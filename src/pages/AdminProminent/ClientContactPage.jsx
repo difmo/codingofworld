@@ -25,7 +25,7 @@ const ClientContactPage = () => {
     fetchContacts();
   }, []);
 
-  if (loading) return <div className="text-xl text-center">Loading...</div>;
+  if (loading) return <div className="text-xl text-center"><Loader/></div>;
   if (error) return <div className="text-center text-red-600">{error}</div>;
 
   return (

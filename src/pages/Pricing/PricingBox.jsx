@@ -4,30 +4,30 @@ const PricingBox = (props) => {
   const { price, duration, offerprice, packageName, subtitle, children } = props;
 
   return (
-    <div className="w-full">
+    <div className="w-full bg-white dark:bg-dark transition-all duration-700 ease-in-out  ">
       <div
-        className="wow fadeInUp shadow-three border border-primary/10  dark:bg-gray-dark dark:shadow-two dark:hover:shadow-gray-dark relative z-10 rounded-sm bg-white px-8 py-10 hover:shadow-one"
+        className="wow fadeInUp shadow-three border border-primary/10  dark:bg-gray-dark dark:shadow-two dark:hover:shadow-gray-dark relative z-10 rounded-sm  px-8 py-10 hover:shadow-one"
         data-wow-delay=".1s"
       >
 
-        <h4 className="mb-2  text-xl font-bold text-secondaryblue">
+        <h4 className="mb-2  text-xl font-bold text-secondaryblue dark:text-slate-300">
           {packageName}
         </h4>
         <div className="flex items-center justify-between">
-          <h3 className="price mb-2 text-md font-bold text-black dark:text-secondaryblue">
+          <h3 className="price mb-2 text-md font-bold text-black  dark:text-secondaryblue">
             Price -  ₹<span className="amount line-through">{price}</span> {/* Main price with strike-through */}
             ₹<span className="amount">{offerprice}</span> {/* Offer price */}
           </h3>
         </div>
 
-        <p className="mb-7 text-base text-body-color">{subtitle}</p>
+        <p className="mb-7 text-base text-body-color dark:text-white">{subtitle}</p>
         <div className="mb-8 border-b border-body-color border-opacity-10 pb-8 dark:border-white dark:border-opacity-10">
           <button className="flex w-full items-center justify-center rounded-sm bg-primary p-3 text-base font-semibold text-white transition duration-300 ease-in-out hover:bg-opacity-80 hover:shadow-signUp">
             Start Free Trial
           </button>
         </div>
         {/* ldsfjhskjfjd */}
-        <div>{children}</div>
+        <div className='dark:text-white'>{children}</div>
         <div className="absolute bottom-0 right-0 z-[-1]">
           <svg
             width="179"

@@ -1,17 +1,12 @@
-import React, { useState } from "react";
+import { useState } from "react";
 
 import { Outlet } from "react-router-dom";
-import AdminSideMenu from "../../components/Navbar/AdminSideMenu";
-import AdminNavbar from "../../components/Navbar/AdminNavbar";
 import CourseSidebar from "../../components/Navbar/CourseSidebar";
 
 const CourseLayout = ({ children }) => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 
-  const toggleSidebar = () => {
-    setIsSidebarOpen(!isSidebarOpen);
-    console.log(isSidebarOpen);
-  };
+
   return (
     <div className="flex h-screen">
       <div

@@ -85,7 +85,7 @@ const AllBlogs = () => {
   };
 
   return (
-    <div className="p-6 mx-auto text-white bg-black">
+    <div className="p-6 mx-auto text-white  dark:bg-dark transition-all duration-700 ease-in-out">
       <h1 className="mb-6 text-3xl font-semibold text-center">My Blogs</h1>
       {loading ? (
         <p>Loading blogs...</p>
