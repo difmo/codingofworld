@@ -22,7 +22,7 @@ const MainNavbar = () => {
   const [isMobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [showPopup, setShowPopup] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
-  const [darkMode, setDarkMode] = useState(false);
+  const [darkMode, setDarkMode] = useState(true);
   const popupRef = useRef(null);
   const navigate = useNavigate();
 
@@ -70,16 +70,16 @@ const MainNavbar = () => {
   }, [showPopup]);
 
   return (
-    <nav className="sticky top-0 z-20 w-full bg-white dark:bg-dark transition-all duration-700 ease-in-out">
+    <nav className="sticky top-0 z-20 w-full transition-all duration-700 ease-in-out bg-white dark:bg-dark">
       <motion.div
         initial={{ opacity: 0, y: -50 }}
         animate={{ opacity: 1, y: 0 }}
         className="container flex items-center justify-between px-4 py-2 mx-auto"
       >
-        <div onClick={() => navigate(RouteConstants.MAINROUTE.HOME)} className="flex  items-center justify-center   ">
+        <div onClick={() => navigate(RouteConstants.MAINROUTE.HOME)} className="flex items-center justify-center ">
           <img src={logo} alt="coding of world" className="h-10 cursor-pointer" />
           <div>
-            <h1 className="pl-2 cursor-pointer text-xl font-bold text-secondaryblue font-play dark:text-white">
+            <h1 className="pl-2 text-xl font-bold cursor-pointer text-secondaryblue font-play dark:text-white">
               Coding of <span className="text-primary">World</span>
             </h1>
           </div>
@@ -91,9 +91,9 @@ const MainNavbar = () => {
               <li key={menu.id}>
                 <Link
                   to={menu.path}
-                  className="relative text-secondaryblue inline-block px-3 py-2 font-play hover:text-secondary group dark:text-white"
+                  className="relative inline-block px-3 py-2 text-secondaryblue font-play hover:text-secondary group dark:text-white"
                 >
-                  <div className="absolute bottom-0  hidden w-2 h-2 mt-4 -translate-x-1/2 rounded-full bg-secondary font-play left-1/2 top-1/2 group-hover:block"></div>
+                  <div className="absolute bottom-0 hidden w-2 h-2 mt-4 -translate-x-1/2 rounded-full bg-secondary font-play left-1/2 top-1/2 group-hover:block"></div>
                   {menu.title}
                 </Link>
               </li>
@@ -118,7 +118,7 @@ const MainNavbar = () => {
             <div className="flex items-center gap-4">
               <button
                 onClick={toggleDarkMode}
-                className="p-2 text-white rounded-full bg-gray-600 hover:bg-gray-700 dark:bg-gray-200 dark:text-gray-800 dark:hover:bg-gray-300"
+                className="p-2 text-white bg-gray-600 rounded-full hover:bg-gray-700 dark:bg-gray-200 dark:text-gray-800 dark:hover:bg-gray-300"
               >
                 {darkMode ? <FaSun /> : <FaMoon />}
               </button>
@@ -182,7 +182,7 @@ const MainNavbar = () => {
                 {/* ✅ Add Dark Mode Toggle Here */}
                 <button
                   onClick={toggleDarkMode}
-                  className="ml-4 p-2 text-white rounded-full bg-gray-600 hover:bg-gray-700 dark:bg-gray-200 dark:text-gray-800 dark:hover:bg-gray-300"
+                  className="p-2 ml-4 text-white bg-gray-600 rounded-full hover:bg-gray-700 dark:bg-gray-200 dark:text-gray-800 dark:hover:bg-gray-300"
                 >
                   {darkMode ? <FaSun /> : <FaMoon />}
                 </button>

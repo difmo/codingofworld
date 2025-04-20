@@ -57,7 +57,7 @@ export default function LoginScreen() {
   });
 
   return (
-    <section className="md:h-screen  dark:bg-dark dark:text-white transition-all duration-700 ease-in-out">
+    <section className="transition-all duration-700 ease-in-out md:h-screen dark:bg-dark dark:text-white">
       <div className="container flex flex-wrap items-center justify-center h-full lg:justify-between">
         <div className="mb-12 md:w-9/12 lg:w-6/12">
           <img src={login} className="w-full" alt="Sample" />
@@ -105,22 +105,10 @@ export default function LoginScreen() {
             {/* Display error message */}
             {errorMessage && <p className="text-red-500">{errorMessage}</p>}
 
-            <div className="flex items-center justify-between mb-6">
-              <div className="flex items-center">
-                <input
-                  className="w-4 h-4 mr-2"
-                  type="checkbox"
-                  id="rememberMe"
-                />
-                <label htmlFor="rememberMe" className="cursor-pointer">
-                  Remember me
-                </label>
-              </div>
-              <a href="#!">Forgot password?</a>
-            </div>
+           
 
             {/* Login Button */}
-            <div className="text-center lg:text-left">
+            <div className="mt-8 text-center lg:text-left">
               <CustomButton
                 type="submit"
                 text={loading ? "Logging in..." : "Login"}

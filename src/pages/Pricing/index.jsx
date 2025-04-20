@@ -29,7 +29,7 @@ const Pricing = () => {
   }, []);
 
   return (
-    <section id="pricing" className="relative -z-50 md:py-20 lg:py-28 bg-white dark:bg-dark transition-all duration-700 ease-in-out">
+    <section id="pricing" className="relative transition-all duration-700 ease-in-out bg-white md:py-20 lg:py-28 dark:bg-dark">
       <div className="container">
         <SectionTitle
           title="Simple and Affordable Pricing"
@@ -40,7 +40,7 @@ const Pricing = () => {
 
        
 
-        <div className="grid pt-10 grid-cols-1 gap-x-8 gap-y-10 md:grid-cols-2 lg:grid-cols-3">
+        <div className="grid grid-cols-1 pt-10 gap-x-8 gap-y-10 md:grid-cols-2 lg:grid-cols-3">
           {pricingPlans.map((plan) => (
             <PricingBox
               key={plan.id}
