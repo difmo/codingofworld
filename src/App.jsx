@@ -18,6 +18,7 @@ import RouteConstants from "./constants/routeConstants/RouteConstants";
 import Loader from "./components/Loader";
 import { useProfile } from "./context/Providers/ProfileContext";
 import UserProfileRoute from "./routes/ProfileRoutes";
+import PublicNotes from "./pages/CowPublicNotes";
 
 
 const App = () => {
@@ -90,6 +91,7 @@ const App = () => {
           <ScrollToTop />
           <Routes>
             <Route path="/premium-courses" element={<PremiumCourses />} />
+            <Route path="/cow-notes" element={<PublicNotes />} />
               <Route path={RouteConstants.ROOTROUTE.AUTH} element={<AuthRoutes />} />
             <Route element={<MainLayout />}>
               <Route path={RouteConstants.ROOTROUTE.HOME} element={<MainRoutes />} />
