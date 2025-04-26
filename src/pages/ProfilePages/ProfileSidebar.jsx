@@ -33,7 +33,7 @@ const ProfileSidebar = ({ toggleSidebar }) => {
   };
 
   return (
-    <div className="w-64 h-screen p-4 flex flex-col justify-between bg-white dark:bg-[#212529]">
+    <div className="w-64 p-4 rounded-md flex flex-col justify-between m-2 bg-white dark:bg-dark border-r">
       {/* Top Section: Links */}
       <ul className="space-y-2">
         {sidebarLinks.map((link, idx) => (

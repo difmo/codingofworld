@@ -13,7 +13,7 @@ const ProfileLayout = ({ children }) => {
     console.log(isSidebarOpen);
   };
   return (
-    <div className="flex h-screen">
+    <div className="flex  dark:bg-dark">
       <div
         className={`${
           !isSidebarOpen ? "hidden " : "flex    "
