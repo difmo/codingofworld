@@ -91,6 +91,6 @@ export const courses = [
   {
     id: 11,
     cover: img15,
-    // title: "Web Development with JavaScript: Full Stack Journey",
+    // title: "Web Development with fgdgsdf JavaScript: Full Stack Journey",
   },
 ];
