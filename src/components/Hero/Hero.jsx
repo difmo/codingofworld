@@ -10,6 +10,7 @@ import ScrollToTop from "../ScrollTop";
 import MyBot from "../Abot/Mybot";
 import { FaHandshake, FaUserTie, FaLightbulb } from "react-icons/fa";
 import TimerButton from "../TimerButton";
+import NewProducts from "../Abot/NewProducts";
 
 export const FadeUp = (delay) => {
   return {
@@ -227,6 +228,7 @@ const Hero = () => {
 
       <div className="z-20">
         <MyBot />
+        <NewProducts/>
       </div>
 
       {/* Regular CSS for styles */}
