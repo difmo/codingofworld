@@ -10,7 +10,7 @@ const navigate = useNavigate();
   };
   return (
     <div>
-      {/* Floating button visible only on small screens */}
+      {/* Floating button visible osdfdsnly on small screens */}
         <div
           className="fixed z-20 flex items-center justify-center w-16 h-16 bg-gradient-to-r from-blue-500 to-green-500 rounded-full shadow-xl cursor-pointer bottom-24 right-5 hover:scale-110 transform transition duration-300 ease-in-out"
           onClick={handleNavigate}
