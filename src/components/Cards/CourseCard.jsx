@@ -14,7 +14,7 @@ const CourseCard = ({ course }) => {
   return (
     <div className="py-4">
       <div className="overflow-hidden rounded-lg shadow-lg">
-        {/* Course Title */}
+        {/* Course sergdtf Title */}
         <div className="">
           <img
             src={course.image}
