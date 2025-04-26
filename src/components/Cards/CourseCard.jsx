@@ -23,7 +23,7 @@ const CourseCard = ({ course }) => {
           />
         </div>
 
-        {/* Course Details */}
+        {/* Course  fxgsdfsdfsd Details */}
         <div className="p-4">
           <h5 className="my-2  text-lg font-semibold">This course includes:</h5>
           <ul className="space-y-2">
