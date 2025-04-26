@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchUser } from '../../features/users/userSlice';
 import Loader from "@/components/Loader";
-import CursorFollower from '@/utils/CursorFollower';
+// import CursorFollower from '@/utils/CursorFollower';
 
 const UserProfile = () => {
   const dispatch = useDispatch();
@@ -22,7 +22,7 @@ const UserProfile = () => {
 
   return (
     <div className="flex items-center justify-center min-h-screen bg-gray-200 dark:bg-dark dark:to-gray-900">
-     <CursorFollower/>
+     {/* <CursorFollower/> */}
      
       <div className="max-w-lg w-full bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg transform transition-transform duration-300 hover:scale-105">
         <div className="flex items-center space-x-6">
