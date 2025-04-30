@@ -65,7 +65,7 @@ const ShowBlogs = () => {
         </h1>
 
         {/* Search Input */}
-        <div className="mb-6 max-w-md mx-auto">
+        <div className="mb-6  max-w-md mx-auto">
           <input
             type="text"
             placeholder="Search blogs..."

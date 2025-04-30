@@ -25,21 +25,23 @@ const ShowCourseLayout = ({ children }) => {
   };
 
   return (
-    <div className="flex h-screen">
+    <div className="flex h-screen dark:bg-gray-900 transition-all duration-300 ease-in-out">
+      {/* Sidebar */}
       <div
         ref={sidebarRef}
         className={`${
-          !isSidebarOpen ? "hidden " : "flex "
-        } fixed md:relative transition-all duration-300 ease-in-out md:flex`}
+          isSidebarOpen ? "translate-x-0" : "-translate-x-full"
+        } fixed md:relative transition-transform duration-300 ease-in-out md:flex md:translate-x-0 flex-col bg-secondaryblue dark:bg-gray-800 w-72 h-full p-4 space-y-6 text-primary overflow-y-auto`}
       >
         <ShowCourseSidebar toggleSidebar={toggleSidebar} />
       </div>
 
+      {/* Main Content */}
       <div className="flex flex-col flex-1">
         <div className="w-full">
           <ShowCourseNavbar toggleSidebar={toggleSidebar} />
         </div>
-        <div className="flex-1 p-3 md:p-8 overflow-y-auto bg-white">
+        <div className="flex-1 p-3 md:p-8 overflow-y-auto bg-white dark:bg-gray-800 transition-all duration-300 ease-in-out">
           {children}
           <Outlet />
         </div>

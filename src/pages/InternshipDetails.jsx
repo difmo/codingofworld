@@ -45,35 +45,35 @@ const InternshipDetails = () => {
   }
 
   return (
-    <div className="px-4 top-0 relative z-10">
+    <div className="px-4 top-0 relative z-10 dark:bg-dark dark:text-white transition-all duration-700 ease-in-out">
       {/* Thumbnail Section */}
       <div className="w-full">
         <img
           src={internship.thumbnailUrl}
           alt={internship.title}
-          className="bg-cover w-full h-auto"
+          className="w-full h-auto object-cover rounded-lg shadow-lg transition-all duration-700 ease-in-out"
         />
       </div>
 
       {/* Description Section */}
       <div className="mt-12 content-container flex flex-col sm:flex-row sm:justify-between sm:px-8 lg:px-12 xl:px-12">
-        <div className="w-full sm:w-4/5">
+        <div className="w-full pb-10 sm:w-4/5">
           <p
-            className="text-lg leading-relaxed text-gray-700 font-anek_telugu"
+            className="text-lg leading-relaxed text-gray-700 dark:text-white font-anek_telugu transition-all duration-700 ease-in-out"
             dangerouslySetInnerHTML={{ __html: internship.description }}
           />
         </div>
         <div className="w-full p-6 sm:w-full sm:p-0 sm:mt-6">
           <div className="mb-6 content-containermd:px-18 lg:px-24">
             <p
-              className="text-lg leading-relaxed text-gray-700 font-anek_telugu"
+              className="text-lg leading-relaxed text-gray-700 dark:text-white font-anek_telugu transition-all duration-700 ease-in-out"
               dangerouslySetInnerHTML={{ __html: internship.bio }}
             />
           </div>
           <div className="text-center sm:px-18 lg:px-24">
             <button
               onClick={() => navigate("/internshipform")}
-              className="px-6 py-3 text-white transition-all duration-300 transform rounded-lg shadow-md bg-primary hover:bg-primary/80 hover:scale-105"
+              className="px-6 py-3 text-white transition-all duration-300 transform rounded-lg shadow-lg bg-primary hover:bg-primary/80 hover:scale-105 dark:bg-primary dark:hover:bg-primary/90"
             >
               ENROLL NOW
             </button>

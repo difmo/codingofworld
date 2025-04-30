@@ -20,6 +20,14 @@ const ShowTopicDetailPage = () => {
   const [userLogin, setIsUserLogin] = useState(false);
   const [bloggerName, setBloggerName] = useState();
 
+  // Check for theme preference and set body class
+  useEffect(() => {
+    if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+      document.body.classList.add('dark');
+    } else {
+      document.body.classList.remove('dark');
+    }
+  }, []);
 
   useEffect(() => {
     const unsubscribe = auth.onAuthStateChanged((user) => {
@@ -37,7 +45,7 @@ const ShowTopicDetailPage = () => {
       }
     });
     return () => unsubscribe();
-  });
+  }, []);
 
   const fetchUserRole = async (uid) => {
     try {
@@ -87,11 +95,11 @@ const ShowTopicDetailPage = () => {
 
     fetchTopic();
   }, [courseId, topicId]);
+
   useEffect(() => {
     // Highlight code after the component mounts (for Prism)
     Prism.highlightAll();
-  }, [topic?.content]); // Only trigger when topic content changes
-
+  }, [topic?.content]);
 
   const toggleEditMode = () => {
     setIsEditMode((prev) => !prev);
@@ -113,7 +121,7 @@ const ShowTopicDetailPage = () => {
   };
 
   if (!topic) {
-    return <div className="text-center text-xl text-gray-600"><Loader/></div>;
+    return <div className="text-center text-xl text-gray-600"><Loader /></div>;
   }
 
   const replaceCodeWithLanguageClass = (content) => {
@@ -135,10 +143,10 @@ const ShowTopicDetailPage = () => {
             type="text"
             value={newTitle}
             onChange={(e) => setNewTitle(e.target.value)}
-            className="w-full p-2 border border-gray-300 rounded-lg"
+            className="w-full p-2 border border-gray-300 dark:border-gray-600 rounded-lg"
           />
         ) : (
-          <h3 className="text-xl md:text-4xl text-secondaryblue font-semibold">{topic.title}</h3>
+          <h3 className="text-xl md:text-4xl text-secondaryblue dark:text-white font-semibold">{topic.title}</h3>
         )}
       </div>
 
@@ -149,10 +157,10 @@ const ShowTopicDetailPage = () => {
             onChange={setNewContent}
             className="w-full h-96"
             placeholder="Write the content of the topic here"
-            formats={['bold', 'italic', 'underline', 'link', 'blockquote', 'code-block']} 
+            formats={['bold', 'italic', 'underline', 'link', 'blockquote', 'code-block']}
             modules={{
               toolbar: [
-                [{ 'header': '1' }, { 'header': '2' }, 'bold', 'italic', 'link'], // Adding 'header' for h1, h2 etc.
+                [{ 'header': '1' }, { 'header': '2' }, 'bold', 'italic', 'link'],
                 [{ 'list': 'ordered' }, { 'list': 'bullet' }],
                 ['blockquote', 'code-block'],
                 ['link', 'image'],
@@ -162,32 +170,26 @@ const ShowTopicDetailPage = () => {
           />
         ) : (
           <div
-            className="prose  max-w-none"
+            className="prose max-w-none dark:prose-dark"
             dangerouslySetInnerHTML={{
               __html: replaceCodeWithLanguageClass(topic?.content)
-                .replace(/<h1>/g, '<h1 style="color: red;">')
-                .replace(/<h2>/g, '<h2 style="color: red;">')
-                .replace(/<h3>/g, '<h3 style="color: red;">')
-                .replace(/<h4>/g, '<h4 style="color: red;">')
+                .replace(/<h1>/g, '<h1 class="text-red-500">')
+                .replace(/<h2>/g, '<h2 class="text-red-500">')
+                .replace(/<h3>/g, '<h3 class="text-red-500">')
+                .replace(/<h4>/g, '<h4 class="text-red-500">')
                 .replace(/<\/h1>/g, '</h1>')
                 .replace(/<\/h2>/g, '</h2>')
-                .replace(/<pre><code>/g, '<pre class="language-js  style="color: black;""><code>')
+                .replace(/<pre><code>/g, '<pre class="language-js" style="color: black;"><code>')
                 .replace(/<\/code><\/pre>/g, '</code></pre>')
-                .replace(/<p>/g, '<p style="color: black;">')
-                .replace(/<strong>/g, '<strong style="color: red;">')
+                .replace(/<p>/g, '<p class="dark:text-white">')
+                .replace(/<strong>/g, '<strong class="text-red-500">')
+                .replace(/<ul>/g, '<ul class="list-disc dark:text-white pl-5">') 
+                .replace(/<ol>/g, '<ol class="list-decimal pl-5">')  
+                .replace(/<li>/g, '<li class="dark:text-white">')  
             }}
           />
-
-
-
-
         )}
       </div>
-
-
-      {/* <p>This is some normal content.</p>
-<pre class="language-js"><code>const x = 10;</code></pre>
-<p>More content here...</p> */}
 
       <div className="flex justify-between items-center mt-6">
         {blogPermission && (
@@ -207,7 +209,6 @@ const ShowTopicDetailPage = () => {
           </button>
         )}
       </div>
-      {/* <div>{bloggerName}</div> */}
     </div>
   );
 };

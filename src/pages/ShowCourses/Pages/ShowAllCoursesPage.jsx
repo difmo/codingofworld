@@ -7,24 +7,25 @@ const ShowAllCoursesPage = () => {
   const [courses, setCourses] = useState([]);
   const [errorMessage, setErrorMessage] = useState("");
   const [loading, setLoading] = useState(true);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [coursesPerPage] = useState(6); // Number of courses to show per page
 
   const navigate = useNavigate();
 
   const fetchUserEmail = async (userId) => {
-    console.log("user id from passed" + userId);
     try {
       const userDocRef = doc(db, "users", userId);
       const userDocSnap = await getDoc(userDocRef);
 
       if (!userDocSnap.exists()) {
         console.log("User document does not exist for userId:", userId);
-        return null; // Return null if user document doesn't exist
+        return null;
       }
 
-      return userDocSnap.data().email; // Return the email if user document exists
+      return userDocSnap.data().email;
     } catch (error) {
       console.error("Error fetching user data:", error);
-      return null; // Return null in case of error
+      return null;
     }
   };
 
@@ -41,19 +42,14 @@ const ShowAllCoursesPage = () => {
           };
 
           const userId = courseData.userId;
-
-          // Fetch the user email using the new function
-          console.log("user id pritam" + userId);
           const userEmail = await fetchUserEmail(userId);
 
-          // Add the user email to the course data
           coursesList.push({
             ...courseData,
             userEmail,
           });
         }
 
-        // Update state with the courses list
         setCourses(coursesList);
       } catch (error) {
         console.error("Error fetching courses:", error);
@@ -66,29 +62,57 @@ const ShowAllCoursesPage = () => {
     fetchCourses();
   }, []);
 
+  // Paginate courses
+  const indexOfLastCourse = currentPage * coursesPerPage;
+  const indexOfFirstCourse = indexOfLastCourse - coursesPerPage;
+  const currentCourses = courses
+    .filter((course) => course.approved)
+    .slice(indexOfFirstCourse, indexOfLastCourse);
+
+  // Handle page changes
+  const handlePageChange = (pageNumber) => {
+    setCurrentPage(pageNumber);
+  };
+
   const handleCourseClick = (courseId) => {
     navigate(`showcoursee/${courseId}`);
   };
 
+  // Calculate total pages
+  const totalPages = Math.ceil(courses.filter((course) => course.approved).length / coursesPerPage);
+
   return (
-    <div className="max-w-screen-xl mx-auto p-6 ">
+    <div className="max-w-screen-xl mx-auto p-6">
       <div className="py-16 heading">
         <h1 className="text-3xl font-semibold dark:text-white text-black md:text-4xl">
-          Some other courses
+          Some Other Courses
         </h1>
         <span className="block mt-2 text-sm md:text-base dark:text-white">
           Learn from the best instructors and get certified
         </span>
       </div>
 
-      {/* Courses grid layout */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-8">
-        {courses
-          .filter((course) => course.approved) // Filter approved courses
-          .map((course) => (
+      {/* Shimmer Loader (While data is loading) */}
+      {loading ? (
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-8">
+          {[...Array(coursesPerPage)].map((_, index) => (
+            <div
+              key={index}
+              className="bg-gray-300 dark:bg-gray-700 rounded-lg shadow-lg p-6 animate-pulse"
+            >
+              <div className="bg-gray-400 dark:bg-gray-600 h-6 mb-4 rounded-lg"></div>
+              <div className="bg-gray-400 dark:bg-gray-600 h-4 mb-4 rounded-lg"></div>
+              <div className="bg-gray-400 dark:bg-gray-600 h-4 rounded-lg w-1/2"></div>
+            </div>
+          ))}
+        </div>
+      ) : (
+        // Courses grid layout
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-8">
+          {currentCourses.map((course) => (
             <div
               key={course.id}
-              className="bg-secondaryblue border border-gray-200 rounded-lg shadow-lg transform transition-all duration-300 hover:scale-105 hover:shadow-xl cursor-pointer"
+              className=" bg-white dark:bg-gray-900 dark:border border-gray-700 dark:border-gray-600 rounded-lg shadow-lg transform transition-all duration-300 hover:scale-105 hover:shadow-xl cursor-pointer"
               onClick={() => handleCourseClick(course.id)}
             >
               <div className="p-6">
@@ -103,7 +127,7 @@ const ShowAllCoursesPage = () => {
 
                 {/* Course Content Preview */}
                 <p
-                  className="text-white text-base my-4"
+                  className="dark:text-white  text-base my-4"
                   dangerouslySetInnerHTML={{
                     __html:
                       course.content.length > 100
@@ -115,12 +139,37 @@ const ShowAllCoursesPage = () => {
                 {/* Hover Effects */}
                 <div className="mt-4 text-center">
                   <button className="text-primary hover:text-blue-700 font-medium">
-                    Start Reading Free {course  .userEmail}
+                    Start Reading Free {course.userEmail}
                   </button>
                 </div>
               </div>
             </div>
           ))}
+        </div>
+      )}
+
+      {/* Pagination Controls */}
+      <div className="flex justify-center mt-8">
+        <button
+          onClick={() => handlePageChange(currentPage - 1)}
+          disabled={currentPage === 1}
+          className="px-4 py-2 bg-primary border border-primary text-white rounded-lg mr-4 hover:bg-transparent hover:text-primary transition-all"
+        >
+          Previous
+        </button>
+
+        {/* Page Number */}
+        <span className="text-xl font-semibold text-black dark:text-white">
+          {currentPage} / {totalPages}
+        </span>
+
+        <button
+          onClick={() => handlePageChange(currentPage + 1)}
+          disabled={currentPage === totalPages}
+          className="px-4 py-2 bg-primary border border-primary text-white rounded-lg ml-4 hover:bg-transparent hover:text-primary transition-all"
+        >
+          Next
+        </button>
       </div>
     </div>
   );

@@ -1,13 +1,7 @@
 import React, { useEffect, useState } from "react";
-import {
-  BrowserRouter as Router,
-  Route,
-  Routes,
-  Link,
-  useParams,
-} from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { db } from "../../firebase";
-import { collection, getDocs, doc, getDoc } from "firebase/firestore";
+import { doc, getDoc } from "firebase/firestore";
 import "react-quill/dist/quill.snow.css";
 import SyntaxHighlighter from "react-syntax-highlighter";
 import { dracula } from "react-syntax-highlighter/dist/esm/styles/hljs";
@@ -39,25 +33,37 @@ const BlogPage = () => {
   }, [blogId]);
 
   if (loading) {
-    return (
-      <div>
-        <MainLoader />
-      </div>
-    );
+    return <MainLoader />;
   }
 
   if (error) {
     return <div>{error}</div>;
   }
 
+  const replaceCodeWithLanguageClass = (content) => {
+    return content.replace(/<pre><code>([\s\S]*?)<\/code><\/pre>/g, (match, code) => {
+      let language = 'js'; // Default to JavaScript
+      if (code.includes('def') && code.includes('print')) language = 'python';
+      if (code.includes('<html') && code.includes('</html>')) language = 'html';
+      if (code.includes('function') && code.includes('console.log')) language = 'javascript';
+      if (code.includes('class') && code.includes('public')) language = 'java';
+
+      // Apply Tailwind dark mode classes
+      return `
+        <pre class="language-${language} dark:bg-gray-800 bg-white p-4 rounded-lg overflow-x-auto">
+          <code class="text-black dark:text-white">${code}</code>
+        </pre>
+      `;
+    });
+  };
+
   return (
-    <div className=" dark:bg-dark transition-all duration-700 ease-in-out dark:text-white ">
-      <div className="container  max-w-5xl mx-auto text-black pt-9 ">
-        <h1 className="mb-6 text-3xl font-semibold text-primary">
-          {blog.title}
-        </h1>
+    <div className="dark:bg-dark transition-all duration-700 ease-in-out dark:text-white">
+      <div className="container max-w-5xl mx-auto text-black pt-9">
+        <h1 className="mb-6 text-3xl font-semibold text-primary">{blog.title}</h1>
+
         <div
-          className="  p-8 rounded border-primary/40 mb-6 content-container "
+          className="p-8 rounded border-primary/40 mb-6 content-container"
           dangerouslySetInnerHTML={{ __html: blog.content }}
         />
 
@@ -73,8 +79,23 @@ const BlogPage = () => {
               <div className="max-w-5xl mx-auto text-black dark:text-white pt-9 content-container">
                 {field.type === "description" && (
                   <p
-                    className="text-lg"
-                    dangerouslySetInnerHTML={{ __html: field.value }}
+                  className="prose max-w-none dark:prose-dark"
+                  dangerouslySetInnerHTML={{
+                      __html: replaceCodeWithLanguageClass(field.value)
+                        .replace(/<h1>/g, '<h1 class="text-red-500">')
+                        .replace(/<h2>/g, '<h2 class="text-red-500">')
+                        .replace(/<h3>/g, '<h3 class="text-red-500">')
+                        .replace(/<h4>/g, '<h4 class="text-red-500">')
+                        .replace(/<\/h1>/g, '</h1>')
+                        .replace(/<\/h2>/g, '</h2>')
+                        .replace(/<pre><code>/g, '<pre class="language-js" style="color: black;"><code>')
+                        .replace(/<\/code><\/pre>/g, '</code></pre>')
+                        .replace(/<p>/g, '<p class="dark:text-white">')
+                        .replace(/<strong>/g, '<strong class="text-red-500">')
+                        .replace(/<ul>/g, '<ul class="list-disc dark:text-white pl-5">')
+                        .replace(/<ol>/g, '<ol class="list-decimal pl-5">')
+                        .replace(/<li>/g, '<li class="dark:text-white">')
+                    }}
                   />
                 )}
               </div>
@@ -89,9 +110,10 @@ const BlogPage = () => {
                 <img
                   src={field.value}
                   alt="Blog Image"
-                  className="h-auto max-w-full mx-auto my-6 rounded-lg" // Centering and resizing styles
+                  className="h-auto max-w-full mx-auto my-6 rounded-lg"
                 />
               )}
+
               {field.type === "code" && field.value && (
                 <SyntaxHighlighter
                   language="cpp"

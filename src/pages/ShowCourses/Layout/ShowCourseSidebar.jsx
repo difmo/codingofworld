@@ -40,13 +40,14 @@ const ShowCourseSidebar = ({ toggleSidebar }) => {
     }
   }, [courseId]);
 
-
   return (
-    <div className=" h-screen  w-[340px] p-4 space-y-6 text-primary bg-secondaryblue overflow-y-auto scrollbar-hide">
+    <div className="h-screen space-y-6 text-primary bg-secondaryblue dark:bg-gray-900 overflow-y-auto scrollbar-hide transition-all duration-300 ease-in-out">
 
-      <ul className="space-y-4">
-        <li className="">
-          <h3 className="text-lg bg-primary  rounded-xl text-white text-center font-semibold">Course Topics</h3>
+      <ul className="">
+        <li>
+          <h3 className="text-lg bg-primary rounded-xl text-white text-center font-semibold transition-all duration-300 ease-in-out">
+            Course Topics
+          </h3>
           <div className="p-4">
             {topics.length > 0 ? (
               topics.map((topic) => (
@@ -54,7 +55,7 @@ const ShowCourseSidebar = ({ toggleSidebar }) => {
                   <Link
                     to={`showcoursee/${courseId}/topic/${topic.id}`}
                     onClick={() => toggleSidebar()}
-                    className="block hover:bg-primary/30 px-1 text-white rounded-md"
+                    className="block hover:bg-primary/30 px-2 text-white rounded-md transition-all duration-300 ease-in-out"
                   >
                     <span>
                       {topic.title.split(' ').map((word, index) => (
@@ -67,15 +68,12 @@ const ShowCourseSidebar = ({ toggleSidebar }) => {
                       ))}
                     </span>
                   </Link>
-                 
                 </div>
               ))
             ) : (
-              <p className="text-sm text-gray-400">No topics available</p>
+              <p className="text-sm text-gray-400 dark:text-gray-600">No topics available</p>
             )}
-
           </div>
-
         </li>
       </ul>
     </div>

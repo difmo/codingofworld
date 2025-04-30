@@ -64,10 +64,10 @@ const Internships = () => {
           {internships.map((internship) => (
             <li
               key={internship.id}
-              className="relative flex flex-col justify-between overflow-hidden transition-all transform dark:bg-dark bg-white border border-gray-100  cursor-pointer rounded-xl  hover:scale-105 dark:text-white hover:bg-[#f7f7f7]"
+              className="relative  flex flex-col justify-between overflow-hidden transition-all transform dark:bg-dark cursor-pointer rounded-sm  hover:scale-105 dark:text-white hover:bg-[#f7f7f7]"
               onClick={() => navigate(`/courses/internship/${internship.id}`)}
             >
-              <div className="transition-opacity duration-300 ">
+              <div className="transition-opacity duration-300  ">
                 <img
                   className="bg-cover w-full h-60 rounded-t-xl" // Only top corners rounded
                   src={internship.thumbnailUrl}
@@ -75,19 +75,19 @@ const Internships = () => {
                   loading="lazy"
                 />
                 <div className="flex justify-between px-4 py-2 ">
-                  <p className="bg-red-100 p-2 rounded text-red-600">
-                    {" "}
-                    {internship.Internship}
+                  <p className="text-primary">
+                  
+                    {internship.Internship.toUpperCase()}
                   </p>
-                  <p className="p-2"> {internship.months}</p>
+                  <p > {internship.months}</p>
                 </div>
-                <h3 className="px-4 py-2 dark:text-gray-50 text-2xl font-semibold text-black">
+                <h3 className="px-4 py-2 truncate dark:text-gray-50 text-md font-semibold text-black">
                   {internship.title}
                 </h3>
               </div>
 
               <p
-                className="px-4 py-2 font-serif text-base dark:text-gray-200 text-gray-600"
+                className="px-4  font-serif text-sm dark:text-gray-200 text-gray-600"
                 dangerouslySetInnerHTML={{
                   __html: internship.shortDescription,
                 }}
@@ -101,7 +101,7 @@ const Internships = () => {
               {/* Action Button bg-gradient-to-t from-black/60 to-transparent rounded-b-xl*/}
               <div className="left-0 w-full p-4 bottom-10 ">
                 <button
-                  className="w-full px-4 py-2 text-lg text-white transition-all bg-primary rounded-xl hover:bg-primary/90"
+                  className="w-full px-4 py-2 text-sm text-white transition-all bg-primary rounded-xl hover:bg-primary/90"
                   onClick={() => navigate(`/internship/${internship.id}`)}
                 >
                   Explore Internship

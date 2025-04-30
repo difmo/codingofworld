@@ -56,9 +56,9 @@ const Courses = () => {
       </div>
     );
   }
-  //kjcnevdshv8y dvhdiv w9
+
   return (
-    <section className="courses bg-[#F3F4F8] pt-4 pb-40 dark:bg-dark transition-all duration-700 ease-in-out ">
+    <section className="courses bg-[#F3F4F8] pt-4 pb-40 dark:bg-dark transition-all duration-700 ease-in-out">
       <div className="w-full max-w-screen-xl px-4 m-auto">
         <div className="py-16 heading">
           <h1 className="text-3xl font-semibold text-black dark:text-gray-200 md:text-4xl">
@@ -72,27 +72,13 @@ const Courses = () => {
           </span>
         </div>
 
-        {/* Filters */}
-        {/* <div className="flex flex-col items-center justify-between mb-6 md:flex-row">
-          <input
-            type="text"
-            className="w-full p-2 mb-4 border border-gray-300 rounded md:w-1/3 md:mb-0"
-            placeholder="Search for courses..."
-          />
-          <select className="w-full p-2 border border-gray-300 rounded md:w-1/3">
-            <option>Sort by: Popularity</option>
-            <option>Newest</option>
-            <option>Highest Rated</option>
-          </select>
-        </div> */}
-
         {/* Courses grid */}
         <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {course.map((item) => (
             <div
               onClick={() => handleNavigation(item.id)}
               key={item.id}
-              className="relative overflow-hidden transition-transform transform bg-white rounded-lg shadow-xl cursor-pointer hover:scale-95 hover:shadow-2xl"
+              className="relative overflow-hidden transition-transform transform bg-white rounded-lg shadow-xl cursor-pointer hover:scale-95 hover:shadow-2xl dark:bg-gray-800 dark:border dark:border-gray-700"
             >
               <div className="relative w-full overflow-hidden rounded-t-lg images hover:bg-red-600">
                 <img
@@ -102,25 +88,25 @@ const Courses = () => {
                 />
               </div>
               <p
-                className="px-2 py-2 font-serif text-xl  text-gray-600"
+                className="px-2 py-2 font-serif text-xl text-gray-600 dark:text-gray-200"
                 dangerouslySetInnerHTML={{
                   __html: item.shortDescription
-                    ? item.shortDescription.split(" ").slice(0, 12).join(" ") +
+                    ? item.shortDescription.split(" ").slice(0, 20).join(" ") +
                       "..."
                     : "",
                 }}
               />
 
-              <div className="flex items-center justify-between p-3 border-t border-gray-200">
-                <span className="text-sm text-primary">Free</span>
-                <span className="text-[14px] ml-2 flex items-center">
+              <div className="flex items-center justify-between p-3 border-t border-gray-200 dark:border-gray-700">
+                <span className="text-[14px] ml-2 flex items-center text-gray-600 dark:text-gray-200">
                   View Details <HiOutlineArrowNarrowRight />
                 </span>
               </div>
             </div>
           ))}
         </div>
-        {/* <h1 className="mt-8">Want to contribut to make courses</h1> */}
+
+        {/* Show All Courses Page */}
         <ShowAllCoursesPage />
       </div>
     </section>

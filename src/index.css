@@ -33,7 +33,6 @@
   }
 }
 
-/* In your styles.css or scoped CSS */
 .content-container h1 {
   font-size: 48px;
   font-weight: bold;
@@ -106,8 +105,8 @@ div {
   font-family: "Anek Telugu", sans-serif;
   font-weight: 700; /* Bold */
 }
-
-.prose h1, .prose h2 .prose h3 .prose h4 {
+ 
+.prose h1, .prose h2 .prose h3 .prose h4 .prose p {
   color: red;
 }
 
@@ -185,3 +184,8 @@ code[class*="language-"] {
   -ms-overflow-style: none;
   scrollbar-width: none;
 }
+/* .prose ul {
+  list-style-type: disc;
+  padding-left: 20px;
+  color:white
+} */

@@ -85,7 +85,7 @@ const Admincourse = () => {
     <div className="max-w-screen-xl mx-auto p-6 ">
       <div className="py-16 heading">
         <h1 className="text-3xl font-semibold dark:text-white text-black md:text-4xl">
-          Some other courses
+          Some Other Courses
         </h1>
         <span className="block mt-2 text-sm md:text-base">
           Learn from the best instructors and get certified
