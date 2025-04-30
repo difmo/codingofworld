@@ -8,7 +8,6 @@ import {
 } from "react-router-dom";
 import { db } from "../../firebase";
 import { collection, getDocs, doc, getDoc } from "firebase/firestore";
-import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
 import SyntaxHighlighter from "react-syntax-highlighter";
 import { dracula } from "react-syntax-highlighter/dist/esm/styles/hljs";
