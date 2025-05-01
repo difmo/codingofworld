@@ -11,6 +11,7 @@ import MyBot from "../Abot/Mybot";
 import { FaHandshake, FaUserTie, FaLightbulb } from "react-icons/fa";
 import TimerButton from "../TimerButton";
 import NewProducts from "../Abot/NewProducts";
+import HelicopterAnimationComponent from "../Animations/HelicopterAnimationComponent";
 
 export const FadeUp = (delay) => {
   return {
@@ -121,6 +122,7 @@ const Hero = () => {
   return (
     <section className="relative overflow-hidden bg-white dark:bg-dark transition-all duration-700 ease-in-out">
       <ScrollToTop />
+
       <div className="container grid grid-cols-1 md:px-32 md:grid-cols-2">
         <div className="relative flex flex-col justify-center py-14 md:py-0 ">
           <div className="text-center md:text-left space-y-10 lg:max-w-[400px] z-10">

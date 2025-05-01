@@ -18,10 +18,14 @@ import TrainingPrograms from "../components/Training Programs/TrainingPrograms";
 import FactsSection from "../components/Statistics/FactsSection";
 import ShowLatestBanner from "../popupfeature/ShowPopupBanner";
 import PhotoGallery from "../components/PhotoGallery";
+import HelicopterAnimationComponent from "@/components/Animations/HelicopterAnimationComponent";
 
 const HomeScreen = () => {
   return (
-    <div>
+    <div className="relative">
+            <div className="absolute top-10 left-10 z-20 fly-helicopter hidden md:block">
+        <HelicopterAnimationComponent />
+      </div>
       <Hero />
       <Services />
       <Banner />
