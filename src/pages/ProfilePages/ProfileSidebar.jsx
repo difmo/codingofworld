@@ -1,9 +1,16 @@
+import { motion, AnimatePresence } from "framer-motion";
 import { useProfile } from "@/context/Providers/ProfileContext";
 import { Link, useNavigate } from "react-router-dom";
 import { getAuth, signOut } from "firebase/auth";
 import RouteConstants from "@/constants/routeConstants/RouteConstants";
 
-const ProfileSidebar = ({ toggleSidebar }) => {
+const sidebarVariants = {
+  hidden: { x: "-100%" },
+  visible: { x: 0 },
+  exit: { x: "-100%" },
+};
+
+const ProfileSidebar = ({ isSidebarOpen, toggleSidebar }) => {
   const { isAdmin, blogPermission, isUserLogin } = useProfile();
   const navigate = useNavigate();
   const auth = getAuth();
@@ -19,8 +26,14 @@ const ProfileSidebar = ({ toggleSidebar }) => {
   }
 
   if (blogPermission) {
-    sidebarLinks.push({ name: "Blog Permissions", path: RouteConstants.NAVIGATING_ROUTE.GOTO_CREATEBLOGS });
-    sidebarLinks.push({ name: "Create Courses", path: RouteConstants.NAVIGATING_ROUTE.GOTO_CREATECOURSES });
+    sidebarLinks.push({
+      name: "Blog Permissions",
+      path: RouteConstants.NAVIGATING_ROUTE.GOTO_CREATEBLOGS,
+    });
+    sidebarLinks.push({
+      name: "Create Courses",
+      path: RouteConstants.NAVIGATING_ROUTE.GOTO_CREATECOURSES,
+    });
   }
 
   const handleLogout = async () => {
@@ -33,34 +46,46 @@ const ProfileSidebar = ({ toggleSidebar }) => {
   };
 
   return (
-    <div className="w-64 p-4 rounded-md flex flex-col justify-between m-2 bg-white dark:bg-dark border-r">
-      {/* Top Section: Links */}
-      <ul className="space-y-2">
-        {sidebarLinks.map((link, idx) => (
-          <li key={idx}>
-            <Link
-              to={link.path}
-              onClick={toggleSidebar}
-              className="block px-4 py-2 text-primary font-bold border dark:text-white rounded-md hover:bg-gray-700 transition duration-200"
-            >
-              {link.name}
-            </Link>
-          </li>
-        ))}
-      </ul>
+    <AnimatePresence>
+      {isSidebarOpen && (
+        <motion.div
+          key="sidebar"
+          initial="hidden"
+          animate="visible"
+          exit="exit"
+          variants={sidebarVariants}
+          transition={{ duration: 0.3 }}
+          className="fixed top-0 left-0 h-full w-64 bg-white dark:bg-dark shadow-lg z-40 md:relative md:translate-x-0 md:shadow-none"
+        >
+          <div className="h-full p-4 flex flex-col justify-between border-r border-gray-200 dark:border-gray-700">
+            <ul className="space-y-2">
+              {sidebarLinks.map((link, idx) => (
+                <li key={idx}>
+                  <Link
+                    to={link.path}
+                    onClick={toggleSidebar}
+                    className="block px-4 py-2 text-primary font-bold border dark:text-white rounded-md hover:bg-gray-700 transition duration-200"
+                  >
+                    {link.name}
+                  </Link>
+                </li>
+              ))}
+            </ul>
 
-      {/* Bottom Section: Logout */}
-      {isUserLogin && (
-        <div className="mt-auto pt-6">
-          <button
-            onClick={handleLogout}
-            className="w-full px-4 py-2 border border-primary text-red-400 rounded-md hover:bg-gray-700 transition duration-200"
-          >
-            Logout
-          </button>
-        </div>
+            {isUserLogin && (
+              <div className="mt-auto pt-6">
+                <button
+                  onClick={handleLogout}
+                  className="w-full px-4 py-2 border border-primary text-red-400 rounded-md hover:bg-gray-700 transition duration-200"
+                >
+                  Logout
+                </button>
+              </div>
+            )}
+          </div>
+        </motion.div>
       )}
-    </div>
+    </AnimatePresence>
   );
 };
 
