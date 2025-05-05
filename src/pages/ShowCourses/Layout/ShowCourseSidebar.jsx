@@ -3,7 +3,7 @@ import { Link, useParams } from "react-router-dom";
 import { db } from "../../../firebase";
 import { collection, getDocs } from "firebase/firestore";
 
-const ShowCourseSidebar = ({ toggleSidebar }) => {
+const ShowCourseSidebar = ({ toggleSidebar, isSidebarOpen }) => {
   const { courseId } = useParams();
   const [topics, setTopics] = useState([]);
 
@@ -20,13 +20,13 @@ const ShowCourseSidebar = ({ toggleSidebar }) => {
         const sortedTopics = topicsList.sort((a, b) => {
           const extractDayNumber = (title) => {
             const match = title.match(/Day (\d+)/);
-            return match ? parseInt(match[1]) : -Infinity; // If no day is found, place at the end
+            return match ? parseInt(match[1]) : -Infinity;
           };
 
           const dayA = extractDayNumber(a.title);
           const dayB = extractDayNumber(b.title);
 
-          return dayB - dayA; // Sort in descending order based on the day number
+          return dayB - dayA;
         });
 
         setTopics(sortedTopics);
@@ -41,8 +41,11 @@ const ShowCourseSidebar = ({ toggleSidebar }) => {
   }, [courseId]);
 
   return (
-    <div className="h-screen space-y-6 text-primary bg-secondaryblue dark:bg-gray-900 overflow-y-auto scrollbar-hide transition-all duration-300 ease-in-out">
-
+    <div
+      className={` inset-y-0 left-0 w-64 h-screen space-y-6 text-primary bg-secondaryblue dark:bg-gray-900 overflow-y-auto scrollbar-hide transition-transform duration-300 ease-in-out transform ${
+        isSidebarOpen ? "translate-x-0" : "-translate-x-full"
+      } md:translate-x-0 md:static md:w-64`}
+    >
       <ul className="">
         <li>
           <h3 className="text-lg bg-primary rounded-xl text-white text-center font-semibold transition-all duration-300 ease-in-out">
@@ -54,16 +57,16 @@ const ShowCourseSidebar = ({ toggleSidebar }) => {
                 <div key={topic.id}>
                   <Link
                     to={`showcoursee/${courseId}/topic/${topic.id}`}
-                    onClick={() => toggleSidebar()}
+                    onClick={toggleSidebar}
                     className="block hover:bg-primary/30 px-2 text-white rounded-md transition-all duration-300 ease-in-out"
                   >
                     <span>
-                      {topic.title.split(' ').map((word, index) => (
+                      {topic.title.split(" ").map((word, index) => (
                         <span
                           key={index}
-                          className={word.toLowerCase().startsWith('day') ? 'text-red-500' : ''}
+                          className={word.toLowerCase().startsWith("day") ? "text-red-500" : ""}
                         >
-                          {word}{' '}
+                          {word}{" "}
                         </span>
                       ))}
                     </span>

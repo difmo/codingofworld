@@ -8,6 +8,7 @@ import 'prismjs';
 import 'prismjs/themes/prism-tomorrow.css'; // Dark theme for code blocks
 import Prism from "prismjs";
 import Loader from "../../../../components/Loader";
+import ShowAllCoursesPage from "../ShowAllCoursesPage";
 
 const ShowTopicDetailPage = () => {
   const [topic, setTopic] = useState(null);
@@ -136,7 +137,7 @@ const ShowTopicDetailPage = () => {
   };
 
   return (
-    <div className="max-w-4xl mx-auto p-0 md:p-6">
+    <div className="max-w-4xl mx-auto p-0 ">
       <div className="mt-4">
         {isEditMode ? (
           <input
@@ -208,7 +209,11 @@ const ShowTopicDetailPage = () => {
             Save Changes
           </button>
         )}
+
+<ShowAllCoursesPage/>
+
       </div>
+
     </div>
   );
 };

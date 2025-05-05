@@ -6,8 +6,6 @@ import Banner2 from "../components/Banner/Banner2";
 import Subscribe from "../components/Subscribe/Subscribe";
 import Features from "./WhatWeOffer";
 import FAQ from "./Faq";
-import AdComponent from "./GoogleAdd";
-import TimerButton from "../components/TimerButton";
 import Pricing from "./Pricing";
 import Video from "./VideoPage/Video";
 import Testimonials from "./Testimonials/Testimonials";
@@ -23,7 +21,7 @@ import HelicopterAnimationComponent from "@/components/Animations/HelicopterAnim
 const HomeScreen = () => {
   return (
     <div className="relative">
-            <div className="absolute top-10 left-10 z-20 fly-helicopter hidden md:block">
+      <div className="absolute top-10 left-10 z-20 fly-helicopter hidden md:block">
         <HelicopterAnimationComponent />
       </div>
       <Hero />

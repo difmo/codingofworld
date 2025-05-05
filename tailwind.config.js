@@ -43,5 +43,31 @@ export default {
       },
     },
   },
-  plugins: [],
+  plugins: [function ({ addUtilities }) {
+    addUtilities({
+      ".scrollbar-thin": {
+        "scrollbar-width": "thin",
+        "&::-webkit-scrollbar": {
+          width: "8px",
+        },
+      },
+      ".scrollbar-primary": {
+        "&::-webkit-scrollbar-thumb": {
+          backgroundColor: "theme('colors.primary')",
+          borderRadius: "4px",
+        },
+        "&::-webkit-scrollbar-track": {
+          backgroundColor: "theme('colors.gray.200')",
+        },
+        "&::-webkit-scrollbar-thumb:hover": {
+          backgroundColor: "theme('colors.primary.700')",
+        },
+      },
+      ".scrollbar-dark": {
+        "&::-webkit-scrollbar-track": {
+          backgroundColor: "theme('colors.gray.800')",
+        },
+      },
+    });
+  },],
 };

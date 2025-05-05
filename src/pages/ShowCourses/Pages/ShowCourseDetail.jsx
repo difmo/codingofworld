@@ -11,6 +11,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
 import Loader from "../../../components/Loader";
+import ShowAllCoursesPage from "./ShowAllCoursesPage";
 
 const ShowCourseDetails = () => {
   const [course, setCourse] = useState(null);
@@ -89,11 +90,11 @@ const ShowCourseDetails = () => {
   }
 
   return (
-    <div className="max-w-5xl mx-auto p-0 md:p-6 dark:bg-gray-900 dark:text-white transition-all duration-300 ease-in-out">
+    <div className="max-w-5xl mx-auto p-0 dark:bg-gray-900 dark:text-white transition-all duration-300 ease-in-out">
       {/* Header */}
 
       {/* Course Form */}
-      <div className="bg-white dark:bg-gray-800 rounded-lg p-6 space-y-6 transition-all duration-300 ease-in-out">
+      <div className="bg-white dark:bg-gray-800 rounded-lg  space-y-6 transition-all duration-300 ease-in-out">
         {/* Title Input */}
         <div>
           {isEditMode ? (
@@ -148,6 +149,7 @@ const ShowCourseDetails = () => {
             />
           )}
         </div>
+
       </div>
     </div>
   );

@@ -1,49 +1,72 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect } from "react";
 import { Outlet } from "react-router-dom";
 import ShowCourseSidebar from "./ShowCourseSidebar";
 import ShowCourseNavbar from "./ShowCourseNavbar";
 
-const ShowCourseLayout = ({ children }) => {
+const ShowCourseLayout = () => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
-  const sidebarRef = useRef(null);
-
-  const handleClickOutside = (event) => {
-    if (sidebarRef.current && !sidebarRef.current.contains(event.target)) {
-      setIsSidebarOpen(false);
-    }
-  };
-
-  useEffect(() => {
-    document.addEventListener('mousedown', handleClickOutside);
-    return () => {
-      document.removeEventListener('mousedown', handleClickOutside);
-    };
-  }, []);
 
   const toggleSidebar = () => {
     setIsSidebarOpen(!isSidebarOpen);
   };
 
+  // Load AdSense script dynamically
+  useEffect(() => {
+    const script = document.createElement("script");
+    script.src = "https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js";
+    script.async = true;
+    script.crossOrigin = "anonymous";
+    document.head.appendChild(script);
+
+    // Push ads to render
+    (window.adsbygoogle = window.adsbygoogle || []).push({});
+
+    return () => {
+      document.head.removeChild(script);
+    };
+  }, []);
+
   return (
     <div className="flex h-screen dark:bg-gray-900 transition-all duration-300 ease-in-out">
       {/* Sidebar */}
-      <div
-        ref={sidebarRef}
-        className={`${
-          isSidebarOpen ? "translate-x-0" : "-translate-x-full"
-        } fixed md:relative transition-transform duration-300 ease-in-out md:flex md:translate-x-0 flex-col bg-secondaryblue dark:bg-gray-800 w-72 h-full p-4 space-y-6 text-primary overflow-y-auto`}
-      >
-        <ShowCourseSidebar toggleSidebar={toggleSidebar} />
+      <div className="fixed md:static w-72 h-full md:flex flex-col">
+        <ShowCourseSidebar toggleSidebar={toggleSidebar} isSidebarOpen={isSidebarOpen} />
       </div>
 
-      {/* Main Content */}
-      <div className="flex flex-col flex-1">
-        <div className="w-full">
-          <ShowCourseNavbar toggleSidebar={toggleSidebar} />
+      {/* Main Content and Ads */}
+      <div className="flex flex-1">
+        {/* Main Content */}
+        <div className="flex flex-col flex-1">
+          <div className="w-full">
+            <ShowCourseNavbar toggleSidebar={toggleSidebar} />
+          </div>
+          <div className="flex-1 p-3 md:p-8 overflow-y-auto bg-white dark:bg-gray-800 transition-all duration-300 ease-in-out scrollbar-thin scrollbar-primary dark:scrollbar-dark">
+            <Outlet />
+          </div>
         </div>
-        <div className="flex-1 p-3 md:p-8 overflow-y-auto bg-white dark:bg-gray-800 transition-all duration-300 ease-in-out">
-          {children}
-          <Outlet />
+
+        {/* Right-Side Ad Column */}
+        <div className="hidden md:block w-80 p-4 bg-gray-100 dark:bg-gray-700 transition-all duration-300 ease-in-out">
+          <div className="space-y-4">
+            {/* Ad 1 (300x250) */}
+            <div className="text-center">
+              <ins
+                className="adsbygoogle"
+                style={{ display: "inline-block", width: "300px", height: "250px" }}
+                data-ad-client="ca-pub-YOUR_AD_CLIENT_ID"
+                data-ad-slot="YOUR_AD_SLOT_ID"
+              ></ins>
+            </div>
+            {/* Ad 2 (300x600) */}
+            <div className=" p-4 text-center">
+              <ins
+                className="adsbygoogle"
+                style={{ display: "inline-block", width: "300px", height: "600px" }}
+                data-ad-client="ca-pub-YOUR_AD_CLIENT_ID"
+                data-ad-slot="YOUR_AD_SLOT_ID"
+              ></ins>
+            </div>
+          </div>
         </div>
       </div>
     </div>
