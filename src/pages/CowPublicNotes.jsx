@@ -82,7 +82,7 @@ function PublicNotes() {
             {/* Password Input */}
             <div className="relative mb-4">
                 <input
-                    type="text"
+                    type="password"
                     placeholder="Enter password"
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
