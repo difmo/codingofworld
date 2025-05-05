@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Outlet } from "react-router-dom";
 import ProfileSidebar from "./ProfileSidebar";
-import { FiAlignRight, FiArrowLeftCircle, FiToggleLeft } from "react-icons/fi";
+import { FiAlignRight, FiArrowDownRight, FiArrowLeft, FiArrowLeftCircle, FiArrowRight, FiToggleLeft } from "react-icons/fi";
 
 const ProfileLayout = ({ children }) => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
@@ -37,7 +37,7 @@ const ProfileLayout = ({ children }) => {
           onClick={toggleSidebar}
           className="absolute top-4 right-4 z-30 px-4 py-2 bg-red-500 hover:bg-blue-700 text-white rounded-md shadow transition duration-300 ease-in-out focus:outline-none focus:ring-2 focus:ring-blue-400 md:hidden"
         >
-       { isSidebarOpen ?  <FiArrowLeftCircle/> : <FiAlignRight/>}
+       { !isSidebarOpen ?  <FiArrowRight/> : <FiArrowLeft/>}
         </button>
       </div>
     </div>
