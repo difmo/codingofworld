@@ -50,21 +50,21 @@ const ShowCourseLayout = () => {
           <div className="space-y-4">
             {/* Ad 1 (300x250) */}
             <div className="text-center">
-              <ins
+            <ins
                 className="adsbygoogle"
-                style={{ display: "inline-block", width: "300px", height: "250px" }}
-                data-ad-client="ca-pub-YOUR_AD_CLIENT_ID"
-                data-ad-slot="YOUR_AD_SLOT_ID"
-              ></ins>
+                style={{ display: "inline-block", width: "300px", height: "600px" }}
+                data-ad-client="ca-pub-4765539220931071"
+                data-ad-slot="3774960648"
+                ></ins> 
             </div>
             {/* Ad 2 (300x600) */}
             <div className=" p-4 text-center">
-              <ins
+            <ins
                 className="adsbygoogle"
                 style={{ display: "inline-block", width: "300px", height: "600px" }}
-                data-ad-client="ca-pub-YOUR_AD_CLIENT_ID"
-                data-ad-slot="YOUR_AD_SLOT_ID"
-              ></ins>
+                data-ad-client="ca-pub-4765539220931071"
+                data-ad-slot="3774960648"
+                ></ins> 
             </div>
           </div>
         </div>
