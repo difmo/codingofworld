@@ -19,7 +19,7 @@ import Loader from "./components/Loader";
 import { useProfile } from "./context/Providers/ProfileContext";
 import UserProfileRoute from "./routes/ProfileRoutes";
 import PublicNotes from "./pages/CowPublicNotes";
-
+import DartEditor from "./pages/EditorForProgramming/GeneralEditor";
 
 const App = () => {
   const {isAdmin,loading} = useProfile();
@@ -92,6 +92,7 @@ const App = () => {
           <Routes>
             <Route path="/premium-courses" element={<PremiumCourses />} />
             <Route path="/cow-notes" element={<PublicNotes />} />
+            <Route path="/code-editor" element={<DartEditor />} />
               <Route path={RouteConstants.ROOTROUTE.AUTH} element={<AuthRoutes />} />
             <Route element={<MainLayout />}>
               <Route path={RouteConstants.ROOTROUTE.HOME} element={<MainRoutes />} />

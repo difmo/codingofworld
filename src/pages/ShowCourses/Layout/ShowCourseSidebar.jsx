@@ -12,21 +12,22 @@ const ShowCourseSidebar = ({ toggleSidebar, isSidebarOpen }) => {
       try {
         const topicsCollectionRef = collection(db, "courses", courseId, "topics");
         const topicSnapshot = await getDocs(topicsCollectionRef);
-        const topicsList = topicSnapshot.docs.map((doc) => ({
-          id: doc.id,
-          ...doc.data(),
-        }));
 
-        const sortedTopics = topicsList.sort((a, b) => {
-          const extractDayNumber = (title) => {
-            const match = title.match(/Day (\d+)/);
-            return match ? parseInt(match[1]) : -Infinity;
+        const topicsList = topicSnapshot.docs.map((doc) => {
+          const data = doc.data();
+          return {
+            id: doc.id,
+            ...data,
+            createdAt: data.createdAt?.toDate?.() || null, // Safely convert Firestore Timestamp
           };
+        });
 
-          const dayA = extractDayNumber(a.title);
-          const dayB = extractDayNumber(b.title);
-
-          return dayB - dayA;
+        // Sort by createdAt: oldest to newest (newest at bottom)
+        const sortedTopics = topicsList.sort((a, b) => {
+          if (!a.createdAt && !b.createdAt) return 0;
+          if (!a.createdAt) return -1;
+          if (!b.createdAt) return 1;
+          return a.createdAt.getTime() - b.createdAt.getTime(); // ascending order
         });
 
         setTopics(sortedTopics);
@@ -42,11 +43,11 @@ const ShowCourseSidebar = ({ toggleSidebar, isSidebarOpen }) => {
 
   return (
     <div
-      className={` inset-y-0 left-0 w-64 h-screen space-y-6 text-primary bg-secondaryblue dark:bg-gray-900 overflow-y-auto scrollbar-hide transition-transform duration-300 ease-in-out transform ${
+      className={`inset-y-0 left-0 w-64 h-screen space-y-6 text-primary bg-secondaryblue dark:bg-gray-900 overflow-y-auto scrollbar-hide transition-transform duration-300 ease-in-out transform ${
         isSidebarOpen ? "translate-x-0" : "-translate-x-full"
       } md:translate-x-0 md:static md:w-64`}
     >
-      <ul className="">
+      <ul>
         <li>
           <h3 className="text-lg bg-primary rounded-xl text-white text-center font-semibold transition-all duration-300 ease-in-out">
             Course Topics
