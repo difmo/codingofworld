@@ -1,15 +1,37 @@
-import { useState } from 'react';
+import { useState, useRef } from 'react';
 import { db } from '../../../../firebase';
 import { collection, addDoc } from 'firebase/firestore';
 import { useNavigate, useParams } from 'react-router-dom';
 import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
 
+const modules = {
+  toolbar: [
+    [{ header: [1, 2, false] }],
+    ['bold', 'italic', 'underline', 'strike'],
+    [{ list: 'ordered' }, { list: 'bullet' }],
+    ['link', 'image'],
+    ['clean'],
+    // Table options are basic
+  ],
+  clipboard: {
+    matchVisual: false,
+  },
+};
+
+const formats = [
+  'header',
+  'bold', 'italic', 'underline', 'strike',
+  'list', 'bullet',
+  'link', 'image',
+];
+
 const AddTopicPage = () => {
   const [topicTitle, setTopicTitle] = useState('');
   const [topicContent, setTopicContent] = useState('');
   const { courseId } = useParams();
   const navigate = useNavigate();
+  const quillRef = useRef(null);
 
   const handleSaveTopic = async () => {
     if (!topicTitle || !topicContent) {
@@ -25,7 +47,6 @@ const AddTopicPage = () => {
         createdAt: new Date(),
       });
 
-      // Redirect back to the course page
       navigate(`/create-courses/edit-and-show/${courseId}`);
     } catch (error) {
       console.error('Error adding topic:', error);
@@ -49,11 +70,15 @@ const AddTopicPage = () => {
       <div className="mt-4">
         <label className="text-lg font-medium text-gray-700">Topic Content:</label>
         <ReactQuill
+          ref={quillRef}
           value={topicContent}
           onChange={setTopicContent}
+          modules={modules}
+          formats={formats}
           className="mt-2 w-full"
           placeholder="Write the content of your topic"
         />
+        <p className="text-sm text-gray-500 mt-2">ℹ️ Table support is limited without custom modules.</p>
       </div>
 
       <button
