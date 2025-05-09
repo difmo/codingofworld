@@ -14,17 +14,29 @@ const CreateCourseSidebar = ({ toggleSidebar }) => {
       try {
         const topicsCollectionRef = collection(db, "courses", courseId, "topics");
         const topicSnapshot = await getDocs(topicsCollectionRef);
-        const topicsList = topicSnapshot.docs.map((doc) => ({
-          id: doc.id,
-          ...doc.data(),
-        }));
 
-        setTopics(topicsList);
+        const topicsList = topicSnapshot.docs.map((doc) => {
+          const data = doc.data();
+          return {
+            id: doc.id,
+            ...data,
+            createdAt: data.createdAt?.toDate?.() || null, // Safely convert Firestore Timestamp
+          };
+        });
+
+        // Sort by createdAt: oldest to newest (newest at bottom)
+        const sortedTopics = topicsList.sort((a, b) => {
+          if (!a.createdAt && !b.createdAt) return 0;
+          if (!a.createdAt) return -1;
+          if (!b.createdAt) return 1;
+          return a.createdAt.getTime() - b.createdAt.getTime(); // ascending order
+        });
+
+        setTopics(sortedTopics);
       } catch (error) {
         console.error("Error fetching topics:", error);
       }
     };
-
     if (courseId) {
       fetchTopics();
     }

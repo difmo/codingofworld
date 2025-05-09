@@ -5,26 +5,6 @@ import { useNavigate, useParams } from 'react-router-dom';
 import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
 
-const modules = {
-  toolbar: [
-    [{ header: [1, 2, false] }],
-    ['bold', 'italic', 'underline', 'strike'],
-    [{ list: 'ordered' }, { list: 'bullet' }],
-    ['link', 'image'],
-    ['clean'],
-    // Table options are basic
-  ],
-  clipboard: {
-    matchVisual: false,
-  },
-};
-
-const formats = [
-  'header',
-  'bold', 'italic', 'underline', 'strike',
-  'list', 'bullet',
-  'link', 'image',
-];
 
 const AddTopicPage = () => {
   const [topicTitle, setTopicTitle] = useState('');
@@ -73,8 +53,27 @@ const AddTopicPage = () => {
           ref={quillRef}
           value={topicContent}
           onChange={setTopicContent}
-          modules={modules}
-          formats={formats}
+          modules={{
+            toolbar: [
+              [
+                { header: "1" },
+                { header: "2" },
+                { header: "3" },
+                { header: "4" },
+                { header: "5" },
+                { header: "6" },
+              ],
+              [{ font: [] }],
+              [{ size: ["small", "normal", "large", "huge"] }], //
+
+              ["bold", "italic", "underline"],
+              ["link"],
+              [{ list: "ordered" }, { list: "bullet" }],
+              ["blockquote", "code-block"],
+              ["image"],
+              ["clean"],
+            ],
+          }}
           className="mt-2 w-full"
           placeholder="Write the content of your topic"
         />
