@@ -15,6 +15,7 @@ import TopicDetailPage from "../pages/CreateCourses/Pages/Topics/TopicDetailPage
 import CreateNewCourse from "../pages/CreateCourses/Pages/CreateNewCourse";
 import AddTopicPage from "../pages/CreateCourses/Pages/Topics/AddTopicPage";
 import SubtopicDetailPage from "../pages/CreateCourses/Pages/Topics/SubtopicDetailPage";
+import SubtopicPage from "@/pages/ShowCourses/Pages/Topics/ShowSubTopicDetailsPage";
 
 const CourseRoutes = () => {
   const [isUserLogin, setIsUserLogin] = useState(null);
@@ -35,6 +36,10 @@ const CourseRoutes = () => {
           path="/showcoursee/:courseId/topic/:topicId"
           element={<ShowTopicDetailPage />}
         />
+          <Route
+                        path="/showcoursee/:courseId/topic/:topicId/subtopic/:subtopicId"
+                        element={<SubtopicPage />}
+                      />
       </Route>
 
 
@@ -57,6 +62,8 @@ const CourseRoutes = () => {
             path="/usercourse/:courseId/topic/:topicId/subtopic/:subtopicId/*"
             element={<SubtopicDetailPage />}
           />
+          
+          
         </Route>
       ) : (
         <Route path="*" element={<NotFound />} />

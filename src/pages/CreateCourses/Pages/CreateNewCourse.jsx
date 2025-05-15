@@ -78,7 +78,7 @@ const CreateNewCourse = () => {
       await setDoc(courseRef, courseData);
 
       alert("Course created successfully!");
-      navigate("/dashboard");
+      navigate("/create-courses");
     } catch (error) {
       console.error("Error creating course:", error);
       alert("Error creating course!");

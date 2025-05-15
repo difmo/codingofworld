@@ -18,6 +18,7 @@ import CreateNewCourse from "../pages/CreateCourses/Pages/CreateNewCourse";
 import AddTopicPage from "../pages/CreateCourses/Pages/Topics/AddTopicPage";
 import EditAndShowCourse from "../pages/CreateCourses/Pages/EditAndShowCourse";
 import { collection, getDocs, query, where } from "firebase/firestore";
+import SubtopicDetailsPage from "@/pages/CreateCourses/Pages/Topics/SubTopicPage";
 
 const CreateCourseRoutes = () => {
   const [isAdmin, setIsAdmin] = useState(false);
@@ -80,8 +81,8 @@ const CreateCourseRoutes = () => {
       {isUserLogin ? (
         <Route >
 
-          <Route element={<CreateCourseLayout />}> 
-          <Route path="/" element={<AllCoursesPage />} />
+          <Route element={<CreateCourseLayout />}>
+            <Route path="/" element={<AllCoursesPage />} />
             <Route path="/create-course" element={<CreateNewCourse />} />
             <Route path="/edit-and-show/:courseId" element={<EditAndShowCourse />} />
             {/* Add Topic */}
@@ -92,9 +93,14 @@ const CreateCourseRoutes = () => {
             <Route
               path="/edit-and-show/:courseId/topic/:topicId"
               element={<TopicDetailPage />}
-            /></Route>
+            />
+            <Route
+              path="/:courseId/topic/:topicId/subtopic/:subtopicId"
+              element={<SubtopicDetailsPage />}
+            />
+          
 
-
+          </Route>
         </Route>
       ) : (
         <Route path="*" element={<NotFound />} />

@@ -18,6 +18,16 @@ const EditAndShowCourse = () => {
   const navigate = useNavigate();
   const user = auth.currentUser;
 
+  const replaceCodeWithLanguageClass = (content) => {
+    return content.replace(/<pre><code>([\s\S]*?)<\/code><\/pre>/g, (match, code) => {
+      let language = 'js'; // Default to JavaScript
+      if (code.includes('def') && code.includes('print')) language = 'python';
+      if (code.includes('<html') && code.includes('</html>')) language = 'html';
+      if (code.includes('function') && code.includes('console.log')) language = 'javascript';
+      if (code.includes('class') && code.includes('public')) language = 'java';
+      return `<pre class="language-${language}"><code>${code}</code></pre>`;
+    });
+  };
   useEffect(() => {
     const fetchCourse = async () => {
       try {
@@ -76,7 +86,7 @@ const EditAndShowCourse = () => {
   }
 
   return (
-    <div className="max-w-4xl mx-auto p-6">
+    <div className=" mx-auto p-6">
       {/* Header */}
       <div className="mb-6 text-center">
         <h2 className="text-3xl font-semibold text-gray-900">
@@ -86,7 +96,7 @@ const EditAndShowCourse = () => {
       </div>
 
       {/* Course Form */}
-      <div className="bg-white shadow-lg rounded-lg p-6 space-y-6">
+      <div className="bg-white  rounded-lg p-6 space-y-6">
 
         {/* Title Input */}
         <div>
@@ -138,7 +148,20 @@ const EditAndShowCourse = () => {
           ) : (
             <div
               className="mt-4 prose max-w-none text-gray-700"
-              dangerouslySetInnerHTML={{ __html: course.content }}
+              dangerouslySetInnerHTML={{   __html: replaceCodeWithLanguageClass(course?.content)
+                .replace(/<h1>/g, '<h1 class="text-red-500">')
+                .replace(/<h2>/g, '<h2 class="text-red-500">')
+                .replace(/<h3>/g, '<h3 class="text-red-500">')
+                .replace(/<h4>/g, '<h4 class="text-red-500">')
+                .replace(/<\/h1>/g, '</h1>')
+                .replace(/<\/h2>/g, '</h2>')
+                .replace(/<pre><code>/g, '<pre class="language-js" style="color: black;"><code>')
+                .replace(/<\/code><\/pre>/g, '</code></pre>')
+                .replace(/<p>/g, '<p class="dark:text-white">')
+                .replace(/<strong>/g, '<strong class="text-red-500">')
+                .replace(/<ul>/g, '<ul class="list-disc dark:text-white pl-5">') 
+                .replace(/<ol>/g, '<ol class="list-decimal pl-5">')  
+                .replace(/<li>/g, '<li class="dark:text-white">')   }}
             />
           )}
         </div>
