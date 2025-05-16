@@ -10,6 +10,7 @@ import {
 import { db } from "../../../firebase";
 import Modal from "./Model";
 import { useLocation } from "react-router-dom";
+import Loader from "@/components/Loader";
 
 const StudentData = () => {
   const [studentData, setStudentData] = useState([]);

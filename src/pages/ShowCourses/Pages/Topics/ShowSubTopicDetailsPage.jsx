@@ -81,7 +81,7 @@ const replaceCodeWithLanguageClass = (content) => {
                 .replace(/<li>/g, '<li class="dark:text-white">')  
             }}
           />
-      </div>
+      </div>    
     </div>
   );
 };
