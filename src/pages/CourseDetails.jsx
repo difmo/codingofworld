@@ -4,6 +4,7 @@ import { db } from "../firebase";
 import { doc, getDoc } from "firebase/firestore";
 import Loader from "../components/Loader";
 import FormattedContent from "@/Utils/FormattedContent";
+import RouteConstants from "@/constants/routeConstants/RouteConstants";
 
 const CourseDetails = () => {
   const navigate = useNavigate();
@@ -86,7 +87,7 @@ const CourseDetails = () => {
               </div>
 
               <button
-                onClick={() => navigate(RouteConstants.MAINROUTE.INTERNSHIPFORM)}
+                onClick={() => navigate(RouteConstants.MAINROUTE.CONTACTUS)}
                 className="mt-8 w-full px-6 py-3 bg-primary text-white font-semibold text-lg rounded-md shadow-md transition-all duration-300 hover:bg-primary/90 hover:scale-[1.03]"
               >
                 ENROLL NOW
