@@ -63,7 +63,6 @@ const InternshipDetails = () => {
           {/* Sidebar */}
           <div className="bg-white h-fit dark:bg-neutral-900 rounded-xl p-6 shadow-lg flex flex-col justify-between sticky top-20">
             <div>
-              <h2 className="text-xl font-semibold text-primary mb-4">Company Bio</h2>
               <div className="prose dark:prose-invert max-w-none">
                 <FormattedContent html={internship.bio} />
               </div>

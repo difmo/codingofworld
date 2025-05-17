@@ -177,7 +177,7 @@ const Hero = () => {
             >
               <div className="w-[312px]">
                 {" "}
-                <TimerButton />{" "}
+                {/* <TimerButton />{" "} */}
               </div>
 
               <div className="flex items-center gap-4">

@@ -12,6 +12,7 @@ import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
 import Loader from "../../../components/Loader";
 import ShowAllCoursesPage from "./ShowAllCoursesPage";
+import FormattedContent from "@/Utils/FormattedContent";
 
 const ShowCourseDetails = () => {
   const [course, setCourse] = useState(null);
@@ -86,7 +87,7 @@ const ShowCourseDetails = () => {
   };
 
   if (!course) {
-    return <div className="text-center text-xl text-gray-600 dark:text-gray-300"><Loader/></div>;
+    return <div className="text-center text-xl text-gray-600 dark:text-gray-300"><Loader /></div>;
   }
 
   return (
@@ -114,39 +115,13 @@ const ShowCourseDetails = () => {
         {/* Content Area */}
         <div>
           {isEditMode ? (
-            <ReactQuill
-              value={content}
-              onChange={setContent}
-              className="mt-2 w-full h-96 transition-all duration-300 ease-in-out"
-              placeholder="Write the content of your course"
-              modules={{
-                toolbar: [
-                  [{ header: "1" }, { header: "2" }, { header: "3" }],
-                  [{ font: [] }],
-                  [{ size: ["small", "normal", "large", "huge"] }],
-                  ["bold", "italic", "underline"],
-                  ["link"],
-                  [{ list: "ordered" }, { list: "bullet" }],
-                  ["blockquote", "code-block"],
-                  ["image"],
-                  ["clean"],
-                ],
-              }}
-            />
+            <RichTextEditor value={content} onChange={setContent} placeholder="Write your course content here..." />
+
           ) : (
-            <div
-              className=" prose max-w-none text-white text-sm md:text-xl dark:text-gray-300 transition-all duration-300 ease-in-out"
-              dangerouslySetInnerHTML={{
-                __html: course.content
-                  .replace(/<h1>/g, '<h1 style="color: red;">')
-                  .replace(/<h2>/g, '<h2 style="color: red;">')
-                  .replace(/<h3>/g, '<h3 style="color: red;">')
-                  .replace(/<h4>/g, '<h4 style="color: red;">')
-                  .replace(/<p style="color: black;">/g, '<p style="color: white;')
-                  .replace(/<\/h1>/g, "</h1>")
-                  .replace(/<\/h2>/g, "</h2>"),
-              }}
-            />
+            <FormattedContent html={course.content} />
+
+
+
           )}
         </div>
 

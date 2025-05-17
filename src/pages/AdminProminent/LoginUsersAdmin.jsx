@@ -1,26 +1,32 @@
 import React, { useState, useEffect } from 'react';
 import { collection, getDocs } from 'firebase/firestore';
-import { db } from '../../firebase'; // Make sure to import your Firestore instance
+import { db } from '../../firebase';
 
 const LoginUsersAdmin = () => {
   const [users, setUsers] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
-  // Fetch users data from Firestore on component mount
   useEffect(() => {
     const fetchUsers = async () => {
       try {
         const querySnapshot = await getDocs(collection(db, 'users'));
         const usersData = querySnapshot.docs.map((doc) => {
           const data = doc.data();
+          let createdAt = 'N/A';
+
+          if (data.createdAt && typeof data.createdAt.toDate === 'function') {
+            createdAt = data.createdAt.toDate().toLocaleString();
+          }
+
           return {
             id: doc.id,
-            email: data.email,
-            uid: data.uid,
-            createdAt: data.createdAt.toDate().toLocaleString(), // Format Firestore timestamp
+            email: data.email || 'No Email',
+            uid: data.uid || 'No UID',
+            createdAt,
           };
         });
+
         setUsers(usersData);
       } catch (err) {
         setError('Error fetching users: ' + err.message);
@@ -32,7 +38,6 @@ const LoginUsersAdmin = () => {
     fetchUsers();
   }, []);
 
-  // Show loading, error or data
   if (loading) return <div>Loading users...</div>;
   if (error) return <div className="text-red-600">{error}</div>;
 
@@ -47,7 +52,7 @@ const LoginUsersAdmin = () => {
           <p className="text-center text-gray-500">No users available.</p>
         ) : (
           <div className="overflow-x-auto">
-            <table className="min-w-full table-auto">
+            <table className="min-w-full table-auto border border-gray-300">
               <thead className="text-white bg-green-600">
                 <tr>
                   <th className="px-4 py-2 border">Email</th>
@@ -57,7 +62,7 @@ const LoginUsersAdmin = () => {
               </thead>
               <tbody>
                 {users.map((user, index) => (
-                  <tr key={index} className="bg-gray-50 hover:bg-gray-100">
+                  <tr key={index} className="bg-white hover:bg-gray-100">
                     <td className="px-4 py-2 text-center border">{user.email}</td>
                     <td className="px-4 py-2 text-center border">{user.uid}</td>
                     <td className="px-4 py-2 text-center border">{user.createdAt}</td>

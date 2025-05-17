@@ -8,7 +8,6 @@ const AdminSidebar = ({ toggleSidebar }) => {
   // Define sidebar navigation data inside the same file
   const sidebarData = [
     { label: "Dashboard", path: "/admin" },
-    { label: "Interns", path: "/admin/internship" },
     { label: "CreateNewInternship", path: "/admin/create-new-intership" },
     { label: "Placement Stats", path: "/admin/create-stats" },
     { label: "Contact", path: "/admin/client-contact" },
@@ -18,7 +17,7 @@ const AdminSidebar = ({ toggleSidebar }) => {
     { label: "All Internship", path: "/admin/allInternship" },
     // { label: "Create New Course", path: "/admin/createnewcourse" },
     { label: "All Course", path: "/admin/all-courses" },
-    { label: "Student Test", path: "admin/admin-student-test" },
+    // { label: "Student Test", path: "admin/admin-student-test" },
     { label: "Plan", path: "/admin/student/plan" },
     { label: "Create Banners", path: "/admin/create-banner" },
     { label: "Create Programs", path: "/admin/create-home-programs" },
@@ -35,8 +34,7 @@ const AdminSidebar = ({ toggleSidebar }) => {
           <li
             key={index}
             onClick={() => {
-              navigate(item.path); // Use the path from the sidebarData
-              // toggleSidebar();
+              navigate(item.path); 
             }}
             className="flex items-center px-4 py-1 mb-2 text-black transition duration-200 rounded-lg cursor-pointer hover:text-white hover:bg-primary"
           >

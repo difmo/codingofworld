@@ -32,7 +32,7 @@ const formatHTML = (rawHTML) => {
 const FormattedContent = ({ html }) => {
   return (
     <div
-      className="text-lg leading-relaxed text-gray-700 dark:text-white font-anek_telugu transition-all duration-700 ease-in-out"
+      className="text-lg prose leading-relaxed text-gray-700 dark:text-white font-anek_telugu transition-all duration-700 ease-in-out"
       dangerouslySetInnerHTML={{ __html: formatHTML(html) }}
     />
   );

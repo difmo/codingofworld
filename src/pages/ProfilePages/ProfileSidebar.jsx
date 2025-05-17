@@ -10,7 +10,7 @@ const ProfileSidebar = ({ toggleSidebar }) => {
 
   const sidebarLinks = [
     { name: "Profile", path: "/profile" },
-    { name: "Contributions", path: "/profile/community-section" },
+    // { name: "Contributions", path: "/profile/community-section" },
     { name: "Edit Profile", path: "/profile/edit-profile" },
   ];
 
@@ -33,8 +33,7 @@ const ProfileSidebar = ({ toggleSidebar }) => {
   };
 
   return (
-    <div className="w-64 p-4 rounded-md flex flex-col justify-between m-2 bg-white dark:bg-dark border-r">
-      {/* Top Section: Links */}
+    <div className="w-64 p-4 rounded-md flex flex-col -z justify-between m-2 bg-white dark:bg-dark border-r">
       <ul className="space-y-2">
         {sidebarLinks.map((link, idx) => (
           <li key={idx}>
@@ -49,7 +48,6 @@ const ProfileSidebar = ({ toggleSidebar }) => {
         ))}
       </ul>
 
-      {/* Bottom Section: Logout */}
       {isUserLogin && (
         <div className="mt-auto pt-6">
           <button

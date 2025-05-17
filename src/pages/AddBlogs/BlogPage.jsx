@@ -6,6 +6,7 @@ import "react-quill/dist/quill.snow.css";
 import SyntaxHighlighter from "react-syntax-highlighter";
 import { dracula } from "react-syntax-highlighter/dist/esm/styles/hljs";
 import MainLoader from "../../components/MainLoader";
+import FormattedContent from "@/Utils/FormattedContent";
 
 const BlogPage = () => {
   const { blogId } = useParams();
@@ -62,10 +63,9 @@ const BlogPage = () => {
       <div className="container max-w-5xl mx-auto text-black pt-9">
         <h1 className="mb-6 text-3xl font-semibold text-primary">{blog.title}</h1>
 
-        <div
-          className="p-8 rounded border-primary/40 mb-6 content-container"
-          dangerouslySetInnerHTML={{ __html: blog.content }}
-        />
+      
+
+        <FormattedContent html={blog.content}/>
 
         {Array.isArray(blog.fields) && blog.fields.length > 0 ? (
           blog.fields.map((field, index) => (

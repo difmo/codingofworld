@@ -22,7 +22,7 @@ const MainNavbar = () => {
   const [isMobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [showPopup, setShowPopup] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
-  const [darkMode, setDarkMode] = useState(true);
+  const [darkMode, setDarkMode] = useState(false);
   const popupRef = useRef(null);
   const navigate = useNavigate();
 

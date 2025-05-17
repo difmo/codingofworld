@@ -12,27 +12,21 @@ const ProfileLayout = ({ children }) => {
 
   return (
     <div className="flex min-h-screen dark:bg-dark relative">
-      {/* Sidebar */}
       <div
         className={`${
           isSidebarOpen ? "flex" : "hidden"
-        } fixed z-20 md:relative md:flex transition-all duration-300 ease-in-out`}
+        } fixed  md:relative md:flex transition-all duration-300 ease-in-out`}
       >
         <ProfileSidebar isSidebarOpen={isSidebarOpen} />
       </div>
 
-      {/* Main content */}
       <div className="flex flex-col flex-1">
-        {/* Uncomment if using a top nav */}
-        {/* <AdminNavbar toggleSidebar={toggleSidebar} /> */}
-
-        {/* Page content */}
-        <div className="flex-1 overflow-y-auto bg-white dark:bg-gray-900 p-4">
+       
+        <div className="flex-1 overflow-y-auto bg-white dark:bg-gray-900 p-4 -z-10">
           {children}
           <Outlet />
         </div>
 
-        {/* Toggle button (visible only on small screens, optional) */}
         <button
           onClick={toggleSidebar}
           className="absolute top-4 right-4 z-30 px-4 py-2 bg-red-500 hover:bg-blue-700 text-white rounded-md shadow transition duration-300 ease-in-out focus:outline-none focus:ring-2 focus:ring-blue-400 md:hidden"

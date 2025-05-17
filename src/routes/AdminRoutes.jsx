@@ -20,6 +20,7 @@ import AdminBlogPage from "../pages/AdminProminent/AdminblogPage";
 import Admincourse from "../pages/AdminProminent/Admincourse";
 import EditAndShowCourse from "../pages/CreateCourses/Pages/EditAndShowCourse";
 import CreateLiveNewInternship from "../pages/AdminProminent/CreateNewIntership/CreateLiveNewInternship";
+import CreatenewCourse from "@/pages/AdminProminent/CourseAdmin/CreatenewCourse";
 
 const AdminRoutes = () => (
   <>
@@ -36,6 +37,7 @@ const AdminRoutes = () => (
       <Route path="/admin-student-test" element={<StudentTestDetails />} />
       <Route path="/edit-and-show/:courseId" element={<EditAndShowCourse />} />
       <Route path="/all-courses" element={<Allcourse />} />
+      <Route path="/add-course" element={<CreatenewCourse />} />
       <Route path="/create-stats" element={<CreateStatistics />} />
       <Route
         path="/create-new-intership"

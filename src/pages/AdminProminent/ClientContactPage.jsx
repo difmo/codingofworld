@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { collection, getDocs } from "firebase/firestore";
 import { db } from "../../firebase"; // Import the Firestore instance
+import Loader from "@/components/Loader";
 
 const ClientContactPage = () => {
   // State to store contacts data and loading state

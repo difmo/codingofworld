@@ -1,16 +1,15 @@
 import React, { useState, useEffect } from "react";
-import { db } from "../../../firebase"; // Import Firestore config
-import { collection, getDocs, doc, deleteDoc } from "firebase/firestore"; // Firestore methods
+import { db } from "../../../firebase";
+import { collection, getDocs, doc, deleteDoc } from "firebase/firestore"; 
 import { useNavigate } from "react-router-dom";
 import Loader from "../../../components/Loader";
 
 const Allcourse = () => {
-  const [loading, setLoading] = useState(true); // Loading state
-  const navigate = useNavigate(); // For navigation
-  const [course, setCourse] = useState([]); // Store course data
-  const [error, setError] = useState(null); // Error state
+  const [loading, setLoading] = useState(true);
+  const navigate = useNavigate(); 
+  const [course, setCourse] = useState([]); 
+  const [error, setError] = useState(null); 
 
-  // Fetch Course data from Firestore
   useEffect(() => {
     const fetchCourse = async () => {
       try {
@@ -31,7 +30,6 @@ const Allcourse = () => {
     fetchCourse();
   }, []);
 
-  // Handle delete action
   const handleDelete = async (id) => {
     if (window.confirm("Are you sure you want to delete this course?")) {
       try {
@@ -46,18 +44,16 @@ const Allcourse = () => {
     }
   };
 
-  // Handle edit action (navigate to edit form with course ID)
   const handleEdit = (id) => {
-    console.log("Navigating to edit course with ID:", id); // Debug log
     navigate(`/edit-course/${id}`);
   };
 
+  const handleAddCourse = () => {
+    navigate("/admin/add-course"); // Assumes you have a route for adding
+  };
+
   if (loading) {
-    return (
-      <div>
-        <Loader />
-      </div>
-    );
+    return <Loader />;
   }
 
   if (error) {
@@ -65,7 +61,7 @@ const Allcourse = () => {
   }
 
   return (
-    <div className="p-4">
+    <div className="p-4 relative">
       <h1 className="text-2xl font-bold mb-4 text-center">All Course</h1>
       <div className="overflow-x-auto">
         <table className="w-full table-auto mx-auto text-center">
@@ -108,6 +104,15 @@ const Allcourse = () => {
           </tbody>
         </table>
       </div>
+
+      {/* Floating + Button */}
+      <button
+        onClick={handleAddCourse}
+        className="fixed bottom-6 right-6 bg-green-500 text-white rounded-full w-14 h-14 flex items-center justify-center shadow-lg hover:bg-green-600 text-3xl"
+        title="Add Course"
+      >
+        +
+      </button>
     </div>
   );
 };

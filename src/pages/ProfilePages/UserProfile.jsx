@@ -36,7 +36,7 @@ const UserProfile = () => {
             <p className="text-sm text-gray-600 dark:text-gray-400">Language Used: {user.skills}</p>
           </div>
         </div>
-        <div className="mt-6 grid grid-cols-2 gap-6">
+        {/* <div className="mt-6 grid grid-cols-2 gap-6">
           <div className="text-center">
             <div className="text-3xl font-bold text-gray-900 dark:text-white">{user.codingScore || 0}</div>
             <div className="text-sm text-gray-500 dark:text-gray-400">Coding Score</div>
@@ -45,7 +45,7 @@ const UserProfile = () => {
             <div className="text-3xl font-bold text-gray-900 dark:text-white">{user.problemSolved || 0}</div>
             <div className="text-sm text-gray-500 dark:text-gray-400">Problems Solved</div>
           </div>
-        </div>
+        </div> */}
         <div className="mt-6">
           <a
             href={`https://github.com/${user.github}`}
