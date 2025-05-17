@@ -2,6 +2,7 @@ import React from "react";
 import { FaBell } from "react-icons/fa";
 import BgImage from "../../assets/bg.png";
 import { motion } from "framer-motion";
+import RouteConstants from "@/constants/routeConstants/RouteConstants";
 const bgStyle = {
   backgroundImage: `url(${BgImage})`,
   backgroundRepeat: "no-repeat",
@@ -39,7 +40,7 @@ const Subscribe = () => {
               chunks.
             </p>
             <a
-              href="/internshipform"
+              href={RouteConstants.MAINROUTE.INTERNSHIPFORM}
               className="primary-btn !mt-8 inline-flex items-center gap-4 group"
             >
               Subscribe Now

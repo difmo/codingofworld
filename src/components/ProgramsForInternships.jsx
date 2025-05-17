@@ -4,7 +4,7 @@ import { collection, getDocs } from "firebase/firestore";
 import { db } from "../firebase";
 import Loader from "./Loader";
 
-const Internships = () => {
+const ProgramsForInternships = () => {
   const [internships, setInternships] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -115,4 +115,4 @@ const Internships = () => {
   );
 };
 
-export default Internships;
+export default ProgramsForInternships;

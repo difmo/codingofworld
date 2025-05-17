@@ -5,10 +5,10 @@ import ContactUs from "../pages/ContactUs";
 import Services from "../components/Services/Services";
 import About from "../pages/About";
 import TrainingTeam from "../pages/OurTrainingTeam";
-import InternshipsSection from "../pages/Internship";
 import InternshipForm from "../pages/IntershipForm";
 import NotFound from "../pages/NotFound";
 import RouteConstants from "../constants/routeConstants/RouteConstants";
+import ProgramsForInternships from "@/components/ProgramsForInternships";
 
 const MainRoutes = () => (
     <Routes>
@@ -17,8 +17,9 @@ const MainRoutes = () => (
         <Route path={RouteConstants.MAINROUTE.SERVICES} element={<Services />} />
         <Route path={RouteConstants.MAINROUTE.ABOUT} element={<About />} />
         <Route path={RouteConstants.MAINROUTE.TRAININGTEAM} element={<TrainingTeam />} />
-        <Route path={RouteConstants.MAINROUTE.PROGRAMS} element={<InternshipsSection />} />
+        <Route path={RouteConstants.MAINROUTE.PROGRAMS} element={<ProgramsForInternships />} />
         <Route path={RouteConstants.MAINROUTE.INTERNSHIPFORM} element={<InternshipForm />} />
+        <Route path={"/internshipform"} element={<InternshipForm />} />
         <Route path="*" element={<NotFound />} />
     </Routes>
 );

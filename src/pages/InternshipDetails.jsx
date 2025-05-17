@@ -4,6 +4,7 @@ import { db } from "../firebase";
 import { doc, getDoc } from "firebase/firestore";
 import Loader from "../components/Loader";
 import RouteConstants from "@/constants/routeConstants/RouteConstants";
+import FormattedContent from "@/Utils/FormattedContent";
 
 const InternshipDetails = () => {
   const navigate = useNavigate();
@@ -33,48 +34,44 @@ const InternshipDetails = () => {
     fetchInternship();
   }, [id]);
 
-  if (loading) {
-    return <Loader />;
-  }
-
-  if (error) {
-    return <div className="text-xl text-center text-red-500">{error}</div>;
-  }
-
-  if (!internship) {
-    return <p className="text-xl text-center">Internship not found!</p>;
-  }
+  if (loading) return <Loader />;
+  if (error) return <div className="text-xl text-center text-red-500 mt-10">{error}</div>;
+  if (!internship) return <p className="text-xl text-center mt-10">Internship not found!</p>;
 
   return (
-    <div className="px-4 top-0 relative z-10 dark:bg-dark dark:text-white transition-all duration-700 ease-in-out">
-      {/* Thumbnail Section */}
-      <div className="w-full">
-        <img
-          src={internship.thumbnailUrl}
-          alt={internship.title}
-          className="w-full h-auto object-cover rounded-lg shadow-lg transition-all duration-700 ease-in-out"
-        />
-      </div>
-
-      {/* Description Section */}
-      <div className="mt-12 content-container flex flex-col sm:flex-row sm:justify-between sm:px-8 lg:px-12 xl:px-12">
-        <div className="w-full pb-10 sm:w-4/5">
-          <p
-            className="text-lg leading-relaxed text-gray-700 dark:text-white font-anek_telugu transition-all duration-700 ease-in-out"
-            dangerouslySetInnerHTML={{ __html: internship.description }}
-          />
+    <div className="flex justify-center px-4 py-8 dark:bg-dark dark:text-white min-h-screen">
+      <div className="w-full max-w-6xl">
+        {/* Internship Banner */}
+        {/* Custom Internship Banner */}
+        <div className="bg-gradient-to-r from-primary to-blue-500 text-white rounded-xl p-8 shadow-xl">
+          <h1 className="text-4xl font-bold mb-2">{internship.title || "Frontend Developer Internship"}</h1>
+          <p className="text-lg font-medium">{internship.company || "Difmo Technologies Pvt. Ltd."}</p>
+          <p className="text-md mt-1">{internship.location || "Lucknow,Gomti Nagar"}</p>
         </div>
-        <div className="w-full p-6 sm:w-full sm:p-0 sm:mt-6">
-          <div className="mb-6 content-containermd:px-18 lg:px-24">
-            <p
-              className="text-lg leading-relaxed text-gray-700 dark:text-white font-anek_telugu transition-all duration-700 ease-in-out"
-              dangerouslySetInnerHTML={{ __html: internship.bio }}
-            />
+
+
+        {/* Internship Content */}
+        <div className="mt-10 grid grid-cols-1 md:grid-cols-3 gap-10">
+          {/* Description */}
+          <div className="md:col-span-2 bg-white dark:bg-neutral-900 rounded-xl p-6 shadow-lg">
+            <h2 className="text-2xl font-semibold mb-4 text-primary">About the Internship</h2>
+            <div className="prose dark:prose-invert max-w-none">
+              <FormattedContent html={internship.description} />
+            </div>
           </div>
-          <div className="text-center sm:px-18 lg:px-24">
+
+          {/* Sidebar */}
+          <div className="bg-white h-fit dark:bg-neutral-900 rounded-xl p-6 shadow-lg flex flex-col justify-between sticky top-20">
+            <div>
+              <h2 className="text-xl font-semibold text-primary mb-4">Company Bio</h2>
+              <div className="prose dark:prose-invert max-w-none">
+                <FormattedContent html={internship.bio} />
+              </div>
+            </div>
+
             <button
               onClick={() => navigate(RouteConstants.MAINROUTE.INTERNSHIPFORM)}
-              className="px-6 py-3 text-white transition-all duration-300 transform rounded-lg shadow-lg bg-primary hover:bg-primary/80 hover:scale-105 dark:bg-primary dark:hover:bg-primary/90"
+              className="mt-8 w-full px-6 py-3 bg-primary text-white font-semibold text-lg rounded-md shadow-md transition-all duration-300 hover:bg-primary/90 hover:scale-[1.03]"
             >
               ENROLL NOW
             </button>
@@ -83,6 +80,7 @@ const InternshipDetails = () => {
       </div>
     </div>
   );
+
 };
 
 export default InternshipDetails;
