@@ -5,6 +5,7 @@ import { FaBookmark, FaClipboard, FaLightbulb, FaPen } from "react-icons/fa";
 import { AiOutlineCheck } from "react-icons/ai";
 import { useNavigate } from "react-router-dom";
 import TrainingTeam from "./OurTrainingTeam";
+import RouteConstants from "@/constants/routeConstants/RouteConstants";
 
 // Framer Motion Variants
 const fadeInUp = {
@@ -146,7 +147,7 @@ export const AboutContent = () => {
             <motion.div
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
-              onClick={() => navigate("/internshipform")}
+              onClick={() => navigate(RouteConstants.MAINROUTE.INTERNSHIPFORM)}
               className="px-6 py-3 text-sm border text-primary bg-red-100 hover:bg-red-500 hover:text-white hover:shadow-md hover:shadow-yellow-200 border-gray-300 rounded-md w-32 flex justify-center cursor-pointer"
             >
               Apply Now

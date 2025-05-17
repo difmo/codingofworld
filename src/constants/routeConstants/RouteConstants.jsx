@@ -22,7 +22,7 @@ class RouteConstants {
     ABOUT: "/about",
     TRAININGTEAM: "/trainingteam",
     PROGRAMS: "/programs",
-    INTERNSHIPFORM: "/internshipform",
+    INTERNSHIPFORM: "/internship-training-from",
   };
 
   static AUTHROUTE = {

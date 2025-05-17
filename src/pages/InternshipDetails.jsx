@@ -72,7 +72,7 @@ const InternshipDetails = () => {
           </div>
           <div className="text-center sm:px-18 lg:px-24">
             <button
-              onClick={() => navigate("/internshipform")}
+              onClick={() => navigate(RouteConstants.MAINROUTE.INTERNSHIPFORM)}
               className="px-6 py-3 text-white transition-all duration-300 transform rounded-lg shadow-lg bg-primary hover:bg-primary/80 hover:scale-105 dark:bg-primary dark:hover:bg-primary/90"
             >
               ENROLL NOW
