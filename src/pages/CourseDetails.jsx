@@ -62,9 +62,9 @@ const CourseDetails = () => {
           {/* Internship Banner */}
           {/* Custom Internship Banner */}
           <div className="bg-gradient-to-r from-primary to-blue-500 text-white rounded-xl p-8 shadow-xl">
-            <h1 className="text-4xl font-bold mb-2">{course.title || "Frontend Developer Internship"}</h1>
-            <p className="text-lg font-medium">{course.company || "Difmo Technologies Pvt. Ltd."}</p>
-            <p className="text-md mt-1">{course.shortDescription || "Lucknow,Gomti Nagar"}</p>
+            <h1 className="md:text-4xl text-xl font-bold mb-2">{course.title || "Frontend Developer Internship"}</h1>
+            <p className="md:text-lg font-medium">{course.company || "Difmo Technologies Pvt. Ltd."}</p>
+            <p className="md:text-md mt-1">{course.shortDescription || "Lucknow,Gomti Nagar"}</p>
           </div>
 
 
