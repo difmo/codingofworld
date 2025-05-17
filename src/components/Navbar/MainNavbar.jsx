@@ -126,7 +126,7 @@ const MainNavbar = () => {
           </ul>
         </div>
 
-        <div className="lg:hidden text-white">
+        <div className="lg:hidden text-black dark:text-white">
           <IoMdMenu
             className="text-4xl cursor-pointer"
             onClick={toggleMobileMenu}
