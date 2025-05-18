@@ -45,7 +45,7 @@ const Allcourse = () => {
   };
 
   const handleEdit = (id) => {
-    navigate(`/edit-course/${id}`);
+    navigate(`/admin/edit-course/${id}`);
   };
 
   const handleAddCourse = () => {

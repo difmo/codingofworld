@@ -5,6 +5,7 @@ import ReactQuill from "react-quill"; // For rich text editor
 import "react-quill/dist/quill.snow.css"; // ReactQuill styling
 import { useParams, useNavigate } from "react-router-dom"; // React Router hooks
 import { getStorage, ref, uploadBytes, getDownloadURL } from "firebase/storage"; // Firebase storage methods
+import Loader from "@/components/Loader";
 
 const EditCourse = () => {
   const { id } = useParams(); // Get the course ID from the URL
@@ -82,7 +83,7 @@ const EditCourse = () => {
       const docRef = doc(db, "newcourse", id);
       await updateDoc(docRef, updatedCourse);
 
-      navigate("./admin/allcourse");
+      navigate("/admin/all-courses");
     } catch (error) {
       console.error("Error updating course:", error);
     } finally {

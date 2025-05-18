@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import { FaFacebookF, FaTwitter, FaLinkedinIn } from "react-icons/fa";
 import login from "../../assets/images/login.svg";
 import { useNavigate } from "react-router-dom";
-import IconsComponent from "../../components/Icons/Icons";
 import CustomInput from "../../components/InputAndButton/CustomInput";
 import CustomButton from "../../components/InputAndButton/CustomButton";
 import { signInWithEmailAndPassword } from "firebase/auth";

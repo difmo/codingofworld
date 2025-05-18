@@ -2,7 +2,7 @@ import React from "react";
 import { motion } from "framer-motion";
 import img from "../../assets/images/ourt.png";
 
-const Banner2 = () => {
+const OurCommunity = () => {
   return (
     <section className="bg-white dark:bg-dark transition-all duration-700 ease-in-out">
       <div className="container grid grid-cols-1 gap-8 overflow-hidden py-14 md:py-24 md:grid-cols-2 md:space-y-0">
@@ -52,4 +52,4 @@ const Banner2 = () => {
   );
 };
 
-export default Banner2;
+export default OurCommunity;

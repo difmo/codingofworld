@@ -2,7 +2,7 @@ import React from "react";
 // import Hero from "../components/Hero/Hero";
 import Services from "../components/Services/Services";
 import Banner from "../components/Banner/Banner";
-import Banner2 from "../components/Banner/Banner2";
+import OurCommunity from "../components/Banner/OurCommunity";
 import Subscribe from "../components/Subscribe/Subscribe";
 import Features from "./WhatWeOffer";
 import FAQ from "./Faq";
@@ -28,7 +28,7 @@ const HomeScreen = () => {
       <Services />
       <Banner />
       <Subscribe />
-      <Banner2 />
+      <OurCommunity />
       <Features />
       <Pricing />
       <TrainingSection />
