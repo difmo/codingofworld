@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef } from "react";
 import { collection, getDocs, query, where, limit } from "firebase/firestore";
 import { db } from "../firebase";
 import FormattedContent from "@/Utils/FormattedContent";
+import RouteConstants from "@/constants/routeConstants/RouteConstants";
 
 const ShowLatestBanner = () => {
   const [latestBanner, setLatestBanner] = useState(null);
@@ -67,30 +68,38 @@ const ShowLatestBanner = () => {
     latestBanner && (
       <>
         {isPopupVisible && (
-          <div className="fixed inset-0 flex justify-center items-center bg-black bg-opacity-70 z-50 transition-all duration-300 ease-in-out">
+          <div className="fixed inset-0 flex justify-center items-center bg-black bg-opacity-70 z-50 transition-all  duration-300 ease-in-out">
             <div
               ref={popupRef}
-              className="relative rounded-xl bg-white  mx-4 sm:mx-6 shadow-lg transform transition-all duration-300 ease-in-out scale-95"
+              className="relative rounded-md bg-white  mx-4 sm:mx-6 shadow-lg transform transition-all duration-300 ease-in-out scale-95"
             >
+              {/* <div className="w-60 h-60 rounded-full  blur-xl bg-primary top-0   absolute -right-10"></div> */}
+
               <button
                 onClick={handleClosePopup}
                 className="absolute top-2 right-2 z-50 bg-secondaryblue text-white rounded-full w-8 h-8 flex items-center justify-center text-lg focus:outline-none"
               >
                 x
               </button>
-             
+
               {/* Banner content */}
-              <div className="p-4 sm:p-6 lg:p-8 ml-4 mr-5">
-               
-                <FormattedContent html={latestBanner.description}/>
-               
+
+
+              <div className="p-4 relative z-20 sm:p-6 lg:p-8 ml-4 mr-5">
+                <h1 className="text-2xl font-bold mb-2 text-secondaryblue">{latestBanner.title}</h1>
+                <FormattedContent html={latestBanner.description} />
+
                 <a
-                  href={latestBanner.buttonLink}
-                  className="inline-block px-4 py-1 sm:px-6 sm:py-3 bg-secondaryblue text-white rounded-full text-base sm:text-lg hover:bg-green-600 transition-all duration-300 ease-in-out"
+                  href={RouteConstants.MAINROUTE.CONTACTUS}
+                  className="inline-block px-4 py-1 mt-4   sm:px-6 sm:py-3 bg-secondaryblue text-white rounded-full text-base sm:text-sm cursor-pointer hover:bg-green-600 transition-all duration-300 ease-in-out"
                 >
                   Register Now
                 </a>
+
               </div>
+
+
+              
             </div>
           </div>
         )}
