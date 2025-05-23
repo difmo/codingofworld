@@ -34,10 +34,11 @@ class RouteConstants {
   };
 
   static COURSEROUTE = {
-    COURSE: "/course",
+    COURSE: "/",
     COURSEDETAILS: "/course-details",
     COURSEEDIT: "/course-edit",
     COURSECREATE: "/course-create",
+    ALLCOURSES: "/alldeatilcourese",
   };
 
   static BLOGROUTE = {

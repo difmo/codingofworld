@@ -120,7 +120,7 @@ const ShowCourseSidebar = ({ toggleSidebar, isSidebarOpen }) => {
                 <div key={topic.id}>
                   <div className="flex items-center justify-between">
                     <Link
-                      to={`showcoursee/${courseId}/topic/${topic.id}`}
+                      to={`show-courses/${courseId}/topic/${topic.id}`}
                       onClick={toggleSidebar}
                       className="block hover:bg-primary/30 px-2 text-white rounded-md transition-all duration-300 ease-in-out w-full"
                     >
@@ -165,7 +165,7 @@ const ShowCourseSidebar = ({ toggleSidebar, isSidebarOpen }) => {
                         subtopicsData[topic.id].map((subtopic) => (
                           <Link
                             key={subtopic.id}
-                            to={`showcoursee/${courseId}/topic/${topic.id}/subtopic/${subtopic.id}`}
+                            to={`show-courses/${courseId}/topic/${topic.id}/subtopic/${subtopic.id}`}
                             onClick={toggleSidebar}
                             className="block text-sm text-white hover:bg-primary/20 px-2 py-1 rounded"
                           >

@@ -15,7 +15,7 @@ const ShowLatestBanner = () => {
 
         const q = query(
           bannerRef,
-          where("isActive", "==", true), // Fetch only active banners
+          where("isActive", "==", true), 
           limit(1)
         );
 

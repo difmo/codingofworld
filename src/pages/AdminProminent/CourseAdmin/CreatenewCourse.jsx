@@ -3,8 +3,9 @@ import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
 import { useNavigate } from "react-router-dom";
 import { db, storage } from "../../../firebase";
-import { collection, addDoc } from "firebase/firestore";
+import { collection, addDoc, query, where, getDocs, getDoc } from "firebase/firestore";
 import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
+import { slugify } from "@/Utils/slugify";
 
 const CreatenewCourse = () => {
   const navigate = useNavigate();
@@ -49,58 +50,69 @@ const CreatenewCourse = () => {
     return true;
   };
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    if (!validateForm()) return;
-    setLoading(true);
 
-    try {
-      if (thumbnail) {
-        const storageRef = ref(storage, `thumbnails/${thumbnail.name}`);
-        const uploadTask = uploadBytesResumable(storageRef, thumbnail);
+const handleSubmit = async (e) => {
+  e.preventDefault();
+  if (!validateForm()) return;
+  setLoading(true);
 
-        uploadTask.on(
-          "state_changed",
-          (snapshot) => {
-            const progress =
-              (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-            setUploadProgress(progress);
-          },
-          (error) => {
-            console.error("Error uploading image:", error);
-            setMessage("Error uploading thumbnail image.");
-            setLoading(false);
-          },
-          async () => {
-            const downloadURL = await getDownloadURL(uploadTask.snapshot.ref);
+  try {
+    const slug = slugify(title);
 
-            const courseData = {
-              title,
-              shortDescription,
-              description,
-              bio,
-              thumbnailUrl: downloadURL,
-              createdAt: new Date(),
-            };
+    // Check if course with this slug already exists
+    const courseDocRef = doc(db, "newcourse", slug);
+    const courseDocSnap = await getDoc(courseDocRef);
 
-            const docRef = await addDoc(
-              collection(db, "newcourse"),
-              courseData
-            );
-            console.log("Document written with ID: ", docRef.id);
-
-            setLoading(false);
-            setMessage("Course created successfully!");
-            setTimeout(() => navigate("/admin/allcourse"), 2000);
-          }
-        );
-      }
-    } catch (error) {
-      console.error("Error saving course:", error);
-      setMessage("An error occurred while saving the course.");
+    if (courseDocSnap.exists()) {
+      setMessage("A course with this title already exists. Please choose a different title.");
       setLoading(false);
+      return;
     }
-  };
+
+    if (thumbnail) {
+      const storageRef = ref(storage, `thumbnails/${thumbnail.name}`);
+      const uploadTask = uploadBytesResumable(storageRef, thumbnail);
+
+      uploadTask.on(
+        "state_changed",
+        (snapshot) => {
+          const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+          setUploadProgress(progress);
+        },
+        (error) => {
+          console.error("Error uploading image:", error);
+          setMessage("Error uploading thumbnail image.");
+          setLoading(false);
+        },
+        async () => {
+          const downloadURL = await getDownloadURL(uploadTask.snapshot.ref);
+
+          const courseData = {
+            title,
+            shortDescription,
+            description,
+            bio,
+            thumbnailUrl: downloadURL,
+            createdAt: new Date(),
+          };
+
+          // Save with slugified title as doc id
+          await setDoc(courseDocRef, courseData);
+
+          setLoading(false);
+          setMessage("Course created successfully!");
+          setTimeout(() => navigate("/admin/allcourse"), 2000);
+        }
+      );
+    }
+  } catch (error) {
+    console.error("Error saving course:", error);
+    setMessage("An error occurred while saving the course.");
+    setLoading(false);
+  }
+};
+
+
 
   return (
     <div className="relative">

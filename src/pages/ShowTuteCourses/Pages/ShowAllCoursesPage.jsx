@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { db } from "../../../firebase";
-import { collection, getDocs, getDoc, doc } from "firebase/firestore";
+import { collection, getDocs, getDoc, doc, setDoc, deleteDoc } from "firebase/firestore";
 import { useNavigate } from "react-router-dom";
+import { slugify } from "@/Utils/slugify";
 
 const ShowAllCoursesPage = () => {
   const [courses, setCourses] = useState([]);
@@ -30,6 +31,23 @@ const ShowAllCoursesPage = () => {
   };
 
   useEffect(() => {
+
+    const migrateCourseIds = async () => {
+      const snapshot = await getDocs(collection(db, "courses"));
+      for (const docSnap of snapshot.docs) {
+        const data = docSnap.data();
+        if (!data.title) continue;
+
+        const slug = slugify(data.title);
+        
+        // Optional: skip if already exists
+        await setDoc(doc(db, "courses", slug), data);
+
+        // Optional: delete old doc
+        await deleteDoc(doc(db, "courses", docSnap.id));
+      }
+    }
+    console.log("Migration complete");
     const fetchCourses = async () => {
       try {
         const querySnapshot = await getDocs(collection(db, "courses"));
@@ -50,6 +68,8 @@ const ShowAllCoursesPage = () => {
           });
         }
 
+
+
         setCourses(coursesList);
       } catch (error) {
         console.error("Error fetching courses:", error);
@@ -58,6 +78,8 @@ const ShowAllCoursesPage = () => {
         setLoading(false);
       }
     };
+
+    migrateCourseIds();
 
     fetchCourses();
   }, []);
@@ -69,16 +91,14 @@ const ShowAllCoursesPage = () => {
     .filter((course) => course.approved)
     .slice(indexOfFirstCourse, indexOfLastCourse);
 
-  // Handle page changes
   const handlePageChange = (pageNumber) => {
     setCurrentPage(pageNumber);
   };
 
   const handleCourseClick = (courseId) => {
-    navigate(`showcoursee/${courseId}`);
+    navigate(`show-courses/${courseId}`);
   };
 
-  // Calculate total pages
   const totalPages = Math.ceil(courses.filter((course) => course.approved).length / coursesPerPage);
 
   return (

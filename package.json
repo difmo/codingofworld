@@ -23,6 +23,7 @@
     "html2pdf.js": "^0.10.2",
     "lottie-react": "^2.4.1",
     "lottie-web": "^5.12.2",
+    "lucide-react": "^0.511.0",
     "prism-react-renderer": "^2.4.0",
     "prismjs": "^1.29.0",
     "quill": "^2.0.3",
@@ -46,6 +47,7 @@
     "react-toastify": "^10.0.6",
     "react-waypoint": "^10.3.0",
     "reactstrap": "^9.2.3",
+    "swiper": "^11.2.7",
     "uuid": "^11.0.3",
     "yup": "^1.4.0"
   },

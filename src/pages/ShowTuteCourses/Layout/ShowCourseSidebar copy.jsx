@@ -56,7 +56,7 @@
 //               topics.map((topic) => (
 //                 <div key={topic.id}>
 //                   <Link
-//                     to={`showcoursee/${courseId}/topic/${topic.id}`}
+//                     to={`show-courses/${courseId}/topic/${topic.id}`}
 //                     onClick={toggleSidebar}
 //                     className="block hover:bg-primary/30 px-2 text-white rounded-md transition-all duration-300 ease-in-out"
 //                   >

@@ -5,6 +5,7 @@ import { db, auth } from "../../../firebase";
 import { doc, setDoc, collection, getDoc } from "firebase/firestore";
 import { v4 as uuidv4 } from "uuid";
 import { useNavigate } from "react-router-dom";
+import { slugify } from "@/Utils/slugify";
 
 const CreateNewCourse = () => {
   const [title, setTitle] = useState("");
@@ -54,36 +55,45 @@ const CreateNewCourse = () => {
     return () => unsubscribe();
   }, []);
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
 
-    if (!user) {
-      alert("You must be logged in to create a course!");
+
+const handleSubmit = async (e) => {
+  e.preventDefault();
+
+  if (!user) {
+    alert("You must be logged in to create a course!");
+    return;
+  }
+
+  try {
+    const courseId = slugify(title);
+    const courseRef = doc(db, "courses", courseId);
+
+    const existingCourse = await getDoc(courseRef);
+    if (existingCourse.exists()) {
+      alert("A course with this title already exists. Please choose a different title.");
       return;
     }
 
-    try {
-      const courseId = uuidv4();
-      const courseData = {
-        title,
-        content,
-        userId: user.uid,
-        userName: name,
-        userEmail: email,
-        createdAt: new Date(),
-        isPublished: false,
-      };
+    const courseData = {
+      title,
+      content,
+      userId: user.uid,
+      userName: name,
+      userEmail: email,
+      createdAt: new Date(),
+      isPublished: false,
+    };
 
-      const courseRef = doc(collection(db, "courses"), courseId);
-      await setDoc(courseRef, courseData);
+    await setDoc(courseRef, courseData);
 
-      alert("Course created successfully!");
-      navigate("/create-courses");
-    } catch (error) {
-      console.error("Error creating course:", error);
-      alert("Error creating course!");
-    }
-  };
+    alert("Course created successfully!");
+    navigate("/create-courses");
+  } catch (error) {
+    console.error("Error creating course:", error);
+    alert("Error creating course!");
+  }
+};
 
   return (
     <div className="create-course-container">

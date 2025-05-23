@@ -36,7 +36,7 @@ const HomeScreen = () => {
       <PhotoGallery />
       <Testimonials />
       <FAQ />
-      <Brands />
+      {/* <Brands /> */}
       <FactsSection />
       <ShowLatestBanner />
     </div>

@@ -44,7 +44,7 @@ const Admincourse = () => {
   }, []); // Empty dependency array, so this runs only once when the component mounts
 
   const handleCourseClick = (courseId) => {
-    navigate(`showcoursee/${courseId}`);
+    navigate(`show-courses/${courseId}`);
   };
 
   // Handle Course Edit
