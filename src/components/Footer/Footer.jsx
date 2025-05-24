@@ -154,7 +154,7 @@ const Footer = () => {
 
 
           <CopyRightText />
-          {showPopup && <SubscriptionPopUp />}
+          {showPopup && <SubscriptionPopUp onClick={() => setShowPopup(false)} />}
         </motion.div>
       </footer>
     </div>

@@ -1,7 +1,7 @@
 import React from 'react'
 import { motion } from "framer-motion";
 
-const SubscriptionPopUp = () => {
+const SubscriptionPopUp = ({onClick}) => {
   return (
     <div><div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-60">
           <motion.div
@@ -46,7 +46,7 @@ const SubscriptionPopUp = () => {
             </motion.p>
 
             <motion.button
-              onClick={() => setShowPopup(false)}
+              onClick={onClick}
               className="px-5 py-2 mt-4 text-white transition bg-red-500 rounded-full shadow-md hover:bg-red-400"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
