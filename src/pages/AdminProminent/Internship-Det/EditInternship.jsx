@@ -5,6 +5,7 @@ import ReactQuill from "react-quill"; // For rich text editor
 import "react-quill/dist/quill.snow.css"; // ReactQuill styling
 import { useParams, useNavigate } from "react-router-dom"; // React Router hooks
 import { getStorage, ref, uploadBytes, getDownloadURL } from "firebase/storage"; // Firebase storage methods
+import Loader from "@/components/Loader";
 
 const EditInternship = () => {
   const { id } = useParams(); // Get the internship ID from the URL
@@ -110,7 +111,7 @@ const EditInternship = () => {
   }
 
   return (
-    <div className="p-4 max-w-xl mx-auto">
+    <div className="p-4 max-w-4xl mx-auto">
       <h1 className="text-2xl font-bold mb-4">Edit Internship</h1>
       <form onSubmit={handleSubmit} className="space-y-4">
         {/* Title input */}

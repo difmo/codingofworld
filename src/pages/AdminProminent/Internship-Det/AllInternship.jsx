@@ -2,7 +2,8 @@ import React, { useState, useEffect } from "react";
 import { db } from "../../../firebase"; // Import Firestore config
 import { collection, getDocs, doc, deleteDoc } from "firebase/firestore"; // Firestore methods
 import { useNavigate } from "react-router-dom";
-import Loader from "../../../components/Loader";
+import Loader from "@/components/Loader";
+// import Loader from "../../../components/Loader";
 
 const AllInternship = () => {
   const [internships, setInternships] = useState([]); // Store internship data
@@ -10,7 +11,6 @@ const AllInternship = () => {
   const [error, setError] = useState(null); // Error state
   const navigate = useNavigate(); // For navigation
 
-  // Fetch internships data from Firestore
   useEffect(() => {
     const fetchInternships = async () => {
       try {
@@ -31,7 +31,6 @@ const AllInternship = () => {
     fetchInternships();
   }, []);
 
-  // Handle delete action
   const handleDelete = async (id) => {
     if (window.confirm("Are you sure you want to delete this internship?")) {
       try {
@@ -50,7 +49,7 @@ const AllInternship = () => {
 
   // Handle edit action (navigate to edit form with internship ID)
   const handleEdit = (id) => {
-    navigate(`/edit-internship/${id}`); // Navigate to edit form with internship ID
+    navigate(`/admin/edit-internship/${id}`); // Navigate to edit form with internship ID
   };
 
   if (loading) {
