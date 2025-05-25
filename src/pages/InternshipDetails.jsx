@@ -12,6 +12,15 @@ const InternshipDetails = () => {
   const [internship, setInternship] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+function highlightEnrollNow(text) {
+  return text.replace(/(df)/i, '<a href="#enroll" class="inline-block mt-4 px-4 py-2 bg-primary text-white rounded-md shadow hover:bg-primary/90 transition">$1</a>');
+}
+function formatPlainTextToHTML(text) {
+  return text
+    .split('\n')
+    .map(line => `<p>${line}</p>`)
+    .join('');
+}
 
   useEffect(() => {
     const fetchInternship = async () => {
@@ -54,7 +63,7 @@ const InternshipDetails = () => {
         <div className="mt-10 grid grid-cols-1 md:grid-cols-3 gap-10">
           {/* Description */}
           <div className="md:col-span-2 bg-white dark:bg-neutral-900 rounded-xl p-6 shadow-lg">
-            <h2 className="text-2xl font-semibold mb-4 text-primary">About the Internship</h2>
+            <h2 className="text-2xl font-semibold mb-4 dark:text-white text-secondary">About the Internship</h2>
             <div className="prose dark:prose-invert max-w-none">
               <FormattedContent html={internship.description} />
             </div>
@@ -63,8 +72,8 @@ const InternshipDetails = () => {
           {/* Sidebar */}
           <div className="bg-white h-fit dark:bg-neutral-900 rounded-xl p-6 shadow-lg flex flex-col justify-between sticky top-20">
             <div>
-              <div className="prose dark:prose-invert max-w-none">
-                <FormattedContent html={internship.bio} />
+              <div className=" dark:prose-invert max-w-none ">
+<FormattedContent html={highlightEnrollNow(formatPlainTextToHTML(internship.bio))} />
               </div>
             </div>
 

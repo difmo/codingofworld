@@ -26,13 +26,13 @@ const HomeScreen = () => {
       </div>
       <Hero />
       <Services />
+      <TrainingPrograms />
       <Banner />
       <Subscribe />
       <OurCommunity />
       <Features />
       <Pricing />
       <TrainingSection />
-      <TrainingPrograms />
       <PhotoGallery />
       <Testimonials />
       <FAQ />

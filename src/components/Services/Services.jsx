@@ -7,50 +7,7 @@ import { BiSupport } from "react-icons/bi";
 import { IoPulseOutline } from "react-icons/io5";
 import { motion } from "framer-motion";
 import { MdDesignServices } from "react-icons/md";
-const ServicesData = [
-  {
-    id: 1,
-    title: "Web Development",
-    link: "#",
-    icon: <TbWorldWww />,
-    delay: 0.2,
-  },
-  {
-    id: 2,
-    title: "Mobile development",
-    link: "#",
-    icon: <CiMobile3 />,
-    delay: 0.3,
-  },
-  {
-    id: 3,
-    title: "Software development",
-    link: "#",
-    icon: <RiComputerLine />,
-    delay: 0.4,
-  },
-  {
-    id: 4,
-    title: "IOT and Robotics",
-    link: "#",
-    icon: <IoMdHappy />,
-    delay: 0.5,
-  },
-  {
-    id: 5,
-    title: "SEO optimization",
-    link: "#",
-    icon: <IoPulseOutline />,
-    delay: 0.6,
-  },
-  {
-    id: 6,
-    title: "Design",
-    link: "#",
-    icon: <MdDesignServices />,
-    delay: 0.7,
-  },
-];
+
 
 const SlideLeft = (delay) => {
   return {
@@ -99,3 +56,47 @@ const Services = () => {
 };
 
 export default Services;
+const ServicesData = [
+  {
+    id: 1,
+    title: "Web Development",
+    link: "#",
+    icon: <TbWorldWww />,
+    delay: 0.2,
+  },
+  {
+    id: 2,
+    title: "Mobile development",
+    link: "#",
+    icon: <CiMobile3 />,
+    delay: 0.3,
+  },
+  {
+    id: 3,
+    title: "Software development",
+    link: "#",
+    icon: <RiComputerLine />,
+    delay: 0.4,
+  },
+  {
+    id: 4,
+    title: "IOT and Robotics",
+    link: "#",
+    icon: <IoMdHappy />,
+    delay: 0.5,
+  },
+  {
+    id: 5,
+    title: "SEO optimization",
+    link: "#",
+    icon: <IoPulseOutline />,
+    delay: 0.6,
+  },
+  {
+    id: 6,
+    title: "Design",
+    link: "#",
+    icon: <MdDesignServices />,
+    delay: 0.7,
+  },
+];
