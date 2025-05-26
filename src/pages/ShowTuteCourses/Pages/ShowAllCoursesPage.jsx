@@ -47,7 +47,6 @@ const ShowAllCoursesPage = () => {
         await deleteDoc(doc(db, "courses", docSnap.id));
       }
     }
-    console.log("Migration complete");
     const fetchCourses = async () => {
       try {
         const querySnapshot = await getDocs(collection(db, "courses"));
@@ -58,6 +57,7 @@ const ShowAllCoursesPage = () => {
             id: docSnap.id,
             ...docSnap.data(),
           };
+          console.log("form show all courses ",courseData)
 
           const userId = courseData.userId;
           const userEmail = await fetchUserEmail(userId);
@@ -79,7 +79,7 @@ const ShowAllCoursesPage = () => {
       }
     };
 
-    migrateCourseIds();
+    // migrateCourseIds();
 
     fetchCourses();
   }, []);

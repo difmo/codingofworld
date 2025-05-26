@@ -224,6 +224,8 @@ const Hero = () => {
         </div>
       </div>
 
+      
+
       <div className="absolute top-0 w-full">
         {/* {isModalOpen && <EventForm onClose={closeModal} />} */}
       </div>
