@@ -1,6 +1,6 @@
 import React from 'react'
 
-const PremiumCourses = () => {
+const TalentMeet = () => {
     return (
 
 
@@ -17,4 +17,5 @@ const PremiumCourses = () => {
     )
 }
 
-export default PremiumCourses
+
+export default TalentMeet

@@ -1,25 +1,9 @@
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route, useLocation } from "react-router-dom";
 import { Helmet, HelmetProvider } from "react-helmet-async";
-
-import MainRoutes from "./routes/MainRoutes";
-import AuthRoutes from "./routes/AuthRoutes";
-import AdminRoutes from "./routes/AdminRoutes";
-import BlogRoutes from "./routes/BlogRoutes";
-import CourseRoutes from "./routes/CourseRoutes";
-import NotFound from "./pages/NotFound";
-import MainLayout from "./pages/Layout/layout";
-import JobsOfferRoute from "./routes/JobOffersRoutes";
 import ScrollToTop from "./components/ScrollTop";
-import PremiumCourses from "./pages/PremiumCourses";
-import CreateCourseRoutes from "./routes/CreateCourseRoutes";
-import CreateBlogRoutes from "./routes/CreateBlogRoutes";
-import AdminLayout from "./pages/Layout/AdminLayout";
-import RouteConstants from "./constants/routeConstants/RouteConstants";
 import Loader from "./components/Loader";
 import { useProfile } from "./context/Providers/ProfileContext";
-import UserProfileRoute from "./routes/ProfileRoutes";
-import PublicNotes from "./pages/CowPublicNotes";
-import DartEditor from "./pages/EditorForProgramming/GeneralEditor";
+import AppRouter from "./AppRouter";
 
 const App = () => {
   const {isAdmin,loading} = useProfile();
@@ -27,6 +11,7 @@ const App = () => {
   if (loading) {
     return <Loader/>
   }
+
 
   return (
     <HelmetProvider>
@@ -89,25 +74,7 @@ const App = () => {
         {" "}
         <Router>
           <ScrollToTop />
-          <Routes>
-            <Route path="/premium-courses" element={<PremiumCourses />} />
-            <Route path="/cow-notes" element={<PublicNotes />} />
-            <Route path="/code-editor" element={<DartEditor />} />
-              <Route path={RouteConstants.ROOTROUTE.AUTH} element={<AuthRoutes />} />
-            <Route element={<MainLayout />}>
-              <Route path={RouteConstants.ROOTROUTE.HOME} element={<MainRoutes />} />
-              <Route path={RouteConstants.ROOTROUTE.CAREER} element={<JobsOfferRoute />} />
-              <Route path={RouteConstants.ROOTROUTE.COURSES} element={<CourseRoutes />} />
-              <Route path={RouteConstants.ROOTROUTE.BLOGS} element={<BlogRoutes />} />
-              <Route path={"/profile/*"} element={<UserProfileRoute />} />
-            </Route>
-            <Route path={RouteConstants.ROOTROUTE.CREATECOURSES} element={<CreateCourseRoutes />} />
-            <Route path={RouteConstants.ROOTROUTE.CREATEBLOGS} element={<CreateBlogRoutes />} />
-            <Route element={<AdminLayout />}>
-              {isAdmin && <Route path={RouteConstants.ROOTROUTE.ADMIN} element={<AdminRoutes />} />}
-            </Route>
-            <Route path="*" element={<NotFound />} />
-          </Routes>
+              <AppRouter />
         </Router>
      
     </HelmetProvider>
