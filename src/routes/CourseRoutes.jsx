@@ -29,15 +29,15 @@ const CourseRoutes = () => {
       <Route element={<ShowCourseLayout />}>
 
         <Route
-          path="/show-courses/:courseId"
+          path="/:courseId"
           element={<ShowCourseDetails />}
         />
         <Route
-          path="/show-courses/:courseId/topic/:topicId"
+          path="/:courseId/topic/:topicId"
           element={<ShowTopicDetailPage />}
         />
         <Route
-          path="/show-courses/:courseId/topic/:topicId/subtopic/:subtopicId"
+          path="/:courseId/topic/:topicId/subtopic/:subtopicId"
           element={<SubtopicPage />}
         />
       </Route>

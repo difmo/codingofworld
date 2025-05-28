@@ -18,7 +18,7 @@ useEffect(() => {
       setLoading(true);
       setErrorMessage("");
 
-      const snapshot = await getDocs(collection(db, "tutorial-courses"));
+      const snapshot = await getDocs(collection(db, "courses"));
 
       const allCourses = snapshot.docs.map(doc => ({
         id: doc.id,
@@ -50,7 +50,7 @@ useEffect(() => {
   };
 
   const handleCourseClick = (courseId) => {
-    navigate(`${courseId}`);
+    navigate(`show-courses/${courseId}`);
   };
 
   if (errorMessage) {

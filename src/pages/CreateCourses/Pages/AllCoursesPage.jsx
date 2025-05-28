@@ -39,17 +39,17 @@ const AllCoursesPage = () => {
 
   const handleDeleteCourse = async (courseId) => {
     const isConfirmed = window.confirm("Please Contact to admin.");
-    // if (isConfirmed) {
-    //   try {
-    //     const courseDocRef = doc(db, 'courses', courseId);
-    //     await deleteDoc(courseDocRef);
-    //     setCourses((prevCourses) => prevCourses.filter((course) => course.id !== courseId));
-    //     alert('Course deleted successfully!');
-    //   } catch (error) {
-    //     console.error('Error deleting course:', error);
-    //     alert('Failed to delete course.');
-    //   }
-    // }
+    if (isConfirmed) {
+      try {
+        const courseDocRef = doc(db, 'courses', courseId);
+        await deleteDoc(courseDocRef);
+        setCourses((prevCourses) => prevCourses.filter((course) => course.id !== courseId));
+        alert('Course deleted successfully!');
+      } catch (error) {
+        console.error('Error deleting course:', error);
+        alert('Failed to delete course.');
+      }
+    }
   };
 
   const handleAddCourse = () => {
