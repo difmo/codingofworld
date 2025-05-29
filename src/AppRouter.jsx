@@ -15,7 +15,7 @@ import PremiumCourses from "./pages/MicroFrontend/PremiumCourses";
 import CreateCourseRoutes from "./routes/CreateCourseRoutes";
 import CreateBlogRoutes from "./routes/CreateBlogRoutes";
 import AdminLayout from "./pages/Layout/AdminLayout";
-import RouteConstants from "./constants/routeConstants/RouteConstants";
+import RouteConstants from "./utils/RouteConstants";
 import Loader from "./components/Loader";
 import { useProfile } from "./context/Providers/ProfileContext";
 import UserProfileRoute from "./routes/ProfileRoutes";

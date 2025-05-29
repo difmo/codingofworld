@@ -7,7 +7,7 @@ import { useNavigate } from "react-router-dom";
 import logo from "../../assets/images/logo.svg";
 import Popupbloge from "../../pages/Popupbloge";
 import { useProfile } from "../../context/Providers/ProfileContext";
-import RouteConstants from "../../constants/routeConstants/RouteConstants";
+import RouteConstants from "../../utils/RouteConstants";
 
 const NavbarMenu = [
   { id: 1, title: "Home", path: "/" },

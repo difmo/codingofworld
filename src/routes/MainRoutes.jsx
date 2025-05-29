@@ -7,7 +7,7 @@ import About from "../pages/About";
 import TrainingTeam from "../pages/OurTrainingTeam";
 import InternshipForm from "../pages/IntershipForm";
 import NotFound from "../pages/NotFound";
-import RouteConstants from "../constants/routeConstants/RouteConstants";
+import RouteConstants from "../utils/RouteConstants";
 import ProgramsForInternships from "@/components/ProgramsForInternships";
 
 const MainRoutes = () => (

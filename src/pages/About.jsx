@@ -5,7 +5,7 @@ import { FaBookmark, FaClipboard, FaLightbulb, FaPen } from "react-icons/fa";
 import { AiOutlineCheck } from "react-icons/ai";
 import { useNavigate } from "react-router-dom";
 import TrainingTeam from "./OurTrainingTeam";
-import RouteConstants from "@/constants/routeConstants/RouteConstants";
+import RouteConstants from "@/utils/RouteConstants";
 
 // Framer Motion Variants
 const fadeInUp = {

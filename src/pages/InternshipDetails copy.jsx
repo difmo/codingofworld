@@ -3,7 +3,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import { db } from "../firebase";
 import { doc, getDoc } from "firebase/firestore";
 import Loader from "../components/Loader";
-import RouteConstants from "@/constants/routeConstants/RouteConstants";
+import RouteConstants from "@/utils/RouteConstants";
 import FormattedContent from "@/utils/FormattedContent";
 
 const InternshipDetails = () => {

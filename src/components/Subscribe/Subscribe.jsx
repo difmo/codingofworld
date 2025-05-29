@@ -2,7 +2,7 @@ import React from "react";
 import { FaBell } from "react-icons/fa";
 import BgImage from "../../assets/bg.png";
 import { motion } from "framer-motion";
-import RouteConstants from "@/constants/routeConstants/RouteConstants";
+import RouteConstants from "@/utils/RouteConstants";
 const bgStyle = {
   backgroundImage: `url(${BgImage})`,
   backgroundRepeat: "no-repeat",
