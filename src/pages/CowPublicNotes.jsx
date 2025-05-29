@@ -105,7 +105,7 @@ function PublicNotes() {
                     <img src={img} alt="background icon" />
                 </div>
 
-                {/* Textarea */}
+                {/* Textaredsfsa */}
                 <textarea
                     value={note}
                     onChange={(e) => setNote(e.target.value)}
