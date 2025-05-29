@@ -16,7 +16,7 @@ const TalentMeet = () => {
         navigate(`/talent-meet/${cleanPath}`, { replace: true });
       }
     };
-
+// sdfs
     window.addEventListener('message', handleMessage);
     return () => window.removeEventListener('message', handleMessage);
   }, [navigate]);
