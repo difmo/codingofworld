@@ -13,7 +13,7 @@ import {
 } from "firebase/firestore";
 import { motion } from "framer-motion";
 import { HiCheck, HiOutlineRefresh } from "react-icons/hi";
-import TypingMessage from "@/utils/TypingMessage";
+import TypingMessage from "../utils/TypingMessage";
 
 function PublicNotes() {
     const [password, setPassword] = useState("");
