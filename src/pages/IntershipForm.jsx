@@ -20,7 +20,7 @@ import {
 import CustomInput from "@/components/InputAndButton/CustomInput";
 import { FaUser, FaEnvelope, FaPhone } from "react-icons/fa";
 import CustomSelect from "@/components/InputAndButton/CustomSelect";
-import FormDataHelper from "@/Utils/Constants";
+import FormDataHelper from "@/utils/Constants";
 
 const InternshipForm = () => {
   const [step, setStep] = useState(0);

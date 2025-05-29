@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 import { db, storage } from "../../../firebase";
 import { collection, addDoc, query, where, getDocs, getDoc } from "firebase/firestore";
 import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
-import { slugify } from "@/Utils/slugify";
+import { slugify } from "@/utils/slugify";
 
 const CreatenewCourse = () => {
   const navigate = useNavigate();

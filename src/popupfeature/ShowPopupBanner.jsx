@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import { collection, getDocs, query, where, limit } from "firebase/firestore";
 import { db } from "../firebase";
-import FormattedContent from "@/Utils/FormattedContent";
+import FormattedContent from "@/utils/FormattedContent";
 import RouteConstants from "@/constants/routeConstants/RouteConstants";
 
 const ShowLatestBanner = () => {

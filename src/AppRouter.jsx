@@ -23,6 +23,7 @@ import PublicNotes from "./pages/CowPublicNotes";
 import DartEditor from "./pages/EditorForProgramming/GeneralEditor";
 import PromptHub from "./pages/MicroFrontend/PromptHub";
 import React, { useEffect } from "react";
+import TalentMeet from "./pages/MicroFrontend/TalentMeet";
 
 
 const AppRouter = () => {
@@ -40,8 +41,9 @@ const AppRouter = () => {
       <ScrollToTop />
       <Routes>
         {/* MicroFrontend Routes */}
-        <Route path="/premium-courses" element={<PremiumCourses />} />
-        <Route path="/prompt-hub/*" element={<PromptHub />} />
+        <Route path="/premium-courses/*" element={<PremiumCourses />} />
+<Route path="/prompt-hub/*" element={<PromptHub />} />
+<Route path="/talent-meet/*" element={<TalentMeet />} />
 
         {/* Other Routes */}
         <Route path="/cow-notes" element={<PublicNotes />} />

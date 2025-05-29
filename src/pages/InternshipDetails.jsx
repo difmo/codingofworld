@@ -4,7 +4,7 @@ import { db } from "../firebase";
 import { doc, getDoc } from "firebase/firestore";
 import Loader from "../components/Loader";
 import RouteConstants from "@/constants/routeConstants/RouteConstants";
-import FormattedContent from "@/Utils/FormattedContent";
+import FormattedContent from "@/utils/FormattedContent";
 
 const InternshipDetails = () => {
   const navigate = useNavigate();
