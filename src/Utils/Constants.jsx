@@ -1,6 +1,6 @@
 // utils/FormDataHelper.js (or any file you prefer)
 
-class FormDataHelper {
+class Constants {
   static getInternshipPrograms() {
     return [
       "Mobile App Development",
@@ -30,4 +30,4 @@ class FormDataHelper {
   }
 }
 
-export default FormDataHelper;
+export default Constants;

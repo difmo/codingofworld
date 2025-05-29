@@ -20,7 +20,7 @@ import {
 import CustomInput from "@/components/InputAndButton/CustomInput";
 import { FaUser, FaEnvelope, FaPhone } from "react-icons/fa";
 import CustomSelect from "@/components/InputAndButton/CustomSelect";
-import FormDataHelper from "@/utils/Constants";
+import Constants from "@/utils/Constants";
 
 const InternshipForm = () => {
   const [step, setStep] = useState(0);
@@ -38,8 +38,8 @@ const InternshipForm = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [internships, setInternships] = useState([]);
   const [showConfirmPopup, setShowConfirmPopup] = useState(false); // Added state for confirmation popup
-  const internshipPrograms = FormDataHelper.getInternshipPrograms();
-  const steps = FormDataHelper.getFormSteps();
+  const internshipPrograms = Constants.getInternshipPrograms();
+  const steps = Constants.getFormSteps();
   
 
 useEffect(() => {

@@ -13,7 +13,7 @@ import {
 } from "firebase/firestore";
 import { motion } from "framer-motion";
 import { HiCheck, HiOutlineRefresh } from "react-icons/hi";
-// import TypingMessage from "../utils/TypingMessage";
+import TypingMessage from "@/utils/TypingMessage";
 
 function PublicNotes() {
     const [password, setPassword] = useState("");
@@ -96,7 +96,7 @@ function PublicNotes() {
                     ) : null}
                 </div>
             </div>
-            {/* <TypingMessage/> */}
+            <TypingMessage/>
 
             {/* Note Textarea */}
             <div className="relative flex-1 w-full flex justify-center items-center">
@@ -105,7 +105,7 @@ function PublicNotes() {
                     <img src={img} alt="background icon" />
                 </div>
 
-                {/* Textaredsfsa */}
+                {/* Textarea */}
                 <textarea
                     value={note}
                     onChange={(e) => setNote(e.target.value)}
