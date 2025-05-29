@@ -5,7 +5,7 @@ import { collection, getDocs } from "firebase/firestore";
 import { db } from "../firebase";
 import Loader from "../components/Loader";
 import ShowAllCoursesPage from "./ShowTuteCourses/Pages/ShowAllCoursesPage";
-import { slugify } from "@/utils/Slugify";
+import { Slugify } from "@/utils/Slugify";
 
 const Courses = () => {
   const navigate = useNavigate();
@@ -75,7 +75,7 @@ const Courses = () => {
 
         <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {course.map((item) => {
-            const slug = slugify(item.title);
+            const slug = Slugify(item.title);
             return (
               <div
                 onClick={() => handleNavigation(slug)}

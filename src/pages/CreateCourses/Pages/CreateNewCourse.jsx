@@ -5,7 +5,7 @@ import { db, auth } from "../../../firebase";
 import { doc, setDoc, collection, getDoc } from "firebase/firestore";
 import { v4 as uuidv4 } from "uuid";
 import { useNavigate } from "react-router-dom";
-import { slugify } from "@/utils/Slugify";
+import { Slugify } from "@/utils/Slugify";
 
 const CreateNewCourse = () => {
   const [title, setTitle] = useState("");
@@ -66,7 +66,7 @@ const handleSubmit = async (e) => {
   }
 
   try {
-    const courseId = slugify(title);
+    const courseId = Slugify(title);
     const courseRef = doc(db, "courses", courseId);
 
     const existingCourse = await getDoc(courseRef);
