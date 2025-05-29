@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 import { db, storage } from "../../../firebase";
 import { collection, addDoc, query, where, getDocs, getDoc } from "firebase/firestore";
 import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
-import { slugify } from "@/utils/slugify";
+import { Slugify } from "@/utils/slugify";
 
 const CreatenewCourse = () => {
   const navigate = useNavigate();
@@ -57,7 +57,7 @@ const handleSubmit = async (e) => {
   setLoading(true);
 
   try {
-    const slug = slugify(title);
+    const slug = Slugify(title);
 
     // Check if course with this slug already exists
     const courseDocRef = doc(db, "newcourse", slug);

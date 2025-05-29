@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { db } from "../../../firebase";
 import { collection, getDocs, getDoc, doc, setDoc, deleteDoc } from "firebase/firestore";
 import { useNavigate } from "react-router-dom";
-import { slugify } from "@/utils/slugify";
+import { slugify } from "@/utils/Slugify";
 import { getAuth } from "firebase/auth";
 
 const ShowAllCoursesPage = () => {
