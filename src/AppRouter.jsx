@@ -15,7 +15,6 @@ import PremiumCourses from "./pages/MicroFrontend/PremiumCourses";
 import CreateCourseRoutes from "./routes/CreateCourseRoutes";
 import CreateBlogRoutes from "./routes/CreateBlogRoutes";
 import AdminLayout from "./pages/Layout/AdminLayout";
-import RouteConstants from "./utils/RouteConstants";
 import Loader from "./components/Loader";
 import { useProfile } from "./context/Providers/ProfileContext";
 import UserProfileRoute from "./routes/ProfileRoutes";
@@ -24,6 +23,7 @@ import DartEditor from "./pages/EditorForProgramming/GeneralEditor";
 import PromptHub from "./pages/MicroFrontend/PromptHub";
 import React, { useEffect } from "react";
 import TalentMeet from "./pages/MicroFrontend/TalentMeet";
+import RouteConstants from "./utils/RouteConstants.jsx";
 
 
 const AppRouter = () => {
@@ -40,12 +40,10 @@ const AppRouter = () => {
     <>
       <ScrollToTop />
       <Routes>
-        {/* MicroFrontend Routes */}
         <Route path="/premium-courses/*" element={<PremiumCourses />} />
-<Route path="/prompt-hub/*" element={<PromptHub />} />
-<Route path="/talent-meet/*" element={<TalentMeet />} />
+        <Route path="/prompt-hub/*" element={<PromptHub />} />
+        <Route path="/talent-meet/*" element={<TalentMeet />} />
 
-        {/* Other Routes */}
         <Route path="/cow-notes" element={<PublicNotes />} />
         <Route path="/code-editor" element={<DartEditor />} />
         <Route path={RouteConstants.ROOTROUTE.AUTH} element={<AuthRoutes />} />

@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 
 const PremiumCourses = () => {
-  const { '*': childRouteParam } = useParams(); // wildcard param
+  const { '*': childRouteParam } = useParams(); // wildcdfard param
   const [iframePath, setIframePath] = useState(childRouteParam || '');
   const navigate = useNavigate();
 
