@@ -1,4 +1,4 @@
-import RouteConstants from '@/utils/RouteConstants';
+import RouteConstants from '@/Utils/RouteConstants';
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 

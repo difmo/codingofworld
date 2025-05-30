@@ -2,7 +2,7 @@
 import { Route,Routes } from "react-router-dom";
 import SingUpScreen from "../pages/AuthScreens/SignUpScreen";
 import LoginScreen from "../pages/AuthScreens/LoginScreen";
-import RouteConstants from "@/utils/RouteConstants";
+import RouteConstants from "@/Utils/RouteConstants";
 
 const AuthRoutes = () => (
   <>

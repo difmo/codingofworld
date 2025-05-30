@@ -15,7 +15,7 @@ import CreateNewCourse from "../pages/CreateCourses/Pages/CreateNewCourse";
 import AddTopicPage from "../pages/CreateCourses/Pages/Topics/AddTopicPage";
 import SubtopicDetailPage from "../pages/CreateCourses/Pages/Topics/SubtopicDetailPage";
 import SubtopicPage from "@/pages/ShowTuteCourses/Pages/Topics/ShowSubTopicDetailsPage";
-import RouteConstants from "@/utils/RouteConstants";
+import RouteConstants from "@/Utils/RouteConstants";
 
 const CourseRoutes = () => {
   const [isUserLogin, setIsUserLogin] = useState(null);

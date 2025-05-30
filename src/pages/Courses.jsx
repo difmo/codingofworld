@@ -5,7 +5,7 @@ import { collection, getDocs } from "firebase/firestore";
 import { db } from "../firebase";
 import Loader from "../components/Loader";
 import ShowAllCoursesPage from "./ShowTuteCourses/Pages/ShowAllCoursesPage";
-import { Slugify } from "@/utils/Slugify";
+import { Slugify } from "@/Utils/Slugify";
 
 const Courses = () => {
   const navigate = useNavigate();

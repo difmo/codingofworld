@@ -6,7 +6,7 @@ import "react-quill/dist/quill.snow.css";
 import SyntaxHighlighter from "react-syntax-highlighter";
 import { dracula } from "react-syntax-highlighter/dist/esm/styles/hljs";
 import MainLoader from "../../components/MainLoader";
-import FormattedContent from "@/utils/FormattedContent";
+import FormattedContent from "@/Utils/FormattedContent";
 
 const BlogPage = () => {
   const { blogId } = useParams();

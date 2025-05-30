@@ -23,7 +23,7 @@ import DartEditor from "./pages/EditorForProgramming/GeneralEditor";
 import PromptHub from "./pages/MicroFrontend/PromptHub";
 import React, { useEffect } from "react";
 import TalentMeet from "./pages/MicroFrontend/TalentMeet";
-import RouteConstants from "./utils/RouteConstants.jsx";
+import RouteConstants from "./Utils/RouteConstants.jsx";
 
 
 const AppRouter = () => {

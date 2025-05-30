@@ -5,7 +5,7 @@ import { db, auth } from "../../../firebase";
 import { doc, setDoc, collection, getDoc } from "firebase/firestore";
 import { v4 as uuidv4 } from "uuid";
 import { useNavigate } from "react-router-dom";
-import { Slugify } from "@/utils/Slugify";
+import { Slugify } from "@/Utils/Slugify";
 
 const CreateNewCourse = () => {
   const [title, setTitle] = useState("");

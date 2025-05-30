@@ -1,7 +1,7 @@
 import { useProfile } from "@/context/Providers/ProfileContext";
 import { Link, useNavigate } from "react-router-dom";
 import { getAuth, signOut } from "firebase/auth";
-import RouteConstants from "@/utils/RouteConstants";
+import RouteConstants from "@/Utils/RouteConstants";
 
 const ProfileSidebar = ({ toggleSidebar }) => {
   const { isAdmin, blogPermission, isUserLogin } = useProfile();

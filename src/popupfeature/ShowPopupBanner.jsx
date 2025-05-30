@@ -1,8 +1,8 @@
 import React, { useState, useEffect, useRef } from "react";
 import { collection, getDocs, query, where, limit } from "firebase/firestore";
 import { db } from "../firebase";
-import FormattedContent from "@/utils/FormattedContent";
-import RouteConstants from "@/utils/RouteConstants";
+import FormattedContent from "@/Utils/FormattedContent";
+import RouteConstants from "@/Utils/RouteConstants";
 
 const ShowLatestBanner = () => {
   const [latestBanner, setLatestBanner] = useState(null);
