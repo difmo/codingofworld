@@ -22,7 +22,7 @@ const ProfileLayout = ({ children }) => {
 
       <div className="flex flex-col flex-1">
        
-        <div className="flex-1 overflow-y-auto bg-white dark:bg-gray-900 p-4 -z-10">
+        <div className="flex-1 overflow-y-auto bg-white dark:bg-gray-900 p-4 ">
           {children}
           <Outlet />
         </div>
