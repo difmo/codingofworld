@@ -29,7 +29,7 @@ const ShowCourseDetails = () => {
   useEffect(() => {
     const fetchCourse = async () => {
       try {
-        const courseDocRef = doc(db, "courses", courseId);
+        const courseDocRef = doc(db, "tutorial-courses", courseId);
         const courseDoc = await getDoc(courseDocRef);
 
         if (courseDoc.exists()) {
@@ -41,7 +41,7 @@ const ShowCourseDetails = () => {
           // Fetch topics for the course
           const topicsCollectionRef = collection(
             db,
-            "courses",
+            "tutorial-courses",
             courseId,
             "topics"
           );
@@ -69,7 +69,7 @@ const ShowCourseDetails = () => {
   const handleSave = async () => {
     if (user && user.uid === course.userId) {
       try {
-        const courseDocRef = doc(db, "courses", courseId);
+        const courseDocRef = doc(db, "tutorial-courses", courseId);
         await updateDoc(courseDocRef, { title, content });
         alert("Course updated successfully!");
         setIsEditMode(false);

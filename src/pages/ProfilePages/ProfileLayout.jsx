@@ -15,7 +15,7 @@ const ProfileLayout = ({ children }) => {
       <div
         className={`${
           isSidebarOpen ? "flex" : "hidden"
-        } fixed  md:relative md:flex transition-all duration-300 ease-in-out`}
+        } fixed  md:relative md:flex z-10  transition-all duration-300 ease-in-out`}
       >
         <ProfileSidebar isSidebarOpen={isSidebarOpen} />
       </div>

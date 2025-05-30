@@ -31,7 +31,7 @@ const EditAndShowCourse = () => {
   useEffect(() => {
     const fetchCourse = async () => {
       try {
-        const courseDocRef = doc(db, 'courses', courseId);
+        const courseDocRef = doc(db, 'tutorial-courses', courseId);
         const courseDoc = await getDoc(courseDocRef);
 
         if (courseDoc.exists()) {
@@ -41,7 +41,7 @@ const EditAndShowCourse = () => {
           setContent(courseData.content);
 
           // Fetch topics for the course
-          const topicsCollectionRef = collection(db, 'courses', courseId, 'topics');
+          const topicsCollectionRef = collection(db, 'tutorial-courses', courseId, 'topics');
           const topicsSnapshot = await getDocs(topicsCollectionRef);
           const topicsList = topicsSnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
           setTopics(topicsList);
@@ -63,7 +63,7 @@ const EditAndShowCourse = () => {
   const handleSave = async () => {
     if (user && user.uid === course.userId) {
       try {
-        const courseDocRef = doc(db, 'courses', courseId);
+        const courseDocRef = doc(db, 'tutorial-courses', courseId);
         await updateDoc(courseDocRef, { title, content });
         alert('Course updated successfully!');
         setIsEditMode(false);
@@ -105,7 +105,7 @@ const EditAndShowCourse = () => {
             <input
               type="text"
               value={title}
-              onChange={(e) => setTitle(e.target.value)}
+              // onChange={(e) => setTitle(e.target.value)}
               className="mt-2 w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
             />
           ) : (

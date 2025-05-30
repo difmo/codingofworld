@@ -67,7 +67,7 @@ const handleSubmit = async (e) => {
 
   try {
     const courseId = Slugify(title);
-    const courseRef = doc(db, "courses", courseId);
+    const courseRef = doc(db, "tutorial-courses", courseId);
 
     const existingCourse = await getDoc(courseRef);
     if (existingCourse.exists()) {

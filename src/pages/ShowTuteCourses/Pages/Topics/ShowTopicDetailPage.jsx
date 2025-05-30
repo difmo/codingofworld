@@ -210,7 +210,7 @@ const ShowTopicDetailPage = () => {
           </button>
         )}
 
-<ShowAllCoursesPage/>
+{/* <ShowAllCoursesPage/> */}
 
       </div>
 

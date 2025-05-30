@@ -18,7 +18,7 @@ const partners = [
 
 export default function NewsletterFooter() {
   return (
-    <div className="relative -top-20 z-10 bg-white dark:bg-slate-900 border border-gray-200 dark:border-gray-700 rounded-3xl shadow-lg px-4 md:px-8 py-12 md:py-16 mx-4 md:mx-auto max-w-7xl transition-all duration-300 text-black dark:text-white">
+    <div className="relative -top-20  bg-white dark:bg-slate-900 border border-gray-200 dark:border-gray-700 rounded-3xl shadow-lg px-4 md:px-8 py-12 md:py-16 mx-4 md:mx-auto max-w-7xl transition-all duration-300 text-black dark:text-white">
       {/* Heading */}
       <h2 className="text-xl md:text-4xl  font-semibold text-center mb-8 text-primary">
         Our Placement Partner's 

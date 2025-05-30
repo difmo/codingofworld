@@ -25,7 +25,7 @@ const ShowCourseNavbar = ({ toggleSidebar }) => {
           className="text-white focus:outline-none"
           onClick={toggleSidebar}
         >
-          <FiArrowLeftCircle className="" /> {/* Using the React icon */}
+          <FiArrowLeftCircle className="text-black" /> {/* Using the React icon */}
         </button>
       </div>
     </div>

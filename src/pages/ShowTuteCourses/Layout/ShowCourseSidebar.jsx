@@ -1,11 +1,72 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useMemo, memo } from "react";
 import { Link, useParams } from "react-router-dom";
 import { db } from "../../../firebase";
-import {
-  collection,
-  onSnapshot,
-  getDocs,
-} from "firebase/firestore";
+import { collection, getDocs } from "firebase/firestore";
+
+// Memoized TopicItem component
+const TopicItem = memo(({ topic, courseId, toggleSidebar, toggleSubtopics, subtopicsVisibility, subtopicsData, loadingSubtopics }) => {
+  return (
+    <div key={topic.id}>
+      <div className="flex items-center justify-between">
+        <Link
+          to={`${courseId}/topic/${topic.id}`}
+          onClick={toggleSidebar}
+          className="block hover:bg-primary/30 px-2 py-1 text-white rounded-md transition-all duration-300 ease-in-out w-full"
+        >
+          <span>
+            {topic.title.split(" ").map((word, index) => (
+              <span
+                key={index}
+                className={word.toLowerCase().startsWith("day") ? "text-red-500" : ""}
+              >
+                {word}{" "}
+              </span>
+            ))}
+          </span>
+        </Link>
+
+        {topic.hasSubtopics && (
+          <button
+            onClick={() => toggleSubtopics(topic.id)}
+            className="text-white ml-1 focus:outline-none"
+            aria-expanded={subtopicsVisibility[topic.id]}
+            aria-controls={`subtopics-${topic.id}`}
+          >
+            {subtopicsVisibility[topic.id] ? "▾" : "▸"}
+          </button>
+        )}
+      </div>
+
+      {subtopicsVisibility[topic.id] && (
+        <div className="ml-4 mt-1 space-y-1" id={`subtopics-${topic.id}`}>
+          {loadingSubtopics[topic.id] ? (
+            <div className="space-y-2 animate-pulse">
+              {[...Array(3)].map((_, i) => (
+                <div
+                  key={i}
+                  className="h-4 bg-gray-400 dark:bg-gray-600 rounded w-3/4"
+                ></div>
+              ))}
+            </div>
+          ) : subtopicsData[topic.id]?.length > 0 ? (
+            subtopicsData[topic.id].map((subtopic) => (
+              <Link
+                key={subtopic.id}
+                to={`${courseId}/topic/${topic.id}/subtopic/${subtopic.id}`}
+                onClick={toggleSidebar}
+                className="block text-sm text-white hover:bg-primary/20 px-2 py-1 rounded"
+              >
+                {subtopic.title}
+              </Link>
+            ))
+          ) : (
+            <p className="text-xs text-gray-400 ml-2">No subtopics</p>
+          )}
+        </div>
+      )}
+    </div>
+  );
+});
 
 const ShowCourseSidebar = ({ toggleSidebar, isSidebarOpen }) => {
   const { courseId } = useParams();
@@ -18,46 +79,82 @@ const ShowCourseSidebar = ({ toggleSidebar, isSidebarOpen }) => {
   useEffect(() => {
     if (!courseId) return;
 
-    const topicsCollectionRef = collection(db, "courses", courseId, "topics");
-    setLoadingTopics(true);
+    const fetchData = async () => {
+      setLoadingTopics(true);
+      try {
+        // Fetch topics
+        const topicsCollectionRef = collection(db, "courses", courseId, "topics");
+        const topicsSnapshot = await getDocs(topicsCollectionRef);
+        
+        // Batch fetch subtopics for all topics
+        const fetchedTopics = [];
+        const subtopicsPromises = [];
 
-    const unsubscribe = onSnapshot(topicsCollectionRef, async (snapshot) => {
-      const fetchedTopics = [];
+        for (const doc of topicsSnapshot.docs) {
+          const topicData = doc.data();
+          const topicId = doc.id;
+          const subtopicsCollectionRef = collection(
+            db,
+            "courses",
+            courseId,
+            "topics",
+            topicId,
+            "subtopics"
+          );
+          
+          fetchedTopics.push({
+            id: topicId,
+            ...topicData,
+            createdAt: topicData.createdAt?.toDate?.() || null,
+            hasSubtopics: false,
+          });
 
-      for (const doc of snapshot.docs) {
-        const topicData = doc.data();
-        const topicId = doc.id;
+          // Queue subtopics fetch
+          subtopicsPromises.push(
+            getDocs(subtopicsCollectionRef).then((subtopicsSnapshot) => ({
+              topicId,
+              hasSubtopics: !subtopicsSnapshot.empty,
+              subtopics: subtopicsSnapshot.docs.map((doc) => ({
+                id: doc.id,
+                ...doc.data(),
+              })),
+            }))
+          );
+        }
 
-        const subtopicsCollectionRef = collection(
-          db,
-          "courses",
-          courseId,
-          "topics",
-          topicId,
-          "subtopics"
-        );
-        const subtopicsSnapshot = await getDocs(subtopicsCollectionRef);
-
-        fetchedTopics.push({
-          id: topicId,
-          ...topicData,
-          createdAt: topicData.createdAt?.toDate?.() || null,
-          hasSubtopics: !subtopicsSnapshot.empty,
+        // Resolve all subtopics fetches
+        const subtopicsResults = await Promise.all(subtopicsPromises);
+        
+        // Update topics with hasSubtopics and store subtopics
+        const updatedTopics = fetchedTopics.map((topic) => {
+          const subtopicResult = subtopicsResults.find((res) => res.topicId === topic.id);
+          if (subtopicResult) {
+            setSubtopicsData((prev) => ({
+              ...prev,
+              [topic.id]: subtopicResult.subtopics,
+            }));
+            return { ...topic, hasSubtopics: subtopicResult.hasSubtopics };
+          }
+          return topic;
         });
+
+        // Sort topics by createdAt
+        const sortedTopics = updatedTopics.sort((a, b) => {
+          if (!a.createdAt && !b.createdAt) return 0;
+          if (!a.createdAt) return -1;
+          if (!b.createdAt) return 1;
+          return a.createdAt.getTime() - b.createdAt.getTime();
+        });
+
+        setTopics(sortedTopics);
+      } catch (error) {
+        console.error("Error fetching topics:", error);
+      } finally {
+        setLoadingTopics(false);
       }
+    };
 
-      const sortedTopics = fetchedTopics.sort((a, b) => {
-        if (!a.createdAt && !b.createdAt) return 0;
-        if (!a.createdAt) return -1;
-        if (!b.createdAt) return 1;
-        return a.createdAt.getTime() - b.createdAt.getTime();
-      });
-
-      setTopics(sortedTopics);
-      setLoadingTopics(false);
-    });
-
-    return () => unsubscribe();
+    fetchData();
   }, [courseId]);
 
   const toggleSubtopics = (topicId) => {
@@ -65,44 +162,36 @@ const ShowCourseSidebar = ({ toggleSidebar, isSidebarOpen }) => {
       ...prev,
       [topicId]: !prev[topicId],
     }));
-
-    if (!subtopicsData[topicId]) {
-      setLoadingSubtopics((prev) => ({ ...prev, [topicId]: true }));
-
-      const subtopicsCollectionRef = collection(
-        db,
-        "courses",
-        courseId,
-        "topics",
-        topicId,
-        "subtopics"
-      );
-
-      onSnapshot(subtopicsCollectionRef, (snapshot) => {
-        const subtopicsList = snapshot.docs.map((doc) => ({
-          id: doc.id,
-          ...doc.data(),
-        }));
-
-        setSubtopicsData((prev) => ({
-          ...prev,
-          [topicId]: subtopicsList,
-        }));
-
-        setLoadingSubtopics((prev) => ({ ...prev, [topicId]: false }));
-      });
-    }
   };
 
+  // Memoize topics list
+  const topicsList = useMemo(() => {
+    return topics.map((topic) => (
+      <TopicItem
+        key={topic.id}
+        topic={topic}
+        courseId={courseId}
+        toggleSidebar={toggleSidebar}
+        toggleSubtopics={toggleSubtopics}
+        subtopicsVisibility={subtopicsVisibility}
+        subtopicsData={subtopicsData}
+        loadingSubtopics={loadingSubtopics}
+      />
+    ));
+  }, [topics, courseId, toggleSidebar, subtopicsVisibility, subtopicsData, loadingSubtopics]);
+
   return (
-    <div
-      className={`inset-y-0 left-0 w-64 h-screen space-y-6 text-primary bg-secondaryblue dark:bg-gray-900 overflow-y-auto scrollbar-hide transition-transform duration-300 ease-in-out transform ${
-        isSidebarOpen ? "translate-x-0" : "-translate-x-full"
-      } md:translate-x-0 md:static md:w-64`}
-    >
+   <div
+  className={` fixed md:sticky   left-0 w-64 h-screen space-y-6 text-primary bg-secondaryblue dark:bg-gray-900 overflow-y-auto scrollbar-hide md:w-72 transition-transform duration-300 ease-in-out ${
+    isSidebarOpen ? "translate-x-0" : "-translate-x-full"
+  } md:translate-x-0 z-50`}
+  aria-hidden={!isSidebarOpen}
+  role="navigation"
+  aria-label="Sidebar Navigation"
+>
       <ul>
         <li>
-          <h3 className="text-lg bg-primary rounded-xl text-white text-center font-semibold transition-all duration-300 ease-in-out">
+          <h3 className="text-lg bg-primary rounded-xl text-white text-center font-semibold m-2 transition-all duration-300 ease-in-out">
             Course Topics
           </h3>
           <div className="p-4 space-y-2">
@@ -116,71 +205,7 @@ const ShowCourseSidebar = ({ toggleSidebar, isSidebarOpen }) => {
                 ))}
               </div>
             ) : topics.length > 0 ? (
-              topics.map((topic) => (
-                <div key={topic.id}>
-                  <div className="flex items-center justify-between">
-                    <Link
-                      to={`${courseId}/topic/${topic.id}`}
-                      onClick={toggleSidebar}
-                      className="block hover:bg-primary/30 px-2 text-white rounded-md transition-all duration-300 ease-in-out w-full"
-                    >
-                      <span>
-                        {topic.title.split(" ").map((word, index) => (
-                          <span
-                            key={index}
-                            className={
-                              word.toLowerCase().startsWith("day")
-                                ? "text-red-500"
-                                : ""
-                            }
-                          >
-                            {word}{" "}
-                          </span>
-                        ))}
-                      </span>
-                    </Link>
-
-                    {topic.hasSubtopics && (
-                      <button
-                        onClick={() => toggleSubtopics(topic.id)}
-                        className="text-white ml-1"
-                      >
-                        {subtopicsVisibility[topic.id] ? "▾" : "▸"}
-                      </button>
-                    )}
-                  </div>
-
-                  {subtopicsVisibility[topic.id] && (
-                    <div className="ml-4 mt-1 space-y-1">
-                      {loadingSubtopics[topic.id] ? (
-                        <div className="space-y-2 animate-pulse">
-                          {[...Array(3)].map((_, i) => (
-                            <div
-                              key={i}
-                              className="h-4 bg-gray-400 dark:bg-gray-600 rounded w-3/4"
-                            ></div>
-                          ))}
-                        </div>
-                      ) : subtopicsData[topic.id]?.length > 0 ? (
-                        subtopicsData[topic.id].map((subtopic) => (
-                          <Link
-                            key={subtopic.id}
-                            to={`${courseId}/topic/${topic.id}/subtopic/${subtopic.id}`}
-                            onClick={toggleSidebar}
-                            className="block text-sm text-white hover:bg-primary/20 px-2 py-1 rounded"
-                          >
-                            {subtopic.title}
-                          </Link>
-                        ))
-                      ) : (
-                        <p className="text-xs text-gray-400 ml-2">
-                          No subtopics
-                        </p>
-                      )}
-                    </div>
-                  )}
-                </div>
-              ))
+              topicsList
             ) : (
               <p className="text-sm text-gray-400 dark:text-gray-600">
                 No topics available
